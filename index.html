@@ -93,152 +93,452 @@
 
 
 <body>
-@import '../common/variables'
+<div class="progress-bar-container">
+    
 
-.page-container
-  position relative
-  box-sizing border-box
-  width 100%
-  height auto
-  background var(--background-color)
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
 
-  +redefine-tablet()
-    padding-right 0 !important
 
-  .main-content-container
-    padding-top $navbar-height
+<main class="page-container" id="swup">
+
+    
+        
+    <style>
+        .home-banner-container {
+            background: transparent !important;
+        }
+
+        .home-article-item,
+        .sidebar-links,
+        .sidebar-content,
+        a.page-number,
+        a.extend,
+        .sidebar-links .links:hover,
+        .right-bottom-tools,
+        footer.footer {
+            background-color: var(--background-color-transparent-80) !important;
+        }
+
+        .right-bottom-tools:hover,
+        a.page-number:hover,
+        a.extend:hover {
+            background-color: var(--primary-color) !important;
+        }
+
+        .site-info,
+        .home-article-sticky-label {
+            background-color: var(--background-color-transparent-15) !important;
+        }
+
+        .home-article-sticky-label {
+            backdrop-filter: none !important;
+        }
+    </style>
+
+    <div class="home-banner-background transition-fade">
+    </div>
+
+
+<div class="home-banner-container flex justify-center items-center transition-fade">
+    <div class="content flex justify-center items-center">
+        <div class="description flex flex-col justify-center items-center"
+        
+        >
+            Hello, this is hyjack
+            
+            
+                <p><i id="subtitle"></i></p>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content has-home-banner">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                <h1>
+                Hello, this is hyjack
+                </h1>
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="active" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group active" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+                <div class="home-sidebar-container">
+    <div class="sticky-container sticky">
+        
+            
+            <div class="sidebar-content" >
+                <div class="avatar flex justify-center">
+                    <img src="/assets/avatar.jpg">
+                </div>
+                <div class="author flex flex-col justify-center my-2.5 mx-0">
+                    <div class="name">hyjack</div>
+                    
+                        <div class="label">Lv1</div>
+                    
+                </div>
+                <div class="statistics">
+                    <a class="item" href="/tags">
+                        <div class="number">0</div>
+                        <div class="label">标签</div>
+                    </a>
+                    <a class="item" href="/categories">
+                        <div class="number">0</div>
+                        <div class="label">分类</div>
+                    </a>
+                    <a class="item" href="/archives">
+                        <div class="number">2</div>
+                        <div class="label">文章</div>
+                    </a>
+                </div>
+            </div>
+        
+
+    </div>
+</div>
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="home-content-container">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2023/10/09/hello-world/">
+                        Hello World
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Welcome to Hexo ! This is your very first post. Check documentation  for more info. If you get any problems when using Hexo, ...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 09 2023 21:16:39 GMT+0800">
+                
+                    2023-10-09
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2023/10/09/hello-world/">阅读全文<span class="seo-reader-text">Hello World</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2023/10/08/Hyjack-%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                        Hyjack 的博客搭建
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        虽说是计算机网络内培要求的作业，但是已经想做一个博客很久了，来从0到1认真做一个属于自己的网站吧。:D 
+主要使用的是 hexo 博客框架，在阿里云上买了云服务器，不过在没有备案之前只能用 Github Pages 托管网页。
+云服务器选择
+阿里
+轻...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sun Oct 08 2023 21:58:21 GMT+0800">
+                
+                    2023-10-08
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2023/10/08/Hyjack-%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">阅读全文<span class="seo-reader-text">Hyjack 的博客搭建</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    <span class="page-number current">1</span>
+</div>
+
+    </div>
+</div>
+
+                    <div class="comment-container pjax"></div>
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            @import '../../common/variables'
+
+.footer
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    display inline-block
+    vertical-align baseline
     position relative
-    transition padding 0.2s ease
 
-    .navbar-shrink &
-      padding-top $navbar-shrink-height
-      transition padding 0.2s ease
+  .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit
+    display inline-block
+    vertical-align baseline
+    position relative
 
-      +redefine-tablet()
-        padding-top: ($navbar-shrink-height * 0.9)
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer
+    display inline-block
+    vertical-align baseline
+    visibility hidden
 
-      +redefine-mobile()
-        padding-top: $navbar-shrink-height * 0.8
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner
+    text-align left
+    display block
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    overflow hidden
 
-    +redefine-tablet()
-      padding-top: $navbar-height * 0.9
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon
+    display block
 
-    +redefine-mobile()
-      padding-top: $navbar-height * 0.8
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner
+    display block
+    -webkit-backface-visibility hidden
 
-    .main-content-header
-      position fixed
-      top 0
-      right 0
-      width 100%
-      height $navbar-height
-      z-index $z-index-5
-      box-sizing border-box
-      transition-t('transform, padding-left, height', '0, 0, 0', '0.3, 0.2, 0.2', 'ease-out, linear, ease')
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value
+    display block
 
-      &.hide
-        transform translateY(-105%)
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value
+    position absolute
 
-      .navbar-shrink &
-        height $navbar-shrink-height
+  .odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner
+    transition transform 999ms
 
-        +redefine-tablet()
-          height: ($navbar-shrink-height * 0.9)
+  .odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner
+    transform translateY(-100%)
 
-        +redefine-mobile()
-          height: $navbar-shrink-height * 0.8
+  .odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner
+    transform translateY(-100%)
 
-      +redefine-tablet()
-        height: $navbar-height * 0.9
-        padding-left 0 !important
+  .odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner
+    transition transform 999ms
+    transform translateY(0)
 
-      +redefine-mobile()
-        height: $navbar-height * 0.8
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    line-height 1.1em
 
-    .main-content-body
-      box-sizing border-box
-      width 100%
-      display flex
-      justify-content center
-      padding $spacing-unit 0
+  .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value
+    text-align center
 
-      +redefine-tablet()
-        padding ($spacing-unit * 0.8) 0
+        </div>
+    </div>
 
-      +redefine-mobile()
-        border none !important
-        padding-top 0
+    
 
-      .main-content
-        position relative
-        box-sizing border-box
-        width $main-content-width
-        max-width $content-max-width
-        height 100%
-        transition-t('max-width, width', '0, 0', '0.2, 0.2', 'ease, ease')
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
 
-        +redefine-tablet()
-          width $main-content-width-tablet
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
 
-        +redefine-mobile()
-          width $main-content-width-mobile
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
 
-        &.has-toc
-          max-width $has-toc-content-max-width !important
+        <!-- rss -->
+        
 
-      .main-content-footer
-        width 100%
+        
 
-  .post-tools
-    position fixed
-    top: $navbar-height + $spacing-unit
-    right $spacing-unit
-    transition-t('top', '0', '0.2', 'ease')
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
 
-    .navbar-shrink &
-      top: $navbar-shrink-height + $spacing-unit
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
 
-      +redefine-tablet()
-        top ($navbar-shrink-height * 0.9) + $spacing-unit
+    </div>
 
-      +redefine-mobile()
-        top: ($navbar-shrink-height * 0.8 + $spacing-unit)
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-    +redefine-tablet()
-      top: ($navbar-height * 0.9 + $spacing-unit)
-      right 10px
-      transform scale(0.82)
-      transform-origin right top
 
-    +redefine-mobile()
-      display none
-      top: ($navbar-height * 0.8 + $spacing-unit)
-      right 5px
-      transform scale(0.72)
+    
 
-  .right-side-tools-container
-    position fixed
-    bottom 5%
-    right $spacing-unit
-    opacity 1
-    transition opacity 0.2s ease
+</main>
 
-    &.hide
-      opacity 0
-      pointer-events none
-      transition opacity 0.2s ease
 
-    +redefine-mobile()
-      right 12px
+    
+<script src="/js/libs/Swup.min.js"></script>
 
-.transition-fade
-  transition 0.4s
-  opacity 1
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
 
-html.is-animating
-  .transition-fade
-    opacity 0
-    transition 0.4s
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
 
 
 
