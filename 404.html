@@ -95,277 +95,152 @@
 
 
 <body>
-<div class="progress-bar-container">
-    
+@import '../common/variables'
 
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="swup-progress-icon">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
+.page-container
+  position relative
+  box-sizing border-box
+  width 100%
+  height auto
+  background var(--background-color)
 
+  +redefine-tablet()
+    padding-right 0 !important
 
-<main class="page-container" id="swup">
-
-    
-
-    <div class="main-content-container">
-
-
-        <div class="main-content-header">
-            <header class="navbar-container">
-    
-    <div class="navbar-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Hello, this is hyjack
-                
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="" 
-                                    href="/"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-house"></i>
-                                        
-                                        首页
-                                    
-                                </a>
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile drawer -->
-    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
-        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
-            
-                
-                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
-                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
-                        href="/"  >
-                             
-                                
-                                    <i class="fa-regular fa-house"></i>
-                                
-                                首页
-                            
-                        </a>
-                    </li>
-                    <!-- Submenu -->
-                    
-            
-
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="main-content-body">
-
-            
-
-            <div class="main-content">
-
-                
-                    <div class="nf-container">
-    <div class="nf-text">
-        <h1>404 Page Not Found</h1>
-    </div>
-    <div class="nf-button">
-        <a href="/" class="button large center"><i class="fa-regular fa-house"></i> Go Back Home</a>
-    </div>
-</div>
-
-                
-
-            </div>
-
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            @import '../../common/variables'
-
-.footer
-  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
-    display inline-block
-    vertical-align baseline
+  .main-content-container
+    padding-top $navbar-height
     position relative
+    transition padding 0.2s ease
 
-  .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit
-    display inline-block
-    vertical-align baseline
-    position relative
+    .navbar-shrink &
+      padding-top $navbar-shrink-height
+      transition padding 0.2s ease
 
-  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer
-    display inline-block
-    vertical-align baseline
-    visibility hidden
+      +redefine-tablet()
+        padding-top: ($navbar-shrink-height * 0.9)
 
-  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner
-    text-align left
-    display block
-    position absolute
-    top 0
-    left 0
-    right 0
-    bottom 0
-    overflow hidden
+      +redefine-mobile()
+        padding-top: $navbar-shrink-height * 0.8
 
-  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon
-    display block
+    +redefine-tablet()
+      padding-top: $navbar-height * 0.9
 
-  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner
-    display block
-    -webkit-backface-visibility hidden
+    +redefine-mobile()
+      padding-top: $navbar-height * 0.8
 
-  .odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value
-    display block
+    .main-content-header
+      position fixed
+      top 0
+      right 0
+      width 100%
+      height $navbar-height
+      z-index $z-index-5
+      box-sizing border-box
+      transition-t('transform, padding-left, height', '0, 0, 0', '0.3, 0.2, 0.2', 'ease-out, linear, ease')
 
-  .odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value
-    position absolute
+      &.hide
+        transform translateY(-105%)
 
-  .odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner
-    transition transform 999ms
+      .navbar-shrink &
+        height $navbar-shrink-height
 
-  .odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner
-    transform translateY(-100%)
+        +redefine-tablet()
+          height: ($navbar-shrink-height * 0.9)
 
-  .odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner
-    transform translateY(-100%)
+        +redefine-mobile()
+          height: $navbar-shrink-height * 0.8
 
-  .odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner
-    transition transform 999ms
-    transform translateY(0)
+      +redefine-tablet()
+        height: $navbar-height * 0.9
+        padding-left 0 !important
 
-  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
-    line-height 1.1em
+      +redefine-mobile()
+        height: $navbar-height * 0.8
 
-  .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value
-    text-align center
+    .main-content-body
+      box-sizing border-box
+      width 100%
+      display flex
+      justify-content center
+      padding $spacing-unit 0
 
-        </div>
-    </div>
+      +redefine-tablet()
+        padding ($spacing-unit * 0.8) 0
 
-    
+      +redefine-mobile()
+        border none !important
+        padding-top 0
 
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
+      .main-content
+        position relative
+        box-sizing border-box
+        width $main-content-width
+        max-width $content-max-width
+        height 100%
+        transition-t('max-width, width', '0, 0', '0.2, 0.2', 'ease, ease')
 
-        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
+        +redefine-tablet()
+          width $main-content-width-tablet
 
-        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
+        +redefine-mobile()
+          width $main-content-width-mobile
 
-        <!-- rss -->
-        
+        &.has-toc
+          max-width $has-toc-content-max-width !important
 
-        
+      .main-content-footer
+        width 100%
 
-        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
+  .post-tools
+    position fixed
+    top: $navbar-height + $spacing-unit
+    right $spacing-unit
+    transition-t('top', '0', '0.2', 'ease')
 
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
-</div>
+    .navbar-shrink &
+      top: $navbar-shrink-height + $spacing-unit
 
-    </div>
+      +redefine-tablet()
+        top ($navbar-shrink-height * 0.9) + $spacing-unit
 
-    <div class="image-viewer-container">
-    <img src="">
-</div>
+      +redefine-mobile()
+        top: ($navbar-shrink-height * 0.8 + $spacing-unit)
 
+    +redefine-tablet()
+      top: ($navbar-height * 0.9 + $spacing-unit)
+      right 10px
+      transform scale(0.82)
+      transform-origin right top
 
-    
+    +redefine-mobile()
+      display none
+      top: ($navbar-height * 0.8 + $spacing-unit)
+      right 5px
+      transform scale(0.72)
 
-</main>
+  .right-side-tools-container
+    position fixed
+    bottom 5%
+    right $spacing-unit
+    opacity 1
+    transition opacity 0.2s ease
 
+    &.hide
+      opacity 0
+      pointer-events none
+      transition opacity 0.2s ease
 
-    
-<script src="/js/libs/Swup.min.js"></script>
+    +redefine-mobile()
+      right 12px
 
-<script src="/js/libs/SwupSlideTheme.min.js"></script>
+.transition-fade
+  transition 0.4s
+  opacity 1
 
-<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
-
-<script src="/js/libs/SwupProgressPlugin.min.js"></script>
-
-<script src="/js/libs/SwupScrollPlugin.min.js"></script>
-
-<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
-
-<script>
-    const swup = new Swup({
-        plugins: [
-            new SwupScriptsPlugin({
-                optin: true,
-            }),
-            new SwupProgressPlugin(),
-            new SwupScrollPlugin({
-                offset: 80,
-            }),
-            new SwupSlideTheme({
-                mainElement: ".main-content-body",
-            }),
-            new SwupPreloadPlugin(),
-        ],
-        containers: ["#swup"],
-    });
-</script>
-
-
-
+html.is-animating
+  .transition-fade
+    opacity 0
+    transition 0.4s
 
 
 
