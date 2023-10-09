@@ -95,152 +95,522 @@
 
 
 <body>
-@import '../common/variables'
+<div class="progress-bar-container">
+    
 
-.page-container
-  position relative
-  box-sizing border-box
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            $logo-title-font-size = 2rem
+$desktop-search-icon-font-size = 1.5rem
+$navbar-bar-line-height = 2.5px
+$logo-image-box-width = 46px
+
+@import '../../common/variables'
+
+.navbar-container
+  font-family 'Chillax-Variable', sans-serif
   width 100%
-  height auto
-  background var(--background-color)
+  height 100%
+  box-sizing border-box
+  display flex
+  align-items center
+  justify-content center
+  background $nav-color-bg
+  -webkit-backdrop-filter blur(10px)
+  backdrop-filter blur(10px)
+  padding-top $scroll-progress-bar-height
+  hover-style(
+    false,
+    0,
+    0
+  )
 
-  +redefine-tablet()
-    padding-right 0 !important
-
-  .main-content-container
-    padding-top $navbar-height
+  .navbar-content
     position relative
-    transition padding 0.2s ease
+    height 100%
+    width $main-content-width
+    max-width $content-max-width
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+    z-index $z-index-5
+    transition max-width 0.3s ease
 
-    .navbar-shrink &
-      padding-top $navbar-shrink-height
-      transition padding 0.2s ease
-
-      +redefine-tablet()
-        padding-top: ($navbar-shrink-height * 0.9)
-
-      +redefine-mobile()
-        padding-top: $navbar-shrink-height * 0.8
+    &.has-home-banner
+      max-width $content-max-width * 1.2
 
     +redefine-tablet()
-      padding-top: $navbar-height * 0.9
+      width $main-content-width-tablet
 
     +redefine-mobile()
-      padding-top: $navbar-height * 0.8
+      width $main-content-width-mobile
 
-    .main-content-header
-      position fixed
-      top 0
-      right 0
-      width 100%
-      height $navbar-height
-      z-index $z-index-5
-      box-sizing border-box
-      transition-t('transform, padding-left, height', '0, 0, 0', '0.3, 0.2, 0.2', 'ease-out, linear, ease')
-
-      &.hide
-        transform translateY(-105%)
+    .left
+      display flex
+      align-items center
+      transform-origin left
+      transition-t('transform', '0', '0.2', 'linear')
 
       .navbar-shrink &
-        height $navbar-shrink-height
+        transform scale(0.72)
+        transform-origin left
+
+      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
+        .logo-image
+          width $logo-image-box-width
+          height $logo-image-box-width
+          margin-right 8px
+
+          +redefine-tablet()
+            width: $logo-image-box-width * 0.9
+            height: $logo-image-box-width * 0.9
+
+          +redefine-mobile()
+            width: $logo-image-box-width * 0.8
+            height: $logo-image-box-width * 0.8
+
+          img
+            border-radius 6px
+            width 100%
+
+      .logo-title
+        font-size $logo-title-font-size
+        font-weight 520
+        // letter-spacing 1px
+        line-height 1
+        color var(--first-text-color)
+
+        h1
+          margin 0
+          font-size $logo-title-font-size
+          font-weight 520
+          //letter-spacing 1px
+          line-height 1
+          color var(--first-text-color)
+
+          +redefine-tablet()
+            font-size: $logo-title-font-size * 0.9
+
+          +redefine-mobile()
+            font-size: $logo-title-font-size * 0.8
 
         +redefine-tablet()
-          height: ($navbar-shrink-height * 0.9)
+          font-size: $logo-title-font-size * 0.9
 
         +redefine-mobile()
-          height: $navbar-shrink-height * 0.8
+          font-size: $logo-title-font-size * 0.8
 
-      +redefine-tablet()
-        height: $navbar-height * 0.9
-        padding-left 0 !important
+    .right
+      .desktop
+        .navbar-list
+          display flex
+          gap 24px
+          align-items center
 
-      +redefine-mobile()
-        height: $navbar-height * 0.8
+          +redefine-tablet()
+            display none
 
-    .main-content-body
-      box-sizing border-box
-      width 100%
-      display flex
-      justify-content center
-      padding $spacing-unit 0
+          .navbar-item
+            float left
+            // padding 5px
+            position relative
+            font-size 1rem
+            font-weight 450
+            cursor pointer
+            color var(--default-text-color)
 
-      +redefine-tablet()
-        padding ($spacing-unit * 0.8) 0
+            a
+              display block
+              padding 5px
 
-      +redefine-mobile()
-        border none !important
-        padding-top 0
+            a .fa-chevron-down
+              transform rotate(0deg)
+              transition transform 0.3s ease
 
-      .main-content
-        position relative
-        box-sizing border-box
-        width $main-content-width
-        max-width $content-max-width
-        height 100%
-        transition-t('max-width, width', '0, 0', '0.2, 0.2', 'ease, ease')
+            &:hover a .fa-chevron-down
+              transform rotate(180deg)
 
-        +redefine-tablet()
-          width $main-content-width-tablet
+            &:hover .has-dropdown
+              &::after
+                display none !important
 
-        +redefine-mobile()
-          width $main-content-width-mobile
+            &:hover a, .active
+              &::after
+                content ''
+                position absolute
+                bottom -5px
+                left 50%
+                width 100%
+                height 2px
+                transform translateX(-50%)
+                border-radius $redefine-border-radius-large
+                background var(--primary-color)
+                transition-t('transform, bottom', '0, 0', '0.2, 0.2', 'linear, linear')
 
-        &.has-toc
-          max-width $has-toc-content-max-width !important
+                .navbar-shrink &
+                  bottom -($navbar-shrink-height / 2 - 17)
 
-      .main-content-footer
-        width 100%
+            &.search
+              font-size $desktop-search-icon-font-size
+              margin-left 26px
 
-  .post-tools
-    position fixed
-    top: $navbar-height + $spacing-unit
-    right $spacing-unit
-    transition-t('top', '0', '0.2', 'ease')
+              i
+                color var(--default-text-color)
 
-    .navbar-shrink &
-      top: $navbar-shrink-height + $spacing-unit
+            .sub-menu
+              position absolute
+              right auto
+              left 50%
+              -webkit-transform translate(-50%, 0)
+              -o-transform translate(-50%, 0)
+              transform translate(-50%, 0)
+              margin-top 0px
+              width auto
+              text-align center
+              list-style none
+              padding 0 10px
+              border-radius $redefine-border-radius-large
+              // visibility hidden
+              max-height 0px
+              overflow hidden
+              transition-t('all', '0', '0.2', 'linear')
 
-      +redefine-tablet()
-        top ($navbar-shrink-height * 0.9) + $spacing-unit
+              li a
+                white-space nowrap
+                color var(--default-text-color)
+                font-size 1rem
+                padding 3px 15px
+                display block
+                text-align center
+                border-radius 8px
+                transition-t('all', '0', '0.2', 'linear')
 
-      +redefine-mobile()
-        top: ($navbar-shrink-height * 0.8 + $spacing-unit)
+                &:hover
+                  color var(--primary-color)
+                  background-color var(--third-background-color)
 
-    +redefine-tablet()
-      top: ($navbar-height * 0.9 + $spacing-unit)
-      right 10px
-      transform scale(0.82)
-      transform-origin right top
+        .navbar-list .navbar-item:hover .sub-menu
+          // visibility visible
+          max-height 500px
+          transition-t('all', '0', '0.2', 'ease')
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            5px
+          )
 
-    +redefine-mobile()
-      display none
-      top: ($navbar-height * 0.8 + $spacing-unit)
-      right 5px
-      transform scale(0.72)
+      .mobile
+        display flex
+        justify-content space-between
+        align-items center
 
-  .right-side-tools-container
-    position fixed
-    bottom 5%
-    right $spacing-unit
-    opacity 1
-    transition opacity 0.2s ease
+        .icon-item
+          display none
+          position relative
+          cursor pointer
+          font-size 18px
+          margin-left 12px
+          width 20px
+          height 20px
+          color var(--default-text-color)
 
-    &.hide
-      opacity 0
-      pointer-events none
-      transition opacity 0.2s ease
+          i
+            color var(--default-text-color)
 
-    +redefine-mobile()
-      right 12px
+          &:first-child
+            margin-left 0
 
-.transition-fade
-  transition 0.4s
-  opacity 1
+          +redefine-tablet()
+            display flex
+            justify-content center
+            align-items center
 
-html.is-animating
-  .transition-fade
+        .navbar-bar
+          .navbar-bar-middle
+            width 18px
+            height $navbar-bar-line-height
+            position relative
+            background var(--default-text-color)
+
+            .navbar-drawer-show &
+              background transparent
+
+            &::before, &::after
+              content ''
+              position absolute
+              left 0
+              width 100%
+              height $navbar-bar-line-height
+              background var(--default-text-color)
+              transition-t('transform', '0', '0.38', 'ease')
+
+            &::before
+              top -6px
+
+              .navbar-drawer-show &
+                transform translateY(6px) rotate(45deg)
+
+            &::after
+              bottom -6px
+
+              .navbar-drawer-show &
+                transform translateY(-6px) rotate(-45deg)
+
+  .navbar-drawer
+    padding $navbar-height 0 20px 0
+    transform scaleY(0)
+    transform-origin top
+    z-index $z-index-2
     opacity 0
-    transition 0.4s
+    transition-t('transform,opacity', '0,0.1', '0.38,0.38', 'ease,ease')
+
+    .navbar-drawer-show &
+      transform scaleY(1)
+      opacity 1
+
+  .window-mask
+    position absolute
+    top 0
+    width 100%
+    height 100vh
+    background rgba(0, 0, 0, 0.4)
+    z-index $z-index-1
+    visibility hidden
+    opacity 0
+    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
+
+    .navbar-drawer-show &
+      visibility visible
+      opacity 1
+
+.navbar-drawer-show
+  overflow hidden
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="archive-container ">
+    
+
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2023</span>
+                <span class="archive-year-post-count">[2]</span>
+            </div>
+            <ul class="article-list">
+              
+                
+                    
+                    <li class="article-item" date-is='10-09'>
+                
+                
+                    <a href="/2023/10/09/hello-world/">
+                        <span class="article-title">Hello World</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='10-08'>
+                
+                
+                    <a href="/2023/10/08/Hyjack-%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                        <span class="article-title">Hyjack 的博客搭建</span>
+                    </a>
+                
+              
+            </ul>
+        </section>
+    
+</div>
+
+</div>
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            @import '../../common/variables'
+
+.footer
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer
+    display inline-block
+    vertical-align baseline
+    visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner
+    text-align left
+    display block
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    overflow hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner
+    display block
+    -webkit-backface-visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value
+    position absolute
+
+  .odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner
+    transition transform 999ms
+
+  .odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner
+    transition transform 999ms
+    transform translateY(0)
+
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    line-height 1.1em
+
+  .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value
+    text-align center
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
 
 
 
