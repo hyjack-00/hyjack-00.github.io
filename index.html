@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Jack Huang">
-  <meta name="description" content="Hyjack's personal academic blog - HPC, Parallel Computing, AI Systems">
-  <meta property="og:title" content="Hyjack's Cyberhome">
+  <meta name="author" content="Yujie Huang">
+  <meta name="description" content="Yujie Huang - Ph.D. Student at CUHK. Research in HPC, Parallel Computing, AI Systems.">
+  <meta property="og:title" content="Yujie Huang | CUHK">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="/assets/lantern-light.png">
   <link rel="apple-touch-icon" href="/assets/lantern-light.png">
-  <title>Hyjack's Cyberhome</title>
+  <title>Yujie Huang | CUHK</title>
 
   <!-- Fonts -->
   <link rel="stylesheet" href="/fonts/fonts.css">
@@ -21,6 +21,9 @@
   <link rel="stylesheet" href="/fontawesome/brands.min.css">
   <link rel="stylesheet" href="/fontawesome/solid.min.css">
   <link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/css/academic-home.css">
@@ -36,10 +39,10 @@
       <div class="profile-section">
         <img class="avatar" src="/assets/avatar.jpg" alt="Avatar">
         <div class="profile-text">
-          <h1 class="name">Jack Huang</h1>
+          <h1 class="name">Yujie Huang</h1>
           <p class="handle">@hyjack</p>
-          <p class="title">Ph.D. Student</p>
-          <p class="affiliation">Research in HPC &amp; AI Systems</p>
+          <p class="title">Ph.D. Student @ CUHK</p>
+          <p class="affiliation">Supervised by <a href="https://www.cse.cuhk.edu.hk/lyu/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:2px">Prof. Michael R. Lyu</a></p>
         </div>
       </div>
 
@@ -79,8 +82,8 @@
             <div class="timeline-date">2023 &mdash; Present</div>
             <div class="timeline-content">
               <h3>Ph.D. Student</h3>
-              <p>Your University, Dept. of Computer Science</p>
-              <p class="timeline-desc">Research: High Performance Computing, Parallel Architecture, AI Systems</p>
+              <p>The Chinese University of Hong Kong (CUHK), Dept. of CSE</p>
+              <p class="timeline-desc">Supervisor: Prof. Michael R. Lyu &mdash; Research in HPC, Parallel Computing, AI Systems</p>
             </div>
           </div>
           <div class="timeline-item">
@@ -100,8 +103,8 @@
           <div class="timeline-item">
             <div class="timeline-date">2019 &mdash; 2023</div>
             <div class="timeline-content">
-              <h3>B.S. in Computer Science</h3>
-              <p>Your University</p>
+              <h3>B.Eng. in Computer Science</h3>
+              <p>Your Undergraduate University</p>
             </div>
           </div>
         </div>
@@ -115,7 +118,7 @@
             <div class="pub-badge working">In Prep</div>
             <div class="pub-content">
               <h3>Your Paper Title Here</h3>
-              <p class="pub-authors"><strong>Jack Huang</strong>, Co-author A, Co-author B, Advisor</p>
+              <p class="pub-authors"><strong>Yujie Huang</strong>, Co-author A, Co-author B, Michael R. Lyu</p>
               <p class="pub-venue">Target Venue, 2025</p>
             </div>
           </div>
@@ -123,7 +126,7 @@
             <div class="pub-badge working">In Prep</div>
             <div class="pub-content">
               <h3>Another Paper Title Placeholder</h3>
-              <p class="pub-authors">Co-author X, <strong>Jack Huang</strong>, Advisor</p>
+              <p class="pub-authors">Co-author X, <strong>Yujie Huang</strong>, Michael R. Lyu</p>
               <p class="pub-venue">Target Venue, 2025</p>
             </div>
           </div>
@@ -186,175 +189,26 @@
         </div>
       </section>
 
-      <!-- Travel Map -->
+      <!-- Travel Map (Leaflet.js) -->
       <section class="section glass-card" id="travel">
         <h2 class="section-heading"><i class="fa-solid fa-map-location-dot"></i> Travel Footprints</h2>
         <div class="travel-map-wrapper">
-          <div class="travel-map-inner">
-            <!--
-              World Map - Equirectangular Projection
-              ViewBox: 960 x 500
-              Coordinate formula:
-                x = (longitude + 180) / 360 * 960
-                y = (90 - latitude) / 180 * 500
+          <div id="travel-map"></div>
 
-              To ADD a new city:
-              1. Find the city's latitude & longitude (e.g. Tokyo: 139.69, 35.69)
-              2. Calculate: x = (139.69+180)/360*960 = 852,  y = (90-35.69)/180*500 = 151
-              3. Copy a city marker <g> block below and update cx/cy to your values
-              4. Adjust label position (lx, ly) so it doesn't overlap others
-              5. Update the stats numbers at the bottom
-            -->
-            <svg class="world-map" viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg">
-              <!-- Subtle grid -->
-              <g class="grid">
-                <line class="grid-line" x1="0" y1="125" x2="960" y2="125"/>
-                <line class="grid-line" x1="0" y1="250" x2="960" y2="250"/>
-                <line class="grid-line" x1="0" y1="375" x2="960" y2="375"/>
-                <line class="grid-line" x1="240" y1="0" x2="240" y2="500"/>
-                <line class="grid-line" x1="480" y1="0" x2="480" y2="500"/>
-                <line class="grid-line" x1="720" y1="0" x2="720" y2="500"/>
-              </g>
-
-              <!-- ===== Continents (simplified outlines) ===== -->
-
-              <!-- North America -->
-              <polygon class="continent" points="
-                27,69 80,83 133,97 147,117 165,156 200,194 245,210 259,222
-                264,195 262,181 245,167 267,161 280,142 293,133 320,119
-                333,117 320,103 280,92 253,97 230,80 200,64 147,61 107,69 40,83
-              "/>
-              <!-- Greenland -->
-              <polygon class="continent" points="350,39 375,33 395,42 400,58 388,72 365,78 348,67"/>
-              <!-- Central America -->
-              <polygon class="continent" points="240,210 253,214 259,222 261,233 251,239 237,233 232,222 235,214"/>
-
-              <!-- South America -->
-              <polygon class="continent" points="
-                267,242 280,236 293,239 340,239 373,256 387,275
-                380,297 365,319 345,347 320,372 307,389 297,403
-                285,389 280,356 275,308 267,272
-              "/>
-
-              <!-- Africa -->
-              <polygon class="continent" points="
-                440,192 453,155 505,147 540,158 568,170
-                592,214 613,236 595,264 580,300 565,333 540,350
-                528,340 518,308 512,272 510,250 475,238 442,215
-              "/>
-              <!-- Madagascar -->
-              <polygon class="continent" points="598,310 605,300 610,320 605,338 597,330"/>
-
-              <!-- Eurasia -->
-              <polygon class="continent" points="
-                455,150 475,136 488,128 505,117 512,95 530,80 555,72
-                600,62 667,56 740,53 810,55 870,62 920,72 935,83
-                915,97 885,114 860,136 850,150 830,153 810,164
-                790,186 778,210 768,225 755,247 740,228 722,200
-                695,225 678,212 660,192 640,183 628,180 628,208
-                610,218 592,208 575,175 555,162 530,152 512,150 490,142
-              "/>
-              <!-- Japan -->
-              <polygon class="continent" points="862,128 870,136 868,153 858,161 850,150 855,136"/>
-              <!-- Sri Lanka -->
-              <ellipse class="continent" cx="705" cy="234" rx="5" ry="7"/>
-              <!-- UK & Ireland -->
-              <polygon class="continent" points="460,97 470,88 478,95 476,108 467,112 458,106"/>
-              <!-- Indonesia -->
-              <polygon class="continent" points="755,253 775,250 800,256 825,261 840,267 825,275 795,272 770,264 758,260"/>
-              <!-- Philippines -->
-              <polygon class="continent" points="815,200 822,195 826,208 820,218 813,210"/>
-              <!-- New Zealand -->
-              <polygon class="continent" points="905,368 912,360 916,375 910,390 903,380"/>
-
-              <!-- Australia -->
-              <polygon class="continent" points="
-                792,283 820,278 855,280 882,289 890,308 888,330 878,350
-                860,355 840,350 815,345 795,340 788,320 790,300
-              "/>
-
-              <!-- ===== Route lines from Guangzhou ===== -->
-              <line class="route-line" x1="782" y1="186" x2="790" y2="139"/>
-              <line class="route-line" x1="782" y1="186" x2="804" y2="163"/>
-              <line class="route-line" x1="782" y1="186" x2="786" y2="192"/>
-              <line class="route-line" x1="782" y1="186" x2="790" y2="196"/>
-
-              <!-- ===== City Markers ===== -->
-
-              <!-- Beijing (116.40, 39.90) → (790, 139) -->
-              <g>
-                <circle class="city-dot-ring" cx="790" cy="139" r="5">
-                  <animate attributeName="r" values="5;10;5" dur="3s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
-                </circle>
-                <circle class="city-dot" cx="790" cy="139" r="3"/>
-                <line class="leader-line" x1="793" y1="139" x2="838" y2="122"/>
-                <text class="city-label" x="840" y="125">Beijing</text>
-              </g>
-
-              <!-- Shanghai (121.47, 31.23) → (804, 163) -->
-              <g>
-                <circle class="city-dot-ring" cx="804" cy="163" r="5">
-                  <animate attributeName="r" values="5;10;5" dur="3s" begin="0.4s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" begin="0.4s" repeatCount="indefinite"/>
-                </circle>
-                <circle class="city-dot" cx="804" cy="163" r="3"/>
-                <line class="leader-line" x1="807" y1="163" x2="838" y2="140"/>
-                <text class="city-label" x="840" y="143">Shanghai</text>
-              </g>
-
-              <!-- Guangzhou (113.26, 23.13) → (782, 186) — HOME -->
-              <g>
-                <circle class="city-home-ring" cx="782" cy="186" r="6">
-                  <animate attributeName="r" values="6;12;6" dur="3s" begin="0.8s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" begin="0.8s" repeatCount="indefinite"/>
-                </circle>
-                <circle class="city-home-dot" cx="782" cy="186" r="4"/>
-                <!-- Small house icon -->
-                <path class="home-icon" d="M 782,179 L 777,183 L 787,183 Z M 779,183 L 779,188 L 785,188 L 785,183" transform="translate(0,-1)"/>
-                <line class="leader-line" x1="782" y1="190" x2="838" y2="160"/>
-                <text class="city-label home-label" x="840" y="163">Guangzhou (Home)</text>
-              </g>
-
-              <!-- Shenzhen (114.07, 22.54) → (786, 188) -->
-              <g>
-                <circle class="city-dot" cx="786" cy="192" r="2.5"/>
-                <line class="leader-line" x1="789" y1="192" x2="838" y2="178"/>
-                <text class="city-label" x="840" y="181">Shenzhen</text>
-              </g>
-
-              <!-- Hong Kong (114.17, 22.32) → (790, 196) -->
-              <g>
-                <circle class="city-dot" cx="790" cy="196" r="2.5"/>
-                <line class="leader-line" x1="793" y1="196" x2="838" y2="196"/>
-                <text class="city-label" x="840" y="199">Hong Kong</text>
-              </g>
-            </svg>
-          </div>
-
-          <!-- Legend -->
           <div class="travel-legend">
-            <div class="legend-item">
-              <span class="legend-dot home"></span> Hometown
-            </div>
-            <div class="legend-item">
-              <span class="legend-dot visited"></span> Visited
-            </div>
+            <div class="legend-item"><span class="legend-dot home"></span> Hometown</div>
+            <div class="legend-item"><span class="legend-dot visited"></span> Visited</div>
           </div>
 
-          <!-- Stats -->
-          <div class="travel-stats">
-            <div class="travel-stat">
-              <div class="stat-num">5</div>
-              <div class="stat-label">Cities</div>
-            </div>
-            <div class="travel-stat">
-              <div class="stat-num">1</div>
-              <div class="stat-label">Countries</div>
-            </div>
-          </div>
-
-          <p class="travel-hint">Add new cities by editing the SVG markers &mdash; see HTML comments for instructions</p>
+          <!--
+            HOW TO ADD NEW CITIES:
+            Find the `travelCities` array in the <script> at the bottom of this file.
+            Add a new entry like:
+              { name: 'Tokyo', lat: 35.69, lng: 139.69 },
+            For your hometown, add `home: true`.
+            That's it — the map and markers update automatically.
+          -->
+          <p class="travel-hint">Zoom &amp; drag to explore</p>
         </div>
       </section>
 
@@ -397,10 +251,13 @@
 
       <!-- Footer -->
       <footer class="site-footer">
-        <p>&copy; 2022 &ndash; 2025 <a href="/">hyjack</a></p>
+        <p>&copy; 2022 &ndash; 2025 <a href="/">Yujie Huang</a></p>
       </footer>
     </main>
   </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <script>
     // --- Dark/Light Mode ---
@@ -410,6 +267,12 @@
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
+    let tileLayer;
+    const TILES = {
+      dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+      light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    };
+
     function applyTheme(theme) {
       document.body.classList.toggle('dark', theme === 'dark');
       const icon = document.getElementById('theme-icon');
@@ -417,6 +280,10 @@
         icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
       }
       localStorage.setItem('theme', theme);
+      // Switch map tiles
+      if (tileLayer) {
+        tileLayer.setUrl(theme === 'dark' ? TILES.dark : TILES.light);
+      }
     }
 
     function toggleTheme() {
@@ -445,6 +312,50 @@
 
     window.addEventListener('scroll', updateActiveNav, { passive: true });
     updateActiveNav();
+
+    // --- Travel Map (Leaflet) ---
+    // =========================================================
+    //  To add a new city, just append to this array:
+    //    { name: 'CityName', lat: XX.XX, lng: YYY.YY }
+    //  For hometown, add: home: true
+    // =========================================================
+    const travelCities = [
+      { name: 'Guangzhou',  lat: 23.13,  lng: 113.26, home: true },
+      { name: 'Shenzhen',   lat: 22.54,  lng: 114.07 },
+      { name: 'Hong Kong',  lat: 22.32,  lng: 114.17 },
+      { name: 'Beijing',    lat: 39.90,  lng: 116.40 },
+      { name: 'Shanghai',   lat: 31.23,  lng: 121.47 },
+    ];
+
+    const map = L.map('travel-map', {
+      center: [28, 110],
+      zoom: 4,
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true,
+    });
+
+    const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+    tileLayer = L.tileLayer(TILES[currentTheme], {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      maxZoom: 18,
+    }).addTo(map);
+
+    travelCities.forEach(city => {
+      const isHome = city.home;
+      const marker = L.circleMarker([city.lat, city.lng], {
+        radius: isHome ? 9 : 6,
+        fillColor: isHome ? '#ff6b6b' : '#feba07',
+        color: isHome ? 'rgba(255,107,107,0.4)' : 'rgba(254,186,7,0.4)',
+        fillOpacity: 0.85,
+        weight: isHome ? 3 : 2,
+      }).addTo(map);
+
+      marker.bindTooltip(
+        isHome ? city.name + ' <i class="fa-solid fa-house" style="font-size:10px"></i>' : city.name,
+        { direction: 'top', offset: [0, -8], className: 'map-tooltip' }
+      );
+    });
   </script>
 </body>
 </html>
