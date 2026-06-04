@@ -320,20 +320,43 @@
     //  For hometown, add: home: true
     // =========================================================
     const travelCities = [
+      // Hometown
       { name: 'Guangzhou',  lat: 23.13,  lng: 113.26, home: true },
-      { name: 'Shenzhen',   lat: 22.54,  lng: 114.07 },
+      // International
+      { name: 'Atlanta',    lat: 33.749, lng: -84.388 },
+      { name: 'Doha',       lat: 25.276, lng: 51.520 },
       { name: 'Hong Kong',  lat: 22.32,  lng: 114.17 },
+      { name: 'Macau',      lat: 22.198, lng: 113.544 },
+      // China — Cities
       { name: 'Beijing',    lat: 39.90,  lng: 116.40 },
       { name: 'Shanghai',   lat: 31.23,  lng: 121.47 },
+      { name: 'Shenzhen',   lat: 22.54,  lng: 114.07 },
+      { name: 'Wuhan',      lat: 30.593, lng: 114.306 },
+      // China — Provinces (capital city as marker)
+      { name: 'Jiangxi (Nanchang)',   lat: 28.682, lng: 115.858 },
+      { name: 'Guangxi (Nanning)',    lat: 22.817, lng: 108.366 },
+      { name: 'Fujian (Fuzhou)',      lat: 26.075, lng: 119.306 },
+      { name: 'Hunan (Changsha)',     lat: 28.228, lng: 112.939 },
+      { name: 'Anhui (Hefei)',        lat: 31.821, lng: 117.227 },
+      { name: 'Shandong (Jinan)',     lat: 36.651, lng: 116.998 },
+      { name: 'Tibet (Lhasa)',        lat: 29.652, lng: 91.172 },
+      { name: 'Qinghai (Xining)',     lat: 36.617, lng: 101.778 },
+      { name: 'Sichuan (Chengdu)',    lat: 30.573, lng: 104.066 },
+      { name: 'Gansu (Lanzhou)',      lat: 36.061, lng: 103.834 },
+      { name: 'Zhejiang (Hangzhou)',  lat: 30.274, lng: 120.155 },
     ];
 
     const map = L.map('travel-map', {
-      center: [28, 110],
-      zoom: 4,
+      center: [30, 80],
+      zoom: 3,
       scrollWheelZoom: false,
       zoomControl: true,
       attributionControl: true,
     });
+
+    // Auto-fit to show all markers with padding
+    const bounds = L.latLngBounds(travelCities.map(c => [c.lat, c.lng]));
+    map.fitBounds(bounds, { padding: [30, 30] });
 
     const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
     tileLayer = L.tileLayer(TILES[currentTheme], {
