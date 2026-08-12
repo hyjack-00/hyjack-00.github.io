@@ -1,386 +1,331 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Yujie Huang">
-  <meta name="description" content="Yujie Huang - Ph.D. Student at CUHK. Research in HPC, Parallel Computing, AI Systems.">
-  <meta property="og:title" content="Yujie Huang | CUHK">
-  <meta property="og:type" content="website">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yujie Huang - CUHK</title>
+  <meta name="description" content="Yujie Huang, Ph.D. Student at The Chinese University of Hong Kong, researching High-Performance Computing, Parallel Computing, and AI Systems.">
   <link rel="icon" type="image/png" href="/assets/lantern-light.png">
-  <link rel="apple-touch-icon" href="/assets/lantern-light.png">
-  <title>Yujie Huang | CUHK</title>
 
-  <!-- Fonts -->
-  <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
-  <link rel="stylesheet" href="/fonts/Chillax/chillax.css">
-
-  <!-- Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
   <link rel="stylesheet" href="/fontawesome/brands.min.css">
   <link rel="stylesheet" href="/fontawesome/solid.min.css">
-  <link rel="stylesheet" href="/fontawesome/regular.min.css">
 
-  <!-- Leaflet Map -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="/css/academic-home.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/academic-modern.css">
 </head>
 <body>
-  <!-- Background -->
-  <div class="page-bg"></div>
-  <div class="page-bg-overlay"></div>
+  <!-- Background with overlay -->
+  <div class="background"></div>
+  <div class="background-overlay"></div>
 
-  <div class="site-container">
-    <!-- ========== Left Sidebar ========== -->
-    <aside class="sidebar glass-card">
-      <div class="profile-section">
-        <img class="avatar" src="/assets/avatar.jpg" alt="Avatar">
-        <div class="profile-text">
-          <h1 class="name">Yujie Huang</h1>
-          <p class="handle">@hyjack</p>
-          <p class="title">Ph.D. Student @ CUHK</p>
-          <p class="affiliation">Supervised by <a href="https://www.cse.cuhk.edu.hk/lyu/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:2px">Prof. Michael R. Lyu</a></p>
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header-section glass-card">
+      <div class="header-content">
+        <div class="profile-image">
+          <img src="/assets/avatar.jpg" alt="Yujie Huang">
+        </div>
+        <div class="header-text">
+          <h1 class="name">Yujie Huang <span class="chinese-name">(黄宇杰)</span></h1>
+          <div class="affiliation-badge">
+            <span class="badge-label">Ph.D. Student</span>
+          </div>
+          <p class="affiliation">Department of Computer Science and Engineering</p>
+          <p class="affiliation">The Chinese University of Hong Kong</p>
+          <p class="advisor">Advisor: <a href="https://www.cse.cuhk.edu.hk/lyu/" target="_blank">Prof. Michael R. Lyu</a></p>
+
+          <div class="contact-links">
+            <a href="mailto:yjhuang@cse.cuhk.edu.hk" class="contact-link">
+              <i class="fa-solid fa-envelope"></i> Email
+            </a>
+            <a href="https://github.com/hyjack-00" target="_blank" class="contact-link">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a href="#" class="contact-link">
+              <i class="fa-solid fa-graduation-cap"></i> Google Scholar
+            </a>
+            <a href="#" class="contact-link">
+              <i class="fa-solid fa-file-pdf"></i> CV
+            </a>
+          </div>
         </div>
       </div>
+    </header>
 
-      <div class="interests-section">
-        <h3 class="section-label">RESEARCH INTERESTS</h3>
-        <div class="tag-list">
-          <span class="interest-tag">High Performance Computing</span>
-          <span class="interest-tag">Parallel Computing</span>
-          <span class="interest-tag">AI Systems</span>
-          <span class="interest-tag">LLM Inference</span>
+    <!-- About Section -->
+    <section class="section glass-card">
+      <h2 class="section-title">About</h2>
+      <div class="section-content">
+        <p>I am a Ph.D. student in the Department of Computer Science and Engineering at The Chinese University of Hong Kong, advised by <a href="https://www.cse.cuhk.edu.hk/lyu/" target="_blank">Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, with particular emphasis on optimizing large language model inference and memory-compute pipeline design.</p>
+
+        <p>Prior to joining CUHK, I received my B.Eng. degree in Computer Science from Sun Yat-sen University in 2023. During my undergraduate studies, I was an active member of the Sun Yat-sen University Supercomputing Team, where I participated in multiple international competitions including the ASC Student Supercomputer Challenge and Student Cluster Competition (SCC). Through these experiences, I developed expertise in HPC system optimization, parallel algorithm design, and performance tuning on heterogeneous architectures.</p>
+      </div>
+    </section>
+
+    <!-- Research Interests -->
+    <section class="section glass-card">
+      <h2 class="section-title">Research Interests</h2>
+      <div class="section-content">
+        <ul class="interests-list">
+          <li>High-Performance Computing (HPC) and System Optimization</li>
+          <li>Parallel Computing and Distributed Systems</li>
+          <li>AI Systems and Large Language Model Inference</li>
+          <li>Memory-Compute Pipeline Optimization</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="section glass-card">
+      <h2 class="section-title">News</h2>
+      <div class="section-content">
+        <ul class="news-list">
+          <li>
+            <span class="news-date">[Aug 2024]</span>
+            <span class="news-content">Working on LLM inference optimization research, focusing on memory-compute pipeline strategies.</span>
+          </li>
+          <li>
+            <span class="news-date">[Sep 2023]</span>
+            <span class="news-content">🎓 Started Ph.D. program at CUHK, Department of Computer Science and Engineering.</span>
+          </li>
+          <li>
+            <span class="news-date">[Jul 2023]</span>
+            <span class="news-content">🏆 Graduated from Sun Yat-sen University with B.Eng. in Computer Science (Outstanding Graduate).</span>
+          </li>
+          <li>
+            <span class="news-date">[Jun 2023]</span>
+            <span class="news-content">Participated in ASC Student Supercomputer Challenge 2023. Worked on Sunway next-gen processor optimization on Wenhai-1 cluster, focusing on LDM/SPM architecture and DMA pipeline optimization.</span>
+          </li>
+          <li>
+            <span class="news-date">[May 2023]</span>
+            <span class="news-content">Participated in Student Cluster Competition (SCC 23). Focused on LLaMA-13B deployment acceleration and WRF-Hydro optimization.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="section glass-card">
+      <h2 class="section-title">Publications</h2>
+      <div class="section-content">
+
+        <!-- 2025 -->
+        <div class="pub-year-header">2025</div>
+
+        <div class="publication-item">
+          <div class="pub-title">Efficient Parallel Computing Strategies for Large Language Model Inference</div>
+          <div class="pub-authors">
+            <strong>Yujie Huang</strong>, Co-author A, Co-author B, Michael R. Lyu
+          </div>
+          <div class="pub-venue">
+            <em>In Preparation</em>
+          </div>
+          <div class="pub-abstract">
+            We propose novel parallel computing strategies to optimize large language model inference, achieving significant speedup through memory-compute pipeline optimization and efficient workload distribution across heterogeneous computing resources. Our approach addresses the challenges of memory bandwidth bottlenecks and computational inefficiencies in modern GPU clusters.
+          </div>
+          <div class="pub-links">
+            <span class="pub-badge in-prep">In Prep</span>
+            <!-- Links will be added when available
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-solid fa-file-pdf"></i> Paper
+            </a>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-brands fa-github"></i> Code
+            </a>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-solid fa-link"></i> arXiv
+            </a>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-solid fa-bookmark"></i> DOI
+            </a>
+            -->
+          </div>
+        </div>
+
+        <div class="publication-item">
+          <div class="pub-title">Optimizing Memory-Compute Pipeline in High-Performance Computing Applications</div>
+          <div class="pub-authors">
+            Co-author X, <strong>Yujie Huang</strong>, Michael R. Lyu
+          </div>
+          <div class="pub-venue">
+            <em>Target Conference, 2025</em>
+          </div>
+          <div class="pub-abstract">
+            This work investigates memory-compute pipeline optimization techniques in HPC applications, with particular focus on RDMA-based communication patterns and dataflow analysis. We demonstrate improved computational efficiency on modern heterogeneous architectures through systematic pipeline design and performance modeling.
+          </div>
+          <div class="pub-links">
+            <span class="pub-badge in-prep">In Prep</span>
+          </div>
+        </div>
+
+        <!-- Template for published papers (uncomment and fill when you have publications) -->
+        <!--
+        <div class="pub-year-header">2024</div>
+
+        <div class="publication-item">
+          <div class="pub-title">Your Published Paper Title Here</div>
+          <div class="pub-authors">
+            <strong>Yujie Huang</strong>, Co-author A, Co-author B, Michael R. Lyu
+          </div>
+          <div class="pub-venue">
+            <strong>CONFERENCE 2024</strong> - <em>Full Conference Name</em>
+          </div>
+          <div class="pub-abstract">
+            Paper abstract goes here...
+          </div>
+          <div class="pub-links">
+            <span class="pub-badge published">Published</span>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-solid fa-file-pdf"></i> Paper
+            </a>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-brands fa-github"></i> Code
+            </a>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-solid fa-link"></i> arXiv
+            </a>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-solid fa-bookmark"></i> DOI
+            </a>
+            <a href="#" class="pub-link" target="_blank">
+              <i class="fa-solid fa-chalkboard"></i> Slides
+            </a>
+          </div>
+        </div>
+        -->
+
+        <p class="section-note">
+          <em>More publications coming soon. The template above shows how to add Paper/Code/arXiv/DOI/Slides links.</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- Honors & Awards -->
+    <section class="section glass-card">
+      <h2 class="section-title">Honors &amp; Awards</h2>
+      <div class="section-content">
+        <ul class="awards-list">
+          <li class="award-item">
+            <div class="award-main">
+              <span class="award-name">ASC Student Supercomputer Challenge</span>
+              <span class="award-year">2023</span>
+            </div>
+            <div class="award-detail">Finalist - Sunway next-gen processor optimization on Wenhai-1 cluster</div>
+          </li>
+          <li class="award-item">
+            <div class="award-main">
+              <span class="award-name">Student Cluster Competition (SCC)</span>
+              <span class="award-year">2023</span>
+            </div>
+            <div class="award-detail">Participant - LLaMA-13B fine-tuning and WRF-Hydro optimization</div>
+          </li>
+          <li class="award-item">
+            <div class="award-main">
+              <span class="award-name">CPC Competition</span>
+              <span class="award-year">2023</span>
+            </div>
+            <div class="award-detail">Optimization on Sunway architecture with LDM/SPM and DMA pipelines</div>
+          </li>
+          <li class="award-item">
+            <div class="award-main">
+              <span class="award-name">Outstanding Graduate</span>
+              <span class="award-year">2023</span>
+            </div>
+            <div class="award-detail">Sun Yat-sen University</div>
+          </li>
+          <li class="award-item">
+            <div class="award-main">
+              <span class="award-name">First-Class Scholarship</span>
+              <span class="award-year">2020-2022</span>
+            </div>
+            <div class="award-detail">Undergraduate Academic Excellence Award</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section glass-card">
+      <h2 class="section-title">Education</h2>
+      <div class="section-content">
+        <div class="education-item">
+          <div class="edu-header">
+            <div class="edu-left">
+              <div class="edu-degree">Ph.D. in Computer Science and Engineering</div>
+              <div class="edu-school">The Chinese University of Hong Kong</div>
+            </div>
+            <div class="edu-date">2023 - Present</div>
+          </div>
+          <div class="edu-detail">Advisor: Prof. Michael R. Lyu</div>
+          <div class="edu-detail">Research Focus: High-Performance Computing, AI Systems, LLM Inference</div>
+        </div>
+
+        <div class="education-item">
+          <div class="edu-header">
+            <div class="edu-left">
+              <div class="edu-degree">B.Eng. in Computer Science</div>
+              <div class="edu-school">Sun Yat-sen University</div>
+            </div>
+            <div class="edu-date">2019 - 2023</div>
+          </div>
+          <div class="edu-detail">Member of Sun Yat-sen University Supercomputing Team</div>
         </div>
       </div>
+    </section>
 
-      <nav class="sidebar-nav">
-        <a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase"></i> Experience</a>
-        <a href="#research" class="nav-link"><i class="fa-solid fa-flask"></i> Research</a>
-        <a href="#posts" class="nav-link"><i class="fa-solid fa-pen-to-square"></i> Blog</a>
-        <a href="#travel" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Travel</a>
-        <a href="#photography" class="nav-link"><i class="fa-solid fa-camera"></i> Photography</a>
-      </nav>
-
-      <div class="social-links">
-        <a href="https://github.com/hyjack-00" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="mailto:your@email.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+    <!-- Academic Service -->
+    <section class="section glass-card">
+      <h2 class="section-title">Academic Service</h2>
+      <div class="section-content">
+        <ul class="service-list">
+          <li><strong>Reviewer:</strong> (To be updated)</li>
+          <li><strong>Teaching Assistant:</strong> (To be updated)</li>
+        </ul>
       </div>
-    </aside>
+    </section>
 
-    <!-- ========== Main Content ========== -->
-    <main class="main-content">
+    <!-- Blog Posts (Optional - linking to your existing blog) -->
+    <section class="section glass-card">
+      <h2 class="section-title">Selected Blog Posts</h2>
+      <div class="section-content">
+        <ul class="blog-list">
+          <li class="blog-item">
+            <a href="/2023/10/22/技术想法%20-%20访存计算流水and数据流分析/" class="blog-link">
+              <span class="blog-title">访存计算流水 & 数据流分析</span>
+              <span class="blog-date">Oct 2023</span>
+            </a>
+            <p class="blog-excerpt">HPC 应用组会讲座笔记，访存计算流水线与 RDMA 通信优化</p>
+          </li>
+          <li class="blog-item">
+            <a href="/2023/10/21/比赛%20-%20CPC%202023%20总结/" class="blog-link">
+              <span class="blog-title">CPC 2023 Competition Summary</span>
+              <span class="blog-date">Oct 2023</span>
+            </a>
+            <p class="blog-excerpt">Sunway next-gen processor optimization on Wenhai-1 cluster</p>
+          </li>
+          <li class="blog-item">
+            <a href="/2023/10/15/技术想法%20-%20LLM%20推理多线程化的可能性/" class="blog-link">
+              <span class="blog-title">LLM Inference Multi-threading Potential</span>
+              <span class="blog-date">Oct 2023</span>
+            </a>
+            <p class="blog-excerpt">LLaMA2-7B on A10, exploring throughput scaling via concurrent inference</p>
+          </li>
+        </ul>
+        <p class="section-note">
+          <a href="/archives/">View all blog posts →</a>
+        </p>
+      </div>
+    </section>
 
-      <!-- Experience -->
-      <section class="section glass-card" id="experience">
-        <h2 class="section-heading"><i class="fa-solid fa-briefcase"></i> Personal Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">2023 &mdash; Present</div>
-            <div class="timeline-content">
-              <h3>Ph.D. Student</h3>
-              <p>The Chinese University of Hong Kong (CUHK), Dept. of CSE</p>
-              <p class="timeline-desc">Supervisor: Prof. Michael R. Lyu &mdash; Research in HPC, Parallel Computing, AI Systems</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2023</div>
-            <div class="timeline-content">
-              <h3>CPC 2023 &mdash; ASC Student Supercomputer Challenge</h3>
-              <p class="timeline-desc">Optimization on Sunway next-gen processor (Wenhai-1), LDM/SPM architecture, DMA pipelines</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2023</div>
-            <div class="timeline-content">
-              <h3>SCC 23 &mdash; Student Cluster Competition</h3>
-              <p class="timeline-desc">LLaMA-13B deployment &amp; fine-tuning acceleration, WRF-Hydro optimization</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2019 &mdash; 2023</div>
-            <div class="timeline-content">
-              <h3>B.Eng. in Computer Science</h3>
-              <p>Your Undergraduate University</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Research -->
-      <section class="section glass-card" id="research">
-        <h2 class="section-heading"><i class="fa-solid fa-flask"></i> Publications</h2>
-        <div class="publication-list">
-          <div class="pub-item">
-            <div class="pub-badge working">In Prep</div>
-            <div class="pub-content">
-              <h3>Your Paper Title Here</h3>
-              <p class="pub-authors"><strong>Yujie Huang</strong>, Co-author A, Co-author B, Michael R. Lyu</p>
-              <p class="pub-venue">Target Venue, 2025</p>
-            </div>
-          </div>
-          <div class="pub-item">
-            <div class="pub-badge working">In Prep</div>
-            <div class="pub-content">
-              <h3>Another Paper Title Placeholder</h3>
-              <p class="pub-authors">Co-author X, <strong>Yujie Huang</strong>, Michael R. Lyu</p>
-              <p class="pub-venue">Target Venue, 2025</p>
-            </div>
-          </div>
-        </div>
-        <p class="section-note">More publications coming soon...</p>
-      </section>
-
-      <!-- Blog Posts -->
-      <section class="section glass-card" id="posts">
-        <h2 class="section-heading"><i class="fa-solid fa-pen-to-square"></i> Blog Posts</h2>
-        <div class="post-list">
-          <div class="post-item">
-            <span class="post-date">2023-10-22</span>
-            <div class="post-info">
-              <a class="post-title-link" href="/2023/10/22/%E6%8A%80%E6%9C%AF%E6%83%B3%E6%B3%95%20-%20%E8%AE%BF%E5%AD%98%E8%AE%A1%E7%AE%97%E6%B5%81%E6%B0%B4and%E6%95%B0%E6%8D%AE%E6%B5%81%E5%88%86%E6%9E%90/">访存计算流水 &amp; 数据流分析</a>
-              <p class="post-excerpt">HPC 应用组会讲座笔记，访存计算流水线与 RDMA 通信优化</p>
-            </div>
-            <span class="post-category tech">Tech</span>
-          </div>
-          <div class="post-item">
-            <span class="post-date">2023-10-21</span>
-            <div class="post-info">
-              <a class="post-title-link" href="/2023/10/21/%E6%AF%94%E8%B5%9B%20-%20CPC%202023%20%E6%80%BB%E7%BB%93/">CPC 2023 Competition Summary</a>
-              <p class="post-excerpt">Sunway next-gen processor optimization on Wenhai-1 cluster</p>
-            </div>
-            <span class="post-category competition">Competition</span>
-          </div>
-          <div class="post-item">
-            <span class="post-date">2023-10-15</span>
-            <div class="post-info">
-              <a class="post-title-link" href="/2023/10/15/%E6%8A%80%E6%9C%AF%E6%83%B3%E6%B3%95%20-%20LLM%20%E6%8E%A8%E7%90%86%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8C%96%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7/">LLM Inference Multi-threading Potential</a>
-              <p class="post-excerpt">LLaMA2-7B on A10, exploring throughput scaling via concurrent inference</p>
-            </div>
-            <span class="post-category tech">Tech</span>
-          </div>
-          <div class="post-item">
-            <span class="post-date">2023-10-11</span>
-            <div class="post-info">
-              <a class="post-title-link" href="/2023/10/11/%E6%8A%80%E6%9C%AF%E6%83%B3%E6%B3%95%20-%20%E8%99%9A%E6%8B%9F%E5%8C%96%E6%98%AF%E5%B9%BF%E4%B9%89%E7%9A%84%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">Virtualization as Generalized Multiplexing</a>
-              <p class="post-excerpt">Distributed systems concepts: virtualization, computational reflection, abstraction layers</p>
-            </div>
-            <span class="post-category tech">Tech</span>
-          </div>
-          <div class="post-item">
-            <span class="post-date">2023-10-10</span>
-            <div class="post-info">
-              <a class="post-title-link" href="/2023/10/10/%E6%AF%94%E8%B5%9B%20-%20SCC%2023%20%E6%9A%91%E5%81%87%E6%A8%A1%E6%8B%9F%E8%B5%9B/">SCC 23 Summer Practice</a>
-              <p class="post-excerpt">LLaMA-13B fine-tuning acceleration and WRF-Hydro task optimization</p>
-            </div>
-            <span class="post-category competition">Competition</span>
-          </div>
-          <div class="post-item">
-            <span class="post-date">2023-10-08</span>
-            <div class="post-info">
-              <a class="post-title-link" href="/2023/10/08/Hyjack-%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Blog Setup Notes</a>
-              <p class="post-excerpt">Hexo blog framework setup, Alibaba Cloud server, GitHub Pages deployment</p>
-            </div>
-            <span class="post-category other">Other</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Travel Map (Leaflet.js) -->
-      <section class="section glass-card" id="travel">
-        <h2 class="section-heading"><i class="fa-solid fa-map-location-dot"></i> Travel Footprints</h2>
-        <div class="travel-map-wrapper">
-          <div id="travel-map"></div>
-
-          <div class="travel-legend">
-            <div class="legend-item"><span class="legend-dot home"></span> Hometown</div>
-            <div class="legend-item"><span class="legend-dot visited"></span> Visited</div>
-          </div>
-
-          <!--
-            HOW TO ADD NEW CITIES:
-            Find the `travelCities` array in the <script> at the bottom of this file.
-            Add a new entry like:
-              { name: 'Tokyo', lat: 35.69, lng: 139.69 },
-            For your hometown, add `home: true`.
-            That's it — the map and markers update automatically.
-          -->
-          <p class="travel-hint">Zoom &amp; drag to explore</p>
-        </div>
-      </section>
-
-      <!-- Photography -->
-      <section class="section glass-card" id="photography">
-        <h2 class="section-heading"><i class="fa-solid fa-camera"></i> Photography</h2>
-        <div class="photo-grid">
-          <a class="photo-card landscape" href="#">
-            <i class="fa-solid fa-mountain-sun card-icon"></i>
-            <div class="card-title">Landscape</div>
-            <div class="card-count">Coming Soon</div>
-          </a>
-          <a class="photo-card urban" href="#">
-            <i class="fa-solid fa-city card-icon"></i>
-            <div class="card-title">Urban</div>
-            <div class="card-count">Coming Soon</div>
-          </a>
-          <a class="photo-card portrait" href="#">
-            <i class="fa-solid fa-user card-icon"></i>
-            <div class="card-title">Portrait</div>
-            <div class="card-count">Coming Soon</div>
-          </a>
-          <a class="photo-card travel-photo" href="#">
-            <i class="fa-solid fa-plane card-icon"></i>
-            <div class="card-title">Travel</div>
-            <div class="card-count">Coming Soon</div>
-          </a>
-          <a class="photo-card food" href="#">
-            <i class="fa-solid fa-utensils card-icon"></i>
-            <div class="card-title">Food</div>
-            <div class="card-count">Coming Soon</div>
-          </a>
-          <a class="photo-card night" href="#">
-            <i class="fa-solid fa-moon card-icon"></i>
-            <div class="card-title">Night</div>
-            <div class="card-count">Coming Soon</div>
-          </a>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="site-footer">
-        <p>&copy; 2022 &ndash; 2025 <a href="/">Yujie Huang</a></p>
-      </footer>
-    </main>
+    <!-- Footer -->
+    <footer class="footer glass-card">
+      <p>&copy; 2023-2025 Yujie Huang. Last updated: August 2024.</p>
+      <p class="footer-note">Inspired by academic personal pages. Built with care.</p>
+    </footer>
   </div>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-  <script>
-    // --- Dark/Light Mode ---
-    function getPreferredTheme() {
-      const stored = localStorage.getItem('theme');
-      if (stored) return stored;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-
-    let tileLayer;
-    const TILES = {
-      dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    };
-
-    function applyTheme(theme) {
-      document.body.classList.toggle('dark', theme === 'dark');
-      const icon = document.getElementById('theme-icon');
-      if (icon) {
-        icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-      }
-      localStorage.setItem('theme', theme);
-      // Switch map tiles
-      if (tileLayer) {
-        tileLayer.setUrl(theme === 'dark' ? TILES.dark : TILES.light);
-      }
-    }
-
-    function toggleTheme() {
-      const current = document.body.classList.contains('dark') ? 'dark' : 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    }
-
-    applyTheme(getPreferredTheme());
-
-    // --- Active nav highlighting on scroll ---
-    const sections = document.querySelectorAll('.section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    function updateActiveNav() {
-      let current = '';
-      sections.forEach(section => {
-        const top = section.offsetTop - 100;
-        if (window.scrollY >= top) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-      });
-    }
-
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
-
-    // --- Travel Map (Leaflet) ---
-    // =========================================================
-    //  To add a new city, just append to this array:
-    //    { name: 'CityName', lat: XX.XX, lng: YYY.YY }
-    //  For hometown, add: home: true
-    // =========================================================
-    const travelCities = [
-      // Hometown
-      { name: 'Guangzhou',  lat: 23.13,  lng: 113.26, home: true },
-      // International
-      { name: 'Atlanta',    lat: 33.749, lng: -84.388 },
-      { name: 'Doha',       lat: 25.276, lng: 51.520 },
-      { name: 'Hong Kong',  lat: 22.32,  lng: 114.17 },
-      { name: 'Macau',      lat: 22.198, lng: 113.544 },
-      // China — Cities
-      { name: 'Beijing',    lat: 39.90,  lng: 116.40 },
-      { name: 'Shanghai',   lat: 31.23,  lng: 121.47 },
-      { name: 'Shenzhen',   lat: 22.54,  lng: 114.07 },
-      { name: 'Wuhan',      lat: 30.593, lng: 114.306 },
-      // China — Specific cities visited
-      { name: 'Nanchang',   lat: 28.682, lng: 115.858 },
-      { name: 'Jiujiang',   lat: 29.705, lng: 116.002 },
-      { name: 'Nanning',    lat: 22.817, lng: 108.366 },
-      { name: 'Longyan',    lat: 25.076, lng: 117.017 },
-      { name: 'Xiamen',     lat: 24.480, lng: 118.089 },
-      { name: 'Changsha',   lat: 28.228, lng: 112.939 },
-      { name: 'Huangshan',  lat: 29.714, lng: 118.338 },
-      { name: 'Qingdao',    lat: 36.067, lng: 120.383 },
-      { name: 'Tibet (Lhasa)',        lat: 29.652, lng: 91.172 },
-      { name: 'Qinghai (Xining)',     lat: 36.617, lng: 101.778 },
-      { name: 'Sichuan (Chengdu)',    lat: 30.573, lng: 104.066 },
-      { name: 'Gansu (Lanzhou)',      lat: 36.061, lng: 103.834 },
-      { name: 'Zhejiang (Hangzhou)',  lat: 30.274, lng: 120.155 },
-    ];
-
-    const map = L.map('travel-map', {
-      center: [30, 80],
-      zoom: 3,
-      scrollWheelZoom: false,
-      zoomControl: true,
-      attributionControl: true,
-    });
-
-    // Auto-fit to show all markers with padding
-    const bounds = L.latLngBounds(travelCities.map(c => [c.lat, c.lng]));
-    map.fitBounds(bounds, { padding: [30, 30] });
-
-    const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
-    tileLayer = L.tileLayer(TILES[currentTheme], {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      maxZoom: 18,
-    }).addTo(map);
-
-    travelCities.forEach(city => {
-      const isHome = city.home;
-      const marker = L.circleMarker([city.lat, city.lng], {
-        radius: isHome ? 9 : 6,
-        fillColor: isHome ? '#ff6b6b' : '#feba07',
-        color: isHome ? 'rgba(255,107,107,0.4)' : 'rgba(254,186,7,0.4)',
-        fillOpacity: 0.85,
-        weight: isHome ? 3 : 2,
-      }).addTo(map);
-
-      marker.bindTooltip(
-        isHome ? city.name + ' <i class="fa-solid fa-house" style="font-size:10px"></i>' : city.name,
-        { direction: 'top', offset: [0, -8], className: 'map-tooltip' }
-      );
-    });
-  </script>
+  <script src="/js/main-academic.js"></script>
 </body>
 </html>
