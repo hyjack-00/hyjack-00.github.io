@@ -18,16 +18,8 @@ let map;
 /**
  * Initialize the map
  */
-async function initTravelMap() {
-    // Load travel cities from content.json
-    try {
-        const response = await fetch('/data/content.json');
-        const data = await response.json();
-        travelCities = data.travel.cities;
-    } catch (error) {
-        console.error('Failed to load travel data:', error);
-        return;
-    }
+async function initTravelMap(cities) {
+    travelCities = cities || [];
 
     // Create map instance
     map = new maplibregl.Map({
@@ -263,6 +255,7 @@ function addTravelMarkers() {
                 name: city.name,
                 home: city.home || false,
                 province: city.province || '',
+                country: city.country || '',
                 city: city.city || city.name
             }
         }))
@@ -338,12 +331,13 @@ function addTravelMarkers() {
     // Add click popup
     map.on('click', 'travel-cities-circles', (e) => {
         const coordinates = e.features[0].geometry.coordinates.slice();
-        const { name, province, home } = e.features[0].properties;
+        const { name, province, country, home } = e.features[0].properties;
+        const region = province || country || '';
 
         const description = `
             <div style="font-family: 'Lato', sans-serif;">
                 <strong style="font-size: 14px;">${name}</strong>
-                ${province ? `<br><span style="color: #6b7280; font-size: 12px;">${province}</span>` : ''}
+                ${region ? `<br><span style="color: #6b7280; font-size: 12px;">${region}</span>` : ''}
                 ${home ? '<br><span style="color: #dc2626; font-size: 12px;">🏠 Hometown</span>' : ''}
             </div>
         `;
@@ -369,11 +363,4 @@ function fitMapToBounds() {
         padding: { top: 50, bottom: 50, left: 50, right: 50 },
         maxZoom: 5
     });
-}
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTravelMap);
-} else {
-    initTravelMap();
 }

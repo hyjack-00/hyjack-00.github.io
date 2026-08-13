@@ -13,7 +13,7 @@
   },
 
   "about": {
-    "text": "I am a Ph.D. student at The Chinese University of Hong Kong, supervised by <a href='https://www.cse.cuhk.edu.hk/lyu/' target='_blank'>Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, particularly LLM inference optimization and system reliability."
+    "text": "I am a Ph.D. student at The Chinese University of Hong Kong, supervised by <a href='https://www.cse.cuhk.edu.hk/lyu/' target='_blank' rel='noopener noreferrer'>Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, particularly LLM inference optimization and system reliability."
   },
 
   "education": [
@@ -51,7 +51,7 @@
 
   "news": [
     {
-      "date": "2025.04",
+      "date": "2025.10",
       "icon": "📄",
       "text": "Paper accepted to ICSE 2026!"
     },
@@ -72,6 +72,11 @@
     }
   ],
 
+  "service": {
+    "title": "Conference Sub-Reviewer",
+    "detail": "ICSE'27, ASE'26, ISSTA'26"
+  },
+
   "publications": [
     {
       "year": 2026,
@@ -79,7 +84,7 @@
       "authors": "Zhihan Jiang, **Yujie Huang**, Guangba Yu, Junjie Huang, Jiazhen Gu, Michael R. Lyu",
       "venue": "ICSE'26",
       "venueFull": "ICSE 2026 - 48th International Conference on Software Engineering",
-      "location": "Florianópolis, Brazil",
+      "location": "Rio de Janeiro, Brazil",
       "date": "Apr 2026",
       "links": {
         "paper": "https://arxiv.org/abs/2504.03702",
@@ -108,7 +113,7 @@
       }
     },
     {
-      "year": 2025,
+      "year": 2026,
       "title": "Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs",
       "authors": "Guangba Yu, Zirui Wang, **Yujie Huang**, Renyi Zhong, Yuedong Zhong, Yilun Wang, Michael R. Lyu",
       "venue": "arXiv",
@@ -123,7 +128,7 @@
       }
     },
     {
-      "year": 2025,
+      "year": 2026,
       "title": "Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems",
       "authors": "Yilun Wang, Guangba Yu, Haiyu Huang, Zirui Wang, **Yujie Huang**, Pengfei Chen, Michael R. Lyu",
       "venue": "arXiv",

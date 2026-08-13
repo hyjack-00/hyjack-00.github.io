@@ -11,12 +11,13 @@
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
+<noscript><p style="padding:1rem 2rem;text-align:center;">This page needs JavaScript to load its content.</p></noscript>
 <div class="page-wrapper">
 <div class="content-wrapper">
     <aside class="sidebar">
         <div class="sidebar-content">
             <img src="/assets/avatar.jpg" class="profile-img" alt="Yujie Huang">
-            <div class="profile-name">Yujie Huang<br><span lang="zh" style="font-size:1.1rem;font-weight:400">黄宇杰</span></div>
+            <h1 class="profile-name">Yujie Huang<br><span lang="zh" style="font-size:1.1rem;font-weight:400">黄宇杰</span></h1>
             <div class="profile-title">Ph.D. Student</div>
             <div class="profile-affiliation">CUHK, CSE</div>
             <div class="profile-links">
@@ -79,7 +80,7 @@
 
             <section class="content-card">
                 <h2><i class="fas fa-users"></i> Academic Service</h2>
-                <p><strong>Conference Sub-Reviewer:</strong> ICSE'27, ASE'26, ISSTA'26</p>
+                <p>Loading...</p>
             </section>
 
             <section class="content-card">
@@ -93,36 +94,23 @@
 
             <section class="content-card">
                 <h2><i class="fas fa-camera"></i> Photography</h2>
-                <div class="photo-grid">
-                    <div class="photo-card landscape"><i class="fas fa-mountain fa-2x"></i><div class="card-title">Landscape</div><div class="card-count">Natural scenery</div></div>
-                    <div class="photo-card urban"><i class="fas fa-city fa-2x"></i><div class="card-title">Urban</div><div class="card-count">City life</div></div>
-                    <div class="photo-card portrait"><i class="fas fa-user fa-2x"></i><div class="card-title">Portrait</div><div class="card-count">People & moments</div></div>
-                    <div class="photo-card travel-photo"><i class="fas fa-plane fa-2x"></i><div class="card-title">Travel</div><div class="card-count">Adventures</div></div>
-                    <div class="photo-card food"><i class="fas fa-utensils fa-2x"></i><div class="card-title">Food</div><div class="card-count">Culinary</div></div>
-                    <div class="photo-card night"><i class="fas fa-moon fa-2x"></i><div class="card-title">Night</div><div class="card-count">After dark</div></div>
-                </div>
+                <div class="photo-grid"></div>
             </section>
+
+            <!-- Background Toggle Card -->
+            <button class="background-toggle-card" onclick="toggleBackground()" aria-label="Expand full background image" aria-expanded="false" aria-controls="backgroundOverlay">
+                <i class="fas fa-chevron-up"></i>
+            </button>
         </div>
     </main>
 </div>
-
-<!-- Background Viewer Toggle Button -->
-<button class="content-card background-toggle-card" onclick="toggleBackground()" aria-label="View full background image" aria-expanded="false" aria-controls="backgroundOverlay">
-    <div class="toggle-button">
-        <i class="fas fa-chevron-down"></i>
-    </div>
-</button>
+</div>
 
 <!-- Full Background Overlay -->
 <div class="full-background-overlay" id="backgroundOverlay">
     <div class="background-credit">
         Artwork: "井小姐和猫和插排" by Rotarran (ロートラン)<br>
         <a href="https://www.pixiv.net/users/51648995" target="_blank" rel="noopener noreferrer">Pixiv Artist Page</a>
-    </div>
-    <div class="close-button-container">
-        <button class="close-toggle-button" onclick="toggleBackground()" aria-label="Close full background view">
-            <i class="fas fa-chevron-up"></i>
-        </button>
     </div>
 </div>
 
@@ -133,15 +121,17 @@ function toggleBackground() {
     const toggleButton = document.querySelector('.background-toggle-card');
 
     if (overlay.classList.contains('active')) {
-        // Close: bring content back
+        // Close: bring content back down
         contentWrapper.classList.remove('hidden');
         if (toggleButton) toggleButton.setAttribute('aria-expanded', 'false');
         setTimeout(() => {
             overlay.classList.remove('active');
+            document.body.classList.remove('bg-open');
         }, 600);
     } else {
-        // Open: slide content up
+        // Open: slide content up, keep the toggle visible as the close handle
         overlay.classList.add('active');
+        document.body.classList.add('bg-open');
         if (toggleButton) toggleButton.setAttribute('aria-expanded', 'true');
         setTimeout(() => {
             contentWrapper.classList.add('hidden');

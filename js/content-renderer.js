@@ -10,11 +10,31 @@ let contentData = null;
 async function loadContent() {
     try {
         const response = await fetch('/data/content.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         contentData = await response.json();
         renderAllContent();
+        // Hand travel data to the map (single fetch, no race)
+        if (typeof initTravelMap === 'function') {
+            initTravelMap(contentData.travel.cities);
+        }
     } catch (error) {
         console.error('Failed to load content:', error);
+        renderFallback();
     }
+}
+
+/**
+ * Show a visible error when content fails to load
+ */
+function renderFallback() {
+    const message = '⚠️ Failed to load content — please refresh the page.';
+    document.querySelectorAll('section.content-card').forEach(section => {
+        section.querySelectorAll('p, .news-item').forEach(el => {
+            if (el.textContent.trim() === 'Loading...') {
+                el.textContent = message;
+            }
+        });
+    });
 }
 
 /**
@@ -28,6 +48,7 @@ function renderAllContent() {
     renderStats();
     renderNews();
     renderPublications();
+    renderService();
     renderPhotography();
     renderFooter();
 }
@@ -209,10 +230,22 @@ function renderPublications() {
 }
 
 /**
+ * Render academic service section
+ */
+function renderService() {
+    const serviceSection = document.querySelectorAll('section.content-card')[3];
+    const { service } = contentData;
+    serviceSection.innerHTML = `
+        <h2><i class="fas fa-users"></i> Academic Service</h2>
+        <p><strong>${service.title}:</strong> ${service.detail}</p>
+    `;
+}
+
+/**
  * Render photography section
  */
 function renderPhotography() {
-    const photoSection = document.querySelectorAll('section.content-card')[4];
+    const photoSection = document.querySelectorAll('section.content-card')[5];
     const photoHTML = contentData.photography.map(item => `
         <div class="photo-card ${item.class}">
             <i class="fas ${item.icon} fa-2x"></i>
@@ -236,13 +269,6 @@ function renderFooter() {
         <p>${contentData.footer.copyright}</p>
         <p>Last updated: ${contentData.footer.lastUpdated}</p>
     `;
-}
-
-/**
- * Get travel cities for map
- */
-function getTravelCities() {
-    return contentData ? contentData.travel.cities : [];
 }
 
 // Load content when DOM is ready
