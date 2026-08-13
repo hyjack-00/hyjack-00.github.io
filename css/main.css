@@ -1,4 +1,4 @@
-/* Academic Homepage - Zhihan-inspired Dense Layout */
+/* Academic Homepage - Zhihan-Style Publications */
 :root {
     --bg-primary: #f8fafc;
     --bg-card: #ffffff;
@@ -28,14 +28,20 @@ body {
 .page-wrapper {
     display: flex;
     min-height: 100vh;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    display: flex;
+    flex: 1;
 }
 
 /* Sidebar */
 .sidebar {
     width: 280px;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.70);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-right: 1px solid var(--border-subtle);
     position: fixed;
     height: 100vh;
@@ -54,7 +60,7 @@ body {
     object-fit: cover;
     margin-bottom: 1rem;
     border: 2px solid #fff;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .profile-name {
@@ -67,23 +73,17 @@ body {
     background-clip: text;
 }
 
-.profile-title {
-    font-size: 0.9rem;
+.profile-title, .profile-affiliation {
+    font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 0.25rem;
-}
-
-.profile-affiliation {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
 }
 
 .profile-links {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin: 1rem 0 1.5rem;
 }
 
 .profile-links a {
@@ -107,7 +107,6 @@ body {
     font-size: 0.85rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
-    color: var(--text-primary);
 }
 
 .sidebar-edu, .sidebar-award {
@@ -115,11 +114,6 @@ body {
     color: var(--text-secondary);
     margin-bottom: 0.5rem;
     line-height: 1.4;
-}
-
-.sidebar-edu strong, .sidebar-award strong {
-    color: var(--text-primary);
-    display: block;
 }
 
 /* Main Content */
@@ -130,8 +124,8 @@ body {
 }
 
 .content-card {
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 1rem 1.25rem;
@@ -145,58 +139,52 @@ body {
     margin-bottom: 0.8rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--text-primary);
-    color: var(--text-primary);
 }
 
-.content-card p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-}
-
-.content-card a {
-    color: var(--accent);
-    text-decoration: none;
-}
-
-.content-card a:hover {
-    text-decoration: underline;
-}
-
-/* Publications */
+/* Publications - Zhihan Style */
 .pub-year {
     font-size: 0.95rem;
     font-weight: 700;
-    margin: 0.8rem 0 0.6rem 0;
+    margin: 0.8rem 0;
     padding: 0.4rem 0;
-    color: var(--text-primary);
     border-bottom: 1px solid var(--border-subtle);
 }
 
 .pub-item {
-    padding: 0.5rem 0.75rem 0.5rem 0.25rem;
-    margin-bottom: 0;
+    display: flex;
+    padding: 0.5rem 0.75rem;
     border-bottom: 1px solid var(--border-subtle);
+    gap: 1rem;
 }
 
 .pub-item:last-child {
     border-bottom: none;
 }
 
+.pub-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.pub-side {
+    flex-shrink: 0;
+    text-align: right;
+    min-width: 120px;
+}
+
 .pub-title {
     font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 0.35rem;
     line-height: 1.35;
+    margin-bottom: 0.35rem;
     color: var(--text-primary);
 }
 
 .pub-authors {
     font-size: 0.8rem;
     color: var(--text-secondary);
-    margin-bottom: 0.25rem;
     line-height: 1.4;
+    margin-bottom: 0.25rem;
 }
 
 .pub-authors strong {
@@ -207,44 +195,40 @@ body {
 .pub-venue {
     font-size: 0.78rem;
     color: var(--text-muted);
-    margin-bottom: 0.4rem;
-    line-height: 1.4;
     font-style: italic;
+    line-height: 1.4;
 }
 
-.pub-abstract {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin-bottom: 0.5rem;
+.pub-conference {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    background: linear-gradient(135deg, #e8f0fe, #f0ebff);
+    color: var(--accent);
+    border: 1px solid #d4c8f6;
+    border-radius: 3px;
+    margin-bottom: 0.4rem;
+}
+
+.pub-conference i {
+    font-size: 0.7rem;
+}
+
+.pub-location {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 0.2rem;
 }
 
 .pub-links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
-    align-items: center;
-}
-
-.pub-badge {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.5rem;
-    border-radius: 3px;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-.pub-badge.badge-conference {
-    background: linear-gradient(135deg, #e8f0fe, #f0ebff);
-    color: var(--accent);
-    border: 1px solid #d4c8f6;
-}
-
-.pub-badge.badge-preprint {
-    background: #f0f9ff;
-    color: #0369a1;
-    border: 1px solid #bae6fd;
+    margin-top: 0.5rem;
 }
 
 .pub-btn {
@@ -259,13 +243,11 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
     transition: all 0.15s;
-    line-height: 1.2;
 }
 
 .pub-btn:hover {
     background: linear-gradient(135deg, #f0ebff, #e8f0fe);
     border-color: #d4c8f6;
-    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -283,7 +265,6 @@ body {
     padding: 0.25rem 0;
     font-size: 0.85rem;
     color: var(--text-secondary);
-    line-height: 1.5;
 }
 
 .news-date {
@@ -321,13 +302,8 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-.legend-dot.home-dot {
-    background: #dc2626;
-}
-
-.legend-dot.visited-dot {
-    background: #eab308;
-}
+.legend-dot.home-dot { background: #dc2626; }
+.legend-dot.visited-dot { background: #eab308; }
 
 /* Photography */
 .photo-grid {
@@ -349,31 +325,72 @@ body {
     justify-content: flex-end;
 }
 
-.photo-card:hover {
-    transform: translateY(-4px);
+.photo-card:hover { transform: translateY(-4px); }
+.card-title { font-size: 1rem; font-weight: 700; margin-top: 0.5rem; }
+.card-count { font-size: 0.8rem; opacity: 0.9; }
+
+.landscape { background: linear-gradient(135deg, #667eea, #764ba2); }
+.urban { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.portrait { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.travel-photo { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.food { background: linear-gradient(135deg, #fa709a, #fee140); }
+.night { background: linear-gradient(135deg, #30cfd0, #330867); }
+
+/* Full Background Section */
+.full-background-section {
+    width: 100%;
+    height: 60vh;
+    background-image: url('/images/backgrounds/bg1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.photo-card i {
-    margin-bottom: 0.5rem;
+.background-overlay-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
 }
 
-.card-title {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-top: 0.5rem;
+.citation-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 
-.card-count {
+.citation-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.citation-box pre {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.citation-box .credit {
     font-size: 0.8rem;
-    opacity: 0.9;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 1rem;
 }
-
-.landscape { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-.urban { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.portrait { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-.travel-photo { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-.food { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-.night { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -386,13 +403,13 @@ body {
         margin-left: 0;
         padding: 1rem;
     }
+    .pub-item {
+        flex-direction: column;
+    }
+    .pub-side {
+        text-align: left;
+    }
     .photo-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .photo-grid {
-        grid-template-columns: 1fr;
     }
 }

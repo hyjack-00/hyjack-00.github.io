@@ -3,34 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yujie Huang (黄煜杰) - CUHK</title>
+    <title>Yujie Huang (黄宇杰) - CUHK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="/css/main.css">
-    <style>
-    .profile-name{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .content-card{padding:1rem!important;margin-bottom:1rem!important}.content-card h2{font-size:.88rem!important;margin:0 0 .8rem!important;text-transform:uppercase;letter-spacing:.05em}
-    .news-list{list-style:none;padding:0}.news-item{padding:.25rem 0;font-size:.85rem;color:var(--text-secondary)}.news-date{font-weight:600;color:var(--text-primary);margin-right:10px}
-    .pub-year{font-size:.95rem;margin:.8rem 0;font-weight:700;color:#7c3aed}
-    .pub-item{padding:.5rem .75rem .5rem .25rem;border-bottom:1px solid rgba(15,23,42,.06)}.pub-item:last-child{border-bottom:none}
-    .pub-title{font-size:.9rem;line-height:1.35;font-weight:600;margin:0 0 .3rem}.pub-authors{font-size:.8rem;line-height:1.4;margin:.2rem 0}.pub-venue{font-size:.78rem;line-height:1.4;font-style:italic;color:var(--text-secondary)}.pub-abstract{font-size:.88rem;color:var(--text-secondary);margin:.5rem 0;line-height:1.5}
-    .pub-links{display:flex;flex-wrap:wrap;gap:4px;margin-top:.5rem}.pub-btn{font-size:.62rem;padding:2px 10px;border-radius:3px;background:linear-gradient(135deg,#faf8ff,#f5f8ff);border:1px solid #efe8f8;color:var(--text-primary);text-decoration:none;display:inline-block;line-height:1.2;transition:all .2s}.pub-btn:hover{background:linear-gradient(135deg,#f0ebff,#e8f0fe);border-color:#d4c8f6}.pub-badge{font-size:.7rem;padding:3px 8px;border-radius:3px;letter-spacing:.03em;font-weight:600}
-    .badge-conference{background:linear-gradient(135deg,#dbeafe,#e0e7ff);color:#1e40af;border:1px solid #bfdbfe}.badge-preprint{background:linear-gradient(135deg,#fef3c7,#fce7f3);color:#92400e;border:1px solid #fde68a}
-    .sidebar-section{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15)}.sidebar-section h3{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.8rem;color:rgba(255,255,255,.7)}.sidebar-edu,.sidebar-award{margin-bottom:1rem;font-size:.8rem;line-height:1.4}.sidebar-edu strong,.sidebar-award strong{display:block;font-size:.85rem;margin-bottom:.2rem}.sidebar-edu span{font-size:.75rem;color:rgba(255,255,255,.6)}
-    #travel-map{height:380px;border-radius:8px;margin:15px 0}.travel-legend{display:flex;justify-content:center;gap:20px;margin-top:15px;font-size:.85rem}.legend-item{display:flex;align-items:center;gap:6px}.legend-dot{width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}.home-dot{background:#dc2626}.visited-dot{background:#eab308}
-    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}.photo-card{aspect-ratio:4/3;border-radius:8px;padding:20px;color:#fff;cursor:pointer;transition:transform .2s;display:flex;flex-direction:column;justify-content:flex-end}.photo-card:hover{transform:translateY(-4px)}.card-title{font-size:1.1rem;font-weight:700;margin-top:8px}.card-count{font-size:.85rem;opacity:.9}.landscape{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}.urban{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)}.portrait{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)}.travel-photo{background:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%)}.food{background:linear-gradient(135deg,#fa709a 0%,#fee140 100%)}.night{background:linear-gradient(135deg,#30cfd0 0%,#330867 100%)}
-    @media(max-width:768px){.photo-grid{grid-template-columns:repeat(2,1fr)}}
-    </style>
 </head>
 <body>
 <div class="page-wrapper">
+<div class="content-wrapper">
     <aside class="sidebar">
         <div class="sidebar-content">
             <img src="/assets/avatar.jpg" class="profile-img" alt="Yujie Huang">
-            <h1 class="profile-name">Yujie Huang<br><span style="font-size:1.1rem;font-weight:400">黄煜杰</span></h1>
-            <p class="profile-title">Ph.D. Student</p>
-            <p class="profile-affiliation">CUHK, CSE</p>
+            <div class="profile-name">Yujie Huang<br><span style="font-size:1.1rem;font-weight:400">黄宇杰</span></div>
+            <div class="profile-title">Ph.D. Student</div>
+            <div class="profile-affiliation">CUHK, CSE</div>
             <div class="profile-links">
                 <a href="mailto:yjhuang@cse.cuhk.edu.hk" title="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://github.com/hyjack-00" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -39,18 +26,17 @@
             <div class="sidebar-section">
                 <h3><i class="fas fa-graduation-cap"></i> Education</h3>
                 <div class="sidebar-edu">
-                    <strong>CUHK</strong>
-                    <span>Ph.D. in CSE, 2023 - Present</span>
-                    <div style="font-size:.75rem;margin-top:.3rem;color:rgba(255,255,255,.6)">Advisor: Prof. M.R. Lyu</div>
+                    <strong>CUHK</strong><br>
+                    <span>Ph.D., 2023-Present</span>
                 </div>
                 <div class="sidebar-edu">
-                    <strong>Sun Yat-sen University</strong>
-                    <span>B.Eng. in CS, 2019 - 2023</span>
+                    <strong>SYSU</strong><br>
+                    <span>B.Eng., 2019-2023</span>
                 </div>
             </div>
             <div class="sidebar-section">
                 <h3><i class="fas fa-award"></i> Honors</h3>
-                <div class="sidebar-award"><strong>2023</strong> ASC Challenge Finalist</div>
+                <div class="sidebar-award"><strong>2023</strong> ASC Finalist</div>
                 <div class="sidebar-award"><strong>2023</strong> SCC Participant</div>
                 <div class="sidebar-award"><strong>2023</strong> Outstanding Graduate</div>
             </div>
@@ -68,55 +54,73 @@
                 <h2><i class="fas fa-bullhorn"></i> News</h2>
                 <ul class="news-list">
                     <li class="news-item"><span class="news-date">2025.04</span> 📄 Paper accepted to ICSE 2026!</li>
-                    <li class="news-item"><span class="news-date">2025.01</span> 🎓 Started research on LLM training performance diagnosis</li>
+                    <li class="news-item"><span class="news-date">2025.01</span> 🎓 Research on LLM training diagnosis</li>
                     <li class="news-item"><span class="news-date">2023.09</span> 🚀 Started Ph.D. at CUHK</li>
-                    <li class="news-item"><span class="news-date">2023.06</span> 🎉 Graduated from Sun Yat-sen University</li>
+                    <li class="news-item"><span class="news-date">2023.06</span> 🎉 Graduated from SYSU</li>
                 </ul>
             </section>
 
             <section class="content-card">
                 <h2><i class="fas fa-book"></i> Publications</h2>
+                <div class="pub-year">2026</div>
+
+                <div class="pub-item">
+                    <div class="pub-main">
+                        <h3 class="pub-title">Hierarchical Prediction-based Management for LMaaS Systems</h3>
+                        <p class="pub-authors">Zhihan Jiang, <strong>Yujie Huang</strong>, Guangba Yu, Junjie Huang, Jiazhen Gu, Michael R. Lyu</p>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/abs/2504.03702" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://arxiv.org/abs/2504.03702" class="pub-btn" target="_blank"><i class="fas fa-link"></i> arXiv</a>
+                            <a href="https://github.com/OpsPAI/PreServe" class="pub-btn" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                    <div class="pub-side">
+                        <div class="pub-conference"><i class="fas fa-calendar"></i> ICSE'26</div>
+                        <span class="pub-location"><i class="fas fa-map-marker-alt"></i> Ottawa, Canada<br>Apr 2026</span>
+                    </div>
+                </div>
+
                 <div class="pub-year">2025</div>
+
                 <div class="pub-item">
-                    <h3 class="pub-title">Hierarchical Prediction-based Management for LMaaS Systems</h3>
-                    <p class="pub-authors">Zhihan Jiang, <strong>Yujie Huang</strong>, Guangba Yu, Junjie Huang, Jiazhen Gu, Michael R. Lyu</p>
-                    <p class="pub-venue">ICSE 2026 - 48th International Conference on Software Engineering</p>
-                    <p class="pub-abstract">We propose a hierarchical prediction-based management system that optimizes resource allocation and scheduling for Large Language Model as a Service (LMaaS) platforms through multi-level predictions of request arrival patterns, execution times, and resource demands.</p>
-                    <div class="pub-links">
-                        <span class="pub-badge badge-conference">ICSE'26</span>
-                        <a href="https://arxiv.org/abs/2504.03702" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
-                        <a href="https://github.com/OpsPAI/PreServe" class="pub-btn" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    <div class="pub-main">
+                        <h3 class="pub-title">LLMPrism: Black-box Performance Diagnosis for Production LLM Training Platforms</h3>
+                        <p class="pub-authors">Zhihan Jiang, Rui Ren, Guangba Yu, Yulun Wu, Wenwei Gu, Yichen Li, <strong>Yujie Huang</strong>, Cong Feng, Zengyin Yang, Yongqiang Yang, Michael R. Lyu</p>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/abs/2505.00342" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://arxiv.org/abs/2505.00342" class="pub-btn" target="_blank"><i class="fas fa-link"></i> arXiv</a>
+                        </div>
+                    </div>
+                    <div class="pub-side">
+                        <div class="pub-conference" style="background:#f0f9ff;color:#0369a1;border-color:#bae6fd"><i class="fas fa-file"></i> arXiv</div>
                     </div>
                 </div>
+
                 <div class="pub-item">
-                    <h3 class="pub-title">LLMPrism: Black-box Performance Diagnosis for Production LLM Training Platforms</h3>
-                    <p class="pub-authors">Zhihan Jiang, Rui Ren, Guangba Yu, Yulun Wu, Wenwei Gu, Yichen Li, <strong>Yujie Huang</strong>, Cong Feng, Zengyin Yang, Yongqiang Yang, Michael R. Lyu</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2505.00342</p>
-                    <p class="pub-abstract">LLMPrism addresses the challenge of diagnosing performance issues in production LLM training platforms through black-box monitoring, providing automated root cause analysis without requiring access to internal system details or source code.</p>
-                    <div class="pub-links">
-                        <span class="pub-badge badge-preprint">arXiv</span>
-                        <a href="https://arxiv.org/abs/2505.00342" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
+                    <div class="pub-main">
+                        <h3 class="pub-title">Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs</h3>
+                        <p class="pub-authors">Guangba Yu, Zirui Wang, <strong>Yujie Huang</strong>, Renyi Zhong, Yuedong Zhong, Yilun Wang, Michael R. Lyu</p>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/abs/2601.13655" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://arxiv.org/abs/2601.13655" class="pub-btn" target="_blank"><i class="fas fa-link"></i> arXiv</a>
+                        </div>
+                    </div>
+                    <div class="pub-side">
+                        <div class="pub-conference" style="background:#f0f9ff;color:#0369a1;border-color:#bae6fd"><i class="fas fa-file"></i> arXiv</div>
                     </div>
                 </div>
+
                 <div class="pub-item">
-                    <h3 class="pub-title">Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs</h3>
-                    <p class="pub-authors">Guangba Yu, Zirui Wang, <strong>Yujie Huang</strong>, Renyi Zhong, Yuedong Zhong, Yilun Wang, Michael R. Lyu</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2601.13655</p>
-                    <p class="pub-abstract">Through systematic analysis of user-reported issues in open-source LLM projects, we identify and categorize common failure patterns, root causes, and their implications for improving LLM system reliability in production environments.</p>
-                    <div class="pub-links">
-                        <span class="pub-badge badge-preprint">arXiv</span>
-                        <a href="https://arxiv.org/abs/2601.13655" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
+                    <div class="pub-main">
+                        <h3 class="pub-title">Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems</h3>
+                        <p class="pub-authors">Yilun Wang, Guangba Yu, Haiyu Huang, <strong>Yujie Huang</strong>, Pengfei Chen, Michael R. Lyu</p>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/abs/2603.00468" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://arxiv.org/abs/2603.00468" class="pub-btn" target="_blank"><i class="fas fa-link"></i> arXiv</a>
+                        </div>
                     </div>
-                </div>
-                <div class="pub-item">
-                    <h3 class="pub-title">Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems</h3>
-                    <p class="pub-authors">Yilun Wang, Guangba Yu, Haiyu Huang, <strong>Yujie Huang</strong>, Pengfei Chen, Michael R. Lyu</p>
-                    <p class="pub-venue">arXiv preprint arXiv:2603.00468</p>
-                    <p class="pub-abstract">Cloud-OpsBench provides a standardized, reproducible benchmark for evaluating AI agents in automated root cause analysis tasks within cloud environments, enabling systematic comparison of different approaches to operational problem diagnosis.</p>
-                    <div class="pub-links">
-                        <span class="pub-badge badge-preprint">PREPRINT</span>
-                        <a href="https://arxiv.org/abs/2603.00468" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="https://arxiv.org/abs/2603.00468" class="pub-btn" target="_blank"><i class="fas fa-quote-right"></i> Cite</a>
+                    <div class="pub-side">
+                        <div class="pub-conference" style="background:#f0f9ff;color:#0369a1;border-color:#bae6fd"><i class="fas fa-file"></i> arXiv</div>
                     </div>
                 </div>
             </section>
@@ -125,8 +129,8 @@
                 <h2><i class="fas fa-map-marked-alt"></i> Travel Map</h2>
                 <div id="travel-map"></div>
                 <div class="travel-legend">
-                    <div class="legend-item"><div class="legend-dot home-dot"></div><span>Hometown</span></div>
-                    <div class="legend-item"><div class="legend-dot visited-dot"></div><span>Visited</span></div>
+                    <div class="legend-item"><span class="legend-dot home-dot"></span> Hometown</div>
+                    <div class="legend-item"><span class="legend-dot visited-dot"></span> Visited</div>
                 </div>
             </section>
 
@@ -143,6 +147,27 @@
             </section>
         </div>
     </main>
+</div>
+
+<!-- Full Background Section with Citation -->
+<section class="full-background-section">
+    <div class="background-overlay-dark"></div>
+    <div class="citation-box">
+        <h3>📚 Cite This Page</h3>
+        <pre>@misc{huang2024homepage,
+  author = {Huang, Yujie},
+  title = {Yujie Huang - Academic Homepage},
+  year = {2024},
+  url = {https://hyjack-00.github.io},
+  note = {Ph.D. Student at CUHK}
+}</pre>
+        <div class="credit">
+            Background artwork © Original Artist<br>
+            Page design inspired by modern academic templates
+        </div>
+    </div>
+</section>
+
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -164,6 +189,7 @@ const travelCities=[
     {name:"Huangshan",lat:29.7144,lng:118.3376},
     {name:"Qingdao",lat:36.0671,lng:120.3826},
     {name:"Lhasa",lat:29.6500,lng:91.1000},
+    {name:"珠穆朗玛峰大本营",lat:28.0000,lng:86.8500},
     {name:"Xining",lat:36.6171,lng:101.7782},
     {name:"Chengdu",lat:30.5728,lng:104.0668},
     {name:"Lanzhou",lat:36.0611,lng:103.8343},
@@ -177,11 +203,10 @@ const travelCities=[
 
 const map=L.map('travel-map',{scrollWheelZoom:false}).setView([30,110],4);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxZoom:19
 }).addTo(map);
 
-const bounds=L.latLngBounds();
 travelCities.forEach(city=>{
     const marker=L.circleMarker([city.lat,city.lng],{
         radius:city.home?8:6,
@@ -189,14 +214,13 @@ travelCities.forEach(city=>{
         color:'#fff',
         weight:2,
         opacity:1,
-        fillOpacity:0.8
+        fillOpacity:0.85
     }).addTo(map);
     marker.bindTooltip(city.name,{direction:'top',offset:[0,-8]});
-    bounds.extend([city.lat,city.lng]);
 });
+
+const bounds=L.latLngBounds(travelCities.map(c=>[c.lat,c.lng]));
 map.fitBounds(bounds,{padding:[30,30]});
-map.on('click',function(){map.scrollWheelZoom.enable()});
-map.on('mouseout',function(){map.scrollWheelZoom.disable()});
 </script>
 </body>
 </html>
