@@ -11,105 +11,129 @@
     "scholar": "https://scholar.google.com",
     "avatar": "/assets/avatar.jpg"
   },
-
   "about": {
     "text": "I am a Ph.D. student at The Chinese University of Hong Kong, supervised by <a href='https://www.cse.cuhk.edu.hk/lyu/' target='_blank' rel='noopener noreferrer'>Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, particularly LLM inference optimization and system reliability."
   },
-
   "education": [
     {
       "institution": "CUHK",
       "degree": "Ph.D.",
-      "period": "2023-Present"
+      "period": "2025-Present"
     },
     {
       "institution": "SYSU",
       "degree": "B.Eng.",
-      "period": "2019-2023"
+      "period": "2021-2025"
     }
   ],
-
   "honors": [
     {
       "year": "2023",
-      "title": "ASC Finalist"
+      "title": "ASC Student Supercomputer Challenge Finalist - Sunway next-generation processor optimization"
     },
     {
       "year": "2023",
-      "title": "SCC Participant"
+      "title": "Student Cluster Competition Participant - LLaMA-13B and WRF-Hydro optimization"
     },
     {
       "year": "2023",
-      "title": "Outstanding Graduate"
+      "title": "CPC Competition - Sunway LDM/SPM and DMA pipeline optimization"
+    },
+    {
+      "year": "2023",
+      "title": "Outstanding Graduate, Sun Yat-sen University"
+    },
+    {
+      "year": "2021-2023",
+      "title": "First-Class Scholarship - Undergraduate Academic Excellence Award"
     }
   ],
-
   "stats": {
-    "papers": 4,
+    "papers": 7,
     "cities": 26
   },
-
   "news": [
+    {
+      "date": "2026.08",
+      "icon": "📄",
+      "text": "Papers accepted to ASE 2026, DSN 2026, and KDD 2026!"
+    },
     {
       "date": "2025.10",
       "icon": "📄",
       "text": "Paper accepted to ICSE 2026!"
     },
     {
-      "date": "2025.01",
-      "icon": "🎓",
-      "text": "Research on LLM training diagnosis"
-    },
-    {
-      "date": "2023.09",
+      "date": "2025.09",
       "icon": "🚀",
       "text": "Started Ph.D. at CUHK"
     },
     {
-      "date": "2023.06",
-      "icon": "🎉",
+      "date": "2025.06",
+      "icon": "🎓",
       "text": "Graduated from SYSU"
     }
   ],
-
   "service": {
     "title": "Conference Sub-Reviewer",
     "detail": "ICSE'27, ASE'26, ISSTA'26"
   },
-
   "publications": [
     {
       "year": 2026,
-      "title": "Hierarchical Prediction-based Management for LMaaS Systems",
+      "title": "SimServing: Native-Execution Simulation for Evolution-Resilient LLM Serving Configuration Tuning",
+      "authors": "**Yujie Huang**, Jiazhen Gu, Zhihan Jiang, Michael R. Lyu",
+      "venue": "ASE'26",
+      "venueKey": "ase",
+      "venueFull": "The IEEE/ACM International Conference on Automated Software Engineering",
+      "links": {}
+    },
+    {
+      "year": 2026,
+      "title": "LLMGuard: Multi-Agent Fault Diagnosis for Reliable Language-Model-as-a-Service",
+      "authors": "Yuedong Zhong, Guangba Yu, **Yujie Huang**, Qunchao Fu, Rui Ren, Cong Feng, Yongqiang Yang, Michael R. Lyu",
+      "venue": "DSN'26",
+      "venueKey": "dsn",
+      "venueFull": "The IEEE/IFIP International Conference on Dependable Systems and Networks",
+      "links": {
+        "paper": "https://dsn2026.github.io/cpaccepted.html"
+      }
+    },
+    {
+      "year": 2026,
+      "title": "StaR: Stateful Dynamic-Graph Root Cause Analysis through Memory-Enhanced Causality Discovery",
+      "authors": "Haiyu Huang, Derek Ng, Jiewei Lyu, **Yujie Huang**, Guangba Yu, Yilun Wang, Michael R. Lyu",
+      "venue": "KDD'26",
+      "venueKey": "kdd",
+      "venueFull": "The 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+      "links": {
+        "code": "https://zenodo.org/records/20473197"
+      }
+    },
+    {
+      "year": 2026,
+      "title": "PreServe: Intelligent Management for LMaaS Systems via Hierarchical Prediction",
       "authors": "Zhihan Jiang, **Yujie Huang**, Guangba Yu, Junjie Huang, Jiazhen Gu, Michael R. Lyu",
       "venue": "ICSE'26",
-      "venueFull": "ICSE 2026 - 48th International Conference on Software Engineering",
-      "location": "Rio de Janeiro, Brazil",
-      "date": "Apr 2026",
+      "venueKey": "icse",
+      "venueFull": "The IEEE/ACM International Conference on Software Engineering",
+      "award": "ACM SIGSOFT Distinguished Paper Award",
       "links": {
         "paper": "https://arxiv.org/abs/2504.03702",
         "arxiv": "https://arxiv.org/abs/2504.03702",
         "code": "https://github.com/OpsPAI/PreServe"
-      },
-      "venueStyle": {
-        "background": "#fef3c7",
-        "color": "#d97706",
-        "borderColor": "#fde68a"
       }
     },
     {
       "year": 2025,
       "title": "LLMPrism: Black-box Performance Diagnosis for Production LLM Training Platforms",
       "authors": "Zhihan Jiang, Rui Ren, Guangba Yu, Yulun Wu, Wenwei Gu, Yichen Li, **Yujie Huang**, Cong Feng, Zengyin Yang, Yongqiang Yang, Michael R. Lyu",
-      "venue": "arXiv",
+      "venue": "DSN'25",
+      "venueKey": "dsn",
+      "venueFull": "The IEEE/IFIP International Conference on Dependable Systems and Networks, Industry Track",
       "links": {
         "paper": "https://arxiv.org/abs/2505.00342",
         "arxiv": "https://arxiv.org/abs/2505.00342"
-      },
-      "venueStyle": {
-        "background": "#f0f9ff",
-        "color": "#0369a1",
-        "borderColor": "#bae6fd"
       }
     },
     {
@@ -117,14 +141,10 @@
       "title": "Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs",
       "authors": "Guangba Yu, Zirui Wang, **Yujie Huang**, Renyi Zhong, Yuedong Zhong, Yilun Wang, Michael R. Lyu",
       "venue": "arXiv",
+      "venueKey": "arxiv",
       "links": {
         "paper": "https://arxiv.org/abs/2601.13655",
         "arxiv": "https://arxiv.org/abs/2601.13655"
-      },
-      "venueStyle": {
-        "background": "#f0f9ff",
-        "color": "#0369a1",
-        "borderColor": "#bae6fd"
       }
     },
     {
@@ -132,18 +152,13 @@
       "title": "Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems",
       "authors": "Yilun Wang, Guangba Yu, Haiyu Huang, Zirui Wang, **Yujie Huang**, Pengfei Chen, Michael R. Lyu",
       "venue": "arXiv",
+      "venueKey": "arxiv",
       "links": {
         "paper": "https://arxiv.org/abs/2603.00468",
         "arxiv": "https://arxiv.org/abs/2603.00468"
-      },
-      "venueStyle": {
-        "background": "#f0f9ff",
-        "color": "#0369a1",
-        "borderColor": "#bae6fd"
       }
     }
   ],
-
   "travel": {
     "cities": [
       { "name": "Guangzhou", "lat": 23.1291, "lng": 113.2644, "home": true, "province": "Guangdong", "city": "Guangzhou" },
@@ -162,7 +177,7 @@
       { "name": "Huangshan", "lat": 29.7144, "lng": 118.3376, "province": "Anhui", "city": "Huangshan" },
       { "name": "Qingdao", "lat": 36.0671, "lng": 120.3826, "province": "Shandong", "city": "Qingdao" },
       { "name": "Lhasa", "lat": 29.6500, "lng": 91.1000, "province": "Tibet", "city": "Lhasa" },
-      { "name": "Everest Base Camp", "lat": 28.0000, "lng": 86.8500, "province": "Tibet", "city": "Tingri" },
+      { "name": "Everest North Base Camp", "lat": 28.14139, "lng": 86.85139, "province": "Tibet", "city": "Tingri" },
       { "name": "Xining", "lat": 36.6171, "lng": 101.7782, "province": "Qinghai", "city": "Xining" },
       { "name": "Chengdu", "lat": 30.5728, "lng": 104.0668, "province": "Sichuan", "city": "Chengdu" },
       { "name": "Lanzhou", "lat": 36.0611, "lng": 103.8343, "province": "Gansu", "city": "Lanzhou" },
@@ -174,46 +189,58 @@
       { "name": "Doha", "lat": 25.2854, "lng": 51.5310, "country": "Qatar", "city": "Doha" }
     ]
   },
-
-  "photography": [
+  "blog": [
     {
-      "icon": "fa-mountain",
-      "title": "Landscape",
-      "description": "Natural scenery",
-      "class": "landscape"
+      "date": "2023-10-22",
+      "title": "访存计算流水 & 数据流分析",
+      "excerpt": "HPC 应用组会讲座笔记，访存计算流水线与 RDMA 通信优化。",
+      "category": "Tech",
+      "url": "/2023/10/22/技术想法%20-%20访存计算流水and数据流分析/"
     },
     {
-      "icon": "fa-city",
-      "title": "Urban",
-      "description": "City life",
-      "class": "urban"
+      "date": "2023-10-21",
+      "title": "CPC 2023 Competition Summary",
+      "excerpt": "Sunway next-generation processor optimization on the Wenhai-1 cluster.",
+      "category": "Competition",
+      "url": "/2023/10/21/比赛%20-%20CPC%202023%20总结/"
     },
     {
-      "icon": "fa-user",
-      "title": "Portrait",
-      "description": "People & moments",
-      "class": "portrait"
+      "date": "2023-10-15",
+      "title": "LLM Inference Multi-threading Potential",
+      "excerpt": "LLaMA2-7B on A10, exploring throughput scaling through concurrent inference.",
+      "category": "Tech",
+      "url": "/2023/10/15/技术想法%20-%20LLM%20推理多线程化的可能性/"
     },
     {
-      "icon": "fa-plane",
-      "title": "Travel",
-      "description": "Adventures",
-      "class": "travel-photo"
+      "date": "2023-10-11",
+      "title": "Virtualization as Generalized Multiplexing",
+      "excerpt": "Notes on virtualization, computational reflection, and abstraction layers.",
+      "category": "Tech",
+      "url": "/2023/10/11/技术想法%20-%20虚拟化是广义的多路复用/"
     },
     {
-      "icon": "fa-utensils",
-      "title": "Food",
-      "description": "Culinary",
-      "class": "food"
+      "date": "2023-10-10",
+      "title": "SCC 23 Summer Practice",
+      "excerpt": "LLaMA-13B fine-tuning acceleration and WRF-Hydro task optimization.",
+      "category": "Competition",
+      "url": "/2023/10/10/比赛%20-%20SCC%2023%20暑假模拟赛/"
     },
     {
-      "icon": "fa-moon",
-      "title": "Night",
-      "description": "After dark",
-      "class": "night"
+      "date": "2023-10-08",
+      "title": "Blog Setup Notes",
+      "excerpt": "Hexo setup, server deployment, and GitHub Pages publishing notes.",
+      "category": "Other",
+      "url": "/2023/10/08/Hyjack-的博客搭建/"
     }
   ],
-
+  "photography": [
+    { "icon": "fa-mountain", "title": "Landscape", "description": "Natural scenery", "class": "landscape" },
+    { "icon": "fa-city", "title": "Urban", "description": "City life", "class": "urban" },
+    { "icon": "fa-user", "title": "Portrait", "description": "People & moments", "class": "portrait" },
+    { "icon": "fa-plane", "title": "Travel", "description": "Adventures", "class": "travel-photo" },
+    { "icon": "fa-utensils", "title": "Food", "description": "Culinary", "class": "food" },
+    { "icon": "fa-moon", "title": "Night", "description": "After dark", "class": "night" }
+  ],
   "footer": {
     "copyright": "© 2026 Yujie Huang",
     "lastUpdated": "Aug 2026"

@@ -9,15 +9,8 @@
     --accent-secondary: #7c3aed;
     --border-subtle: rgba(15, 23, 42, 0.06);
     --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04);
-    --glass-panel: radial-gradient(ellipse at center,
-        rgba(255, 255, 255, 0.86) 0%,
-        rgba(255, 255, 255, 0.84) 58%,
-        rgba(255, 255, 255, 0.66) 80%,
-        rgba(255, 255, 255, 0.42) 100%);
-    --glass-panel-strong: radial-gradient(ellipse at center,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(255, 255, 255, 0.86) 62%,
-        rgba(255, 255, 255, 0.52) 100%);
+    --glass-panel: rgba(255, 255, 255, 0.52);
+    --glass-panel-strong: rgba(255, 255, 255, 0.72);
     --glass-border: rgba(255, 255, 255, 0.68);
     --glass-blur: blur(18px) saturate(128%);
 }
@@ -48,13 +41,16 @@ body {
     line-height: 1.6;
 }
 
+body.is-background-view { overflow: hidden; }
+
 .page-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
+    background-color: var(--bg-primary);
+    background-image: var(--active-background-image, none);
     background-size: cover;
     background-position: center;
     z-index: 0;
@@ -73,12 +69,6 @@ body {
     position: relative;
     z-index: 9999;
     background: rgba(240, 246, 248, 0.04);
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: top;
-}
-
-.content-wrapper.hidden {
-    transform: translateY(-100%);
 }
 
 /* Sidebar */
@@ -91,6 +81,15 @@ body {
     position: fixed;
     height: 100vh;
     overflow-y: auto;
+    z-index: 2;
+    transition: opacity 0.26s ease, visibility 0s linear 0s;
+}
+
+.sidebar.is-background-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.18s ease, visibility 0s linear 0.18s;
 }
 
 .sidebar-content {
@@ -101,14 +100,25 @@ body {
     text-align: center;
 }
 
-.profile-img {
+.profile-image-frame {
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
+    flex: 0 0 auto;
+    align-self: center;
     margin-bottom: 1rem;
     border: 2px solid #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profile-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(2);
+    transform-origin: 50% 30%;
 }
 
 .profile-name {
@@ -208,6 +218,16 @@ body {
     margin-left: 280px;
     flex: 1;
     padding: 1.5rem 2rem 5rem;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    will-change: transform;
+}
+
+.main-content.is-background-hidden {
+    transform: translateY(calc(-100% - 2rem));
+    opacity: 0;
+    pointer-events: none;
 }
 
 .content-card {
@@ -219,6 +239,19 @@ body {
     padding: 1rem 1.25rem;
     margin-bottom: 1rem;
     box-shadow: var(--shadow-sm);
+    position: relative;
+    isolation: isolate;
+}
+
+.content-card--dense::before {
+    content: '';
+    position: absolute;
+    inset: 1.35rem;
+    z-index: -1;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 18px 13px rgba(255, 255, 255, 0.35);
+    pointer-events: none;
 }
 
 .content-card h2 {
@@ -346,6 +379,47 @@ body {
     font-size: 0.7rem;
 }
 
+.pub-conference[data-venue="icse"] { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
+.pub-conference[data-venue="ase"] { background: #f3e8ff; color: #7e22ce; border-color: #d8b4fe; }
+.pub-conference[data-venue="dsn"] { background: #e2e8f0; color: #334155; border-color: #cbd5e1; }
+.pub-conference[data-venue="kdd"] { background: #fef3c7; color: #b45309; border-color: #fcd34d; }
+.pub-conference[data-venue="arxiv"] { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+
+.pub-award {
+    display: block;
+    margin-top: 0.25rem;
+    color: #a16207;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+/* Blog */
+.blog-list { display: grid; }
+.blog-item {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 1rem;
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+.blog-item:last-child { border-bottom: 0; }
+.blog-date { color: var(--text-muted); font-size: 0.78rem; white-space: nowrap; }
+.blog-title { color: var(--text-primary); font-size: 0.9rem; font-weight: 650; text-decoration: none; }
+.blog-title:hover, .blog-title:focus { color: var(--accent); text-decoration: underline; }
+.blog-excerpt { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.4; margin-top: 0.2rem; }
+.blog-category {
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+    color: #475569;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.45rem;
+    white-space: nowrap;
+}
+.blog-category[data-category="Tech"] { background: #dcfce7; border-color: #86efac; color: #166534; }
+.blog-category[data-category="Competition"] { background: #ffedd5; border-color: #fdba74; color: #9a3412; }
+
 /* News */
 .news-list {
     list-style: none;
@@ -373,21 +447,8 @@ body {
     background: rgba(255, 255, 255, 0.42);
 }
 
-/* MapLibre GL specific styles */
-#travel-map .maplibregl-canvas {
-    outline: none;
-}
-
-#travel-map .maplibregl-ctrl-attrib {
-    font-size: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-#travel-map .maplibregl-popup-content {
-    padding: 12px;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
+#travel-map .leaflet-control-attribution { font-size: 10px; }
+#travel-map .leaflet-tooltip { font-family: inherit; }
 
 .travel-popup {
     display: grid;
@@ -459,17 +520,20 @@ body {
 .food { background: linear-gradient(135deg, #fa709a, #fee140); }
 .night { background: linear-gradient(135deg, #30cfd0, #330867); }
 
-/* Background Toggle Card */
-.background-toggle-card {
-    position: fixed;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10001;
+/* Background viewer controls */
+.background-control-slot {
+    display: flex;
+    justify-content: center;
+    min-height: 2.6rem;
+    margin-top: 0.75rem;
+}
+
+.background-open-button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 240px;
+    height: 2.6rem;
     padding: 0.5rem 0;
     background: var(--glass-panel-strong);
     backdrop-filter: var(--glass-blur);
@@ -482,78 +546,96 @@ body {
     color: var(--accent);
     font-size: 1.25rem;
     line-height: 1;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, opacity 0.18s ease;
 }
 
-.background-toggle-card:hover {
+.background-open-button:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.background-toggle-card:focus {
+.background-open-button:focus,
+.background-close-button:focus {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
-.background-toggle-card i {
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+.background-open-button:hover i { transform: translateY(2px); }
+
+.background-open-button.is-locked {
+    position: fixed;
+    top: var(--control-top);
+    left: var(--control-left);
+    z-index: 10001;
 }
 
-.background-toggle-card[aria-expanded="true"] i {
-    transform: rotate(180deg);
+.background-open-button.is-replaced {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-.background-toggle-card:hover i {
-    transform: translateY(3px);
-}
-
-.background-toggle-card[aria-expanded="true"]:hover i {
-    transform: rotate(180deg) translateY(-3px);
-}
-
-/* Full Background Overlay with Curtain Animation */
 .full-background-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
-    background-size: cover;
-    background-position: center;
-    z-index: 9998;
-    display: none;
+    inset: 0;
+    z-index: 10000;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .full-background-overlay.active {
-    display: block;
+    visibility: visible;
+    pointer-events: auto;
 }
 
-.background-credit {
+.background-meta {
     position: fixed;
-    bottom: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    top: var(--control-top, auto);
+    left: var(--control-left, 50%);
+    width: 240px;
+    transform: translateY(calc(-100% + 2.6rem));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+}
+
+.full-background-overlay.controls-ready .background-meta { opacity: 1; }
+
+.background-credit {
+    width: min(32rem, calc(100vw - 2rem));
     color: white;
     text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     font-size: 0.9rem;
     text-align: center;
-    padding: 0.75rem 1.5rem;
+    line-height: 1.4;
+    padding: 0.65rem 1rem;
     background: rgba(0,0,0,0.5);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 8px;
-    opacity: 0;
-    transition: opacity 0.5s ease 0.7s;
-    z-index: 10000;
-}
-
-.full-background-overlay.active .background-credit {
-    opacity: 1;
 }
 
 .background-credit a {
     color: white;
     text-decoration: underline;
+}
+
+.background-close-button {
+    width: 2.6rem;
+    height: 2.6rem;
+    flex: 0 0 2.6rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    background: rgba(20, 24, 31, 0.58);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 /* Responsive */
@@ -574,7 +656,7 @@ body {
         grid-column: 1 / -1;
     }
 
-    .profile-img {
+    .profile-image-frame {
         width: 104px;
         height: 104px;
         justify-self: center;
@@ -619,9 +701,48 @@ body {
 }
 
 @media (min-width: 769px) and (max-height: 640px) {
-    .profile-img {
-        width: 78px;
-        height: 78px;
+    .profile-image-frame {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.25rem;
+    }
+
+    .sidebar-content {
+        row-gap: 0;
+        padding: 0.55rem 0.75rem;
+    }
+
+    .profile-name {
+        font-size: 1rem;
+        line-height: 1.15;
+        margin-bottom: 0.1rem;
+    }
+
+    .profile-name span { font-size: 0.85rem !important; }
+
+    .profile-title,
+    .profile-affiliation { font-size: 0.7rem; }
+
+    .profile-links {
+        margin: 0.3rem 0 0.35rem;
+        font-size: 0.85rem;
+    }
+
+    .sidebar-section {
+        margin-top: 0.3rem;
+        padding-top: 0.3rem;
+    }
+
+    .sidebar-section h3 {
+        font-size: 0.72rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .sidebar-edu,
+    .sidebar-award {
+        font-size: 0.65rem;
+        line-height: 1.25;
+        margin-bottom: 0.18rem;
     }
 
     .sidebar-stats,
@@ -651,7 +772,21 @@ body {
     .pub-side {
         text-align: left;
     }
+    .blog-item {
+        grid-template-columns: 1fr auto;
+        gap: 0.25rem 0.75rem;
+    }
+    .blog-date { grid-column: 1 / -1; }
     .photo-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .main-content,
+    .sidebar,
+    .background-meta,
+    .background-open-button {
+        transition-duration: 0.01ms !important;
     }
 }

@@ -48,6 +48,7 @@ function renderAllContent() {
     renderNews();
     renderPublications();
     renderService();
+    renderBlog();
     renderPhotography();
     renderFooter();
 }
@@ -83,7 +84,7 @@ function renderProfile() {
  * Render about section
  */
 function renderAbout() {
-    const aboutSection = document.querySelector('section.content-card');
+    const aboutSection = document.getElementById('about');
     aboutSection.querySelector('p').innerHTML = contentData.about.text;
 }
 
@@ -127,11 +128,11 @@ function renderStats() {
     const statsContainer = document.querySelector('.sidebar-stats');
     statsContainer.innerHTML = `
         <div class="stat-item">
-            <span class="stat-number">${contentData.stats.papers}</span>
+            <span class="stat-number">${contentData.publications.length}</span>
             <span class="stat-label">Papers</span>
         </div>
         <div class="stat-item">
-            <span class="stat-number">${contentData.stats.cities}</span>
+            <span class="stat-number">${contentData.travel.cities.length}</span>
             <span class="stat-label">Cities</span>
         </div>
     `;
@@ -141,7 +142,7 @@ function renderStats() {
  * Render news section
  */
 function renderNews() {
-    const newsSection = document.querySelectorAll('section.content-card')[1];
+    const newsSection = document.getElementById('news');
     const newsHTML = contentData.news.map(item => `
         <li class="news-item">
             <span class="news-date">${item.date}</span> ${item.icon} ${item.text}
@@ -158,7 +159,7 @@ function renderNews() {
  * Render publications section
  */
 function renderPublications() {
-    const pubSection = document.querySelectorAll('section.content-card')[2];
+    const pubSection = document.getElementById('publications');
 
     // Group publications by year
     const pubsByYear = {};
@@ -189,11 +190,6 @@ function renderPublications() {
                 return `<a href="${url}" class="pub-btn" target="_blank" rel="noopener noreferrer"><i class="${icon}"></i> ${label}</a>`;
             }).join('');
 
-            // Venue style
-            const venueStyle = pub.venueStyle ?
-                `style="background:${pub.venueStyle.background};color:${pub.venueStyle.color};border-color:${pub.venueStyle.borderColor}"` :
-                '';
-
             // Venue full name
             const venueFullName = pub.venueFull || '';
             const venueFullHTML = venueFullName ? `<p class="pub-venue">${venueFullName}</p>` : '';
@@ -202,6 +198,7 @@ function renderPublications() {
             const location = pub.location ?
                 `<span class="pub-location"><i class="fas fa-map-marker-alt"></i> ${pub.location}<br>${pub.date}</span>` :
                 '';
+            const award = pub.award ? `<span class="pub-award"><i class="fas fa-trophy"></i> ${pub.award}</span>` : '';
 
             return `
                 <div class="pub-item">
@@ -212,7 +209,8 @@ function renderPublications() {
                         <div class="pub-links">${links}</div>
                     </div>
                     <div class="pub-side">
-                        <div class="pub-conference" ${venueStyle}><i class="fas fa-calendar"></i> ${pub.venue}</div>
+                        <div class="pub-conference" data-venue="${pub.venueKey || 'arxiv'}"><i class="fas fa-calendar"></i> ${pub.venue}</div>
+                        ${award}
                         ${location}
                     </div>
                 </div>
@@ -232,7 +230,7 @@ function renderPublications() {
  * Render academic service section
  */
 function renderService() {
-    const serviceSection = document.querySelectorAll('section.content-card')[3];
+    const serviceSection = document.getElementById('service');
     const { service } = contentData;
     serviceSection.innerHTML = `
         <h2><i class="fas fa-users"></i> Academic Service</h2>
@@ -241,10 +239,33 @@ function renderService() {
 }
 
 /**
+ * Render blog posts
+ */
+function renderBlog() {
+    const blogSection = document.getElementById('blog');
+    const posts = contentData.blog || [];
+    const postsHTML = posts.map(post => `
+        <article class="blog-item">
+            <time class="blog-date" datetime="${post.date}">${post.date}</time>
+            <div>
+                <a class="blog-title" href="${post.url}">${post.title}</a>
+                <p class="blog-excerpt">${post.excerpt}</p>
+            </div>
+            <span class="blog-category" data-category="${post.category}">${post.category}</span>
+        </article>
+    `).join('');
+
+    blogSection.innerHTML = `
+        <h2><i class="fas fa-pen-to-square"></i> Blog</h2>
+        <div class="blog-list">${postsHTML}</div>
+    `;
+}
+
+/**
  * Render photography section
  */
 function renderPhotography() {
-    const photoSection = document.querySelectorAll('section.content-card')[5];
+    const photoSection = document.getElementById('photography');
     const photoHTML = contentData.photography.map(item => `
         <div class="photo-card ${item.class}">
             <i class="fas ${item.icon} fa-2x"></i>

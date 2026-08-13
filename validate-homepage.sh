@@ -5,10 +5,13 @@ readonly IMAGE_LIMIT=500000
 readonly REQUIRED_FILES=(
   "index.html"
   "css/main.css"
-  "css/vendor/maplibre-gl.css"
+  "css/vendor/leaflet.css"
+  "js/background-manager.js"
   "js/content-renderer.js"
   "js/travel-map.js"
-  "js/vendor/maplibre-gl.js"
+  "js/vendor/leaflet.js"
+  "scripts/generate-background-manifest.mjs"
+  "data/backgrounds.json"
   "data/content.json"
   "assets/avatar.jpg"
 )
@@ -26,18 +29,64 @@ for file in "${REQUIRED_FILES[@]}"; do
 done
 
 echo "Checking JavaScript and JSON syntax..."
+node --check js/background-manager.js
 node --check js/content-renderer.js
 node --check js/travel-map.js
+node --check scripts/generate-background-manifest.mjs
 node -e "JSON.parse(require('fs').readFileSync('data/content.json', 'utf8'))"
+node -e "JSON.parse(require('fs').readFileSync('data/backgrounds.json', 'utf8'))"
 
-echo "Checking content counters..."
+echo "Checking content data..."
 node <<'NODE'
+const fs = require('fs');
+const path = require('path');
 const content = require('./data/content.json');
-if (content.stats.papers !== content.publications.length) {
-  throw new Error(`stats.papers is ${content.stats.papers}, expected ${content.publications.length}`);
+const manifest = require('./data/backgrounds.json');
+
+if (content.publications.length !== 7) throw new Error('Expected 7 publications');
+if (content.blog.length !== 6) throw new Error('Expected 6 blog posts');
+if (content.travel.cities.length !== 26) throw new Error('Expected 26 travel points');
+if (content.stats.papers !== content.publications.length) throw new Error('Paper counter is stale');
+if (content.stats.cities !== content.travel.cities.length) throw new Error('City counter is stale');
+
+const education = content.education.map(item => item.period).join(' ');
+if (!education.includes('2021-2025') || !education.includes('2025-Present')) {
+  throw new Error('Education dates are incorrect');
 }
-if (content.stats.cities !== content.travel.cities.length) {
-  throw new Error(`stats.cities is ${content.stats.cities}, expected ${content.travel.cities.length}`);
+
+const everest = content.travel.cities.find(city => city.name === 'Everest North Base Camp');
+if (!everest || everest.lat !== 28.14139 || everest.lng !== 86.85139) {
+  throw new Error('Everest North Base Camp coordinates are incorrect');
+}
+
+for (const post of content.blog) {
+  const decodedPath = decodeURIComponent(post.url).replace(/^\//, '');
+  if (!fs.existsSync(path.join(decodedPath, 'index.html'))) {
+    throw new Error(`Missing blog page for ${post.url}`);
+  }
+}
+
+const diskFiles = fs.readdirSync('images/backgrounds')
+  .filter(file => /\.(?:avif|gif|jpe?g|png|webp)$/i.test(file))
+  .sort((a, b) => {
+    const order = Number(a.split('__')[0]) - Number(b.split('__')[0]);
+    return order || a.localeCompare(b, 'en', { numeric: true });
+  });
+
+for (const file of diskFiles) {
+  const extension = path.extname(file);
+  const parts = file.slice(0, -extension.length).split('__');
+  if (parts.length !== 4 || !/^\d+$/.test(parts[0]) || parts.slice(1).some(part => !part)) {
+    throw new Error(`Invalid background filename: ${file}`);
+  }
+}
+
+const manifestFiles = manifest.backgrounds.map(item => item.file);
+if (JSON.stringify(manifestFiles) !== JSON.stringify(diskFiles)) {
+  throw new Error('Background manifest is not synchronized or sorted');
+}
+if (!manifest.backgrounds[0] || manifest.backgrounds[0].order !== 0) {
+  throw new Error('The active background must begin with order 0');
 }
 NODE
 
@@ -53,27 +102,23 @@ done < <(find . -type f \
      -o -iname '*.webp' -o -iname '*.gif' -o -iname '*.avif' \) \
   -not -path './.git/*' -print0)
 
-echo "Checking map implementation..."
+echo "Checking map and background implementations..."
 node <<'NODE'
 const fs = require('fs');
-const source = fs.readFileSync('js/travel-map.js', 'utf8');
-const mapInstances = (source.match(/new maplibregl\.Map/g) || []).length;
-const geojsonSources = (source.match(/type: 'geojson'/g) || []).length;
+const mapSource = fs.readFileSync('js/travel-map.js', 'utf8');
+const backgroundSource = fs.readFileSync('js/background-manager.js', 'utf8');
+const html = fs.readFileSync('index.html', 'utf8');
+const css = fs.readFileSync('css/main.css', 'utf8');
 
-if (mapInstances !== 1) {
-  throw new Error(`Expected one map instance, found ${mapInstances}`);
+if ((mapSource.match(/L\.map\(/g) || []).length !== 1) throw new Error('Expected one Leaflet map');
+if (!mapSource.includes('L.circleMarker')) throw new Error('Travel points are not direct circle markers');
+if (/cluster|maplibre|geo\.datav/i.test(mapSource + html + css)) throw new Error('Legacy map implementation remains');
+if (!backgroundSource.includes("'/data/backgrounds.json'")) throw new Error('Background manifest is not used');
+if (/background-image:\s*url\(['"]?\/images\/backgrounds/i.test(css)) {
+  throw new Error('A background image is still hard-coded in CSS');
 }
-if (geojsonSources !== 1) {
-  throw new Error(`Expected one GeoJSON source, found ${geojsonSources}`);
-}
-if (!source.includes('cluster: false')) {
-  throw new Error('Travel points are not explicitly unclustered');
-}
-if (/geo\.datav|loadChinaBoundaries|loadDetailedCityBoundaries/.test(source)) {
-  throw new Error('Legacy boundary loading is still present');
-}
-if (/unpkg\.com\/maplibre/.test(source)) {
-  throw new Error('MapLibre runtime still depends on unpkg');
+if (!html.includes('id="publications"') || !html.includes('id="blog"')) {
+  throw new Error('Dense content sections are missing stable IDs');
 }
 NODE
 

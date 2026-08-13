@@ -112,28 +112,28 @@
 
 ### 命名规范：
 ```
-0-作品名__艺术家名__来源.jpg    ← 当前使用的背景
-1-作品名__艺术家名__来源.jpg    ← 备选背景（不使用）
-2-作品名__艺术家名__来源.jpg    ← 更多备选
+0__作品名__艺术家名__域名-路径.jpg    ← 当前使用的背景
+1__作品名__艺术家名__域名-路径.jpg    ← 备选背景
+2__作品名__艺术家名__域名-路径.jpg    ← 更多备选
 ```
 
 **排序逻辑**：
-- 按文件名字母/数字排序
-- `0-` 开头会排在最前，被CSS自动选择
-- `1-`, `2-` 等作为备选，方便切换
+- 按双下划线前的数字升序，同一数字按文件名排序
+- 页面读取 `data/backgrounds.json` 的第一项作为背景
+- Artist、作品名和链接均由文件名解析，不写死在 HTML/CSS
 
 **当前使用**：
-- `0-井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg` (214KB)
+- `0__APPLE__劇団__x.com-_Gekidan.jpg` (current background, <500KB)
 
 **切换背景图片**：
-1. 将想用的图片改名为 `0-xxx.jpg`
-2. 将旧的 `0-xxx.jpg` 改名为 `1-xxx.jpg`
-3. 更新CSS中的URL（第37行和第477行）
+1. 将想用的图片前导数字改为 `0`
+2. 将旧背景改为更大的数字
+3. 运行 `node scripts/generate-background-manifest.mjs`
+4. 运行 `bash validate-homepage.sh`，确保清单同步且每张图片不超过 500KB
 
-### 在CSS中引用：
+### 页面引用：
 ```css
-/* /css/main.css 第37行 和 第477行 */
-background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
+background-image: var(--active-background-image);
 ```
 
 ---
@@ -148,20 +148,26 @@ background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran_
 │
 ├── css/
 │   ├── main.css                  # 主页样式
-│   └── vendor/maplibre-gl.css    # 本地地图样式库
+│   └── vendor/leaflet.css        # 本地地图样式库
 │
 ├── js/
 │   ├── content-renderer.js       # ✅ 数据驱动渲染器（已启用）
 │   ├── travel-map.js             # 单一、无聚类的旅行点地图
-│   └── vendor/maplibre-gl.js     # 本地地图运行库
+│   ├── background-manager.js     # 背景清单、Artist 与展开交互
+│   └── vendor/leaflet.js         # 本地地图运行库
 │
 ├── data/
-│   └── content.json              # ✅ 单一数据源（已连接）
+│   ├── backgrounds.json          # 背景排序清单（脚本生成）
+│   └── content.json              # ✅ 主页内容数据源
 │
 ├── images/
 │   └── backgrounds/
-│       ├── 0-井小姐...jpg         # 当前背景 (214KB)
-│       └── 1-APPLE...jpg         # 备选背景 (<500KB)
+│       ├── 0__APPLE__...jpg       # 当前背景（最小数字）
+│       ├── 1__NFZ__...jpg         # 备选背景 (<500KB)
+│       └── 1__井小姐...jpg        # 备选背景 (<500KB)
+│
+├── scripts/
+│   └── generate-background-manifest.mjs
 │
 └── assets/
     └── avatar.jpg                # 头像照片
@@ -173,7 +179,7 @@ background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran_
 
 - **纯静态HTML/CSS/JS** - 无构建工具
 - **数据驱动架构** - JSON → JavaScript → DOM
-- **MapLibre GL JS** - 本地托管运行库；旅行城市使用一个无聚类 GeoJSON 点图层
+- **Leaflet 1.9.4** - 本地托管运行库；旅行城市使用直接渲染的 circle markers，不聚类
 - **Font Awesome 5** - 图标库
 - **Satoshi 字体** - 本地托管
 - **GitHub Pages** - 托管平台
