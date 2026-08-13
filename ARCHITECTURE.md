@@ -147,11 +147,13 @@ background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran_
 ├── .nojekyll                     # 禁用Jekyll处理
 │
 ├── css/
-│   └── main.css                  # 唯一样式文件（~600行）
+│   ├── main.css                  # 主页样式
+│   └── vendor/maplibre-gl.css    # 本地地图样式库
 │
 ├── js/
 │   ├── content-renderer.js       # ✅ 数据驱动渲染器（已启用）
-│   └── travel-map.js             # 地图初始化
+│   ├── travel-map.js             # 单一、无聚类的旅行点地图
+│   └── vendor/maplibre-gl.js     # 本地地图运行库
 │
 ├── data/
 │   └── content.json              # ✅ 单一数据源（已连接）
@@ -159,7 +161,7 @@ background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran_
 ├── images/
 │   └── backgrounds/
 │       ├── 0-井小姐...jpg         # 当前背景 (214KB)
-│       └── 1-APPLE...jpg         # 备选背景 (564KB)
+│       └── 1-APPLE...jpg         # 备选背景 (<500KB)
 │
 └── assets/
     └── avatar.jpg                # 头像照片
@@ -171,9 +173,9 @@ background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran_
 
 - **纯静态HTML/CSS/JS** - 无构建工具
 - **数据驱动架构** - JSON → JavaScript → DOM
-- **MapLibre GL JS** - 交互式地图
+- **MapLibre GL JS** - 本地托管运行库；旅行城市使用一个无聚类 GeoJSON 点图层
 - **Font Awesome 5** - 图标库
-- **Lato 字体** - Google Fonts
+- **Satoshi 字体** - 本地托管
 - **GitHub Pages** - 托管平台
 
 ---
