@@ -25,7 +25,7 @@
     {
       "institution": "SYSU",
       "degree": "B.Eng.",
-      "period": "2019-2025"
+      "period": "2019-2023"
     }
   ],
 
@@ -124,7 +124,7 @@
     {
       "year": 2025,
       "title": "Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems",
-      "authors": "Yilun Wang, Guangba Yu, Haiyu Huang, **Yujie Huang**, Pengfei Chen, Michael R. Lyu",
+      "authors": "Yilun Wang, Guangba Yu, Haiyu Huang, Zirui Wang, **Yujie Huang**, Pengfei Chen, Michael R. Lyu",
       "venue": "arXiv",
       "links": {
         "paper": "https://arxiv.org/abs/2603.00468",

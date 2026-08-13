@@ -34,7 +34,7 @@ body {
     font-size: 15px;
     color: var(--text-primary);
     background: var(--bg-primary);
-    background-image: url('/images/backgrounds/井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
+    background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -426,23 +426,30 @@ body {
 
 /* Background Toggle Card */
 .background-toggle-card {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
     background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.60) 100%);
     backdrop-filter: blur(8px);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 0;
-    margin-bottom: 1rem;
     box-shadow: var(--shadow-sm);
     cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    width: auto;
     display: block;
     font-family: inherit;
 }
 
+.content-wrapper.hidden ~ .background-toggle-card {
+    transform: translate(-50%, -100vh);
+}
+
 .background-toggle-card:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
 }
 
 .background-toggle-card:focus {
@@ -460,11 +467,19 @@ body {
 }
 
 .toggle-button i {
-    transition: transform 0.3s ease;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.background-toggle-card[aria-expanded="true"] .toggle-button i {
+    transform: rotate(180deg);
 }
 
 .background-toggle-card:hover .toggle-button i {
     transform: translateY(3px);
+}
+
+.background-toggle-card[aria-expanded="true"]:hover .toggle-button i {
+    transform: rotate(180deg) translateY(-3px);
 }
 
 /* Full Background Overlay with Curtain Animation */
@@ -474,7 +489,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/backgrounds/井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
+    background-image: url('/images/backgrounds/0-井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
     background-size: cover;
     background-position: center;
     z-index: 9998;
