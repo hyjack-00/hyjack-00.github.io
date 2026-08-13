@@ -394,55 +394,78 @@ body {
 .food { background: linear-gradient(135deg, #fa709a, #fee140); }
 .night { background: linear-gradient(135deg, #30cfd0, #330867); }
 
-/* Full Background Section */
-.full-background-toggle {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    text-align: center;
-    padding: 0.5rem;
+/* Background Toggle Card */
+.background-toggle-card {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
     transition: all 0.3s ease;
-    border-top: 1px solid var(--border-subtle);
 }
 
-.full-background-toggle:hover {
-    background: rgba(255,255,255,1);
+.background-toggle-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
 }
 
-.toggle-arrow {
-    font-size: 1.2rem;
+.toggle-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
     color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.toggle-button i {
     transition: transform 0.3s ease;
 }
 
+.background-toggle-card:hover .toggle-button i {
+    transform: translateY(3px);
+}
+
+/* Full Background Overlay with Curtain Animation */
 .full-background-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/backgrounds/1-rotarran-bg.jpg');
+    background-image: url('/images/backgrounds/.井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
     background-size: cover;
     background-position: center;
-    z-index: 9999;
+    z-index: 9998;
     display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
 }
 
 .full-background-overlay.active {
     display: block;
-    opacity: 1;
+}
+
+.page-wrapper {
+    position: relative;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 9999;
+    background: var(--bg-primary);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top;
+}
+
+.content-wrapper.hidden {
+    transform: translateY(-100%);
 }
 
 .background-credit {
-    position: absolute;
-    bottom: 2rem;
+    position: fixed;
+    bottom: 5rem;
     left: 50%;
     transform: translateX(-50%);
     color: white;
@@ -450,31 +473,60 @@ body {
     font-size: 0.9rem;
     text-align: center;
     padding: 0.75rem 1.5rem;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
     backdrop-filter: blur(8px);
     border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.7s;
+    z-index: 10000;
 }
 
-.close-background {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    font-size: 2rem;
+.full-background-overlay.active .background-credit {
+    opacity: 1;
+}
+
+.background-credit a {
     color: white;
-    cursor: pointer;
-    background: rgba(0,0,0,0.5);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    text-decoration: underline;
+}
+
+.close-button-container {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.7s;
+    z-index: 10000;
+}
+
+.full-background-overlay.active .close-button-container {
+    opacity: 1;
+}
+
+.close-toggle-button {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 60px;
+    height: 40px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.close-background:hover {
-    background: rgba(0,0,0,0.8);
-    transform: rotate(90deg);
+.close-toggle-button:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+.close-toggle-button i {
+    color: var(--accent);
+    font-size: 1.5rem;
 }
 
 /* Responsive */
