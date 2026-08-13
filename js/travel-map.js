@@ -5,6 +5,11 @@
 
 let travelCities = [];
 
+const MAPLIBRE_ASSETS = {
+    css: 'https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css',
+    js: 'https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js'
+};
+
 // GeoJSON data URLs
 const GEOJSON_SOURCES = {
     // China provinces (zoom 0-6)
@@ -14,6 +19,69 @@ const GEOJSON_SOURCES = {
 };
 
 let map;
+let mapLoadPromise;
+let mapInitializationStarted = false;
+
+function loadMapLibre() {
+    if (window.maplibregl) return Promise.resolve();
+    if (mapLoadPromise) return mapLoadPromise;
+
+    const stylesheet = new Promise((resolve, reject) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = MAPLIBRE_ASSETS.css;
+        link.onload = resolve;
+        link.onerror = () => reject(new Error('Failed to load MapLibre styles'));
+        document.head.appendChild(link);
+    });
+
+    const script = new Promise((resolve, reject) => {
+        const element = document.createElement('script');
+        element.src = MAPLIBRE_ASSETS.js;
+        element.onload = resolve;
+        element.onerror = () => reject(new Error('Failed to load MapLibre'));
+        document.head.appendChild(element);
+    });
+
+    mapLoadPromise = Promise.all([stylesheet, script]);
+    return mapLoadPromise;
+}
+
+function queueTravelMap(cities) {
+    travelCities = cities || [];
+    const container = document.getElementById('travel-map');
+    if (!container || mapInitializationStarted) return;
+
+    const initialize = async () => {
+        if (mapInitializationStarted) return;
+        mapInitializationStarted = true;
+        container.setAttribute('aria-busy', 'true');
+
+        try {
+            await loadMapLibre();
+            await initTravelMap(travelCities);
+        } catch (error) {
+            console.error('Failed to initialize travel map:', error);
+            container.textContent = 'Travel map is temporarily unavailable.';
+        } finally {
+            container.removeAttribute('aria-busy');
+        }
+    };
+
+    if (!('IntersectionObserver' in window)) {
+        initialize();
+        return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            observer.disconnect();
+            initialize();
+        }
+    }, { rootMargin: '300px 0px' });
+
+    observer.observe(container);
+}
 
 /**
  * Initialize the map
@@ -368,6 +436,10 @@ function fitMapToBounds() {
 // Initialize the map once content data is ready (single fetch via content-renderer)
 document.addEventListener('content:loaded', (e) => {
     if (e.detail && e.detail.travel) {
-        initTravelMap(e.detail.travel.cities);
+        queueTravelMap(e.detail.travel.cities);
     }
 });
+
+if (window.siteContentData && window.siteContentData.travel) {
+    queueTravelMap(window.siteContentData.travel.cities);
+}

@@ -13,6 +13,7 @@ async function loadContent() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         contentData = await response.json();
         renderAllContent();
+        window.siteContentData = contentData;
         // Notify the map to initialize with the loaded cities (single fetch, no race)
         document.dispatchEvent(new CustomEvent('content:loaded', { detail: contentData }));
     } catch (error) {
@@ -269,9 +270,5 @@ function renderFooter() {
     `;
 }
 
-// Load content when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadContent);
-} else {
-    loadContent();
-}
+// This script is placed after the page markup, so content can load immediately.
+loadContent();
