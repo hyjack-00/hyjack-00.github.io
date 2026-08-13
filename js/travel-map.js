@@ -3,35 +3,7 @@
  * Hierarchical zoom: World → China Provinces → Cities → Districts
  */
 
-// Travel cities data
-const travelCities = [
-    { name: "Guangzhou", lat: 23.1291, lng: 113.2644, home: true, province: "Guangdong", city: "Guangzhou" },
-    { name: "Hong Kong", lat: 22.3193, lng: 114.1694, province: "Hong Kong", city: "Hong Kong" },
-    { name: "Macau", lat: 22.1987, lng: 113.5439, province: "Macau", city: "Macau" },
-    { name: "Beijing", lat: 39.9042, lng: 116.4074, province: "Beijing", city: "Beijing" },
-    { name: "Shanghai", lat: 31.2304, lng: 121.4737, province: "Shanghai", city: "Shanghai" },
-    { name: "Shenzhen", lat: 22.5431, lng: 114.0579, province: "Guangdong", city: "Shenzhen" },
-    { name: "Wuhan", lat: 30.5928, lng: 114.3055, province: "Hubei", city: "Wuhan" },
-    { name: "Nanchang", lat: 28.6829, lng: 115.8579, province: "Jiangxi", city: "Nanchang" },
-    { name: "Jiujiang", lat: 29.7050, lng: 116.0014, province: "Jiangxi", city: "Jiujiang" },
-    { name: "Nanning", lat: 22.8170, lng: 108.3665, province: "Guangxi", city: "Nanning" },
-    { name: "Longyan", lat: 25.0778, lng: 117.0172, province: "Fujian", city: "Longyan" },
-    { name: "Xiamen", lat: 24.4798, lng: 118.0894, province: "Fujian", city: "Xiamen" },
-    { name: "Changsha", lat: 28.2282, lng: 112.9388, province: "Hunan", city: "Changsha" },
-    { name: "Huangshan", lat: 29.7144, lng: 118.3376, province: "Anhui", city: "Huangshan" },
-    { name: "Qingdao", lat: 36.0671, lng: 120.3826, province: "Shandong", city: "Qingdao" },
-    { name: "Lhasa", lat: 29.6500, lng: 91.1000, province: "Tibet", city: "Lhasa" },
-    { name: "Everest Base Camp", lat: 28.0000, lng: 86.8500, province: "Tibet", city: "Tingri" },
-    { name: "Xining", lat: 36.6171, lng: 101.7782, province: "Qinghai", city: "Xining" },
-    { name: "Chengdu", lat: 30.5728, lng: 104.0668, province: "Sichuan", city: "Chengdu" },
-    { name: "Lanzhou", lat: 36.0611, lng: 103.8343, province: "Gansu", city: "Lanzhou" },
-    { name: "Hangzhou", lat: 30.2741, lng: 120.1551, province: "Zhejiang", city: "Hangzhou" },
-    { name: "New York", lat: 40.7128, lng: -74.0060, country: "USA", city: "New York" },
-    { name: "Charlotte", lat: 35.2271, lng: -80.8431, country: "USA", city: "Charlotte" },
-    { name: "Chicago", lat: 41.8781, lng: -87.6298, country: "USA", city: "Chicago" },
-    { name: "Atlanta", lat: 33.7490, lng: -84.3880, country: "USA", city: "Atlanta" },
-    { name: "Doha", lat: 25.2854, lng: 51.5310, country: "Qatar", city: "Doha" }
-];
+let travelCities = [];
 
 // GeoJSON data URLs
 const GEOJSON_SOURCES = {
@@ -46,7 +18,17 @@ let map;
 /**
  * Initialize the map
  */
-function initTravelMap() {
+async function initTravelMap() {
+    // Load travel cities from content.json
+    try {
+        const response = await fetch('/data/content.json');
+        const data = await response.json();
+        travelCities = data.travel.cities;
+    } catch (error) {
+        console.error('Failed to load travel data:', error);
+        return;
+    }
+
     // Create map instance
     map = new maplibregl.Map({
         container: 'travel-map',

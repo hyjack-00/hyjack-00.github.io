@@ -1,0 +1,215 @@
+{
+  "profile": {
+    "name": {
+      "en": "Yujie Huang",
+      "zh": "黄宇杰"
+    },
+    "title": "Ph.D. Student",
+    "affiliation": "CUHK, CSE",
+    "email": "yjhuang@cse.cuhk.edu.hk",
+    "github": "hyjack-00",
+    "scholar": "https://scholar.google.com",
+    "avatar": "/assets/avatar.jpg"
+  },
+
+  "about": {
+    "text": "I am a Ph.D. student at The Chinese University of Hong Kong, supervised by <a href='https://www.cse.cuhk.edu.hk/lyu/' target='_blank'>Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, particularly LLM inference optimization and system reliability."
+  },
+
+  "education": [
+    {
+      "institution": "CUHK",
+      "degree": "Ph.D.",
+      "period": "2023-Present"
+    },
+    {
+      "institution": "SYSU",
+      "degree": "B.Eng.",
+      "period": "2019-2025"
+    }
+  ],
+
+  "honors": [
+    {
+      "year": "2023",
+      "title": "ASC Finalist"
+    },
+    {
+      "year": "2023",
+      "title": "SCC Participant"
+    },
+    {
+      "year": "2023",
+      "title": "Outstanding Graduate"
+    }
+  ],
+
+  "stats": {
+    "papers": 4,
+    "cities": 26
+  },
+
+  "news": [
+    {
+      "date": "2025.04",
+      "icon": "📄",
+      "text": "Paper accepted to ICSE 2026!"
+    },
+    {
+      "date": "2025.01",
+      "icon": "🎓",
+      "text": "Research on LLM training diagnosis"
+    },
+    {
+      "date": "2023.09",
+      "icon": "🚀",
+      "text": "Started Ph.D. at CUHK"
+    },
+    {
+      "date": "2023.06",
+      "icon": "🎉",
+      "text": "Graduated from SYSU"
+    }
+  ],
+
+  "publications": [
+    {
+      "year": 2026,
+      "title": "Hierarchical Prediction-based Management for LMaaS Systems",
+      "authors": "Zhihan Jiang, **Yujie Huang**, Guangba Yu, Junjie Huang, Jiazhen Gu, Michael R. Lyu",
+      "venue": "ICSE'26",
+      "location": "Florianópolis, Brazil",
+      "date": "Apr 2026",
+      "links": {
+        "paper": "https://arxiv.org/abs/2504.03702",
+        "arxiv": "https://arxiv.org/abs/2504.03702",
+        "code": "https://github.com/OpsPAI/PreServe"
+      },
+      "venueStyle": {
+        "background": "#fef3c7",
+        "color": "#d97706",
+        "borderColor": "#fde68a"
+      }
+    },
+    {
+      "year": 2025,
+      "title": "LLMPrism: Black-box Performance Diagnosis for Production LLM Training Platforms",
+      "authors": "Zhihan Jiang, Rui Ren, Guangba Yu, Yulun Wu, Wenwei Gu, Yichen Li, **Yujie Huang**, Cong Feng, Zengyin Yang, Yongqiang Yang, Michael R. Lyu",
+      "venue": "arXiv",
+      "links": {
+        "paper": "https://arxiv.org/abs/2505.00342",
+        "arxiv": "https://arxiv.org/abs/2505.00342"
+      },
+      "venueStyle": {
+        "background": "#f0f9ff",
+        "color": "#0369a1",
+        "borderColor": "#bae6fd"
+      }
+    },
+    {
+      "year": 2025,
+      "title": "Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs",
+      "authors": "Guangba Yu, Zirui Wang, **Yujie Huang**, Renyi Zhong, Yuedong Zhong, Yilun Wang, Michael R. Lyu",
+      "venue": "arXiv",
+      "links": {
+        "paper": "https://arxiv.org/abs/2601.13655",
+        "arxiv": "https://arxiv.org/abs/2601.13655"
+      },
+      "venueStyle": {
+        "background": "#f0f9ff",
+        "color": "#0369a1",
+        "borderColor": "#bae6fd"
+      }
+    },
+    {
+      "year": 2025,
+      "title": "Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems",
+      "authors": "Yilun Wang, Guangba Yu, Haiyu Huang, **Yujie Huang**, Pengfei Chen, Michael R. Lyu",
+      "venue": "arXiv",
+      "links": {
+        "paper": "https://arxiv.org/abs/2603.00468",
+        "arxiv": "https://arxiv.org/abs/2603.00468"
+      },
+      "venueStyle": {
+        "background": "#f0f9ff",
+        "color": "#0369a1",
+        "borderColor": "#bae6fd"
+      }
+    }
+  ],
+
+  "travel": {
+    "cities": [
+      { "name": "Guangzhou", "lat": 23.1291, "lng": 113.2644, "home": true, "province": "Guangdong", "city": "Guangzhou" },
+      { "name": "Hong Kong", "lat": 22.3193, "lng": 114.1694, "province": "Hong Kong", "city": "Hong Kong" },
+      { "name": "Macau", "lat": 22.1987, "lng": 113.5439, "province": "Macau", "city": "Macau" },
+      { "name": "Beijing", "lat": 39.9042, "lng": 116.4074, "province": "Beijing", "city": "Beijing" },
+      { "name": "Shanghai", "lat": 31.2304, "lng": 121.4737, "province": "Shanghai", "city": "Shanghai" },
+      { "name": "Shenzhen", "lat": 22.5431, "lng": 114.0579, "province": "Guangdong", "city": "Shenzhen" },
+      { "name": "Wuhan", "lat": 30.5928, "lng": 114.3055, "province": "Hubei", "city": "Wuhan" },
+      { "name": "Nanchang", "lat": 28.6829, "lng": 115.8579, "province": "Jiangxi", "city": "Nanchang" },
+      { "name": "Jiujiang", "lat": 29.7050, "lng": 116.0014, "province": "Jiangxi", "city": "Jiujiang" },
+      { "name": "Nanning", "lat": 22.8170, "lng": 108.3665, "province": "Guangxi", "city": "Nanning" },
+      { "name": "Longyan", "lat": 25.0778, "lng": 117.0172, "province": "Fujian", "city": "Longyan" },
+      { "name": "Xiamen", "lat": 24.4798, "lng": 118.0894, "province": "Fujian", "city": "Xiamen" },
+      { "name": "Changsha", "lat": 28.2282, "lng": 112.9388, "province": "Hunan", "city": "Changsha" },
+      { "name": "Huangshan", "lat": 29.7144, "lng": 118.3376, "province": "Anhui", "city": "Huangshan" },
+      { "name": "Qingdao", "lat": 36.0671, "lng": 120.3826, "province": "Shandong", "city": "Qingdao" },
+      { "name": "Lhasa", "lat": 29.6500, "lng": 91.1000, "province": "Tibet", "city": "Lhasa" },
+      { "name": "Everest Base Camp", "lat": 28.0000, "lng": 86.8500, "province": "Tibet", "city": "Tingri" },
+      { "name": "Xining", "lat": 36.6171, "lng": 101.7782, "province": "Qinghai", "city": "Xining" },
+      { "name": "Chengdu", "lat": 30.5728, "lng": 104.0668, "province": "Sichuan", "city": "Chengdu" },
+      { "name": "Lanzhou", "lat": 36.0611, "lng": 103.8343, "province": "Gansu", "city": "Lanzhou" },
+      { "name": "Hangzhou", "lat": 30.2741, "lng": 120.1551, "province": "Zhejiang", "city": "Hangzhou" },
+      { "name": "New York", "lat": 40.7128, "lng": -74.0060, "country": "USA", "city": "New York" },
+      { "name": "Charlotte", "lat": 35.2271, "lng": -80.8431, "country": "USA", "city": "Charlotte" },
+      { "name": "Chicago", "lat": 41.8781, "lng": -87.6298, "country": "USA", "city": "Chicago" },
+      { "name": "Atlanta", "lat": 33.7490, "lng": -84.3880, "country": "USA", "city": "Atlanta" },
+      { "name": "Doha", "lat": 25.2854, "lng": 51.5310, "country": "Qatar", "city": "Doha" }
+    ]
+  },
+
+  "photography": [
+    {
+      "icon": "fa-mountain",
+      "title": "Landscape",
+      "description": "Natural scenery",
+      "class": "landscape"
+    },
+    {
+      "icon": "fa-city",
+      "title": "Urban",
+      "description": "City life",
+      "class": "urban"
+    },
+    {
+      "icon": "fa-user",
+      "title": "Portrait",
+      "description": "People & moments",
+      "class": "portrait"
+    },
+    {
+      "icon": "fa-plane",
+      "title": "Travel",
+      "description": "Adventures",
+      "class": "travel-photo"
+    },
+    {
+      "icon": "fa-utensils",
+      "title": "Food",
+      "description": "Culinary",
+      "class": "food"
+    },
+    {
+      "icon": "fa-moon",
+      "title": "Night",
+      "description": "After dark",
+      "class": "night"
+    }
+  ],
+
+  "footer": {
+    "copyright": "© 2026 Yujie Huang",
+    "lastUpdated": "Aug 2026"
+  }
+}

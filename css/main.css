@@ -274,8 +274,8 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    font-size: 0.62rem;
-    padding: 0.125rem 0.625rem;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
     background: linear-gradient(135deg, #faf8ff, #f5f8ff);
     border: 1px solid #efe8f8;
     border-radius: 3px;
@@ -284,14 +284,16 @@ body {
     transition: all 0.15s;
 }
 
-.pub-btn:hover {
+.pub-btn:hover, .pub-btn:focus {
     background: linear-gradient(135deg, #f0ebff, #e8f0fe);
     border-color: #d4c8f6;
     text-decoration: none;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .pub-btn i {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
 }
 
 /* News */
