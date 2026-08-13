@@ -13,6 +13,22 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100000;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     font-size: 15px;
@@ -49,7 +65,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.70) 100%);
+    background: radial-gradient(circle at center, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-right: 1px solid var(--border-subtle);
@@ -419,11 +435,19 @@ body {
     box-shadow: var(--shadow-sm);
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
+    display: block;
+    font-family: inherit;
 }
 
 .background-toggle-card:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     transform: translateY(-2px);
+}
+
+.background-toggle-card:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .toggle-button {
@@ -515,12 +539,19 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-family: inherit;
+    padding: 0;
 }
 
 .close-toggle-button:hover {
     background: white;
     transform: translateY(-3px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.close-toggle-button:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
 }
 
 .close-toggle-button i {
