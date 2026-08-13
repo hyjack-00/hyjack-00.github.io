@@ -364,3 +364,10 @@ function fitMapToBounds() {
         maxZoom: 5
     });
 }
+
+// Initialize the map once content data is ready (single fetch via content-renderer)
+document.addEventListener('content:loaded', (e) => {
+    if (e.detail && e.detail.travel) {
+        initTravelMap(e.detail.travel.cities);
+    }
+});

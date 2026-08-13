@@ -13,10 +13,8 @@ async function loadContent() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         contentData = await response.json();
         renderAllContent();
-        // Hand travel data to the map (single fetch, no race)
-        if (typeof initTravelMap === 'function') {
-            initTravelMap(contentData.travel.cities);
-        }
+        // Notify the map to initialize with the loaded cities (single fetch, no race)
+        document.dispatchEvent(new CustomEvent('content:loaded', { detail: contentData }));
     } catch (error) {
         console.error('Failed to load content:', error);
         renderFallback();

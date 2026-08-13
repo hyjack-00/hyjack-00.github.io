@@ -12,6 +12,7 @@
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <noscript><p style="padding:1rem 2rem;text-align:center;">This page needs JavaScript to load its content.</p></noscript>
+<div class="page-background" aria-hidden="true"></div>
 <div class="page-wrapper">
 <div class="content-wrapper">
     <aside class="sidebar">
@@ -97,14 +98,15 @@
                 <div class="photo-grid"></div>
             </section>
 
-            <!-- Background Toggle Card -->
-            <button class="background-toggle-card" onclick="toggleBackground()" aria-label="Expand full background image" aria-expanded="false" aria-controls="backgroundOverlay">
-                <i class="fas fa-chevron-up"></i>
-            </button>
         </div>
     </main>
 </div>
 </div>
+
+<!-- Background Toggle Card -->
+<button class="background-toggle-card" onclick="toggleBackground()" aria-label="Expand full background image" aria-expanded="false" aria-controls="backgroundOverlay">
+    <i class="fas fa-chevron-up"></i>
+</button>
 
 <!-- Full Background Overlay -->
 <div class="full-background-overlay" id="backgroundOverlay">
@@ -126,12 +128,10 @@ function toggleBackground() {
         if (toggleButton) toggleButton.setAttribute('aria-expanded', 'false');
         setTimeout(() => {
             overlay.classList.remove('active');
-            document.body.classList.remove('bg-open');
         }, 600);
     } else {
-        // Open: slide content up, keep the toggle visible as the close handle
+        // Open: slide content up
         overlay.classList.add('active');
-        document.body.classList.add('bg-open');
         if (toggleButton) toggleButton.setAttribute('aria-expanded', 'true');
         setTimeout(() => {
             contentWrapper.classList.add('hidden');
