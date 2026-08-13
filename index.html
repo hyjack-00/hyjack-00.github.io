@@ -1,331 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yujie Huang - CUHK</title>
-  <meta name="description" content="Yujie Huang, Ph.D. Student at The Chinese University of Hong Kong, researching High-Performance Computing, Parallel Computing, and AI Systems.">
-  <link rel="icon" type="image/png" href="/assets/lantern-light.png">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
-  <link rel="stylesheet" href="/fontawesome/brands.min.css">
-  <link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/css/academic-modern.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yujie Huang - CUHK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  <!-- Background with overlay -->
-  <div class="background"></div>
-  <div class="background-overlay"></div>
-
-  <div class="container">
-    <!-- Header Section -->
-    <header class="header-section glass-card">
-      <div class="header-content">
-        <div class="profile-image">
-          <img src="/assets/avatar.jpg" alt="Yujie Huang">
-        </div>
-        <div class="header-text">
-          <h1 class="name">Yujie Huang <span class="chinese-name">(黄宇杰)</span></h1>
-          <div class="affiliation-badge">
-            <span class="badge-label">Ph.D. Student</span>
-          </div>
-          <p class="affiliation">Department of Computer Science and Engineering</p>
-          <p class="affiliation">The Chinese University of Hong Kong</p>
-          <p class="advisor">Advisor: <a href="https://www.cse.cuhk.edu.hk/lyu/" target="_blank">Prof. Michael R. Lyu</a></p>
-
-          <div class="contact-links">
-            <a href="mailto:yjhuang@cse.cuhk.edu.hk" class="contact-link">
-              <i class="fa-solid fa-envelope"></i> Email
-            </a>
-            <a href="https://github.com/hyjack-00" target="_blank" class="contact-link">
-              <i class="fa-brands fa-github"></i> GitHub
-            </a>
-            <a href="#" class="contact-link">
-              <i class="fa-solid fa-graduation-cap"></i> Google Scholar
-            </a>
-            <a href="#" class="contact-link">
-              <i class="fa-solid fa-file-pdf"></i> CV
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- About Section -->
-    <section class="section glass-card">
-      <h2 class="section-title">About</h2>
-      <div class="section-content">
-        <p>I am a Ph.D. student in the Department of Computer Science and Engineering at The Chinese University of Hong Kong, advised by <a href="https://www.cse.cuhk.edu.hk/lyu/" target="_blank">Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, with particular emphasis on optimizing large language model inference and memory-compute pipeline design.</p>
-
-        <p>Prior to joining CUHK, I received my B.Eng. degree in Computer Science from Sun Yat-sen University in 2023. During my undergraduate studies, I was an active member of the Sun Yat-sen University Supercomputing Team, where I participated in multiple international competitions including the ASC Student Supercomputer Challenge and Student Cluster Competition (SCC). Through these experiences, I developed expertise in HPC system optimization, parallel algorithm design, and performance tuning on heterogeneous architectures.</p>
-      </div>
-    </section>
-
-    <!-- Research Interests -->
-    <section class="section glass-card">
-      <h2 class="section-title">Research Interests</h2>
-      <div class="section-content">
-        <ul class="interests-list">
-          <li>High-Performance Computing (HPC) and System Optimization</li>
-          <li>Parallel Computing and Distributed Systems</li>
-          <li>AI Systems and Large Language Model Inference</li>
-          <li>Memory-Compute Pipeline Optimization</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- News Section -->
-    <section class="section glass-card">
-      <h2 class="section-title">News</h2>
-      <div class="section-content">
-        <ul class="news-list">
-          <li>
-            <span class="news-date">[Aug 2024]</span>
-            <span class="news-content">Working on LLM inference optimization research, focusing on memory-compute pipeline strategies.</span>
-          </li>
-          <li>
-            <span class="news-date">[Sep 2023]</span>
-            <span class="news-content">🎓 Started Ph.D. program at CUHK, Department of Computer Science and Engineering.</span>
-          </li>
-          <li>
-            <span class="news-date">[Jul 2023]</span>
-            <span class="news-content">🏆 Graduated from Sun Yat-sen University with B.Eng. in Computer Science (Outstanding Graduate).</span>
-          </li>
-          <li>
-            <span class="news-date">[Jun 2023]</span>
-            <span class="news-content">Participated in ASC Student Supercomputer Challenge 2023. Worked on Sunway next-gen processor optimization on Wenhai-1 cluster, focusing on LDM/SPM architecture and DMA pipeline optimization.</span>
-          </li>
-          <li>
-            <span class="news-date">[May 2023]</span>
-            <span class="news-content">Participated in Student Cluster Competition (SCC 23). Focused on LLaMA-13B deployment acceleration and WRF-Hydro optimization.</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section class="section glass-card">
-      <h2 class="section-title">Publications</h2>
-      <div class="section-content">
-
-        <!-- 2025 -->
-        <div class="pub-year-header">2025</div>
-
-        <div class="publication-item">
-          <div class="pub-title">Efficient Parallel Computing Strategies for Large Language Model Inference</div>
-          <div class="pub-authors">
-            <strong>Yujie Huang</strong>, Co-author A, Co-author B, Michael R. Lyu
-          </div>
-          <div class="pub-venue">
-            <em>In Preparation</em>
-          </div>
-          <div class="pub-abstract">
-            We propose novel parallel computing strategies to optimize large language model inference, achieving significant speedup through memory-compute pipeline optimization and efficient workload distribution across heterogeneous computing resources. Our approach addresses the challenges of memory bandwidth bottlenecks and computational inefficiencies in modern GPU clusters.
-          </div>
-          <div class="pub-links">
-            <span class="pub-badge in-prep">In Prep</span>
-            <!-- Links will be added when available
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-solid fa-file-pdf"></i> Paper
-            </a>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-brands fa-github"></i> Code
-            </a>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-solid fa-link"></i> arXiv
-            </a>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-solid fa-bookmark"></i> DOI
-            </a>
-            -->
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <div class="pub-title">Optimizing Memory-Compute Pipeline in High-Performance Computing Applications</div>
-          <div class="pub-authors">
-            Co-author X, <strong>Yujie Huang</strong>, Michael R. Lyu
-          </div>
-          <div class="pub-venue">
-            <em>Target Conference, 2025</em>
-          </div>
-          <div class="pub-abstract">
-            This work investigates memory-compute pipeline optimization techniques in HPC applications, with particular focus on RDMA-based communication patterns and dataflow analysis. We demonstrate improved computational efficiency on modern heterogeneous architectures through systematic pipeline design and performance modeling.
-          </div>
-          <div class="pub-links">
-            <span class="pub-badge in-prep">In Prep</span>
-          </div>
-        </div>
-
-        <!-- Template for published papers (uncomment and fill when you have publications) -->
-        <!--
-        <div class="pub-year-header">2024</div>
-
-        <div class="publication-item">
-          <div class="pub-title">Your Published Paper Title Here</div>
-          <div class="pub-authors">
-            <strong>Yujie Huang</strong>, Co-author A, Co-author B, Michael R. Lyu
-          </div>
-          <div class="pub-venue">
-            <strong>CONFERENCE 2024</strong> - <em>Full Conference Name</em>
-          </div>
-          <div class="pub-abstract">
-            Paper abstract goes here...
-          </div>
-          <div class="pub-links">
-            <span class="pub-badge published">Published</span>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-solid fa-file-pdf"></i> Paper
-            </a>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-brands fa-github"></i> Code
-            </a>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-solid fa-link"></i> arXiv
-            </a>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-solid fa-bookmark"></i> DOI
-            </a>
-            <a href="#" class="pub-link" target="_blank">
-              <i class="fa-solid fa-chalkboard"></i> Slides
-            </a>
-          </div>
-        </div>
-        -->
-
-        <p class="section-note">
-          <em>More publications coming soon. The template above shows how to add Paper/Code/arXiv/DOI/Slides links.</em>
-        </p>
-      </div>
-    </section>
-
-    <!-- Honors & Awards -->
-    <section class="section glass-card">
-      <h2 class="section-title">Honors &amp; Awards</h2>
-      <div class="section-content">
-        <ul class="awards-list">
-          <li class="award-item">
-            <div class="award-main">
-              <span class="award-name">ASC Student Supercomputer Challenge</span>
-              <span class="award-year">2023</span>
+<div class="page-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <img src="/assets/avatar.jpg" class="profile-img" alt="Yujie Huang">
+            <h1 class="profile-name">Yujie Huang</h1>
+            <p class="profile-title">Ph.D. Student</p>
+            <p class="profile-affiliation">CUHK, CSE</p>
+            <div class="profile-links">
+                <a href="mailto:yjhuang@cse.cuhk.edu.hk"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/hyjack-00" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-graduation-cap"></i></a>
             </div>
-            <div class="award-detail">Finalist - Sunway next-gen processor optimization on Wenhai-1 cluster</div>
-          </li>
-          <li class="award-item">
-            <div class="award-main">
-              <span class="award-name">Student Cluster Competition (SCC)</span>
-              <span class="award-year">2023</span>
-            </div>
-            <div class="award-detail">Participant - LLaMA-13B fine-tuning and WRF-Hydro optimization</div>
-          </li>
-          <li class="award-item">
-            <div class="award-main">
-              <span class="award-name">CPC Competition</span>
-              <span class="award-year">2023</span>
-            </div>
-            <div class="award-detail">Optimization on Sunway architecture with LDM/SPM and DMA pipelines</div>
-          </li>
-          <li class="award-item">
-            <div class="award-main">
-              <span class="award-name">Outstanding Graduate</span>
-              <span class="award-year">2023</span>
-            </div>
-            <div class="award-detail">Sun Yat-sen University</div>
-          </li>
-          <li class="award-item">
-            <div class="award-main">
-              <span class="award-name">First-Class Scholarship</span>
-              <span class="award-year">2020-2022</span>
-            </div>
-            <div class="award-detail">Undergraduate Academic Excellence Award</div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section class="section glass-card">
-      <h2 class="section-title">Education</h2>
-      <div class="section-content">
-        <div class="education-item">
-          <div class="edu-header">
-            <div class="edu-left">
-              <div class="edu-degree">Ph.D. in Computer Science and Engineering</div>
-              <div class="edu-school">The Chinese University of Hong Kong</div>
-            </div>
-            <div class="edu-date">2023 - Present</div>
-          </div>
-          <div class="edu-detail">Advisor: Prof. Michael R. Lyu</div>
-          <div class="edu-detail">Research Focus: High-Performance Computing, AI Systems, LLM Inference</div>
         </div>
+    </aside>
 
-        <div class="education-item">
-          <div class="edu-header">
-            <div class="edu-left">
-              <div class="edu-degree">B.Eng. in Computer Science</div>
-              <div class="edu-school">Sun Yat-sen University</div>
-            </div>
-            <div class="edu-date">2019 - 2023</div>
-          </div>
-          <div class="edu-detail">Member of Sun Yat-sen University Supercomputing Team</div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <!-- About -->
+            <section class="content-card">
+                <h2>About</h2>
+                <p>I am a Ph.D. student at The Chinese University of Hong Kong, supervised by <a href="https://www.cse.cuhk.edu.hk/lyu/" target="_blank">Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, particularly LLM inference optimization and system reliability.</p>
+            </section>
+
+            <!-- Publications -->
+            <section class="content-card">
+                <h2><i class="fas fa-book"></i> Publications</h2>
+
+                <div class="pub-year">2025</div>
+
+                <div class="pub-item">
+                    <h3 class="pub-title">PreServe: Hierarchical Prediction-based Management for LMaaS Systems</h3>
+                    <p class="pub-authors"><strong>Yujie Huang</strong>, Jiazhen Gu, Zhihan Jiang, Michael R. Lyu</p>
+                    <p class="pub-venue"><em>ICSE 2025 - International Conference on Software Engineering</em></p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2504.03702" class="pub-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i> arXiv
+                        </a>
+                        <a href="https://github.com/OpsPAI/PreServe" class="pub-btn" target="_blank">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <h3 class="pub-title">LLMPrism: Black-box Performance Diagnosis for Production LLM Training Platforms</h3>
+                    <p class="pub-authors">Authors, <strong>Yujie Huang</strong>, Michael R. Lyu</p>
+                    <p class="pub-venue"><em>arXiv preprint, 2025</em></p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2505.00342" class="pub-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i> arXiv
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <h3 class="pub-title">Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs</h3>
+                    <p class="pub-authors">Authors, <strong>Yujie Huang</strong>, Michael R. Lyu</p>
+                    <p class="pub-venue"><em>arXiv preprint, 2025</em></p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2601.13655" class="pub-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i> arXiv
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <h3 class="pub-title">Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems</h3>
+                    <p class="pub-authors">Yilun Wang, Guangba Yu, Haiyu Huang, <strong>Yujie Huang</strong>, Pengfei Chen, Michael R. Lyu</p>
+                    <p class="pub-venue"><em>arXiv preprint, 2025</em></p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2603.00468" class="pub-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i> arXiv
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="content-card">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div class="edu-item">
+                    <div class="edu-header">
+                        <strong>The Chinese University of Hong Kong</strong>
+                        <span>2023 - Present</span>
+                    </div>
+                    <p>Ph.D. in Computer Science and Engineering</p>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-header">
+                        <strong>Sun Yat-sen University</strong>
+                        <span>2019 - 2023</span>
+                    </div>
+                    <p>B.Eng. in Computer Science</p>
+                </div>
+            </section>
+
+            <!-- Awards -->
+            <section class="content-card">
+                <h2><i class="fas fa-award"></i> Honors & Awards</h2>
+                <ul class="award-list">
+                    <li>ASC Student Supercomputer Challenge, Finalist (2023)</li>
+                    <li>Student Cluster Competition (SCC), Participant (2023)</li>
+                    <li>Outstanding Graduate, Sun Yat-sen University (2023)</li>
+                </ul>
+            </section>
         </div>
-      </div>
-    </section>
-
-    <!-- Academic Service -->
-    <section class="section glass-card">
-      <h2 class="section-title">Academic Service</h2>
-      <div class="section-content">
-        <ul class="service-list">
-          <li><strong>Reviewer:</strong> (To be updated)</li>
-          <li><strong>Teaching Assistant:</strong> (To be updated)</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Blog Posts (Optional - linking to your existing blog) -->
-    <section class="section glass-card">
-      <h2 class="section-title">Selected Blog Posts</h2>
-      <div class="section-content">
-        <ul class="blog-list">
-          <li class="blog-item">
-            <a href="/2023/10/22/技术想法%20-%20访存计算流水and数据流分析/" class="blog-link">
-              <span class="blog-title">访存计算流水 & 数据流分析</span>
-              <span class="blog-date">Oct 2023</span>
-            </a>
-            <p class="blog-excerpt">HPC 应用组会讲座笔记，访存计算流水线与 RDMA 通信优化</p>
-          </li>
-          <li class="blog-item">
-            <a href="/2023/10/21/比赛%20-%20CPC%202023%20总结/" class="blog-link">
-              <span class="blog-title">CPC 2023 Competition Summary</span>
-              <span class="blog-date">Oct 2023</span>
-            </a>
-            <p class="blog-excerpt">Sunway next-gen processor optimization on Wenhai-1 cluster</p>
-          </li>
-          <li class="blog-item">
-            <a href="/2023/10/15/技术想法%20-%20LLM%20推理多线程化的可能性/" class="blog-link">
-              <span class="blog-title">LLM Inference Multi-threading Potential</span>
-              <span class="blog-date">Oct 2023</span>
-            </a>
-            <p class="blog-excerpt">LLaMA2-7B on A10, exploring throughput scaling via concurrent inference</p>
-          </li>
-        </ul>
-        <p class="section-note">
-          <a href="/archives/">View all blog posts →</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer glass-card">
-      <p>&copy; 2023-2025 Yujie Huang. Last updated: August 2024.</p>
-      <p class="footer-note">Inspired by academic personal pages. Built with care.</p>
-    </footer>
-  </div>
-
-  <script src="/js/main-academic.js"></script>
+    </main>
+</div>
 </body>
 </html>
