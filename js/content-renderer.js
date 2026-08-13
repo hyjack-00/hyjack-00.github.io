@@ -44,7 +44,7 @@ function renderProfile() {
 
     // Profile name
     document.querySelector('.profile-name').innerHTML =
-        `${profile.name.en}<br><span style="font-size:1.1rem;font-weight:400">${profile.name.zh}</span>`;
+        `${profile.name.en}<br><span lang="zh" style="font-size:1.1rem;font-weight:400">${profile.name.zh}</span>`;
 
     // Title and affiliation
     document.querySelector('.profile-title').textContent = profile.title;
@@ -54,8 +54,8 @@ function renderProfile() {
     const linksContainer = document.querySelector('.profile-links');
     linksContainer.innerHTML = `
         <a href="mailto:${profile.email}" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/${profile.github}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="${profile.scholar}" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://github.com/${profile.github}" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="${profile.scholar}" target="_blank" rel="noopener noreferrer" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
     `;
 }
 
@@ -166,13 +166,17 @@ function renderPublications() {
                 };
                 const icon = icons[key] || 'fas fa-link';
                 const label = key.charAt(0).toUpperCase() + key.slice(1);
-                return `<a href="${url}" class="pub-btn" target="_blank"><i class="${icon}"></i> ${label}</a>`;
+                return `<a href="${url}" class="pub-btn" target="_blank" rel="noopener noreferrer"><i class="${icon}"></i> ${label}</a>`;
             }).join('');
 
             // Venue style
             const venueStyle = pub.venueStyle ?
                 `style="background:${pub.venueStyle.background};color:${pub.venueStyle.color};border-color:${pub.venueStyle.borderColor}"` :
                 '';
+
+            // Venue full name
+            const venueFullName = pub.venueFull || '';
+            const venueFullHTML = venueFullName ? `<p class="pub-venue">${venueFullName}</p>` : '';
 
             // Location (optional)
             const location = pub.location ?
@@ -184,6 +188,7 @@ function renderPublications() {
                     <div class="pub-main">
                         <h3 class="pub-title">${pub.title}</h3>
                         <p class="pub-authors">${pub.authors.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+                        ${venueFullHTML}
                         <div class="pub-links">${links}</div>
                     </div>
                     <div class="pub-side">
