@@ -461,22 +461,6 @@ body {
     display: block;
 }
 
-.page-wrapper {
-    position: relative;
-}
-
-.content-wrapper {
-    position: relative;
-    z-index: 9999;
-    background: var(--bg-primary);
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: top;
-}
-
-.content-wrapper.hidden {
-    transform: translateY(-100%);
-}
-
 .background-credit {
     position: fixed;
     bottom: 5rem;
