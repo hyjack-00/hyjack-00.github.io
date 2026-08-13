@@ -31,7 +31,7 @@
                 </div>
                 <div class="sidebar-edu">
                     <strong>SYSU</strong><br>
-                    <span>B.Eng., 2019-2023</span>
+                    <span>B.Eng., 2019-2025</span>
                 </div>
             </div>
             <div class="sidebar-section">
@@ -39,6 +39,20 @@
                 <div class="sidebar-award"><strong>2023</strong> ASC Finalist</div>
                 <div class="sidebar-award"><strong>2023</strong> SCC Participant</div>
                 <div class="sidebar-award"><strong>2023</strong> Outstanding Graduate</div>
+            </div>
+            <div class="sidebar-stats">
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Papers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">26</span>
+                    <span class="stat-label">Cities</span>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <p>© 2024 Yujie Huang</p>
+                <p>Last updated: Aug 2024</p>
             </div>
         </div>
     </aside>
@@ -76,7 +90,7 @@
                     </div>
                     <div class="pub-side">
                         <div class="pub-conference"><i class="fas fa-calendar"></i> ICSE'26</div>
-                        <span class="pub-location"><i class="fas fa-map-marker-alt"></i> Ottawa, Canada<br>Apr 2026</span>
+                        <span class="pub-location"><i class="fas fa-map-marker-alt"></i> Florianópolis, Brazil<br>Apr 2026</span>
                     </div>
                 </div>
 
@@ -149,26 +163,35 @@
     </main>
 </div>
 
-<!-- Full Background Section with Citation -->
-<section class="full-background-section">
-    <div class="background-overlay-dark"></div>
-    <div class="citation-box">
-        <h3>📚 Cite This Page</h3>
-        <pre>@misc{huang2024homepage,
-  author = {Huang, Yujie},
-  title = {Yujie Huang - Academic Homepage},
-  year = {2024},
-  url = {https://hyjack-00.github.io},
-  note = {Ph.D. Student at CUHK}
-}</pre>
-        <div class="credit">
-            Background artwork © Original Artist<br>
-            Page design inspired by modern academic templates
-        </div>
-    </div>
-</section>
-
+<!-- Background Toggle Button -->
+<div class="full-background-toggle" onclick="toggleBackground()">
+    <div class="toggle-arrow">▼ View Full Background</div>
 </div>
+
+<!-- Full Background Overlay -->
+<div class="full-background-overlay" id="backgroundOverlay">
+    <div class="close-background" onclick="toggleBackground()">✕</div>
+    <div class="background-credit">
+        Artwork: "井小姐和猫和插排" by Rotarran (ロートラン) | <a href="https://www.pixiv.net/users/19148674" target="_blank" style="color:white;text-decoration:underline">Pixiv</a>
+    </div>
+</div>
+
+<script>
+function toggleBackground() {
+    const overlay = document.getElementById('backgroundOverlay');
+    overlay.classList.toggle('active');
+    document.querySelector('.toggle-arrow').innerHTML = overlay.classList.contains('active') ? '▲ Close' : '▼ View Full Background';
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const overlay = document.getElementById('backgroundOverlay');
+        if (overlay.classList.contains('active')) {
+            toggleBackground();
+        }
+    }
+});
+</script>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -189,7 +212,7 @@ const travelCities=[
     {name:"Huangshan",lat:29.7144,lng:118.3376},
     {name:"Qingdao",lat:36.0671,lng:120.3826},
     {name:"Lhasa",lat:29.6500,lng:91.1000},
-    {name:"珠穆朗玛峰大本营",lat:28.0000,lng:86.8500},
+    {name:"Everest Base Camp",lat:28.0000,lng:86.8500},
     {name:"Xining",lat:36.6171,lng:101.7782},
     {name:"Chengdu",lat:30.5728,lng:104.0668},
     {name:"Lanzhou",lat:36.0611,lng:103.8343},
