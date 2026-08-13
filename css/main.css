@@ -18,7 +18,7 @@ body {
     font-size: 15px;
     color: var(--text-primary);
     background: var(--bg-primary);
-    background-image: url('/images/backgrounds/1-rotarran-bg.jpg');
+    background-image: url('/images/backgrounds/.井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -39,7 +39,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.70) 100%);
+    background: radial-gradient(circle at center, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.70) 100%);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-right: 1px solid var(--border-subtle);
@@ -163,7 +163,7 @@ body {
 }
 
 .content-card {
-    background: radial-gradient(circle at center, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.72) 100%);
+    background: radial-gradient(circle at center, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%);
     backdrop-filter: blur(8px);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;

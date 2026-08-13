@@ -51,8 +51,8 @@
                 </div>
             </div>
             <div class="sidebar-footer">
-                <p>© 2024 Yujie Huang</p>
-                <p>Last updated: Aug 2024</p>
+                <p>© 2026 Yujie Huang</p>
+                <p>Last updated: Aug 2026</p>
             </div>
         </div>
     </aside>
@@ -159,28 +159,48 @@
                     <div class="photo-card night"><i class="fas fa-moon fa-2x"></i><div class="card-title">Night</div><div class="card-count">After dark</div></div>
                 </div>
             </section>
+
+            <!-- Background Viewer Card -->
+            <section class="content-card background-toggle-card" onclick="toggleBackground()">
+                <div class="toggle-button">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
         </div>
     </main>
 </div>
 
-<!-- Background Toggle Button -->
-<div class="full-background-toggle" onclick="toggleBackground()">
-    <div class="toggle-arrow">▼ View Full Background</div>
-</div>
-
 <!-- Full Background Overlay -->
 <div class="full-background-overlay" id="backgroundOverlay">
-    <div class="close-background" onclick="toggleBackground()">✕</div>
     <div class="background-credit">
-        Artwork: "井小姐和猫和插排" by Rotarran (ロートラン) | <a href="https://www.pixiv.net/users/19148674" target="_blank" style="color:white;text-decoration:underline">Pixiv</a>
+        Artwork: "井小姐和猫和插排" by Rotarran (ロートラン)<br>
+        <a href="https://www.pixiv.net/users/51648995" target="_blank">Pixiv Artist Page</a>
+    </div>
+    <div class="close-button-container">
+        <div class="close-toggle-button" onclick="toggleBackground()">
+            <i class="fas fa-chevron-up"></i>
+        </div>
     </div>
 </div>
 
 <script>
 function toggleBackground() {
     const overlay = document.getElementById('backgroundOverlay');
-    overlay.classList.toggle('active');
-    document.querySelector('.toggle-arrow').innerHTML = overlay.classList.contains('active') ? '▲ Close' : '▼ View Full Background';
+    const contentWrapper = document.querySelector('.content-wrapper');
+
+    if (overlay.classList.contains('active')) {
+        // Close: bring content back
+        contentWrapper.classList.remove('hidden');
+        setTimeout(() => {
+            overlay.classList.remove('active');
+        }, 600);
+    } else {
+        // Open: slide content up
+        overlay.classList.add('active');
+        setTimeout(() => {
+            contentWrapper.classList.add('hidden');
+        }, 10);
+    }
 }
 
 document.addEventListener('keydown', function(e) {
