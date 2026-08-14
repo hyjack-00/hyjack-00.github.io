@@ -52,6 +52,7 @@ const articleTemplate = fs.readFileSync('templates/article.html', 'utf8');
 
 if (content.publications.length !== 7) throw new Error('Expected 7 publications');
 if (content.blog.length !== 6) throw new Error('Expected 6 blog posts');
+if (content.recommendations.length !== 2) throw new Error('Expected 2 recommendations');
 if (content.experience.length !== 2) throw new Error('Expected 2 experience entries');
 if (content.travel.cities.length !== 26) throw new Error('Expected 26 travel points');
 if (content.stats.papers !== content.publications.length) throw new Error('Paper counter is stale');
@@ -97,6 +98,17 @@ for (const post of content.blog) {
   if (!source.includes('article-content markdown-body')) {
     throw new Error(`Blog source has no extractable article body: ${post.source}`);
   }
+  if (/<script\b|Hexo Theme Redefine|page-container/.test(source)) {
+    throw new Error(`Legacy Hexo framework remains in blog source: ${post.source}`);
+  }
+}
+
+const removedLegacyPaths = [
+  'archives', 'assets/build', 'css/common', 'css/layout', 'css/style.css',
+  'fonts/Chillax', 'js/layouts', 'js/libs', 'js/plugins', 'js/tools', 'lib'
+];
+for (const legacyPath of removedLegacyPaths) {
+  if (fs.existsSync(legacyPath)) throw new Error(`Legacy framework path remains: ${legacyPath}`);
 }
 
 const diskFiles = fs.readdirSync('images/backgrounds')
@@ -158,6 +170,9 @@ if (!html.includes('id="publications"') || !html.includes('id="blog"')) {
 }
 if (!html.includes('id="experience"') || !html.includes('id="honors"') || !html.includes('id="service"')) {
   throw new Error('Experience, honors, or service is missing a stable ID');
+}
+if (!html.includes('id="recommendations"') || !rendererSource.includes('renderRecommendations()')) {
+  throw new Error('Recommendations section is not rendered');
 }
 if ((html.match(/content-card--dense/g) || []).length !== 2) {
   throw new Error('Publication and Blog must both use the dense feather layer');

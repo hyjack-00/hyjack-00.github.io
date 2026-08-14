@@ -17,6 +17,7 @@
 - ✅ **出版物** (`publications`): 标题、作者、会议、链接、年份
 - ✅ **旅行地图** (`travel.cities`): 城市名、经纬度、是否故乡
 - ✅ **摄影分类** (`photography`): 图标、标题、描述
+- ✅ **站点推荐** (`recommendations`): 名称、类型、描述、网站
 - ✅ **页脚信息** (`footer`): 版权、更新时间
 
 ### 🎉 现在已启用：完全数据驱动
@@ -150,10 +151,10 @@ background-image: var(--active-background-image);
 
 ## Blog 文章页
 
-当前站点不运行 Hexo。旧 Hexo 生成页移动到 `data/blog-source/`，只作为历史正文数据源；访问原文章 URL 时，展示的是 `templates/article.html` 生成的新页面。
+当前站点不运行 Hexo。`data/blog-source/` 只保存从历史页面提取出的纯正文片段；访问原文章 URL 时，展示的是 `templates/article.html` 生成的新页面。
 
 - `scripts/generate-article-pages.mjs`: 根据 `data/content.json` 中的 Blog URL 生成文章入口页
-- `js/article-renderer.js`: 从历史文件提取 `.article-content.markdown-body`，转换旧图片懒加载属性并渲染正文
+- `js/article-renderer.js`: 读取正文片段，转换旧图片懒加载属性并渲染正文
 - `css/article.css`: 当前毛玻璃文章卡片、正文、图片、表格和代码块样式
 - `js/content-renderer.js`: 主页和文章页共用左侧 Profile、Education、Experience、Stats 与 Footer
 

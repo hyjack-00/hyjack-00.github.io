@@ -261,6 +261,10 @@
     { "icon": "fa-utensils", "title": "Food", "description": "Culinary", "class": "food" },
     { "icon": "fa-moon", "title": "Night", "description": "After dark", "class": "night" }
   ],
+  "recommendations": [
+    { "name": "Camarts", "type": "art", "description": "A photo gallery featuring a curated library of over 3,000 images created by photographer Dandy Tianxin Weng on his worldwide journeys", "website": "https://camarts.app/" },
+    { "name": "Colossal", "type": "art", "description": "An independent online art magazine celebrating visual culture since 2010", "website": "https://www.thisiscolossal.com/category/photography/" }
+  ],
   "footer": {
     "copyright": "© 2026 Yujie Huang",
     "lastUpdated": "Aug 2026"

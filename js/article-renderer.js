@@ -26,6 +26,9 @@ function prepareLegacyArticle(sourceBody) {
     articleBody.querySelectorAll('a[target="_blank"]').forEach(link => {
         link.rel = 'noopener noreferrer';
     });
+    articleBody.querySelectorAll('.fa-regular').forEach(icon => {
+        icon.classList.replace('fa-regular', 'fas');
+    });
 
     return articleBody;
 }

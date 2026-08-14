@@ -52,6 +52,7 @@ function renderAllContent() {
     renderPublications();
     renderService();
     renderBlog();
+    renderRecommendations();
     renderPhotography();
 }
 
@@ -295,6 +296,29 @@ function renderBlog() {
     blogSection.innerHTML = `
         <h2><i class="fas fa-pen-to-square"></i> Blog</h2>
         <div class="blog-list">${postsHTML}</div>
+    `;
+}
+
+/**
+ * Render recommended sites.
+ */
+function renderRecommendations() {
+    const recommendationSection = document.getElementById('recommendations');
+    const recommendationsHTML = (contentData.recommendations || []).map(item => `
+        <article class="recommendation-item">
+            <div class="recommendation-heading">
+                <a class="recommendation-name" href="${item.website}" target="_blank" rel="noopener noreferrer">
+                    ${item.name}<i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+                <span class="recommendation-type">${item.type}</span>
+            </div>
+            <p>${item.description}</p>
+        </article>
+    `).join('');
+
+    recommendationSection.innerHTML = `
+        <h2><i class="fas fa-compass"></i> Recommendations</h2>
+        <div class="recommendation-list">${recommendationsHTML}</div>
     `;
 }
 
