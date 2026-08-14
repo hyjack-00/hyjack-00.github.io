@@ -41,7 +41,7 @@ function renderBackgroundCredit(background) {
     }
 
     credit.replaceChildren();
-    credit.append(`Artwork #${details.order}: "${details.title}" by ${details.artist} · `);
+    credit.append(`Artwork: "${details.title}" by ${details.artist} · `);
 
     const link = document.createElement('a');
     link.href = details.href;

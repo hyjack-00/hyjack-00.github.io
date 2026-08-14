@@ -141,7 +141,7 @@ background-image: var(--active-background-image);
 
 `css/main.css` 的 `:root` 集中定义了常用视觉参数：
 
-- `--dense-layer-alpha`: Publication 与 Blog 中心羽化层透明度；当前 `0.69`，与 52% 卡片底色合成后约为 85% 白度
+- `--dense-layer-alpha`: Publication 与 Blog 中心羽化层透明度；当前 `0.69`，与 56% 卡片底色合成后约为 86% 白度
 - `--dense-feather`: 圆角矩形羽化半径
 - `--pub-copy-line-height`: Publication 作者和会议信息行高
 - `--pub-action-padding-*`: Publication 链接按钮内边距
