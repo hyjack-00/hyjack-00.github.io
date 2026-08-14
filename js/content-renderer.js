@@ -9,12 +9,30 @@ let contentData = null;
  */
 async function loadContent() {
     try {
-        const response = await fetch('/data/content.json');
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        contentData = await response.json();
-        if (document.body.hasAttribute('data-article-page')) {
+        const isArticlePage = document.body.hasAttribute('data-article-page');
+        const blogRequest = isArticlePage
+            ? null
+            : fetch('/data/blogs.json')
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    return response.json();
+                })
+                .then(manifest => ({ posts: manifest.posts }))
+                .catch(error => ({ error }));
+        const contentResponse = await fetch('/data/content.json');
+        if (!contentResponse.ok) throw new Error(`Content HTTP ${contentResponse.status}`);
+        contentData = await contentResponse.json();
+
+        if (isArticlePage) {
             renderSidebarContent();
         } else {
+            const blogResult = await blogRequest;
+            if (blogResult.error) {
+                console.error('Failed to load blog manifest:', blogResult.error);
+                contentData.blog = [];
+            } else {
+                contentData.blog = blogResult.posts;
+            }
             renderAllContent();
         }
         window.siteContentData = contentData;
@@ -129,7 +147,7 @@ function renderExperience() {
         <div class="sidebar-experience">
             <img class="experience-icon" src="${item.icon}" alt="" width="32" height="32">
             <div class="experience-copy">
-                <strong>${item.organization} ${item.role}</strong>
+                <strong>${item.organization}${item.role ? ` ${item.role}` : ''}</strong>
                 <span>${item.period}</span>
             </div>
         </div>

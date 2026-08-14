@@ -1,0 +1,15 @@
+{
+  "name": "hyjack-00.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:blog && node scripts/generate-background-manifest.mjs",
+    "build:blog": "node scripts/generate-article-pages.mjs",
+    "check": "bash validate-homepage.sh"
+  },
+  "devDependencies": {
+    "gray-matter": "4.0.3",
+    "markdown-it": "15.0.0"
+  }
+}
+

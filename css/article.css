@@ -220,10 +220,11 @@
     line-height: 1.55;
 }
 
-.article-body .highlight-container code,
-.article-body .highlight-container .line {
+.article-body .highlight-container code {
     padding: 0;
     background: transparent;
+    font-size: inherit;
+    line-height: inherit;
 }
 
 .article-body > table {
@@ -240,20 +241,10 @@
     text-align: left;
 }
 
-.article-error {
-    margin: 1rem;
-    color: #b91c1c;
-    font-size: 0.9rem;
-}
-
 .article-navigation {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 1rem;
-}
-
-.article-navigation[hidden] {
-    display: none;
 }
 
 .article-navigation-link {

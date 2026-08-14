@@ -29,7 +29,6 @@
   "experience": [
     {
       "organization": "SYSU SuperComputing Team",
-      "role": "Member",
       "period": "2022-2025",
       "icon": "/assets/experience/sysu-supercomputing.png"
     },
@@ -203,56 +202,6 @@
       { "name": "Doha", "lat": 25.2854, "lng": 51.5310, "country": "Qatar", "city": "Doha" }
     ]
   },
-  "blog": [
-    {
-      "date": "2023-10-22",
-      "title": "技术想法 - 访存计算流水 and 数据流分析",
-      "excerpt": "听了 HPC 应用组会的两个讲座，正好最近在复盘 CPC，有一些想法。访存计算流水通过一边计算、一边 RDMA 通信，让每一片计算结果直接进入下一阶段。",
-      "category": "Tech",
-      "source": "/data/blog-source/2023-10-22.html",
-      "url": "/2023/10/22/技术想法%20-%20访存计算流水and数据流分析/"
-    },
-    {
-      "date": "2023-10-21",
-      "title": "比赛 - CPC 2023 总结",
-      "excerpt": "在神威新一代处理器和“问海一号”集群上进行优化，包括主从核架构、LDM 配置、DMA 流水与多个赛题的实现总结。",
-      "category": "Competition",
-      "source": "/data/blog-source/2023-10-21.html",
-      "url": "/2023/10/21/比赛%20-%20CPC%202023%20总结/"
-    },
-    {
-      "date": "2023-10-15",
-      "title": "技术想法 - LLM 推理多线程化的潜力",
-      "excerpt": "来自 X 上的一个 thread：作者在 A10 上运行 LLaMA2-7B，从单推理端的吞吐延伸到多推理端并发，讨论推理多线程化的潜力。",
-      "category": "Tech",
-      "source": "/data/blog-source/2023-10-15.html",
-      "url": "/2023/10/15/技术想法%20-%20LLM%20推理多线程化的可能性/"
-    },
-    {
-      "date": "2023-10-11",
-      "title": "技术想法 - 虚拟化是广义的多路复用",
-      "excerpt": "从分布式系统课程出发，整理虚拟化、计算反射、I/O 与抽象层之间的联系，以及虚拟化作为广义多路复用的理解。",
-      "category": "Tech",
-      "source": "/data/blog-source/2023-10-11.html",
-      "url": "/2023/10/11/技术想法%20-%20虚拟化是广义的多路复用/"
-    },
-    {
-      "date": "2023-10-10",
-      "title": "比赛 - SCC 23 暑假模拟赛",
-      "excerpt": "初赛主要负责 LLaMA 任务并协助 WRF-Hydro，包括 LLaMA-13B 部署、推理性能测试、微调加速与结果验证。",
-      "category": "Competition",
-      "source": "/data/blog-source/2023-10-10.html",
-      "url": "/2023/10/10/比赛%20-%20SCC%2023%20暑假模拟赛/"
-    },
-    {
-      "date": "2023-10-08",
-      "title": "Hyjack 的博客搭建",
-      "excerpt": "从零搭建个人博客的记录：使用 Hexo 博客框架，尝试阿里云服务器，并在备案前通过 GitHub Pages 托管网页。",
-      "category": "Other",
-      "source": "/data/blog-source/2023-10-08.html",
-      "url": "/2023/10/08/Hyjack-的博客搭建/"
-    }
-  ],
   "photography": [
     { "icon": "fa-mountain", "title": "Landscape", "description": "Natural scenery", "class": "landscape" },
     { "icon": "fa-city", "title": "Urban", "description": "City life", "class": "urban" },

@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Yujie Huang's blog">
-    <title>Blog - Yujie Huang</title>
-    <link rel="icon" href="/assets/avatar.jpg" type="image/jpeg">
+    <meta name="description" content="{{ARTICLE_DESCRIPTION}}">
+    <title>{{ARTICLE_TITLE}} - Yujie Huang</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
     <link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
     <link rel="stylesheet" href="/fontawesome/solid.min.css">
@@ -17,7 +17,6 @@
 </head>
 <body class="article-page" data-article-page>
 <a href="#article-content" class="skip-link">Skip to article</a>
-<noscript><p class="article-error">This page needs JavaScript to load the article.</p></noscript>
 <div class="page-background" aria-hidden="true"></div>
 <div class="page-wrapper">
 <div class="content-wrapper">
@@ -50,19 +49,17 @@
     <main class="main-content article-main" id="article-content">
         <div class="article-layout">
             <a class="article-back" href="/#blog"><i class="fas fa-arrow-left" aria-hidden="true"></i>Back to Blog</a>
-            <article class="content-card content-card--dense article-card" aria-busy="true">
+            <article class="content-card content-card--dense article-card">
                 <header class="article-heading">
-                    <p class="article-category">Blog</p>
-                    <h1 class="article-title-heading">Loading article...</h1>
-                    <time class="article-published"></time>
+                    <p class="article-category">{{ARTICLE_CATEGORY}}</p>
+                    <h1 class="article-title-heading">{{ARTICLE_TITLE}}</h1>
+                    <time class="article-published" datetime="{{ARTICLE_DATE}}"><i class="fas fa-calendar-days" aria-hidden="true"></i>{{ARTICLE_DATE}}</time>
                 </header>
-                <div class="article-body"></div>
-                <p class="article-error" hidden></p>
+                <div class="article-body"><!-- Generated from the co-located index.md file. -->
+{{ARTICLE_BODY}}
+                </div>
             </article>
-            <nav class="article-navigation" aria-label="Blog post navigation" hidden>
-                <a class="article-navigation-link article-navigation-newer" href="#"></a>
-                <a class="article-navigation-link article-navigation-older" href="#"></a>
-            </nav>
+            {{ARTICLE_NAVIGATION}}
         </div>
     </main>
 </div>
@@ -85,6 +82,5 @@
 
 <script src="/js/background-manager.js"></script>
 <script src="/js/content-renderer.js"></script>
-<script src="/js/article-renderer.js"></script>
 </body>
 </html>

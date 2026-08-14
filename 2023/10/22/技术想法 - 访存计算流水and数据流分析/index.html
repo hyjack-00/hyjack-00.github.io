@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Yujie Huang's blog">
-    <title>Blog - Yujie Huang</title>
-    <link rel="icon" href="/assets/avatar.jpg" type="image/jpeg">
+    <meta name="description" content="听了 HPC 应用组会的两个讲座，正好最近在复盘 CPC，有一些想法。访存计算流水通过一边计算、一边 RDMA 通信，让每一片计算结果直接进入下一阶段。">
+    <title>技术想法 - 访存计算流水 and 数据流分析 - Yujie Huang</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
     <link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
     <link rel="stylesheet" href="/fontawesome/solid.min.css">
@@ -17,7 +17,6 @@
 </head>
 <body class="article-page" data-article-page>
 <a href="#article-content" class="skip-link">Skip to article</a>
-<noscript><p class="article-error">This page needs JavaScript to load the article.</p></noscript>
 <div class="page-background" aria-hidden="true"></div>
 <div class="page-wrapper">
 <div class="content-wrapper">
@@ -50,19 +49,25 @@
     <main class="main-content article-main" id="article-content">
         <div class="article-layout">
             <a class="article-back" href="/#blog"><i class="fas fa-arrow-left" aria-hidden="true"></i>Back to Blog</a>
-            <article class="content-card content-card--dense article-card" aria-busy="true">
+            <article class="content-card content-card--dense article-card">
                 <header class="article-heading">
-                    <p class="article-category">Blog</p>
-                    <h1 class="article-title-heading">Loading article...</h1>
-                    <time class="article-published"></time>
+                    <p class="article-category">Tech</p>
+                    <h1 class="article-title-heading">技术想法 - 访存计算流水 and 数据流分析</h1>
+                    <time class="article-published" datetime="2023-10-22"><i class="fas fa-calendar-days" aria-hidden="true"></i>2023-10-22</time>
                 </header>
-                <div class="article-body"></div>
-                <p class="article-error" hidden></p>
+                <div class="article-body"><!-- Generated from the co-located index.md file. -->
+<p>听了 HPC 应用组会的两个讲座，正好最近在复盘 CPC，有一些想法。</p>
+<h3 id="访存计算流水">访存计算流水</h3>
+<p>丰老师的第三部分，是关于谢老师的压力泊松方程求解应用的通信优化，建立了一个一边计算一边 RDMA 通信的流水。每计算出来一片，就可以传输到下一个流水阶段的处理器了。</p>
+<p>虽然说流水切分得够细，会导致每次传输的数据包太小，无法拉满传输带宽，也有 overhead。但是更细的切分能够更好地重叠计算与异步访存，流水的利用率就会更高（我的理解是第一轮访存无法被掩盖，因此减小流水的单位可以让第一轮消耗更少）。</p>
+<p>这一点我在比赛中也大概有体会到。补充一点是如果能切分得够细，让这个 kernel A 的前一个小 kernel B 的最后一轮计算阶段能够重叠 A 的第一轮访存，就已经足够了，这需要一定的性能分析与匹配。</p>
+<p>学到的一点是，可以测试不同数据包大小，看多大能吃满带宽，刚好吃满带宽的数据量可以作为切分的参照。比如 CPC 中发现 DMA, RMA 的最佳带宽传输粒度是 128 Bytes，就可以考虑每有 128B 的数据就通信一次。当然实际情况可能还要看 overhead 之类的。</p>
+<h3 id="数据流分析">数据流分析</h3>
+<p>HH学长讲了一下 <a href="https://spcl.inf.ethz.ch/Research/DAPP/" target="_blank" rel="noopener noreferrer" class="link">DaCe <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 编程模型，是一个面向 Data Movement 进行分析的 Source2Source 工具，建立了自己的 IR 统合了一些后端优化库。然后他好像有想做自动编译出上面的 RDMA 异步方案。</p>
+<p>比较有意思，是我 CPC 中总结时提出的第一个问题。之前确实没想过这是编译的问题，kernel-fusion subgraph-fusion 那些其实也是 TVM 那些编译器层级的在做。好像是优化方法都差不多定型了，自己手写很难有什么创新的方法，也比不上编译器的自动分析。</p>
+                </div>
             </article>
-            <nav class="article-navigation" aria-label="Blog post navigation" hidden>
-                <a class="article-navigation-link article-navigation-newer" href="#"></a>
-                <a class="article-navigation-link article-navigation-older" href="#"></a>
-            </nav>
+            <nav class="article-navigation" aria-label="Blog post navigation"><a class="article-navigation-link article-navigation-older" href="/2023/10/21/%E6%AF%94%E8%B5%9B%20-%20CPC%202023%20%E6%80%BB%E7%BB%93/"><span>Older</span><strong>比赛 - CPC 2023 总结<i class="fas fa-arrow-right" aria-hidden="true"></i></strong></a></nav>
         </div>
     </main>
 </div>
@@ -85,6 +90,5 @@
 
 <script src="/js/background-manager.js"></script>
 <script src="/js/content-renderer.js"></script>
-<script src="/js/article-renderer.js"></script>
 </body>
 </html>

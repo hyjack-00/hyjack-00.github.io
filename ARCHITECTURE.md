@@ -2,9 +2,9 @@
 
 ## 📋 内容管理
 
-### ✅ 核心数据文件：`/data/content.json` - 完全数据驱动
+### ✅ 主页数据文件：`/data/content.json`
 
-**所有页面文字内容都在这个JSON文件中管理**，修改JSON即可自动更新整个网站！
+**主页结构化信息统一在这个 JSON 文件中管理**，修改后会自动更新主页与文章页共用的侧栏。Blog 正文与 Blog 清单由各文章目录中的 `index.md` 管理，见下方“Blog 文章页”。
 
 包括：
 - ✅ **个人信息** (`profile`): 姓名、职位、邮箱、GitHub、Google Scholar
@@ -20,19 +20,19 @@
 - ✅ **站点推荐** (`recommendations`): 名称、类型、描述、网站
 - ✅ **页脚信息** (`footer`): 版权、更新时间
 
-### 🎉 现在已启用：完全数据驱动
+### 主页渲染方式
 
-**页面加载时自动从 `content.json` 读取并生成所有内容！**
+主页加载时自动从 `content.json` 和构建生成的 `data/blogs.json` 读取内容。
 
 工作原理：
 1. `index.html` 只包含最小化的占位符
 2. `js/content-renderer.js` 在页面加载时自动运行
-3. 从 `content.json` 读取数据
+3. 从 `content.json` 读取主页信息，从 `data/blogs.json` 读取 Blog 摘要
 4. 动态生成所有HTML内容并插入页面
 
 ### 如何修改内容（超简单！）
 
-**只需编辑 `/data/content.json` 一个文件，然后推送到GitHub！**
+主页信息只需编辑 `/data/content.json`；Blog 使用同目录 Markdown 流程。
 
 #### 示例：添加新论文
 
@@ -153,25 +153,55 @@ background-image: var(--active-background-image);
 
 ## Blog 文章页
 
-当前站点不运行 Hexo。`data/blog-source/` 只保存从历史页面提取出的纯正文片段；访问原文章 URL 时，展示的是 `templates/article.html` 生成的新页面。
+当前站点不运行 Hexo。每篇文章的 Markdown 与图片直接放在最终 URL 对应的同一个目录中：
+
+```text
+YYYY/MM/DD/文章目录/
+├── index.md       # 唯一需要人工编辑的正文与元数据
+├── image.png      # Markdown 使用相对路径引用的图片
+└── index.html     # 构建生成，提交到 GitHub Pages，但不要手工修改
+```
 
 文章页和 404 页使用固定在视口右下角的背景按钮，因此正文滚动时按钮不会离开屏幕；主页按钮仍位于卡片列表末尾。
 
-- `scripts/generate-article-pages.mjs`: 根据 `data/content.json` 中的 Blog URL 生成文章入口页
-- `js/article-renderer.js`: 读取正文片段，转换旧图片懒加载属性并渲染正文
+- `scripts/generate-article-pages.mjs`: 扫描所有 `YYYY/MM/DD/文章目录/index.md`，生成文章 HTML 和 `data/blogs.json`
+- `data/blogs.json`: 构建生成的主页 Blog 清单，不要手工修改
+- `templates/article.html`: 文章页共同模板
+- `templates/post.md`: 新文章 Markdown 模板
 - `css/article.css`: 当前毛玻璃文章卡片、正文、图片、表格和代码块样式
 - `js/content-renderer.js`: 主页和文章页共用左侧 Profile、Education、Experience、Stats 与 Footer
 
-新增或修改 Blog URL 后，需要运行：
+### 新增文章
+
+1. 创建 `YYYY/MM/DD/文章目录/`，复制 `templates/post.md` 为该目录的 `index.md`，再修改 front matter 和正文。
+2. 图片放在同一目录或其子目录，使用 `![说明](image.png)` 这样的相对路径。
+3. 运行构建和检查；生成的 `index.html` 与 `data/blogs.json` 需要一起提交，因为 GitHub Pages 不会运行 Node 构建。
+
+图片默认按原始尺寸显示并受正文宽度限制。个别图片需要按原始尺寸的 80% 展示时，可写成 `![说明](image.png "display:zoom-80")`；构建器会输出与旧页面一致的缩放且不会显示多余 tooltip。
+
+```markdown
+---
+title: "文章标题"
+date: "2026-08-14"
+category: "Tech"
+excerpt: "显示在主页 Blog 列表中的摘要。"
+---
+
+这里开始写正文。
+```
+
+首次检出仓库或依赖变更后运行 `npm ci`。日常新增、修改文章时运行：
 
 ```bash
-node scripts/generate-article-pages.mjs
-bash validate-homepage.sh
+npm run build:blog
+npm run check
 ```
+
+生成器会检查日期目录、front matter、空正文、本地图片、重复 URL、残留页面和生成物是否同步。删除文章时应删除整个文章目录，而不是只删除 `index.md`。
 
 ## 更换头像
 
-直接用新的正方形 JPG 覆盖 `assets/avatar.jpg` 即可，建议保持在 500 KB 以内。这个文件同时用于左侧头像和浏览器页签图标。若新头像已经是近景裁切，将 `css/main.css` 顶部的 `--avatar-scale` 从 `2` 调为 `1`；再用 `--avatar-focus-x` 和 `--avatar-focus-y` 调整人物在圆形框里的位置。
+直接用新的正方形 JPG 覆盖 `assets/avatar.jpg` 即可，建议使用至少 280×280 的图片并保持在 500 KB 以内。当前近景头像使用 `--avatar-scale: 1` 和居中焦点；可通过 `css/main.css` 顶部的 `--avatar-scale`、`--avatar-focus-x`、`--avatar-focus-y` 调整圆形裁切。浏览器页签使用独立的 `assets/favicon.svg`，更换头像不会影响 favicon。
 
 Experience 图标来自中山大学官方页面并保存在 `assets/experience/`，页面不依赖远程图片：
 
@@ -187,6 +217,8 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 ├── index.html                    # 主页HTML（最小化占位符）
 ├── 404.html                      # 404错误页
 ├── .nojekyll                     # 禁用Jekyll处理
+├── package.json                  # Markdown 构建与校验命令
+├── 2023/10/.../                  # 文章 Markdown、图片和生成 HTML
 │
 ├── css/
 │   ├── main.css                  # 主页样式
@@ -200,6 +232,7 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 │
 ├── data/
 │   ├── backgrounds.json          # 背景排序清单（脚本生成）
+│   ├── blogs.json                # Blog 首页清单（脚本生成）
 │   └── content.json              # ✅ 主页内容数据源
 │
 ├── images/
@@ -209,10 +242,12 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 │       └── 1__井小姐...jpg        # 备选背景 (<500KB)
 │
 ├── scripts/
+│   ├── generate-article-pages.mjs
 │   └── generate-background-manifest.mjs
 │
 └── assets/
     ├── avatar.jpg                # 头像照片
+    ├── favicon.svg               # 独立的浏览器页签图标
     └── experience/               # 本地化的团队经历图标
 ```
 
@@ -220,7 +255,8 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 
 ## 🔧 技术栈
 
-- **纯静态HTML/CSS/JS** - 无构建工具
+- **静态HTML/CSS/JS** - Markdown 仅在提交前构建，访客端不解析正文
+- **markdown-it** - 构建期 CommonMark 渲染
 - **数据驱动架构** - JSON → JavaScript → DOM
 - **Leaflet 1.9.4** - 本地托管运行库；旅行城市使用直接渲染的 circle markers，不聚类
 - **Font Awesome 5** - 图标库
@@ -233,22 +269,23 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 
 ### ✅ 当前状态：高扩展性
 
-**完全数据驱动 - 单一数据源维护**：
+**主页结构化数据与 Blog Markdown 分工明确**：
 
 1. ✅ **数据与展示完全分离**
-   - `content.json` 是唯一数据源
-   - `content-renderer.js` 自动生成HTML
-   - 无需手写任何内容HTML
+   - `content.json` 是主页结构化信息的唯一数据源
+   - 每篇 Blog 的 `index.md` 是该文章正文与摘要的唯一数据源
+   - `content-renderer.js` 与构建脚本负责生成 HTML
 
 2. ✅ **零代码内容更新**
-   - 修改JSON → 推送 → 网站自动更新
+   - 修改主页 JSON 后可直接推送
+   - 修改 Blog Markdown 后运行构建与检查再推送
    - 添加论文只需添加JSON条目
    - 所有格式自动正确
 
 3. ✅ **维护负担极低**
-   - 只需维护一个文件：`content.json`
-   - 不会出现HTML/JSON不一致
-   - 格式由代码保证统一
+   - 主页不需要维护重复 HTML
+   - Blog 生成物有 freshness 检查，不会静默过期
+   - 格式由模板和构建器统一保证
 
 ### ✅ 完美工作的部分
 

@@ -20,9 +20,9 @@
     --pub-action-padding-block: 0.08rem;
     --pub-action-padding-inline: 0.44rem;
     --pub-action-gap-top: 0.24rem;
-    --avatar-scale: 2;
+    --avatar-scale: 1;
     --avatar-focus-x: 50%;
-    --avatar-focus-y: 30%;
+    --avatar-focus-y: 50%;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -900,7 +900,7 @@ body.is-background-view .floating-background-control {
         grid-template-columns: minmax(0, 1fr);
         grid-template-rows: repeat(8, auto) 1fr;
         align-content: start;
-        padding: 1.5rem 1.1rem 0.75rem;
+        padding: 1.5rem 1.5rem 0.75rem;
     }
 
     .sidebar-content > :not(.sidebar-section) {
@@ -971,7 +971,7 @@ body.is-background-view .floating-background-control {
 
     .sidebar-content {
         row-gap: 0;
-        padding: 0.8rem 0.75rem 0.55rem;
+        padding: 0.8rem 1.1rem 0.55rem;
     }
 
     .profile-name {

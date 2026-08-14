@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Yujie Huang's blog">
-    <title>Blog - Yujie Huang</title>
-    <link rel="icon" href="/assets/avatar.jpg" type="image/jpeg">
+    <meta name="description" content="从分布式系统课程出发，整理虚拟化、计算反射、I/O 与抽象层之间的联系，以及虚拟化作为广义多路复用的理解。">
+    <title>技术想法 - 虚拟化是广义的多路复用 - Yujie Huang</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
     <link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
     <link rel="stylesheet" href="/fontawesome/solid.min.css">
@@ -17,7 +17,6 @@
 </head>
 <body class="article-page" data-article-page>
 <a href="#article-content" class="skip-link">Skip to article</a>
-<noscript><p class="article-error">This page needs JavaScript to load the article.</p></noscript>
 <div class="page-background" aria-hidden="true"></div>
 <div class="page-wrapper">
 <div class="content-wrapper">
@@ -50,19 +49,52 @@
     <main class="main-content article-main" id="article-content">
         <div class="article-layout">
             <a class="article-back" href="/#blog"><i class="fas fa-arrow-left" aria-hidden="true"></i>Back to Blog</a>
-            <article class="content-card content-card--dense article-card" aria-busy="true">
+            <article class="content-card content-card--dense article-card">
                 <header class="article-heading">
-                    <p class="article-category">Blog</p>
-                    <h1 class="article-title-heading">Loading article...</h1>
-                    <time class="article-published"></time>
+                    <p class="article-category">Tech</p>
+                    <h1 class="article-title-heading">技术想法 - 虚拟化是广义的多路复用</h1>
+                    <time class="article-published" datetime="2023-10-11"><i class="fas fa-calendar-days" aria-hidden="true"></i>2023-10-11</time>
                 </header>
-                <div class="article-body"></div>
-                <p class="article-error" hidden></p>
+                <div class="article-body"><!-- Generated from the co-located index.md file. -->
+<p>分布式系统真是个抽象的课，虽然与 OS 有很多交叉知识，但是讲的方式是更高层、抽象、体系化的。</p>
+<p>老师讲了很多拓展的东西，有一些像计算反射这样的偏应用领域知识，我平时是不会主动了解的，有一些则是把之前的概念都串了起来，相当于体系化地整理了一遍，比如 ISA - ABI - ABI 的接口层级。上课时有很多新知识，我如果认真理解也能有一些新的想法，还是很值得听的。</p>
+<p>本文就是最近在讲到虚拟化的多路复用时出现的想法。</p>
+<h2 id="Traditional-Def">Traditional Def</h2>
+<p>Wiki definition:</p>
+<blockquote>
+<p><strong>多路复用</strong>（Multiplexing，又称“<strong>多任务</strong>”[<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E5%88%97%E6%98%8E%E6%9D%A5%E6%BA%90" target="_blank" rel="noopener noreferrer" class="link">来源请求] <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> ）是一个<a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E4%BF%A1" target="_blank" rel="noopener noreferrer" class="link">通信 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 和<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C" target="_blank" rel="noopener noreferrer" class="link">计算机网络 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 领域的专业<a href="https://zh.wikipedia.org/wiki/%E6%9C%AF%E8%AF%AD" target="_blank" rel="noopener noreferrer" class="link">术语 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> ，在没有歧义的情况下，“多路复用”也可被称为“复用”。多路复用通常表示在一个<a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E9%81%93" target="_blank" rel="noopener noreferrer" class="link">信道 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 上<a href="https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93" target="_blank" rel="noopener noreferrer" class="link">传输 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 多路<a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E5%8F%B7" target="_blank" rel="noopener noreferrer" class="link">信号 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 或<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E6%B5%81" target="_blank" rel="noopener noreferrer" class="link">数据流 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 的过程和技术</p>
+</blockquote>
+<p>多路复用的概念出现在网络与通信领域，大致就是利用一条通信线路复用给多条线路，有大概几种实现方法：</p>
+<ul>
+<li>时分复用的特点是：高速信道根据时间划分成多个<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%B6%E9%9A%99&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener noreferrer" class="link">时隙 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 供多个低速信道轮流使用，在一个时隙内，只能有一个低速信道占有高速信道的资源。</li>
+<li>频分复用的特点是：多路复用器将各个低速信道的信号通过<a href="https://zh.wikipedia.org/wiki/%E8%B0%83%E5%88%B6" target="_blank" rel="noopener noreferrer" class="link">调制 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 分布到高速信道的各个<a href="https://zh.wikipedia.org/wiki/%E9%A2%91%E6%AE%B5" target="_blank" rel="noopener noreferrer" class="link">频段 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> ，然后进行叠加，形成高速信道上传输的信号，在接收端，分路器一般通过<a href="https://zh.wikipedia.org/wiki/%E5%B8%A6%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8" target="_blank" rel="noopener noreferrer" class="link">带通滤波器 <i class="fas fa-arrow-up-right-from-square fa-sm" aria-hidden="true"></i></a> 分离各个频段，然后转发给对应的低速信道。</li>
+</ul>
+<p>在本文中通信多路复用不是重点，想探讨的是这个概念的本质，推广到其他领域。</p>
+<p>多路复用的本质是物理资源的同时重用。由于信道数目较少而建立连接的用户比较多，需要利用单一的物理信道资源分配给多个用户；而通信这件事常常是要求即时性的，这种划分应该能够达到一个透明性的效果，让用户感受不到物理资源是被划分的，就像是每一个用户都立即独占了物理信道一样。</p>
+<p>时分复用就是利用更短的时间片切换实现了人类感受不到的复用，频分复用则是真正将信号成分叠加在一起进行传输。它们都是利用同一个物理资源实现同时多个使用的方法。</p>
+<h2 id="Network-Transport">Network Transport</h2>
+<p>网络协议层级的传输层（Transport Layer: 即 TCP UDP 协议所在层）也是基本在做一种 Multiplexing。</p>
+<p>一般来说，IP 协议所在的网络 network 层负责主机 host 之间的通信，而 TCP 与 UDP 协议所在的传输 transport 层负责进程 proc 之间的通信。实际上一台主机通常只有一个网卡，通过一条网线连接出去，即使不只一个网卡也不可能比得上进程的数量。在只有一个网络连接的底层物理资源的情况下，想要让多个进程都连上网络，也需要进行多路复用。</p>
+<p>当前的解决方法是在主机的 IP 地址上，再加入端口号 port 以用于区分主机上的不同进程。具体也是通过时分复用实现的。</p>
+<ul>
+<li>在本机发送数据时，多个进程使用不同 port 发送的数据，同时让 transport 层上 multiplex 给同一个 IP 传输</li>
+<li>在目标接收数据时，不同数据包根据目标 port 再进行 demultiplex，再分配给不同的进程</li>
+</ul>
+<p><img src="image-20230928105220405.png" alt="image-20230928105220405" loading="lazy" decoding="async"></p>
+<p>对于上层的应用进程来说，多路复用的端口网络传输似乎是不存在的、透明的，就像是进程独占了整个 IP。</p>
+<h2 id="Virtual-Machine">Virtual Machine</h2>
+<p>虚拟化的本质也可以说是一种软硬件的多路复用，尤其是 docker 容器。</p>
+<p>一个主机的物理资源只有一份，而我们有在上层虚拟化出更多系统的需求。这要求我们对所有物理资源，包括处理器、内存、磁盘、其他IO 等，进行多路复用，使得多个虚拟化的系统同时运行在一个物理主机上。</p>
+<p>对于 docker 容器来说这种概念显得更明显，一个服务器可以同时运行几个 docker 容器系统，底层通过调度程序，即 docker engine，以时分切换方式来实现多路复用。相当于把唯一的硬件多路复用给不同的软件操作系统。</p>
+<p><img src="image-20230928122938554.png" alt="image-20230928122938554" loading="lazy" decoding="async"></p>
+<p>虚拟机内部，几乎就像是一个完全运行在物理机器上的操作系统，就像这个虚拟机独占了所有的物理资源。</p>
+<blockquote>
+<p>这么说的话，并发多线程也能看作是把处理器资源 时分复用 给多个软件进程/线程</p>
+</blockquote>
+<p>以上，我们可以看到多路复用的概念可以扩展到很多计算机领域，它的思想本质是在只有少量的物理资源的情况下，以特殊的复用方式，实现多个上层用户同时的使用，看起来像是有充足的物理资源。</p>
+                </div>
             </article>
-            <nav class="article-navigation" aria-label="Blog post navigation" hidden>
-                <a class="article-navigation-link article-navigation-newer" href="#"></a>
-                <a class="article-navigation-link article-navigation-older" href="#"></a>
-            </nav>
+            <nav class="article-navigation" aria-label="Blog post navigation"><a class="article-navigation-link article-navigation-newer" href="/2023/10/15/%E6%8A%80%E6%9C%AF%E6%83%B3%E6%B3%95%20-%20LLM%20%E6%8E%A8%E7%90%86%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8C%96%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7/"><span>Newer</span><strong><i class="fas fa-arrow-left" aria-hidden="true"></i>技术想法 - LLM 推理多线程化的潜力</strong></a><a class="article-navigation-link article-navigation-older" href="/2023/10/10/%E6%AF%94%E8%B5%9B%20-%20SCC%2023%20%E6%9A%91%E5%81%87%E6%A8%A1%E6%8B%9F%E8%B5%9B/"><span>Older</span><strong>比赛 - SCC 23 暑假模拟赛<i class="fas fa-arrow-right" aria-hidden="true"></i></strong></a></nav>
         </div>
     </main>
 </div>
@@ -85,6 +117,5 @@
 
 <script src="/js/background-manager.js"></script>
 <script src="/js/content-renderer.js"></script>
-<script src="/js/article-renderer.js"></script>
 </body>
 </html>
