@@ -16,8 +16,10 @@
     --dense-layer-alpha: 0.50;
     --dense-feather: 18px;
     --pub-copy-line-height: 1.2;
-    --pub-action-padding-block: 0.12rem;
+    --pub-action-line-height: 1.2;
+    --pub-action-padding-block: 0.08rem;
     --pub-action-padding-inline: 0.44rem;
+    --pub-action-gap-top: 0.24rem;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -440,7 +442,7 @@ body.is-background-view { overflow: hidden; }
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
-    margin-top: 0.4rem;
+    margin-top: var(--pub-action-gap-top);
 }
 
 .pub-btn {
@@ -448,6 +450,7 @@ body.is-background-view { overflow: hidden; }
     align-items: center;
     gap: 0.2rem;
     font-size: 0.75rem;
+    line-height: var(--pub-action-line-height);
     padding: var(--pub-action-padding-block) var(--pub-action-padding-inline);
     background: linear-gradient(135deg, #faf8ff, #f5f8ff);
     border: 1px solid #efe8f8;

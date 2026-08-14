@@ -148,7 +148,10 @@ if (rendererSource.includes("querySelectorAll('.sidebar-section')")) {
 if (/lockBackgroundControl|is-locked|is-replaced/.test(backgroundSource + css)) {
   throw new Error('Legacy locked background control remains');
 }
-if (!css.includes('--dense-layer-alpha: 0.50') || !css.includes('--pub-copy-line-height: 1.2')) {
+if (!css.includes('--dense-layer-alpha: 0.50') ||
+    !css.includes('--pub-copy-line-height: 1.2') ||
+    !css.includes('--pub-action-line-height: 1.2') ||
+    !css.includes('--pub-action-gap-top: 0.24rem')) {
   throw new Error('Feather or publication density variables are missing');
 }
 NODE

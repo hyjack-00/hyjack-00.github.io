@@ -144,7 +144,9 @@ background-image: var(--active-background-image);
 - `--dense-layer-alpha`: Publication 与 Blog 中心羽化层透明度；当前 `0.50`，与 70% 卡片底色合成后正好为 85% 白度
 - `--dense-feather`: 圆角矩形羽化半径
 - `--pub-copy-line-height`: Publication 作者和会议信息行高
+- `--pub-action-line-height`: Publication 链接按钮文字行高
 - `--pub-action-padding-*`: Publication 链接按钮内边距
+- `--pub-action-gap-top`: 会议全名与链接按钮行之间的间距
 
 Experience 图标来自中山大学官方页面并保存在 `assets/experience/`，页面不依赖远程图片：
 
