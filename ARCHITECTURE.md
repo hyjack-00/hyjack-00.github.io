@@ -10,6 +10,7 @@
 - ✅ **个人信息** (`profile`): 姓名、职位、邮箱、GitHub、Google Scholar
 - ✅ **关于** (`about`): 个人简介（支持HTML）
 - ✅ **教育经历** (`education`): 学校、学位、时间段
+- ✅ **团队经历** (`experience`): 团队、角色、时间段、本地图标
 - ✅ **荣誉奖项** (`honors`): 年份、奖项名称
 - ✅ **统计数据** (`stats`): 论文数、城市数
 - ✅ **新闻动态** (`news`): 日期、图标、文字
@@ -123,7 +124,7 @@
 - Artist、作品名和链接均由文件名解析，不写死在 HTML/CSS
 
 **当前使用**：
-- `0__APPLE__劇団__x.com-_Gekidan.jpg` (current background, <500KB)
+- `0__NFZ__劇団__x.com-_Gekidan.jpg` (current background, <500KB)
 
 **切换背景图片**：
 1. 将想用的图片前导数字改为 `0`
@@ -135,6 +136,20 @@
 ```css
 background-image: var(--active-background-image);
 ```
+
+## 主页视觉微调
+
+`css/main.css` 的 `:root` 集中定义了常用视觉参数：
+
+- `--dense-layer-alpha`: Publication 与 Blog 中心羽化层透明度；当前 `0.69`，与 52% 卡片底色合成后约为 85% 白度
+- `--dense-feather`: 圆角矩形羽化半径
+- `--pub-copy-line-height`: Publication 作者和会议信息行高
+- `--pub-action-padding-*`: Publication 链接按钮内边距
+
+Experience 图标来自中山大学官方页面并保存在 `assets/experience/`，页面不依赖远程图片：
+
+- 超算队：中山大学计算机学院院徽（`https://cse.sysu.edu.cn/article/1364`）
+- AeroSwift：中山大学无人飞行器协会官方队旗中的飞行器标识（`https://saa.sysu.edu.cn/article/682`）
 
 ---
 
@@ -162,15 +177,16 @@ background-image: var(--active-background-image);
 │
 ├── images/
 │   └── backgrounds/
-│       ├── 0__APPLE__...jpg       # 当前背景（最小数字）
-│       ├── 1__NFZ__...jpg         # 备选背景 (<500KB)
+│       ├── 0__NFZ__...jpg         # 当前背景（最小数字）
+│       ├── 1__APPLE__...jpg       # 备选背景 (<500KB)
 │       └── 1__井小姐...jpg        # 备选背景 (<500KB)
 │
 ├── scripts/
 │   └── generate-background-manifest.mjs
 │
 └── assets/
-    └── avatar.jpg                # 头像照片
+    ├── avatar.jpg                # 头像照片
+    └── experience/               # 本地化的团队经历图标
 ```
 
 ---

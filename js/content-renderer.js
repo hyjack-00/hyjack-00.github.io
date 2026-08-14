@@ -43,6 +43,7 @@ function renderAllContent() {
     renderProfile();
     renderAbout();
     renderEducation();
+    renderExperience();
     renderHonors();
     renderStats();
     renderNews();
@@ -92,7 +93,7 @@ function renderAbout() {
  * Render education section
  */
 function renderEducation() {
-    const eduContainer = document.querySelector('.sidebar-section');
+    const eduContainer = document.getElementById('education');
     const eduHTML = contentData.education.map(edu => `
         <div class="sidebar-edu">
             <strong>${edu.institution}</strong><br>
@@ -107,17 +108,41 @@ function renderEducation() {
 }
 
 /**
+ * Render experience section (sidebar)
+ */
+function renderExperience() {
+    const experienceSection = document.getElementById('experience');
+    const experienceHTML = contentData.experience.map(item => `
+        <div class="sidebar-experience">
+            <img class="experience-icon" src="${item.icon}" alt="" width="32" height="32">
+            <div class="experience-copy">
+                <strong>${item.organization} ${item.role}</strong>
+                <span>${item.period}</span>
+            </div>
+        </div>
+    `).join('');
+
+    experienceSection.innerHTML = `
+        <h3><i class="fas fa-briefcase"></i> Experience</h3>
+        ${experienceHTML}
+    `;
+}
+
+/**
  * Render honors section
  */
 function renderHonors() {
-    const honorSection = document.querySelectorAll('.sidebar-section')[1];
+    const honorSection = document.getElementById('honors');
     const honorsHTML = contentData.honors.map(honor => `
-        <div class="sidebar-award"><strong>${honor.year}</strong> ${honor.title}</div>
+        <div class="honor-item">
+            <strong class="honor-year">${honor.year}</strong>
+            <span>${honor.title}</span>
+        </div>
     `).join('');
 
     honorSection.innerHTML = `
-        <h3><i class="fas fa-award"></i> Honors</h3>
-        ${honorsHTML}
+        <h2><i class="fas fa-award"></i> Honors</h2>
+        <div class="honors-list">${honorsHTML}</div>
     `;
 }
 

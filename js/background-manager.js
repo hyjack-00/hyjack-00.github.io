@@ -1,8 +1,11 @@
 const BACKGROUND_MANIFEST_URL = '/data/backgrounds.json';
-const BACKGROUND_TRANSITION_MS = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 600;
+const REDUCED_BACKGROUND_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const BACKGROUND_TRANSITION_MS = REDUCED_BACKGROUND_MOTION ? 0 : 600;
+const BACKGROUND_CONTROL_DELAY_MS = REDUCED_BACKGROUND_MOTION ? 0 : 180;
 
 let backgroundScrollPosition = 0;
 let backgroundTransitionTimer;
+let backgroundControlTimer;
 
 function parseBackgroundFilename(filename) {
     const basename = filename.replace(/\.[^.]+$/, '');
@@ -67,19 +70,6 @@ async function loadActiveBackground() {
     }
 }
 
-function lockBackgroundControl(button, overlay) {
-    const rect = button.getBoundingClientRect();
-    const top = `${rect.top}px`;
-    const left = `${rect.left}px`;
-
-    button.style.setProperty('--control-top', top);
-    button.style.setProperty('--control-left', left);
-    overlay.style.setProperty('--control-top', top);
-    overlay.style.setProperty('--control-left', left);
-    document.body.appendChild(button);
-    button.classList.add('is-locked');
-}
-
 function showFullBackground() {
     const openButton = document.querySelector('.background-open-button');
     const closeButton = document.querySelector('.background-close-button');
@@ -89,8 +79,8 @@ function showFullBackground() {
     if (!openButton || !closeButton || !overlay || !main || !sidebar) return;
 
     window.clearTimeout(backgroundTransitionTimer);
+    window.clearTimeout(backgroundControlTimer);
     backgroundScrollPosition = window.scrollY;
-    lockBackgroundControl(openButton, overlay);
     document.body.classList.add('is-background-view');
     openButton.setAttribute('aria-expanded', 'true');
     overlay.classList.add('active');
@@ -101,11 +91,10 @@ function showFullBackground() {
         sidebar.classList.add('is-background-hidden');
     });
 
-    backgroundTransitionTimer = window.setTimeout(() => {
-        openButton.classList.add('is-replaced');
+    backgroundControlTimer = window.setTimeout(() => {
         overlay.classList.add('controls-ready');
         closeButton.focus({ preventScroll: true });
-    }, BACKGROUND_TRANSITION_MS);
+    }, BACKGROUND_CONTROL_DELAY_MS);
 }
 
 function hideFullBackground() {
@@ -116,8 +105,8 @@ function hideFullBackground() {
     if (!openButton || !overlay || !main || !sidebar) return;
 
     window.clearTimeout(backgroundTransitionTimer);
+    window.clearTimeout(backgroundControlTimer);
     overlay.classList.remove('controls-ready');
-    openButton.classList.remove('is-replaced');
     main.classList.remove('is-background-hidden');
     sidebar.classList.remove('is-background-hidden');
     window.scrollTo({ top: backgroundScrollPosition, behavior: 'auto' });
@@ -125,8 +114,6 @@ function hideFullBackground() {
     backgroundTransitionTimer = window.setTimeout(() => {
         overlay.classList.remove('active');
         overlay.setAttribute('aria-hidden', 'true');
-        document.querySelector('.background-control-slot')?.appendChild(openButton);
-        openButton.classList.remove('is-locked');
         openButton.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('is-background-view');
         openButton.focus({ preventScroll: true });

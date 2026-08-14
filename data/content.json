@@ -26,6 +26,20 @@
       "period": "2021-2025"
     }
   ],
+  "experience": [
+    {
+      "organization": "SYSU SuperComputing Team",
+      "role": "Member",
+      "period": "2022-2025",
+      "icon": "/assets/experience/sysu-supercomputing.png"
+    },
+    {
+      "organization": "SYSU AeroSwift Team",
+      "role": "Member",
+      "period": "2022-2025",
+      "icon": "/assets/experience/sysu-aeroswift.png"
+    }
+  ],
   "honors": [
     {
       "year": "2023",

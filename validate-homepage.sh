@@ -45,6 +45,7 @@ const manifest = require('./data/backgrounds.json');
 
 if (content.publications.length !== 7) throw new Error('Expected 7 publications');
 if (content.blog.length !== 6) throw new Error('Expected 6 blog posts');
+if (content.experience.length !== 2) throw new Error('Expected 2 experience entries');
 if (content.travel.cities.length !== 26) throw new Error('Expected 26 travel points');
 if (content.stats.papers !== content.publications.length) throw new Error('Paper counter is stale');
 if (content.stats.cities !== content.travel.cities.length) throw new Error('City counter is stale');
@@ -52,6 +53,20 @@ if (content.stats.cities !== content.travel.cities.length) throw new Error('City
 const education = content.education.map(item => item.period).join(' ');
 if (!education.includes('2021-2025') || !education.includes('2025-Present')) {
   throw new Error('Education dates are incorrect');
+}
+
+const expectedExperience = [
+  'SYSU SuperComputing Team Member',
+  'SYSU AeroSwift Team Member'
+];
+for (const [index, item] of content.experience.entries()) {
+  if (`${item.organization} ${item.role}` !== expectedExperience[index]) {
+    throw new Error(`Unexpected experience entry at index ${index}`);
+  }
+  if (item.period !== '2022-2025') throw new Error('Experience dates are incorrect');
+  if (!item.icon.startsWith('/assets/experience/') || !fs.existsSync(item.icon.slice(1))) {
+    throw new Error(`Missing local experience icon: ${item.icon}`);
+  }
 }
 
 const everest = content.travel.cities.find(city => city.name === 'Everest North Base Camp');
@@ -107,6 +122,7 @@ node <<'NODE'
 const fs = require('fs');
 const mapSource = fs.readFileSync('js/travel-map.js', 'utf8');
 const backgroundSource = fs.readFileSync('js/background-manager.js', 'utf8');
+const rendererSource = fs.readFileSync('js/content-renderer.js', 'utf8');
 const html = fs.readFileSync('index.html', 'utf8');
 const css = fs.readFileSync('css/main.css', 'utf8');
 
@@ -119,6 +135,21 @@ if (/background-image:\s*url\(['"]?\/images\/backgrounds/i.test(css)) {
 }
 if (!html.includes('id="publications"') || !html.includes('id="blog"')) {
   throw new Error('Dense content sections are missing stable IDs');
+}
+if (!html.includes('id="experience"') || !html.includes('id="honors"') || !html.includes('id="service"')) {
+  throw new Error('Experience, honors, or service is missing a stable ID');
+}
+if ((html.match(/content-card--dense/g) || []).length !== 2) {
+  throw new Error('Publication and Blog must both use the dense feather layer');
+}
+if (rendererSource.includes("querySelectorAll('.sidebar-section')")) {
+  throw new Error('Sidebar rendering still depends on positional selectors');
+}
+if (/lockBackgroundControl|is-locked|is-replaced/.test(backgroundSource + css)) {
+  throw new Error('Legacy locked background control remains');
+}
+if (!css.includes('--dense-layer-alpha: 0.69') || !css.includes('--pub-copy-line-height: 1.2')) {
+  throw new Error('Feather or publication density variables are missing');
 }
 NODE
 
