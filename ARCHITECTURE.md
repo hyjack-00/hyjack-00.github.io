@@ -142,6 +142,8 @@ background-image: var(--active-background-image);
 
 `css/main.css` 的 `:root` 集中定义了常用视觉参数：
 
+- `--avatar-scale`: 左侧头像缩放比例；换成裁切好的近景头像时可设为 `1`
+- `--avatar-focus-x` / `--avatar-focus-y`: 圆形头像的水平、垂直焦点
 - `--dense-layer-alpha`: Publication 与 Blog 中心羽化层透明度；当前 `0.50`，与 70% 卡片底色合成后正好为 85% 白度
 - `--dense-feather`: 圆角矩形羽化半径
 - `--pub-copy-line-height`: Publication 作者和会议信息行高
@@ -152,6 +154,8 @@ background-image: var(--active-background-image);
 ## Blog 文章页
 
 当前站点不运行 Hexo。`data/blog-source/` 只保存从历史页面提取出的纯正文片段；访问原文章 URL 时，展示的是 `templates/article.html` 生成的新页面。
+
+文章页和 404 页使用固定在视口右下角的背景按钮，因此正文滚动时按钮不会离开屏幕；主页按钮仍位于卡片列表末尾。
 
 - `scripts/generate-article-pages.mjs`: 根据 `data/content.json` 中的 Blog URL 生成文章入口页
 - `js/article-renderer.js`: 读取正文片段，转换旧图片懒加载属性并渲染正文
@@ -164,6 +168,10 @@ background-image: var(--active-background-image);
 node scripts/generate-article-pages.mjs
 bash validate-homepage.sh
 ```
+
+## 更换头像
+
+直接用新的正方形 JPG 覆盖 `assets/avatar.jpg` 即可，建议保持在 500 KB 以内。这个文件同时用于左侧头像和浏览器页签图标。若新头像已经是近景裁切，将 `css/main.css` 顶部的 `--avatar-scale` 从 `2` 调为 `1`；再用 `--avatar-focus-x` 和 `--avatar-focus-y` 调整人物在圆形框里的位置。
 
 Experience 图标来自中山大学官方页面并保存在 `assets/experience/`，页面不依赖远程图片：
 

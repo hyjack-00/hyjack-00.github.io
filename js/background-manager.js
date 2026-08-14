@@ -74,9 +74,9 @@ function showFullBackground() {
     const openButton = document.querySelector('.background-open-button');
     const closeButton = document.querySelector('.background-close-button');
     const overlay = document.getElementById('backgroundOverlay');
-    const main = document.querySelector('.main-content');
+    const main = document.querySelector('.main-content, .error-main');
     const sidebar = document.querySelector('.sidebar');
-    if (!openButton || !closeButton || !overlay || !main || !sidebar) return;
+    if (!openButton || !closeButton || !overlay || !main) return;
 
     window.clearTimeout(backgroundTransitionTimer);
     window.clearTimeout(backgroundControlTimer);
@@ -88,7 +88,7 @@ function showFullBackground() {
 
     window.requestAnimationFrame(() => {
         main.classList.add('is-background-hidden');
-        sidebar.classList.add('is-background-hidden');
+        sidebar?.classList.add('is-background-hidden');
     });
 
     backgroundControlTimer = window.setTimeout(() => {
@@ -100,15 +100,15 @@ function showFullBackground() {
 function hideFullBackground() {
     const openButton = document.querySelector('.background-open-button');
     const overlay = document.getElementById('backgroundOverlay');
-    const main = document.querySelector('.main-content');
+    const main = document.querySelector('.main-content, .error-main');
     const sidebar = document.querySelector('.sidebar');
-    if (!openButton || !overlay || !main || !sidebar) return;
+    if (!openButton || !overlay || !main) return;
 
     window.clearTimeout(backgroundTransitionTimer);
     window.clearTimeout(backgroundControlTimer);
     overlay.classList.remove('controls-ready');
     main.classList.remove('is-background-hidden');
-    sidebar.classList.remove('is-background-hidden');
+    sidebar?.classList.remove('is-background-hidden');
     window.scrollTo({ top: backgroundScrollPosition, behavior: 'auto' });
 
     backgroundTransitionTimer = window.setTimeout(() => {

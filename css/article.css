@@ -301,6 +301,10 @@
 }
 
 @media (max-width: 768px) {
+    .article-main {
+        padding-bottom: 5rem;
+    }
+
     .article-card {
         padding: 1.25rem 1rem 1.8rem;
     }

@@ -4,6 +4,7 @@ set -euo pipefail
 readonly IMAGE_LIMIT=500000
 readonly REQUIRED_FILES=(
   "index.html"
+  "404.html"
   "css/main.css"
   "css/article.css"
   "css/vendor/leaflet.css"
@@ -157,6 +158,7 @@ const rendererSource = fs.readFileSync('js/content-renderer.js', 'utf8');
 const html = fs.readFileSync('index.html', 'utf8');
 const css = fs.readFileSync('css/main.css', 'utf8');
 const articleTemplate = fs.readFileSync('templates/article.html', 'utf8');
+const notFoundHtml = fs.readFileSync('404.html', 'utf8');
 
 if ((mapSource.match(/L\.map\(/g) || []).length !== 1) throw new Error('Expected one Leaflet map');
 if (!mapSource.includes('L.circleMarker')) throw new Error('Travel points are not direct circle markers');
@@ -187,6 +189,16 @@ if (!articleSource.includes("querySelector('.article-content.markdown-body')") |
     !articleTemplate.includes('content-card--dense') ||
     !articleTemplate.includes('class="sidebar"')) {
   throw new Error('The new article reader or feather layer is missing');
+}
+if (!articleTemplate.includes('background-open-button--floating') ||
+    !articleTemplate.includes('id="backgroundOverlay"') ||
+    !notFoundHtml.includes('background-open-button--floating') ||
+    !notFoundHtml.includes('id="backgroundOverlay"')) {
+  throw new Error('A secondary page is missing the full-background control');
+}
+if (!backgroundSource.includes("document.querySelector('.main-content, .error-main')") ||
+    !backgroundSource.includes("sidebar?.classList.add('is-background-hidden')")) {
+  throw new Error('The full-background manager does not support every page layout');
 }
 if (rendererSource.includes("querySelectorAll('.sidebar-section')")) {
   throw new Error('Sidebar rendering still depends on positional selectors');

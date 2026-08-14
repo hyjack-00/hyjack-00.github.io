@@ -21,6 +21,19 @@
         <a class="error-home" href="/"><i class="fas fa-house" aria-hidden="true"></i>Back to homepage</a>
     </section>
 </main>
+<div class="floating-background-control">
+    <button class="background-open-button background-open-button--floating" type="button" aria-label="Show full background image" aria-expanded="false" aria-controls="backgroundOverlay">
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </button>
+</div>
+<div class="full-background-overlay" id="backgroundOverlay" aria-hidden="true">
+    <div class="background-meta">
+        <button class="background-close-button" type="button" aria-label="Return to page content">
+            <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+        <p class="background-credit" aria-live="polite"></p>
+    </div>
+</div>
 <script src="/js/background-manager.js"></script>
 </body>
 </html>

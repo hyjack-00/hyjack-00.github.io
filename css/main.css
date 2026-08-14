@@ -20,6 +20,9 @@
     --pub-action-padding-block: 0.08rem;
     --pub-action-padding-inline: 0.44rem;
     --pub-action-gap-top: 0.24rem;
+    --avatar-scale: 2;
+    --avatar-focus-x: 50%;
+    --avatar-focus-y: 30%;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -124,8 +127,8 @@ body.is-background-view { overflow: hidden; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(2);
-    transform-origin: 50% 30%;
+    transform: scale(var(--avatar-scale));
+    transform-origin: var(--avatar-focus-x) var(--avatar-focus-y);
 }
 
 .profile-name {
@@ -725,6 +728,25 @@ body.is-background-view { overflow: hidden; }
 
 .background-open-button:hover i { transform: translateY(2px); }
 
+.floating-background-control {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.18s ease;
+}
+
+.background-open-button--floating {
+    width: 2.6rem;
+    padding: 0;
+}
+
+body.is-background-view .floating-background-control {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .full-background-overlay {
     position: fixed;
     inset: 0;
@@ -814,6 +836,14 @@ body.is-background-view { overflow: hidden; }
     display: grid;
     place-items: center;
     padding: 1rem;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    will-change: transform;
+}
+
+.error-main.is-background-hidden {
+    transform: translateY(calc(-100% - 2rem));
+    opacity: 0;
+    pointer-events: none;
 }
 
 .error-card {
@@ -870,7 +900,7 @@ body.is-background-view { overflow: hidden; }
         grid-template-columns: minmax(0, 1fr);
         grid-template-rows: repeat(8, auto) 1fr;
         align-content: start;
-        padding: 1rem 1.1rem 0.75rem;
+        padding: 1.5rem 1.1rem 0.75rem;
     }
 
     .sidebar-content > :not(.sidebar-section) {
@@ -941,7 +971,7 @@ body.is-background-view { overflow: hidden; }
 
     .sidebar-content {
         row-gap: 0;
-        padding: 0.55rem 0.75rem;
+        padding: 0.8rem 0.75rem 0.55rem;
     }
 
     .profile-name {
@@ -1049,6 +1079,10 @@ body.is-background-view { overflow: hidden; }
         bottom: 1rem;
         max-width: calc(100vw - 2rem);
     }
+    .floating-background-control {
+        right: 1rem;
+        bottom: 1rem;
+    }
     .background-credit {
         max-width: calc(100vw - 5.6rem);
         white-space: normal;
@@ -1058,9 +1092,11 @@ body.is-background-view { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
     .main-content,
+    .error-main,
     .sidebar,
     .background-meta,
-    .background-open-button {
+    .background-open-button,
+    .floating-background-control {
         transition-duration: 0.01ms !important;
     }
 }
