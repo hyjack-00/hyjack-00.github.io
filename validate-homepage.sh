@@ -142,6 +142,11 @@ if (!html.includes('id="experience"') || !html.includes('id="honors"') || !html.
 if ((html.match(/content-card--dense/g) || []).length !== 2) {
   throw new Error('Publication and Blog must both use the dense feather layer');
 }
+if (!rendererSource.includes('class="blog-meta"') ||
+    !rendererSource.includes('class="blog-read-more"') ||
+    rendererSource.includes('class="blog-category"')) {
+  throw new Error('Blog must use the restored title, excerpt, and footer layout');
+}
 if (rendererSource.includes("querySelectorAll('.sidebar-section')")) {
   throw new Error('Sidebar rendering still depends on positional selectors');
 }

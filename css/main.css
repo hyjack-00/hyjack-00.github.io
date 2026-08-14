@@ -490,29 +490,38 @@ body.is-background-view { overflow: hidden; }
 /* Blog */
 .blog-list { display: grid; }
 .blog-item {
-    display: grid;
-    grid-template-columns: 6rem minmax(0, 1fr) auto;
-    align-items: start;
-    gap: 1rem;
-    padding: 0.7rem 0.75rem;
+    padding: 0.85rem 0.75rem;
     border-bottom: 1px solid var(--border-subtle);
 }
 .blog-item:last-child { border-bottom: 0; }
-.blog-date { color: var(--text-muted); font-size: 0.78rem; white-space: nowrap; }
-.blog-title { color: var(--text-primary); font-size: 0.9rem; font-weight: 650; text-decoration: none; }
+.blog-item h3 { margin: 0; line-height: 1.35; }
+.blog-title { color: var(--text-primary); font-size: 0.95rem; font-weight: 700; text-decoration: none; }
 .blog-title:hover, .blog-title:focus { color: var(--accent); text-decoration: underline; }
-.blog-excerpt { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.4; margin-top: 0.2rem; }
-.blog-category {
-    border: 1px solid #cbd5e1;
-    border-radius: 3px;
-    color: #475569;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.15rem 0.45rem;
+.blog-excerpt {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0.4rem 0 0.55rem;
+    text-align: justify;
+}
+.blog-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+.blog-date,
+.blog-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     white-space: nowrap;
 }
-.blog-category[data-category="Tech"] { background: #dcfce7; border-color: #86efac; color: #166534; }
-.blog-category[data-category="Competition"] { background: #ffedd5; border-color: #fdba74; color: #9a3412; }
+.blog-read-more { color: var(--text-secondary); text-decoration: none; }
+.blog-read-more:hover,
+.blog-read-more:focus { color: var(--accent); text-decoration: underline; }
 
 /* News */
 .news-list {
@@ -901,11 +910,6 @@ body.is-background-view { overflow: hidden; }
         border-top: 1px solid var(--border-subtle);
         border-left: 0;
     }
-    .blog-item {
-        grid-template-columns: 1fr auto;
-        gap: 0.25rem 0.75rem;
-    }
-    .blog-date { grid-column: 1 / -1; }
     .photo-grid {
         grid-template-columns: repeat(2, 1fr);
     }

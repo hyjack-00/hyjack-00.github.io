@@ -271,12 +271,12 @@ function renderBlog() {
     const posts = contentData.blog || [];
     const postsHTML = posts.map(post => `
         <article class="blog-item">
-            <time class="blog-date" datetime="${post.date}">${post.date}</time>
-            <div>
-                <a class="blog-title" href="${post.url}">${post.title}</a>
-                <p class="blog-excerpt">${post.excerpt}</p>
-            </div>
-            <span class="blog-category" data-category="${post.category}">${post.category}</span>
+            <h3><a class="blog-title" href="${post.url}">${post.title}</a></h3>
+            <p class="blog-excerpt">${post.excerpt}</p>
+            <footer class="blog-meta">
+                <time class="blog-date" datetime="${post.date}"><i class="fas fa-calendar-days" aria-hidden="true"></i>${post.date}</time>
+                <a class="blog-read-more" href="${post.url}">阅读全文<i class="fas fa-angle-right" aria-hidden="true"></i></a>
+            </footer>
         </article>
     `).join('');
 
