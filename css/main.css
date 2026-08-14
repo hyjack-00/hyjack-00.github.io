@@ -9,11 +9,11 @@
     --accent-secondary: #7c3aed;
     --border-subtle: rgba(15, 23, 42, 0.06);
     --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04);
-    --glass-panel: rgba(255, 255, 255, 0.56);
+    --glass-panel: rgba(255, 255, 255, 0.70);
     --glass-panel-strong: rgba(255, 255, 255, 0.72);
     --glass-border: rgba(255, 255, 255, 0.68);
     --glass-blur: blur(18px) saturate(128%);
-    --dense-layer-alpha: 0.69;
+    --dense-layer-alpha: 0.50;
     --dense-feather: 18px;
     --pub-copy-line-height: 1.2;
     --pub-action-padding-block: 0.12rem;
