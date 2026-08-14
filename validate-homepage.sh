@@ -5,12 +5,16 @@ readonly IMAGE_LIMIT=500000
 readonly REQUIRED_FILES=(
   "index.html"
   "css/main.css"
+  "css/article.css"
   "css/vendor/leaflet.css"
+  "js/article-renderer.js"
   "js/background-manager.js"
   "js/content-renderer.js"
   "js/travel-map.js"
   "js/vendor/leaflet.js"
   "scripts/generate-background-manifest.mjs"
+  "scripts/generate-article-pages.mjs"
+  "templates/article.html"
   "data/backgrounds.json"
   "data/content.json"
   "assets/avatar.jpg"
@@ -30,9 +34,11 @@ done
 
 echo "Checking JavaScript and JSON syntax..."
 node --check js/background-manager.js
+node --check js/article-renderer.js
 node --check js/content-renderer.js
 node --check js/travel-map.js
 node --check scripts/generate-background-manifest.mjs
+node --check scripts/generate-article-pages.mjs
 node -e "JSON.parse(require('fs').readFileSync('data/content.json', 'utf8'))"
 node -e "JSON.parse(require('fs').readFileSync('data/backgrounds.json', 'utf8'))"
 
@@ -42,6 +48,7 @@ const fs = require('fs');
 const path = require('path');
 const content = require('./data/content.json');
 const manifest = require('./data/backgrounds.json');
+const articleTemplate = fs.readFileSync('templates/article.html', 'utf8');
 
 if (content.publications.length !== 7) throw new Error('Expected 7 publications');
 if (content.blog.length !== 6) throw new Error('Expected 6 blog posts');
@@ -76,8 +83,19 @@ if (!everest || everest.lat !== 28.14139 || everest.lng !== 86.85139) {
 
 for (const post of content.blog) {
   const decodedPath = decodeURIComponent(post.url).replace(/^\//, '');
-  if (!fs.existsSync(path.join(decodedPath, 'index.html'))) {
+  const articlePage = path.join(decodedPath, 'index.html');
+  if (!fs.existsSync(articlePage)) {
     throw new Error(`Missing blog page for ${post.url}`);
+  }
+  if (fs.readFileSync(articlePage, 'utf8') !== articleTemplate) {
+    throw new Error(`Generated blog page is stale: ${post.url}`);
+  }
+  if (!post.source || !fs.existsSync(post.source.slice(1))) {
+    throw new Error(`Missing blog source for ${post.url}`);
+  }
+  const source = fs.readFileSync(post.source.slice(1), 'utf8');
+  if (!source.includes('article-content markdown-body')) {
+    throw new Error(`Blog source has no extractable article body: ${post.source}`);
   }
 }
 
@@ -122,9 +140,11 @@ node <<'NODE'
 const fs = require('fs');
 const mapSource = fs.readFileSync('js/travel-map.js', 'utf8');
 const backgroundSource = fs.readFileSync('js/background-manager.js', 'utf8');
+const articleSource = fs.readFileSync('js/article-renderer.js', 'utf8');
 const rendererSource = fs.readFileSync('js/content-renderer.js', 'utf8');
 const html = fs.readFileSync('index.html', 'utf8');
 const css = fs.readFileSync('css/main.css', 'utf8');
+const articleTemplate = fs.readFileSync('templates/article.html', 'utf8');
 
 if ((mapSource.match(/L\.map\(/g) || []).length !== 1) throw new Error('Expected one Leaflet map');
 if (!mapSource.includes('L.circleMarker')) throw new Error('Travel points are not direct circle markers');
@@ -146,6 +166,12 @@ if (!rendererSource.includes('class="blog-meta"') ||
     !rendererSource.includes('class="blog-read-more"') ||
     rendererSource.includes('class="blog-category"')) {
   throw new Error('Blog must use the restored title, excerpt, and footer layout');
+}
+if (!articleSource.includes("querySelector('.article-content.markdown-body')") ||
+    !articleSource.includes("image.dataset.src") ||
+    !articleTemplate.includes('content-card--dense') ||
+    !articleTemplate.includes('class="sidebar"')) {
+  throw new Error('The new article reader or feather layer is missing');
 }
 if (rendererSource.includes("querySelectorAll('.sidebar-section')")) {
   throw new Error('Sidebar rendering still depends on positional selectors');

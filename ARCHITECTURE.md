@@ -148,6 +148,22 @@ background-image: var(--active-background-image);
 - `--pub-action-padding-*`: Publication 链接按钮内边距
 - `--pub-action-gap-top`: 会议全名与链接按钮行之间的间距
 
+## Blog 文章页
+
+当前站点不运行 Hexo。旧 Hexo 生成页移动到 `data/blog-source/`，只作为历史正文数据源；访问原文章 URL 时，展示的是 `templates/article.html` 生成的新页面。
+
+- `scripts/generate-article-pages.mjs`: 根据 `data/content.json` 中的 Blog URL 生成文章入口页
+- `js/article-renderer.js`: 从历史文件提取 `.article-content.markdown-body`，转换旧图片懒加载属性并渲染正文
+- `css/article.css`: 当前毛玻璃文章卡片、正文、图片、表格和代码块样式
+- `js/content-renderer.js`: 主页和文章页共用左侧 Profile、Education、Experience、Stats 与 Footer
+
+新增或修改 Blog URL 后，需要运行：
+
+```bash
+node scripts/generate-article-pages.mjs
+bash validate-homepage.sh
+```
+
 Experience 图标来自中山大学官方页面并保存在 `assets/experience/`，页面不依赖远程图片：
 
 - 超算队：中山大学计算机学院院徽（`https://cse.sysu.edu.cn/article/1364`）

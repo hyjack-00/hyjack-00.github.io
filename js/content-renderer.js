@@ -12,13 +12,18 @@ async function loadContent() {
         const response = await fetch('/data/content.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         contentData = await response.json();
-        renderAllContent();
+        if (document.body.hasAttribute('data-article-page')) {
+            renderSidebarContent();
+        } else {
+            renderAllContent();
+        }
         window.siteContentData = contentData;
         // Notify the map to initialize with the loaded cities (single fetch, no race)
         document.dispatchEvent(new CustomEvent('content:loaded', { detail: contentData }));
     } catch (error) {
         console.error('Failed to load content:', error);
         renderFallback();
+        document.dispatchEvent(new CustomEvent('content:error', { detail: error }));
     }
 }
 
@@ -40,17 +45,24 @@ function renderFallback() {
  * Render all content sections
  */
 function renderAllContent() {
-    renderProfile();
+    renderSidebarContent();
     renderAbout();
-    renderEducation();
-    renderExperience();
     renderHonors();
-    renderStats();
     renderNews();
     renderPublications();
     renderService();
     renderBlog();
     renderPhotography();
+}
+
+/**
+ * Render the shared profile sidebar on the homepage and article pages.
+ */
+function renderSidebarContent() {
+    renderProfile();
+    renderEducation();
+    renderExperience();
+    renderStats();
     renderFooter();
 }
 
