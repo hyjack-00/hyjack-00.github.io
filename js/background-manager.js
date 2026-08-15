@@ -7,6 +7,20 @@ let backgroundScrollPosition = 0;
 let backgroundTransitionTimer;
 let backgroundControlTimer;
 
+function preloadBackground(imageUrl) {
+    return new Promise(resolve => {
+        const image = new Image();
+        const finish = () => resolve();
+        image.decoding = 'async';
+        image.onload = finish;
+        image.onerror = finish;
+        image.src = imageUrl;
+        if (image.complete) {
+            image.decode?.().catch(() => {}).finally(finish);
+        }
+    });
+}
+
 function parseBackgroundFilename(filename) {
     const basename = filename.replace(/\.[^.]+$/, '');
     const parts = basename.split('__');
@@ -61,9 +75,12 @@ async function loadActiveBackground() {
 
         const imageUrl = `/images/backgrounds/${encodeURIComponent(background)}`;
         document.documentElement.style.setProperty('--active-background-image', `url("${imageUrl}")`);
+        await preloadBackground(imageUrl);
+        document.documentElement.classList.add('background-ready');
         renderBackgroundCredit(background);
     } catch (error) {
         console.error('Failed to load the active background:', error);
+        document.documentElement.classList.add('background-ready');
         const credit = document.querySelector('.background-credit');
         if (credit) credit.textContent = 'Artwork information unavailable.';
     }

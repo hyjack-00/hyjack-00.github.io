@@ -298,11 +298,23 @@ body.is-background-view { overflow: hidden; }
     content: '';
     position: absolute;
     inset: 1.35rem;
-    z-index: -1;
+    z-index: 0;
     border-radius: 8px;
     background: rgba(255, 255, 255, var(--dense-layer-alpha));
     filter: blur(var(--dense-feather));
+    opacity: 1;
+    transition: opacity 0.24s ease;
     pointer-events: none;
+}
+
+/* Wait for the asynchronous background image before compositing the feather layer. */
+html:not(.background-ready) .content-card--dense::before {
+    opacity: 0;
+}
+
+.content-card--dense > * {
+    position: relative;
+    z-index: 1;
 }
 
 .content-card h2 {

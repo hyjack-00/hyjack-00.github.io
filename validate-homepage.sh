@@ -294,6 +294,11 @@ if (!homepage.includes('id="photoGallery"') || !homepage.includes('id="photoLigh
     !photographyGenerator.includes('previousFingerprint !== sourceFingerprint')) {
   throw new Error('Photography album and lightbox wiring is incomplete');
 }
+if (!backgroundManager.includes('preloadBackground') ||
+    !backgroundManager.includes("classList.add('background-ready')") ||
+    !css.includes('html:not(.background-ready) .content-card--dense::before')) {
+  throw new Error('Background readiness is not synchronized with the dense feather layer');
+}
 if (!template.includes('{{ARTICLE_BODY}}') || !template.includes('{{ARTICLE_NAVIGATION}}') ||
     !template.includes('content-card--dense') || !template.includes('class="sidebar"')) {
   throw new Error('The static Markdown article template is incomplete');
