@@ -7,33 +7,6 @@
       "cover": "/images/photography/faraway/IMG_8140-thumb.webp",
       "photos": [
         {
-          "id": "Picture3",
-          "thumbnail": "/images/photography/faraway/Picture3-thumb.webp",
-          "title": "Picture3",
-          "alt": "TimeSquare",
-          "sourceFingerprint": "4d51f0bf1a1e8565",
-          "time": null,
-          "src": null
-        },
-        {
-          "id": "Picture2",
-          "thumbnail": "/images/photography/faraway/Picture2-thumb.webp",
-          "title": "Picture2",
-          "alt": "TimeSquare",
-          "sourceFingerprint": "db8284213b70788b",
-          "time": null,
-          "src": null
-        },
-        {
-          "id": "Picture1",
-          "thumbnail": "/images/photography/faraway/Picture1-thumb.webp",
-          "title": "Picture1",
-          "alt": "TimeSquare",
-          "sourceFingerprint": "4bf1f113c381c452",
-          "time": null,
-          "src": null
-        },
-        {
           "id": "DSC00249",
           "thumbnail": "/images/photography/faraway/DSC00249-thumb.webp",
           "title": "Crossing Time",
