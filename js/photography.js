@@ -137,7 +137,7 @@
         lightboxImage.src = source;
         lightboxImage.alt = photo.alt || photo.title || '';
         lightboxTitle.textContent = photo.title || 'Untitled';
-        lightboxMeta.textContent = [photo.location, photo.date].filter(Boolean).join(' · ');
+        lightboxMeta.textContent = [photo.alt, photo.time].filter(Boolean).join(' · ');
         document.querySelector('.photo-lightbox-prev').disabled = index === 0;
         document.querySelector('.photo-lightbox-next').disabled = index === activeAlbum.photos.length - 1;
         lightbox.classList.add('active');

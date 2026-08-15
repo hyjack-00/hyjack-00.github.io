@@ -98,9 +98,10 @@ images/photography/faraway/          # 只提交 *-thumb.* 缩略图
 images/photography/local/            # 只提交 *-thumb.* 缩略图
 ```
 
-只需要把原图放进 `images/photography/upload/{faraway,local}/` 或其子文件夹，然后运行 `npm run build:photography`。脚本会递归发现新照片：如果源图超过 500 KB，就转换成不超过 500 KB 的 WebP 并替换上传目录中的源文件；随后从压缩后的源图生成不超过 100 KB 的 `photo-id-thumb.webp`，放到对应的影集目录，并更新 `data/photography.json`。源图所在的最后一级文件夹名会作为新照片的 `alt`，原图上传目录永远不会进入 GitHub。
+只需要把原图放进 `images/photography/upload/{faraway,local}/` 或其子文件夹，然后运行 `npm run build:photography`。脚本会递归发现新照片：如果源图超过 500 KB，就转换成不超过 500 KB 的 WebP 并替换上传目录中的源文件；随后从压缩后的源图生成不超过 100 KB 的 `photo-id-thumb.webp`，放到对应的影集目录，并更新 `data/photography.json`。放在子文件夹时，最后一级文件夹名会作为照片的 `alt`，拍摄日期会优先从 EXIF 写入 `time`，原图上传目录永远不会进入 GitHub。直接放在影集上传根目录的图片会保留 manifest 中已有的 `alt`；新图建议总是放入子文件夹。
 
-源图文件名不要带 `-thumb` 后缀，例如 `IMG_9000.jpg`；脚本会自动生成 `IMG_9000-thumb.webp`。`npm run check` 只做检查，不会压缩或生成文件；发现新源图但未处理时，会提示重新运行 `npm run build:photography`。
+源图文件名不要带 `-thumb` 后缀，例如 `IMG_9000.jpg`；脚本会自动生成 `IMG_9000-thumb.webp`。要替换旧图时，保持原文件名/原 `id` 覆盖上传源文件，再运行构建；脚本会按源图内容指纹重新生成过期缩略图，并保留已编辑的标题。`npm run check` 只做检查，不会压缩或生成文件；发现新源图、过期缩略图或未同步的 manifest 时，会提示重新运行 `npm run build:photography`。
+同一 `id` 在上传目录中只能保留一个源文件；如果替换图片时扩展名也变了，先删除旧扩展名文件，否则构建会明确拒绝重复 `id`。
 
 每张照片可以填写 OSS 覆盖地址；如果存在 `oss.thumbnail` 或 `oss.src`，前端优先使用它，否则使用仓库中的缩略图。当前没有 OSS 原图时，点击大图会回退显示缩略图，这是为了保持页面可用而不把原图提交到 GitHub。
 
@@ -108,9 +109,8 @@ images/photography/local/            # 只提交 *-thumb.* 缩略图
 {
   "id": "tokyo-night-01",
   "title": "Night walk",
-  "location": "Tokyo",
-  "date": "2026-04",
-  "alt": "A quiet street in Tokyo at night",
+  "alt": "Tokyo",
+  "time": "2026-04-18",
   "thumbnail": "/images/photography/faraway/tokyo-night-01-thumb.webp",
   "src": null,
   "oss": {
@@ -122,7 +122,7 @@ images/photography/local/            # 只提交 *-thumb.* 缩略图
 }
 ```
 
-`thumbnail` 只用于影集网格，建议压缩到约 50–100 KB；`oss.src` 用于点击后的大图，建议使用 WebP/AVIF。页面只在打开照片时请求 `oss.src`，不会一开始下载整组原图。影集封面默认取第一张照片的缩略图，也可以在 album 上单独填写 `cover` 或 `oss.cover`。新增照片后无需改 HTML 或 JavaScript。
+`thumbnail` 只用于影集网格，建议压缩到约 50–100 KB；提交到公开站点的缩略图会剔除 EXIF/XMP/IPTC，避免泄露相机序列号和原文件名；被 gitignore 的压缩源图会保留 EXIF 供下次构建读取日期。`oss.src` 用于点击后的大图，建议使用 WebP/AVIF。页面只在打开照片时请求 `oss.src`，不会一开始下载整组原图。影集内照片固定按 `alt`、`time`、`id` 依次倒序排列，打开照片后会在标题下显示 `alt · time`。影集封面默认取第一张照片的缩略图，也可以在 album 上单独填写 `cover` 或 `oss.cover`。新增照片后无需改 HTML 或 JavaScript。
 
 标题直接改 `data/photography.json` 中对应照片的 `title` 字段；`id` 只用于匹配文件名，不要改。比如把：
 
@@ -136,7 +136,7 @@ images/photography/local/            # 只提交 *-thumb.* 缩略图
 "title": "A monastery beneath the mountain"
 ```
 
-下次运行构建时，脚本只会更新 `thumbnail`、路径和新文件，不会覆盖手工填写的标题、地点、日期和 `oss` 配置。
+下次运行构建时，脚本会保留手工填写的标题和 `oss` 配置；子文件夹提供的 `alt` 和源图 EXIF 提供的 `time` 会优先同步。无 EXIF 时会保留 manifest 中手工填写的 `time`。
 
 推荐的 OSS 对象布局：
 

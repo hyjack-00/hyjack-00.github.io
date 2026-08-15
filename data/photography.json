@@ -7,205 +7,400 @@
       "cover": "/images/photography/faraway/IMG_8140-thumb.webp",
       "photos": [
         {
-          "id": "DSC00140-2",
-          "thumbnail": "/images/photography/faraway/DSC00140-2-thumb.webp",
-          "title": "Borrowed Spotlight",
+          "id": "Picture3",
+          "thumbnail": "/images/photography/faraway/Picture3-thumb.webp",
+          "title": "Street Echoes",
           "alt": "TimeSquare",
-          "src": null
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "4d51f0bf1a1e8565"
         },
         {
-          "id": "DSC00160",
-          "thumbnail": "/images/photography/faraway/DSC00160-thumb.webp",
-          "title": "Electric Anthem",
+          "id": "Picture2",
+          "thumbnail": "/images/photography/faraway/Picture2-thumb.webp",
+          "title": "Fragments of the Square",
           "alt": "TimeSquare",
-          "src": null
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "db8284213b70788b"
         },
         {
-          "id": "DSC00195",
-          "thumbnail": "/images/photography/faraway/DSC00195-thumb.webp",
-          "title": "A Flag in the Crowd",
+          "id": "Picture1",
+          "thumbnail": "/images/photography/faraway/Picture1-thumb.webp",
+          "title": "Three Faces of Night",
           "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00197",
-          "thumbnail": "/images/photography/faraway/DSC00197-thumb.webp",
-          "title": "Midnight Chords",
-          "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00200",
-          "thumbnail": "/images/photography/faraway/DSC00200-thumb.webp",
-          "title": "City Exhale",
-          "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00211",
-          "thumbnail": "/images/photography/faraway/DSC00211-thumb.webp",
-          "title": "Public Gesture",
-          "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00219",
-          "thumbnail": "/images/photography/faraway/DSC00219-thumb.webp",
-          "title": "Neon Drift",
-          "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00234",
-          "thumbnail": "/images/photography/faraway/DSC00234-thumb.webp",
-          "title": "Pink Afterglow",
-          "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00239",
-          "thumbnail": "/images/photography/faraway/DSC00239-thumb.webp",
-          "title": "The City Performs",
-          "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00243",
-          "thumbnail": "/images/photography/faraway/DSC00243-thumb.webp",
-          "title": "Waiting in Neon",
-          "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00246-Enhanced-NR",
-          "thumbnail": "/images/photography/faraway/DSC00246-Enhanced-NR-thumb.webp",
-          "title": "A Tender Pause",
-          "alt": "TimeSquare",
-          "src": null
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "4bf1f113c381c452"
         },
         {
           "id": "DSC00249",
           "thumbnail": "/images/photography/faraway/DSC00249-thumb.webp",
           "title": "Crossing Time",
           "alt": "TimeSquare",
-          "src": null
-        },
-        {
-          "id": "DSC00399-Enhanced-NR",
-          "thumbnail": "/images/photography/faraway/DSC00399-Enhanced-NR-thumb.webp",
-          "title": "Velocity Study",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00414-Enhanced-NR",
-          "thumbnail": "/images/photography/faraway/DSC00414-Enhanced-NR-thumb.webp",
-          "title": "The Long Turn",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00472-Enhanced-NR",
-          "thumbnail": "/images/photography/faraway/DSC00472-Enhanced-NR-thumb.webp",
-          "title": "Chrome in Motion",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00476",
-          "thumbnail": "/images/photography/faraway/DSC00476-thumb.webp",
-          "title": "A Field of Engines",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00479-Enhanced-NR",
-          "thumbnail": "/images/photography/faraway/DSC00479-Enhanced-NR-thumb.webp",
-          "title": "Passing Light",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00520",
-          "thumbnail": "/images/photography/faraway/DSC00520-thumb.webp",
-          "title": "Number Sixty-Six",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00538",
-          "thumbnail": "/images/photography/faraway/DSC00538-thumb.webp",
-          "title": "Storm of Color",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00556",
-          "thumbnail": "/images/photography/faraway/DSC00556-thumb.webp",
-          "title": "Museum Racer",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00558-Enhanced-NR",
-          "thumbnail": "/images/photography/faraway/DSC00558-Enhanced-NR-thumb.webp",
-          "title": "Inside the Machine",
-          "alt": "Charlotte-NASCAR",
-          "src": null
-        },
-        {
-          "id": "DSC00592",
-          "thumbnail": "/images/photography/faraway/DSC00592-thumb.webp",
-          "title": "A Plate of Summer",
-          "alt": "Charlotte",
-          "src": null
-        },
-        {
-          "id": "DSC00593",
-          "thumbnail": "/images/photography/faraway/DSC00593-thumb.webp",
-          "title": "Tracks to the Skyline",
-          "alt": "Charlotte",
-          "src": null
-        },
-        {
-          "id": "IMG_8140",
           "src": null,
-          "thumbnail": "/images/photography/faraway/IMG_8140-thumb.webp",
-          "title": "Midway",
-          "alt": "Tibet road trip",
-          "time": "2024-05"
+          "time": null,
+          "sourceFingerprint": "304ab61338aa4ee1"
         },
         {
-          "id": "IMG_8270",
+          "id": "DSC00246-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00246-Enhanced-NR-thumb.webp",
+          "title": "A Tender Pause",
+          "alt": "TimeSquare",
           "src": null,
-          "thumbnail": "/images/photography/faraway/IMG_8270-thumb.webp",
-          "title": "I want it toooo",
+          "time": null,
+          "sourceFingerprint": "17ea9f04350d9700"
+        },
+        {
+          "id": "DSC00243",
+          "thumbnail": "/images/photography/faraway/DSC00243-thumb.webp",
+          "title": "Waiting in Neon",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "96ce485bd1968e5f"
+        },
+        {
+          "id": "DSC00239",
+          "thumbnail": "/images/photography/faraway/DSC00239-thumb.webp",
+          "title": "The City Performs",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "3f1c75431b4af456"
+        },
+        {
+          "id": "DSC00234",
+          "thumbnail": "/images/photography/faraway/DSC00234-thumb.webp",
+          "title": "Pink Afterglow",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "2686c13bf816abeb"
+        },
+        {
+          "id": "DSC00219",
+          "thumbnail": "/images/photography/faraway/DSC00219-thumb.webp",
+          "title": "Neon Drift",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "8cef52de02ffb831"
+        },
+        {
+          "id": "DSC00211",
+          "thumbnail": "/images/photography/faraway/DSC00211-thumb.webp",
+          "title": "Public Gesture",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "d172b641b5789351"
+        },
+        {
+          "id": "DSC00200",
+          "thumbnail": "/images/photography/faraway/DSC00200-thumb.webp",
+          "title": "City Exhale",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "277bec1a1dddb515"
+        },
+        {
+          "id": "DSC00197",
+          "thumbnail": "/images/photography/faraway/DSC00197-thumb.webp",
+          "title": "Midnight Chords",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "a5d2c3254104f3d9"
+        },
+        {
+          "id": "DSC00195",
+          "thumbnail": "/images/photography/faraway/DSC00195-thumb.webp",
+          "title": "A Flag in the Crowd",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "95806dd0d60e96db"
+        },
+        {
+          "id": "DSC00160",
+          "thumbnail": "/images/photography/faraway/DSC00160-thumb.webp",
+          "title": "Electric Anthem",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "0e8fd8c9e2b89540"
+        },
+        {
+          "id": "DSC00140-2",
+          "thumbnail": "/images/photography/faraway/DSC00140-2-thumb.webp",
+          "title": "Borrowed Spotlight",
+          "alt": "TimeSquare",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "736e346cea0f28b1"
+        },
+        {
+          "id": "IMG_9049",
+          "thumbnail": "/images/photography/faraway/IMG_9049-thumb.webp",
+          "title": "Summit Behind the Clouds",
           "alt": "Tibet",
-          "time": "2024-05"
+          "time": "2024-05-25",
+          "src": null,
+          "sourceFingerprint": "40c49462e24853a7"
         },
         {
-          "id": "IMG_8297",
-          "src": null,
-          "thumbnail": "/images/photography/faraway/IMG_8297-thumb.webp",
-          "title": "Glacier but far",
+          "id": "IMG_9033",
+          "thumbnail": "/images/photography/faraway/IMG_9033-thumb.webp",
+          "title": "Mountains Between Storms",
           "alt": "Tibet",
-          "time": "2024-05"
+          "time": "2024-05-25",
+          "src": null,
+          "sourceFingerprint": "edfbdbef064324c5"
         },
         {
-          "id": "IMG_8302",
-          "src": null,
-          "thumbnail": "/images/photography/faraway/IMG_8302-thumb.webp",
-          "title": "Glacier but far far",
+          "id": "IMG_8946",
+          "thumbnail": "/images/photography/faraway/IMG_8946-thumb.webp",
+          "title": "Portrait by the Road",
           "alt": "Tibet",
-          "time": "2024-05"
+          "time": "2024-05-25",
+          "src": null,
+          "sourceFingerprint": "cc6e6a5151cabfaa"
         },
         {
-          "id": "IMG_8305",
-          "src": null,
-          "thumbnail": "/images/photography/faraway/IMG_8305-thumb.webp",
-          "title": "Glacier but far far far",
+          "id": "IMG_8907",
+          "thumbnail": "/images/photography/faraway/IMG_8907-thumb.webp",
+          "title": "Evening Below the Range",
           "alt": "Tibet",
-          "time": "2024-05"
+          "time": "2024-05-25",
+          "src": null,
+          "sourceFingerprint": "530ada04fb2a1252"
+        },
+        {
+          "id": "IMG_8897",
+          "thumbnail": "/images/photography/faraway/IMG_8897-thumb.webp",
+          "title": "First Light on Snow",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "11b064f3ee0640a3"
+        },
+        {
+          "id": "IMG_8895",
+          "thumbnail": "/images/photography/faraway/IMG_8895-thumb.webp",
+          "title": "Rosefire Peaks",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "c593e379162be0fe"
+        },
+        {
+          "id": "IMG_8893",
+          "thumbnail": "/images/photography/faraway/IMG_8893-thumb.webp",
+          "title": "Last Ember Ridge",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "52012ed8766469e7"
+        },
+        {
+          "id": "IMG_8868",
+          "thumbnail": "/images/photography/faraway/IMG_8868-thumb.webp",
+          "title": "Still Water Companion",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "7de8d2967be5b404"
+        },
+        {
+          "id": "IMG_8862",
+          "thumbnail": "/images/photography/faraway/IMG_8862-thumb.webp",
+          "title": "Mirror of the Plateau",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "7c5d93397c052c87"
+        },
+        {
+          "id": "IMG_8857",
+          "thumbnail": "/images/photography/faraway/IMG_8857-thumb.webp",
+          "title": "A Wing Across Silence",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "56e18ff767609b7e"
+        },
+        {
+          "id": "IMG_8855",
+          "thumbnail": "/images/photography/faraway/IMG_8855-thumb.webp",
+          "title": "Lone Bird at Dusk",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "dc523c844f9e99c6"
+        },
+        {
+          "id": "IMG_8817-Pano",
+          "thumbnail": "/images/photography/faraway/IMG_8817-Pano-thumb.webp",
+          "title": "Blue Ice Gate",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "113deb5b224f145c"
+        },
+        {
+          "id": "IMG_8796",
+          "thumbnail": "/images/photography/faraway/IMG_8796-thumb.webp",
+          "title": "Prayer at the Lake",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "521b29150ee6a29e"
+        },
+        {
+          "id": "IMG_8785",
+          "thumbnail": "/images/photography/faraway/IMG_8785-thumb.webp",
+          "title": "Glacier in Waiting",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "26c77c8c6ba03967"
+        },
+        {
+          "id": "IMG_8779",
+          "thumbnail": "/images/photography/faraway/IMG_8779-thumb.webp",
+          "title": "Where Ice Becomes River",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "ebafa6527933b6cb"
+        },
+        {
+          "id": "IMG_8768",
+          "thumbnail": "/images/photography/faraway/IMG_8768-thumb.webp",
+          "title": "Valley Toward the Ice",
+          "alt": "Tibet",
+          "time": "2024-05-24",
+          "src": null,
+          "sourceFingerprint": "e5c5b2cac87ccb7a"
+        },
+        {
+          "id": "IMG_8729",
+          "thumbnail": "/images/photography/faraway/IMG_8729-thumb.webp",
+          "title": "Two Bright Wanderers",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "src": null,
+          "sourceFingerprint": "c3d0dab09b848dca"
+        },
+        {
+          "id": "IMG_8707",
+          "thumbnail": "/images/photography/faraway/IMG_8707-thumb.webp",
+          "title": "Kiang by the Lake",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "src": null,
+          "sourceFingerprint": "5ea88028a8b2340e"
+        },
+        {
+          "id": "IMG_8706",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8706-thumb.webp",
+          "title": "羊湖的羊",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "sourceFingerprint": "2cca2d20586a52b0"
+        },
+        {
+          "id": "IMG_8703",
+          "thumbnail": "/images/photography/faraway/IMG_8703-thumb.webp",
+          "title": "Roadside Yak Portrait",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "src": null,
+          "sourceFingerprint": "1310810d50e84ece"
+        },
+        {
+          "id": "IMG_8702",
+          "thumbnail": "/images/photography/faraway/IMG_8702-thumb.webp",
+          "title": "Gathering by the Water",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "src": null,
+          "sourceFingerprint": "fba3ca70c933142c"
+        },
+        {
+          "id": "IMG_8701",
+          "thumbnail": "/images/photography/faraway/IMG_8701-thumb.webp",
+          "title": "Herd by the Blue",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "src": null,
+          "sourceFingerprint": "b88bc75a8124ca12"
+        },
+        {
+          "id": "IMG_8694",
+          "thumbnail": "/images/photography/faraway/IMG_8694-thumb.webp",
+          "title": "The Road Belongs to Yaks",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "src": null,
+          "sourceFingerprint": "80beee2dfd434022"
+        },
+        {
+          "id": "IMG_8672-Pano",
+          "thumbnail": "/images/photography/faraway/IMG_8672-Pano-thumb.webp",
+          "title": "Wind Over Empty Earth",
+          "alt": "Tibet",
+          "time": "2024-05-23",
+          "src": null,
+          "sourceFingerprint": "1c118caf80078e47"
+        },
+        {
+          "id": "IMG_8661-Pano",
+          "thumbnail": "/images/photography/faraway/IMG_8661-Pano-thumb.webp",
+          "title": "Lake Under Moving Clouds",
+          "alt": "Tibet",
+          "time": "2024-05-22",
+          "src": null,
+          "sourceFingerprint": "a5d728eebd12b43d"
+        },
+        {
+          "id": "IMG_8651",
+          "thumbnail": "/images/photography/faraway/IMG_8651-thumb.webp",
+          "title": "Small Journey Vast Land",
+          "alt": "Tibet",
+          "time": "2024-05-22",
+          "src": null,
+          "sourceFingerprint": "e69fd473de913d0f"
+        },
+        {
+          "id": "IMG_8647",
+          "thumbnail": "/images/photography/faraway/IMG_8647-thumb.webp",
+          "title": "Monastery Above the Lake",
+          "alt": "Tibet",
+          "time": "2024-05-22",
+          "src": null,
+          "sourceFingerprint": "6ae0f28e527343c1"
+        },
+        {
+          "id": "IMG_8623",
+          "thumbnail": "/images/photography/faraway/IMG_8623-thumb.webp",
+          "title": "Watchtower Against the Sky",
+          "alt": "Tibet",
+          "time": "2024-05-22",
+          "src": null,
+          "sourceFingerprint": "cb83c73390530327"
+        },
+        {
+          "id": "IMG_8570",
+          "thumbnail": "/images/photography/faraway/IMG_8570-thumb.webp",
+          "title": "Monastery in Sunlight",
+          "alt": "Tibet",
+          "time": "2024-05-22",
+          "src": null,
+          "sourceFingerprint": "fa40c76e3b39775f"
         },
         {
           "id": "IMG_8475",
@@ -213,57 +408,449 @@
           "thumbnail": "/images/photography/faraway/IMG_8475-thumb.webp",
           "title": "Peace",
           "alt": "Tibet",
-          "time": "2024-05"
+          "time": "2024-05-21",
+          "sourceFingerprint": "91808f72709bf365"
         },
         {
-          "id": "IMG_8706",
+          "id": "IMG_8466",
+          "thumbnail": "/images/photography/faraway/IMG_8466-thumb.webp",
+          "title": "Light on the Forest Floor",
+          "alt": "Tibet",
+          "time": "2024-05-21",
           "src": null,
-          "thumbnail": "/images/photography/faraway/IMG_8706-thumb.webp",
-          "title": "羊湖的羊",
-          "alt": "Tibet - Yamzhog Yumco",
-          "time": "2024-05"
+          "sourceFingerprint": "8a814c855f4bc67d"
         },
         {
-          "id": "Picture1",
-          "thumbnail": "/images/photography/faraway/Picture1-thumb.webp",
-          "title": "Three Faces of Night",
-          "alt": "TimeSquare",
-          "src": null
+          "id": "IMG_8464",
+          "thumbnail": "/images/photography/faraway/IMG_8464-thumb.webp",
+          "title": "Roots Through Moss",
+          "alt": "Tibet",
+          "time": "2024-05-21",
+          "src": null,
+          "sourceFingerprint": "665d6107780fcf79"
         },
         {
-          "id": "Picture2",
-          "thumbnail": "/images/photography/faraway/Picture2-thumb.webp",
-          "title": "Fragments of the Square",
-          "alt": "TimeSquare",
-          "src": null
+          "id": "IMG_8445",
+          "thumbnail": "/images/photography/faraway/IMG_8445-thumb.webp",
+          "title": "Mantra by the River",
+          "alt": "Tibet",
+          "time": "2024-05-21",
+          "src": null,
+          "sourceFingerprint": "715d942ca7fb7813"
         },
         {
-          "id": "Picture3",
-          "thumbnail": "/images/photography/faraway/Picture3-thumb.webp",
-          "title": "Street Echoes",
-          "alt": "TimeSquare",
-          "src": null
+          "id": "IMG_8439",
+          "thumbnail": "/images/photography/faraway/IMG_8439-thumb.webp",
+          "title": "Snow Crown at Dawn",
+          "alt": "Tibet",
+          "time": "2024-05-21",
+          "src": null,
+          "sourceFingerprint": "ef2232f402ea0f94"
         },
         {
-          "id": "Weixin Image_20260809162552_303_274",
-          "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162552_303_274-thumb.webp",
-          "title": "Green Corridor",
-          "alt": "Charlotte",
-          "src": null
+          "id": "IMG_8430",
+          "thumbnail": "/images/photography/faraway/IMG_8430-thumb.webp",
+          "title": "Smoke Across the River",
+          "alt": "Tibet",
+          "time": "2024-05-21",
+          "src": null,
+          "sourceFingerprint": "42aaaa7f459c01a4"
         },
         {
-          "id": "Weixin Image_20260809162555_305_274",
-          "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162555_305_274-thumb.webp",
-          "title": "Sunlit Spiral",
-          "alt": "Charlotte",
-          "src": null
+          "id": "IMG_8418",
+          "thumbnail": "/images/photography/faraway/IMG_8418-thumb.webp",
+          "title": "Following Close Behind",
+          "alt": "Tibet",
+          "time": "2024-05-21",
+          "src": null,
+          "sourceFingerprint": "8695b97e0ded452f"
+        },
+        {
+          "id": "IMG_8410",
+          "thumbnail": "/images/photography/faraway/IMG_8410-thumb.webp",
+          "title": "Tents in Perfect Reflection",
+          "alt": "Tibet",
+          "time": "2024-05-21",
+          "src": null,
+          "sourceFingerprint": "f316ff45313dc504"
+        },
+        {
+          "id": "IMG_8354",
+          "thumbnail": "/images/photography/faraway/IMG_8354-thumb.webp",
+          "title": "Turquoise Toward the Peaks",
+          "alt": "Tibet",
+          "time": "2024-05-21",
+          "src": null,
+          "sourceFingerprint": "aba8ecfec360307d"
+        },
+        {
+          "id": "IMG_8305",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8305-thumb.webp",
+          "title": "Glacier but far far far",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "sourceFingerprint": "3e1789702afaca9e"
+        },
+        {
+          "id": "IMG_8302",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8302-thumb.webp",
+          "title": "Glacier but far far",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "sourceFingerprint": "dccf6cab4eadf7bb"
+        },
+        {
+          "id": "IMG_8297",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8297-thumb.webp",
+          "title": "Glacier but far",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "sourceFingerprint": "0b8b730e0b76b595"
+        },
+        {
+          "id": "IMG_8293",
+          "thumbnail": "/images/photography/faraway/IMG_8293-thumb.webp",
+          "title": "Teeth of the Valley",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "src": null,
+          "sourceFingerprint": "11bc620a5505b848"
+        },
+        {
+          "id": "IMG_8278",
+          "thumbnail": "/images/photography/faraway/IMG_8278-thumb.webp",
+          "title": "Stone Spires Rising",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "src": null,
+          "sourceFingerprint": "3530922ae6bf64d8"
+        },
+        {
+          "id": "IMG_8270",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8270-thumb.webp",
+          "title": "I want it toooo",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "sourceFingerprint": "58860f0d23151518"
+        },
+        {
+          "id": "IMG_8269",
+          "thumbnail": "/images/photography/faraway/IMG_8269-thumb.webp",
+          "title": "Fellow Travelers",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "src": null,
+          "sourceFingerprint": "7f7c61bb07457638"
+        },
+        {
+          "id": "IMG_8248-Pano",
+          "thumbnail": "/images/photography/faraway/IMG_8248-Pano-thumb.webp",
+          "title": "Valley Without End",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "src": null,
+          "sourceFingerprint": "27753e9aa6829b17"
+        },
+        {
+          "id": "IMG_8219",
+          "thumbnail": "/images/photography/faraway/IMG_8219-thumb.webp",
+          "title": "Inside the Glacier",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "src": null,
+          "sourceFingerprint": "adbad229216415d3"
+        },
+        {
+          "id": "IMG_8191",
+          "thumbnail": "/images/photography/faraway/IMG_8191-thumb.webp",
+          "title": "Wishes Along the Pass",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "src": null,
+          "sourceFingerprint": "884e4fee0fb5c655"
+        },
+        {
+          "id": "IMG_8140",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8140-thumb.webp",
+          "title": "Midway",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "sourceFingerprint": "0e2143d2d58eb8dd"
+        },
+        {
+          "id": "IMG_8128",
+          "thumbnail": "/images/photography/faraway/IMG_8128-thumb.webp",
+          "title": "Waterfalls Under Cloud",
+          "alt": "Tibet",
+          "time": "2024-05-19",
+          "src": null,
+          "sourceFingerprint": "6fcc0818aae3869f"
+        },
+        {
+          "id": "IMG_8080",
+          "thumbnail": "/images/photography/faraway/IMG_8080-thumb.webp",
+          "title": "Keeper of the Prayer Wheel",
+          "alt": "Tibet",
+          "time": "2024-05-18",
+          "src": null,
+          "sourceFingerprint": "b028c636de6340fe"
+        },
+        {
+          "id": "IMG_7952",
+          "thumbnail": "/images/photography/faraway/IMG_7952-thumb.webp",
+          "title": "Yak Below the Village",
+          "alt": "Tibet",
+          "time": "2024-05-18",
+          "src": null,
+          "sourceFingerprint": "6c406919db57c0a0"
+        },
+        {
+          "id": "IMG_7943",
+          "thumbnail": "/images/photography/faraway/IMG_7943-thumb.webp",
+          "title": "Afternoon in the Meadow",
+          "alt": "Tibet",
+          "time": "2024-05-18",
+          "src": null,
+          "sourceFingerprint": "df3c5b9d8cbd7977"
+        },
+        {
+          "id": "IMG_7930",
+          "thumbnail": "/images/photography/faraway/IMG_7930-thumb.webp",
+          "title": "Forest Beneath the Mist",
+          "alt": "Tibet",
+          "time": "2024-05-18",
+          "src": null,
+          "sourceFingerprint": "a9eb965ebd231151"
+        },
+        {
+          "id": "IMG_7921",
+          "thumbnail": "/images/photography/faraway/IMG_7921-thumb.webp",
+          "title": "Fences of Home",
+          "alt": "Tibet",
+          "time": "2024-05-18",
+          "src": null,
+          "sourceFingerprint": "aef6a75d0e620694"
+        },
+        {
+          "id": "IMG_7902",
+          "thumbnail": "/images/photography/faraway/IMG_7902-thumb.webp",
+          "title": "White Scarves Green Hills",
+          "alt": "Tibet",
+          "time": "2024-05-18",
+          "src": null,
+          "sourceFingerprint": "b1ae1917c52d686f"
+        },
+        {
+          "id": "IMG_7893",
+          "thumbnail": "/images/photography/faraway/IMG_7893-thumb.webp",
+          "title": "Fire in the Rain",
+          "alt": "Tibet",
+          "time": "2024-05-17",
+          "src": null,
+          "sourceFingerprint": "b87042846aff47d5"
+        },
+        {
+          "id": "IMG_7849",
+          "thumbnail": "/images/photography/faraway/IMG_7849-thumb.webp",
+          "title": "Roadside Expedition",
+          "alt": "Tibet",
+          "time": "2024-05-17",
+          "src": null,
+          "sourceFingerprint": "580febd36401b2a8"
+        },
+        {
+          "id": "IMG_7834",
+          "thumbnail": "/images/photography/faraway/IMG_7834-thumb.webp",
+          "title": "Red Boat Green Valley",
+          "alt": "Tibet",
+          "time": "2024-05-17",
+          "src": null,
+          "sourceFingerprint": "086f592c66aa920c"
+        },
+        {
+          "id": "IMG_7830",
+          "thumbnail": "/images/photography/faraway/IMG_7830-thumb.webp",
+          "title": "Drifting Through the Bend",
+          "alt": "Tibet",
+          "time": "2024-05-17",
+          "src": null,
+          "sourceFingerprint": "d0a4c72d3b97f1ff"
+        },
+        {
+          "id": "IMG_7828",
+          "thumbnail": "/images/photography/faraway/IMG_7828-thumb.webp",
+          "title": "River Through Young Green",
+          "alt": "Tibet",
+          "time": "2024-05-17",
+          "src": null,
+          "sourceFingerprint": "780810fb97a4adba"
+        },
+        {
+          "id": "IMG_7747",
+          "thumbnail": "/images/photography/faraway/IMG_7747-thumb.webp",
+          "title": "Clock Above the Street",
+          "alt": "Tibet",
+          "time": "2024-05-15",
+          "src": null,
+          "sourceFingerprint": "b760f8e8661792cf"
+        },
+        {
+          "id": "IMG_7745",
+          "thumbnail": "/images/photography/faraway/IMG_7745-thumb.webp",
+          "title": "Pause Beneath the Trees",
+          "alt": "Tibet",
+          "time": "2024-05-15",
+          "src": null,
+          "sourceFingerprint": "fa78c54848b22c38"
+        },
+        {
+          "id": "IMG_7732",
+          "thumbnail": "/images/photography/faraway/IMG_7732-thumb.webp",
+          "title": "Balcony in Late Sun",
+          "alt": "Tibet",
+          "time": "2024-05-15",
+          "src": null,
+          "sourceFingerprint": "92f3e55db5dcd31f"
+        },
+        {
+          "id": "IMG_7696",
+          "thumbnail": "/images/photography/faraway/IMG_7696-thumb.webp",
+          "title": "Playtime in the Square",
+          "alt": "Tibet",
+          "time": "2024-05-15",
+          "src": null,
+          "sourceFingerprint": "6b5593f292385ced"
+        },
+        {
+          "id": "DSC00520",
+          "thumbnail": "/images/photography/faraway/DSC00520-thumb.webp",
+          "title": "Number Sixty-Six",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": "2026-06-24",
+          "sourceFingerprint": "6651a75aad0f0be2"
+        },
+        {
+          "id": "DSC00558-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00558-Enhanced-NR-thumb.webp",
+          "title": "Inside the Machine",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "6cca6a2e00369fea"
+        },
+        {
+          "id": "DSC00556",
+          "thumbnail": "/images/photography/faraway/DSC00556-thumb.webp",
+          "title": "Museum Racer",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "4599fb659a64e9ac"
+        },
+        {
+          "id": "DSC00538",
+          "thumbnail": "/images/photography/faraway/DSC00538-thumb.webp",
+          "title": "Storm of Color",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "f2c616cbae756b70"
+        },
+        {
+          "id": "DSC00479-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00479-Enhanced-NR-thumb.webp",
+          "title": "Passing Light",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "0802b3b65fd40bdb"
+        },
+        {
+          "id": "DSC00476",
+          "thumbnail": "/images/photography/faraway/DSC00476-thumb.webp",
+          "title": "A Field of Engines",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "6fa6d5738e9f1f7c"
+        },
+        {
+          "id": "DSC00472-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00472-Enhanced-NR-thumb.webp",
+          "title": "Chrome in Motion",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "0c2d31072332c6bf"
+        },
+        {
+          "id": "DSC00414-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00414-Enhanced-NR-thumb.webp",
+          "title": "The Long Turn",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "5907fe013130172a"
+        },
+        {
+          "id": "DSC00399-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00399-Enhanced-NR-thumb.webp",
+          "title": "Velocity Study",
+          "alt": "Charlotte-NASCAR",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "c5b469229a10d51d"
         },
         {
           "id": "Weixin Image_20260809162557_306_274",
           "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162557_306_274-thumb.webp",
           "title": "Crossroads in Bronze",
           "alt": "Charlotte",
-          "src": null
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "cce178817b583f5b"
+        },
+        {
+          "id": "Weixin Image_20260809162555_305_274",
+          "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162555_305_274-thumb.webp",
+          "title": "Sunlit Spiral",
+          "alt": "Charlotte",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "862f7caa7f814e94"
+        },
+        {
+          "id": "Weixin Image_20260809162552_303_274",
+          "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162552_303_274-thumb.webp",
+          "title": "Green Corridor",
+          "alt": "Charlotte",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "a4120bb9a11a1077"
+        },
+        {
+          "id": "DSC00593",
+          "thumbnail": "/images/photography/faraway/DSC00593-thumb.webp",
+          "title": "Tracks to the Skyline",
+          "alt": "Charlotte",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "424c1a8d24b67cf2"
+        },
+        {
+          "id": "DSC00592",
+          "thumbnail": "/images/photography/faraway/DSC00592-thumb.webp",
+          "title": "A Plate of Summer",
+          "alt": "Charlotte",
+          "src": null,
+          "time": null,
+          "sourceFingerprint": "6c55f10e048e3fa6"
         }
       ]
     },
@@ -279,55 +866,8 @@
           "thumbnail": "/images/photography/local/IMG_7233-thumb.webp",
           "title": "16",
           "alt": "Hong Kong - Kowloon",
-          "time": "2023-08"
-        },
-        {
-          "id": "对比色-红蓝冷暖",
-          "src": null,
-          "thumbnail": "/images/photography/local/%E5%AF%B9%E6%AF%94%E8%89%B2-%E7%BA%A2%E8%93%9D%E5%86%B7%E6%9A%96-thumb.webp",
-          "title": "Reparing",
-          "alt": "Hong Kong",
-          "time": "2023-08"
-        },
-        {
-          "id": "特殊色-灰红",
-          "src": null,
-          "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E7%81%B0%E7%BA%A2-thumb.webp",
-          "title": "Red Packet",
-          "alt": "Hong Kong",
-          "time": "2023-08"
-        },
-        {
-          "id": "特殊色-黑白",
-          "src": null,
-          "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E9%BB%91%E7%99%BD-thumb.webp",
-          "title": "Overlook",
-          "alt": "Hong Kong",
-          "time": "2023-08"
-        },
-        {
-          "id": "蓝-橙",
-          "src": null,
-          "thumbnail": "/images/photography/local/%E8%93%9D-%E6%A9%99-thumb.webp",
-          "title": "A blue corner",
-          "alt": "Hong Kong",
-          "time": "2023-08"
-        },
-        {
-          "id": "近邻色-红",
-          "src": null,
-          "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2-thumb.webp",
-          "title": "Dried seafood",
-          "alt": "Hong Kong",
-          "time": "2023-08"
-        },
-        {
-          "id": "近邻色-红橙",
-          "src": null,
-          "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2%E6%A9%99-thumb.webp",
-          "title": "Classic Kennedy Town",
-          "alt": "Hong Kong",
-          "time": "2023-08"
+          "time": "2023-08",
+          "sourceFingerprint": "850622b69a762987"
         },
         {
           "id": "近邻色-蓝绿",
@@ -335,7 +875,62 @@
           "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E8%93%9D%E7%BB%BF-thumb.webp",
           "title": "3 P.M.",
           "alt": "Hong Kong",
-          "time": "2023-08"
+          "time": "2023-08",
+          "sourceFingerprint": "d7b7eef1151d66bc"
+        },
+        {
+          "id": "近邻色-红橙",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2%E6%A9%99-thumb.webp",
+          "title": "Classic Kennedy Town",
+          "alt": "Hong Kong",
+          "time": "2023-08",
+          "sourceFingerprint": "0a50848011c21e5e"
+        },
+        {
+          "id": "近邻色-红",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2-thumb.webp",
+          "title": "Dried seafood",
+          "alt": "Hong Kong",
+          "time": "2023-08",
+          "sourceFingerprint": "f7a2c1b778d38cde"
+        },
+        {
+          "id": "蓝-橙",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E8%93%9D-%E6%A9%99-thumb.webp",
+          "title": "A blue corner",
+          "alt": "Hong Kong",
+          "time": "2023-08",
+          "sourceFingerprint": "afea08b0ae593aa2"
+        },
+        {
+          "id": "特殊色-黑白",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E9%BB%91%E7%99%BD-thumb.webp",
+          "title": "Overlook",
+          "alt": "Hong Kong",
+          "time": "2023-08",
+          "sourceFingerprint": "4b000253f23e0efc"
+        },
+        {
+          "id": "特殊色-灰红",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E7%81%B0%E7%BA%A2-thumb.webp",
+          "title": "Red Packet",
+          "alt": "Hong Kong",
+          "time": "2023-08",
+          "sourceFingerprint": "da5b04ba3522cc67"
+        },
+        {
+          "id": "对比色-红蓝冷暖",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E5%AF%B9%E6%AF%94%E8%89%B2-%E7%BA%A2%E8%93%9D%E5%86%B7%E6%9A%96-thumb.webp",
+          "title": "Reparing",
+          "alt": "Hong Kong",
+          "time": "2023-08",
+          "sourceFingerprint": "974c6150c8efdd16"
         }
       ]
     }

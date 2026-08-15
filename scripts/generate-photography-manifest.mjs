@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import exifr from 'exifr';
 import sharp from 'sharp';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -36,6 +38,16 @@ async function readManifest() {
     return JSON.parse(await fs.readFile(manifestPath, 'utf8'));
 }
 
+async function pathExists(inputPath) {
+    try {
+        await fs.access(inputPath);
+        return true;
+    } catch (error) {
+        if (error.code === 'ENOENT') return false;
+        throw error;
+    }
+}
+
 async function readImageEntries(directory, { excludeThumbnails = false } = {}) {
     try {
         const entries = await fs.readdir(directory, { withFileTypes: true });
@@ -50,7 +62,7 @@ async function readImageEntries(directory, { excludeThumbnails = false } = {}) {
 async function readUploadEntries(directory) {
     const entries = [];
 
-    async function visit(currentDirectory, folderName = path.basename(directory)) {
+    async function visit(currentDirectory, folderName = null) {
         let children;
         try {
             children = await fs.readdir(currentDirectory, { withFileTypes: true });
@@ -78,25 +90,41 @@ function assertUniquePhotoIds(entries, directory) {
     for (const entry of entries) {
         const id = basePhotoId(entry.name);
         if (ids.has(id)) {
-            throw new Error(`Duplicate source photo ID in ${path.relative(root, directory)}: ${id}`);
+            throw new Error(
+                `Duplicate source photo ID in ${path.relative(root, directory)}: ${id}; ` +
+                'keep only one source extension for each ID'
+            );
         }
         ids.add(id);
     }
 }
 
-async function encodeWebp(inputPath, maxWidth, quality) {
-    return sharp(inputPath, { failOn: 'none' })
+async function encodeWebp(inputPath, maxWidth, quality, { preserveMetadata = false } = {}) {
+    let pipeline = sharp(inputPath, { failOn: 'none' })
         .rotate()
-        .resize({ width: maxWidth, height: maxWidth, fit: 'inside', withoutEnlargement: true })
-        .webp({ quality, effort: 4 })
-        .toBuffer();
+        .resize({ width: maxWidth, height: maxWidth, fit: 'inside', withoutEnlargement: true });
+    if (preserveMetadata) pipeline = pipeline.withMetadata();
+    return pipeline.webp({ quality, effort: 4 }).toBuffer();
 }
 
-async function encodeUnderLimit(inputPath, limit, widths) {
+async function readCaptureTime(inputPath) {
+    const metadata = await exifr.parse(inputPath, {
+        pick: ['DateTimeOriginal', 'CreateDate', 'ModifyDate'],
+        reviveValues: false
+    }).catch(() => null);
+    const value = metadata?.DateTimeOriginal || metadata?.CreateDate || metadata?.ModifyDate;
+    if (typeof value === 'string') {
+        const match = value.match(/^(\d{4})[:/-](\d{2})[:/-](\d{2})/);
+        if (match) return `${match[1]}-${match[2]}-${match[3]}`;
+    }
+    return null;
+}
+
+async function encodeUnderLimit(inputPath, limit, widths, options = {}) {
     const qualities = [82, 74, 66, 58, 50, 42, 34, 26, 20];
     for (const width of widths) {
         for (const quality of qualities) {
-            const buffer = await encodeWebp(inputPath, width, quality);
+            const buffer = await encodeWebp(inputPath, width, quality, options);
             if (buffer.length <= limit) return buffer;
         }
     }
@@ -117,7 +145,12 @@ async function compressSource(entry) {
     const inputPath = entry.path;
     const outputName = `${basePhotoId(entry.name)}.webp`;
     const outputPath = path.join(path.dirname(inputPath), outputName);
-    const buffer = await encodeUnderLimit(inputPath, originalLimit, [3200, 2800, 2400, 2000, 1600, 1200, 1000, 800, 640]);
+    const buffer = await encodeUnderLimit(
+        inputPath,
+        originalLimit,
+        [3200, 2800, 2400, 2000, 1600, 1200, 1000, 800, 640],
+        { preserveMetadata: true }
+    );
     await writeBufferAtomically(outputPath, buffer);
     if (inputPath !== outputPath) await fs.rm(inputPath, { force: true });
     console.log(`Compressed ${path.relative(root, inputPath)} -> ${path.relative(root, outputPath)} (${buffer.length} bytes)`);
@@ -129,12 +162,25 @@ async function generateThumbnail(sourcePath, thumbnailPath) {
     console.log(`Generated ${path.relative(root, thumbnailPath)} (${buffer.length} bytes)`);
 }
 
-async function prepareUpload(albumDirectory, uploadDirectory) {
+async function fingerprintFile(inputPath) {
+    const buffer = await fs.readFile(inputPath);
+    return createHash('sha256').update(buffer).digest('hex').slice(0, 16);
+}
+
+async function hasEmbeddedSourceMetadata(inputPath) {
+    const metadata = await sharp(inputPath, { failOn: 'none' }).metadata();
+    return Boolean(metadata.exif || metadata.xmp || metadata.iptc);
+}
+
+async function prepareUpload(albumDirectory, uploadDirectory, existingPhotos) {
     let uploadEntries = await readUploadEntries(uploadDirectory);
     assertUniquePhotoIds(uploadEntries, uploadDirectory);
+    const captureTimes = new Map();
 
     for (const entry of uploadEntries) {
         const sourcePath = entry.path;
+        const captureTime = await readCaptureTime(sourcePath);
+        if (captureTime) captureTimes.set(basePhotoId(entry.name), captureTime);
         const sourceStat = await fs.stat(sourcePath);
         if (sourceStat.size > originalLimit) {
             if (checkOnly) {
@@ -146,32 +192,51 @@ async function prepareUpload(albumDirectory, uploadDirectory) {
 
     uploadEntries = await readUploadEntries(uploadDirectory);
     assertUniquePhotoIds(uploadEntries, uploadDirectory);
+    const sourceFingerprints = new Map();
     await fs.mkdir(albumDirectory, { recursive: true });
     const albumImages = await readImageEntries(albumDirectory);
-    const thumbnails = new Set(albumImages.filter(entry => isThumbnail(entry.name)).map(entry => basePhotoId(entry.name)));
+    const thumbnails = new Map(albumImages.filter(entry => isThumbnail(entry.name))
+        .map(entry => [basePhotoId(entry.name), entry]));
 
     for (const entry of uploadEntries) {
         const id = basePhotoId(entry.name);
-        if (thumbnails.has(id)) continue;
-
         const sourcePath = entry.path;
         const thumbnailPath = path.join(albumDirectory, `${id}-thumb.webp`);
+        const thumbnail = thumbnails.get(id);
+        const sourceStat = await fs.stat(sourcePath);
+        const thumbnailStat = thumbnail ? await fs.stat(path.join(albumDirectory, thumbnail.name)) : null;
+        const sourceFingerprint = await fingerprintFile(sourcePath);
+        sourceFingerprints.set(id, sourceFingerprint);
+        const previousFingerprint = existingPhotos.get(id)?.sourceFingerprint;
+        const sourceChanged = previousFingerprint
+            ? previousFingerprint !== sourceFingerprint
+            : Boolean(thumbnailStat && sourceStat.mtimeMs > thumbnailStat.mtimeMs);
+        const thumbnailHasMetadata = thumbnailStat
+            ? await hasEmbeddedSourceMetadata(path.join(albumDirectory, thumbnail.name))
+            : false;
+        if (thumbnailStat && !sourceChanged && !thumbnailHasMetadata) continue;
+
         if (checkOnly) {
-            throw new Error(`Missing thumbnail for ${path.relative(root, sourcePath)}; run npm run build:photography`);
+            throw new Error(`Missing or stale thumbnail for ${path.relative(root, sourcePath)}; run npm run build:photography`);
         }
         await generateThumbnail(sourcePath, thumbnailPath);
     }
+
+    return { uploadEntries, captureTimes, sourceFingerprints };
 }
 
-async function scanAlbum(album) {
+async function scanAlbum(album, existingPhotos) {
     const albumDirectory = path.join(imageRoot, album.id);
     const uploadDirectory = path.join(uploadRoot, album.id);
-    await prepareUpload(albumDirectory, uploadDirectory);
+    const { uploadEntries, captureTimes, sourceFingerprints } = await prepareUpload(
+        albumDirectory,
+        uploadDirectory,
+        existingPhotos
+    );
 
     const imageEntries = await readImageEntries(albumDirectory);
     const thumbnails = new Map(imageEntries.filter(entry => isThumbnail(entry.name))
         .map(entry => [basePhotoId(entry.name), entry.name]));
-    const uploadEntries = await readUploadEntries(uploadDirectory);
     const photos = [];
 
     for (const [id, thumbnailName] of thumbnails) {
@@ -196,7 +261,9 @@ async function scanAlbum(album) {
             src: null,
             thumbnail: publicPath('images', 'photography', album.id, thumbnailName),
             title: id,
-            alt: original?.folderName || album.title
+            alt: original?.folderName || null,
+            time: original ? captureTimes.get(id) || await readCaptureTime(original.path) : null,
+            sourceFingerprint: original ? sourceFingerprints.get(id) : null
         });
     }
 
@@ -216,16 +283,28 @@ async function scanAlbum(album) {
 }
 
 function mergePhoto(existing, scanned, fallbackTitle) {
-    const { thumbnailName, src, ...localPaths } = scanned;
+    const { thumbnailName, src, time, ...localPaths } = scanned;
     const merged = {
         ...existing,
         ...localPaths,
         id: scanned.id,
         title: existing.title || scanned.title || fallbackTitle,
-        alt: existing.alt || scanned.alt || existing.title || fallbackTitle
+        alt: scanned.alt || existing.alt || existing.title || fallbackTitle,
+        time: time || existing.time || existing.date || null
     };
     if (!Object.prototype.hasOwnProperty.call(existing, 'src')) merged.src = src;
     return merged;
+}
+
+function comparePhotosDescending(left, right) {
+    for (const key of ['alt', 'time', 'id']) {
+        const result = String(right[key] || '').localeCompare(String(left[key] || ''), 'en', {
+            numeric: true,
+            sensitivity: 'base'
+        });
+        if (result) return result;
+    }
+    return 0;
 }
 
 const current = await readManifest();
@@ -234,16 +313,26 @@ const albums = [];
 
 for (const defaults of albumDefaults) {
     const existing = currentAlbums.get(defaults.id) || {};
-    const scannedPhotos = await scanAlbum(defaults);
     const existingPhotos = new Map((existing.photos || []).map(photo => [photo.id, photo]));
+    const scannedPhotos = await scanAlbum(defaults, existingPhotos);
     const localIds = new Set(scannedPhotos.map(photo => photo.id));
     const localPhotos = scannedPhotos.map((photo, index) => mergePhoto(
         existingPhotos.get(photo.id) || {},
         photo,
         `${defaults.title} ${String(index + 1).padStart(2, '0')}`
     ));
-    const remoteOnlyPhotos = (existing.photos || []).filter(photo => !localIds.has(photo.id));
-    const photos = [...localPhotos, ...remoteOnlyPhotos];
+    const remoteOnlyPhotos = [];
+    for (const photo of (existing.photos || []).filter(item => !localIds.has(item.id))) {
+        const hasRemoteThumbnail = /^https:\/\//i.test(photo.oss?.thumbnail || '');
+        const localThumbnailPath = typeof photo.thumbnail === 'string' && photo.thumbnail.startsWith('/')
+            ? path.join(root, decodeURIComponent(photo.thumbnail).replace(/^\/+/, ''))
+            : null;
+        if (!hasRemoteThumbnail && (!localThumbnailPath || !await pathExists(localThumbnailPath))) {
+            throw new Error(`Photography entry has no local or OSS thumbnail: ${defaults.id}/${photo.id}`);
+        }
+        remoteOnlyPhotos.push(photo);
+    }
+    const photos = [...localPhotos, ...remoteOnlyPhotos].sort(comparePhotosDescending);
 
     albums.push({
         ...existing,

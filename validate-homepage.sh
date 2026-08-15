@@ -77,6 +77,7 @@ const template = fs.readFileSync('templates/article.html', 'utf8');
 const renderer = fs.readFileSync('js/content-renderer.js', 'utf8');
 const backgroundManager = fs.readFileSync('js/background-manager.js', 'utf8');
 const backgroundGenerator = fs.readFileSync('scripts/generate-background-manifest.mjs', 'utf8');
+const photographyGenerator = fs.readFileSync('scripts/generate-photography-manifest.mjs', 'utf8');
 const mapSource = fs.readFileSync('js/travel-map.js', 'utf8');
 const generator = fs.readFileSync('scripts/generate-article-pages.mjs', 'utf8');
 const css = fs.readFileSync('css/main.css', 'utf8');
@@ -96,6 +97,16 @@ if (!Array.isArray(photography.albums) || photography.albums.length !== 2) {
   throw new Error('Photography must contain exactly two albums');
 }
 const albumIds = new Set();
+const comparePhotosDescending = (left, right) => {
+  for (const key of ['alt', 'time', 'id']) {
+    const result = String(right[key] || '').localeCompare(String(left[key] || ''), 'en', {
+      numeric: true,
+      sensitivity: 'base'
+    });
+    if (result) return result;
+  }
+  return 0;
+};
 for (const album of photography.albums) {
   if (!/^[a-z0-9-]+$/.test(album.id) || albumIds.has(album.id)) {
     throw new Error(`Invalid or duplicate photography album ID: ${album.id}`);
@@ -107,6 +118,10 @@ for (const album of photography.albums) {
   if (album.cover !== null && album.cover !== undefined &&
       (typeof album.cover !== 'string' || !/^(?:https?:\/\/|\/)/i.test(album.cover))) {
     throw new Error(`Photography ${album.id} has an invalid cover URL`);
+  }
+  if (typeof album.cover === 'string' && album.cover.startsWith('/') &&
+      !fs.existsSync(path.join(process.cwd(), decodeURIComponent(album.cover).replace(/^\/+/, '')))) {
+    throw new Error(`Photography ${album.id} references a missing local cover`);
   }
   if (album.oss !== undefined && (typeof album.oss !== 'object' || album.oss === null)) {
     throw new Error(`Photography ${album.id} has an invalid OSS override`);
@@ -136,11 +151,22 @@ for (const album of photography.albums) {
     if (!hasLocalThumbnail && !/^https:\/\//i.test(photo.oss?.thumbnail || '')) {
       throw new Error(`Photography ${album.id} has no usable thumbnail URL`);
     }
-    if (!photo.title || photo.title === photo.id || !photo.alt ||
+    if (hasLocalThumbnail && photo.thumbnail.startsWith('/') &&
+        !fs.existsSync(path.join(process.cwd(), decodeURIComponent(photo.thumbnail).replace(/^\/+/, '')))) {
+      throw new Error(`Photography ${album.id}/${photo.id} references a missing local thumbnail`);
+    }
+    if (!photo.title || !photo.alt ||
+        (photo.time !== null && photo.time !== undefined && !/^\d{4}-\d{2}(?:-\d{2})?$/.test(photo.time)) ||
+        (photo.sourceFingerprint !== null && photo.sourceFingerprint !== undefined &&
+          !/^[a-f0-9]{16}$/.test(photo.sourceFingerprint)) ||
         (photo.width !== undefined && (!Number.isInteger(photo.width) || photo.width <= 0)) ||
         (photo.height !== undefined && (!Number.isInteger(photo.height) || photo.height <= 0))) {
       throw new Error(`Photography ${album.id} has incomplete photo metadata`);
     }
+  }
+  const sortedIds = [...album.photos].sort(comparePhotosDescending).map(photo => photo.id);
+  if (JSON.stringify(sortedIds) !== JSON.stringify(album.photos.map(photo => photo.id))) {
+    throw new Error(`Photography ${album.id} is not sorted by alt, time, and id descending`);
   }
 }
 
@@ -259,7 +285,13 @@ if (!renderer.includes("fetch('/data/blogs.json')") || !renderer.includes('rende
 if (!homepage.includes('id="photoGallery"') || !homepage.includes('id="photoLightbox"') ||
     !homepage.includes('/js/photography.js') || !renderer.includes("fetch('/data/photography.json')") ||
     !photographyScript.includes('photo-album-card') || !photographyScript.includes('photo-thumb') ||
-    !photographyScript.includes("item?.oss?.[key]")) {
+    !photographyScript.includes("item?.oss?.[key]") ||
+    !photographyScript.includes('[photo.alt, photo.time]') ||
+    !photographyGenerator.includes('readCaptureTime') ||
+    !photographyGenerator.includes('fingerprintFile') ||
+    !photographyGenerator.includes('hasEmbeddedSourceMetadata') ||
+    !photographyGenerator.includes('comparePhotosDescending') ||
+    !photographyGenerator.includes('previousFingerprint !== sourceFingerprint')) {
   throw new Error('Photography album and lightbox wiring is incomplete');
 }
 if (!template.includes('{{ARTICLE_BODY}}') || !template.includes('{{ARTICLE_NAVIGATION}}') ||
@@ -292,6 +324,24 @@ if (!css.includes('--avatar-scale: 1') || !css.includes('--avatar-focus-y: 50%')
     !css.includes('--dense-layer-alpha: 0.50') || !css.includes('--pub-copy-line-height: 1.2') ||
     !css.includes('--pub-action-line-height: 1.2') || !css.includes('--pub-action-gap-top: 0.24rem')) {
   throw new Error('Avatar, feather, or publication density variables are incorrect');
+}
+NODE
+
+echo "Checking public photography metadata..."
+node --input-type=module <<'NODE'
+import fs from 'node:fs/promises';
+import sharp from 'sharp';
+
+const photography = JSON.parse(await fs.readFile('data/photography.json', 'utf8'));
+const thumbnails = new Set(photography.albums.flatMap(album => album.photos)
+  .map(photo => photo.thumbnail)
+  .filter(value => typeof value === 'string' && value.startsWith('/images/photography/')));
+for (const thumbnail of thumbnails) {
+  const localPath = `.${decodeURIComponent(thumbnail)}`;
+  const metadata = await sharp(localPath, { failOn: 'none' }).metadata();
+  if (metadata.exif || metadata.xmp || metadata.iptc) {
+    throw new Error(`Public thumbnail contains embedded source metadata: ${localPath}`);
+  }
 }
 NODE
 
