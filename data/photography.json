@@ -10,50 +10,57 @@
           "id": "IMG_8140",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8140-thumb.webp",
-          "title": "Faraway 01",
-          "alt": "Faraway photograph 01"
+          "title": "Midway",
+          "alt": "Tibet road trip",
+          "time": "2024-05"
         },
         {
           "id": "IMG_8270",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8270-thumb.webp",
-          "title": "Faraway 02",
-          "alt": "Faraway photograph 02"
+          "title": "I want it toooo",
+          "alt": "Tibet",
+          "time": "2024-05"
         },
         {
           "id": "IMG_8297",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8297-thumb.webp",
-          "title": "Faraway 03",
-          "alt": "Faraway photograph 03"
+          "title": "Glacier but far",
+          "alt": "Tibet",
+          "time": "2024-05"
         },
         {
           "id": "IMG_8302",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8302-thumb.webp",
-          "title": "Faraway 04",
-          "alt": "Faraway photograph 04"
+          "title": "Glacier but far far",
+          "alt": "Tibet",
+          "time": "2024-05"
         },
         {
           "id": "IMG_8305",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8305-thumb.webp",
-          "title": "Faraway 05",
-          "alt": "Faraway photograph 05"
+          "title": "Glacier but far far far",
+          "alt": "Tibet",
+          "time": "2024-05"
         },
         {
           "id": "IMG_8475",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8475-thumb.webp",
-          "title": "Faraway 06",
-          "alt": "Faraway photograph 06"
+          "title": "Peace",
+          "alt": "Tibet",
+          "time": "2024-05"
         },
         {
           "id": "IMG_8706",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8706-thumb.webp",
-          "title": "Faraway 07",
-          "alt": "Faraway photograph 07"
+          "title": "羊湖的羊",
+          "alt": "Tibet - Yamzhog Yumco",
+          "time": "2024-05"
         }
       ]
     },
@@ -67,57 +74,65 @@
           "id": "IMG_7233",
           "src": null,
           "thumbnail": "/images/photography/local/IMG_7233-thumb.webp",
-          "title": "Local 01",
-          "alt": "Local photograph 01"
+          "title": "16",
+          "alt": "Hong Kong - Kowloon",
+          "time": "2023-08"
         },
         {
           "id": "对比色-红蓝冷暖",
           "src": null,
           "thumbnail": "/images/photography/local/%E5%AF%B9%E6%AF%94%E8%89%B2-%E7%BA%A2%E8%93%9D%E5%86%B7%E6%9A%96-thumb.webp",
-          "title": "Local 02",
-          "alt": "Local photograph 02"
+          "title": "Reparing",
+          "alt": "Hong Kong",
+          "time": "2023-08"
         },
         {
           "id": "特殊色-灰红",
           "src": null,
           "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E7%81%B0%E7%BA%A2-thumb.webp",
-          "title": "Local 03",
-          "alt": "Local photograph 03"
+          "title": "Red Packet",
+          "alt": "Hong Kong",
+          "time": "2023-08"
         },
         {
           "id": "特殊色-黑白",
           "src": null,
           "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E9%BB%91%E7%99%BD-thumb.webp",
-          "title": "Local 04",
-          "alt": "Local photograph 04"
+          "title": "Overlook",
+          "alt": "Hong Kong",
+          "time": "2023-08"
         },
         {
           "id": "蓝-橙",
           "src": null,
           "thumbnail": "/images/photography/local/%E8%93%9D-%E6%A9%99-thumb.webp",
-          "title": "Local 05",
-          "alt": "Local photograph 05"
+          "title": "A blue corner",
+          "alt": "Hong Kong",
+          "time": "2023-08"
         },
         {
           "id": "近邻色-红",
           "src": null,
           "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2-thumb.webp",
-          "title": "Local 06",
-          "alt": "Local photograph 06"
+          "title": "Dried seafood",
+          "alt": "Hong Kong",
+          "time": "2023-08"
         },
         {
           "id": "近邻色-红橙",
           "src": null,
           "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2%E6%A9%99-thumb.webp",
-          "title": "Local 07",
-          "alt": "Local photograph 07"
+          "title": "Classic Kennedy Town",
+          "alt": "Hong Kong",
+          "time": "2023-08"
         },
         {
           "id": "近邻色-蓝绿",
           "src": null,
           "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E8%93%9D%E7%BB%BF-thumb.webp",
-          "title": "Local 08",
-          "alt": "Local photograph 08"
+          "title": "3 P.M.",
+          "alt": "Hong Kong",
+          "time": "2023-08"
         }
       ]
     }
