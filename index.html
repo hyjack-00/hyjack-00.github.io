@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/fontawesome/brands.min.css">
     <link rel="preload" href="/data/content.json" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="/data/blogs.json" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="/data/photography.json" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="/data/backgrounds.json" as="fetch" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/vendor/leaflet.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -130,6 +131,45 @@
 </div>
 </div>
 
+<div class="photo-gallery-overlay" id="photoGallery" aria-hidden="true">
+    <div class="photo-gallery-shell" role="dialog" aria-modal="true" aria-labelledby="photoGalleryTitle">
+        <header class="photo-gallery-header">
+            <button class="photo-gallery-back" type="button" aria-label="Back to photography">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                <span>Photography</span>
+            </button>
+            <div class="photo-gallery-heading">
+                <p class="photo-gallery-kicker">Album</p>
+                <h2 id="photoGalleryTitle"></h2>
+                <p class="photo-gallery-description"></p>
+            </div>
+            <button class="photo-gallery-close" type="button" aria-label="Close album">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </header>
+        <div class="photo-gallery-grid" aria-live="polite"></div>
+    </div>
+</div>
+
+<div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+    <button class="photo-lightbox-close" type="button" aria-label="Close photo">
+        <i class="fas fa-xmark" aria-hidden="true"></i>
+    </button>
+    <button class="photo-lightbox-prev" type="button" aria-label="Previous photo">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <figure class="photo-lightbox-figure">
+        <img class="photo-lightbox-image" alt="">
+        <figcaption class="photo-lightbox-caption">
+            <strong class="photo-lightbox-title"></strong>
+            <span class="photo-lightbox-meta"></span>
+        </figcaption>
+    </figure>
+    <button class="photo-lightbox-next" type="button" aria-label="Next photo">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+    </button>
+</div>
+
 <div class="full-background-overlay" id="backgroundOverlay" aria-hidden="true">
     <div class="background-meta">
         <button class="background-close-button" type="button" aria-label="Return to page content">
@@ -140,6 +180,7 @@
 </div>
 
 <script src="/js/background-manager.js"></script>
+<script src="/js/photography.js"></script>
 <script src="/js/content-renderer.js"></script>
 <script src="/js/vendor/leaflet.js"></script>
 <script src="/js/travel-map.js"></script>

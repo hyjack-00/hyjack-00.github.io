@@ -19,6 +19,15 @@ async function loadContent() {
                 })
                 .then(manifest => ({ posts: manifest.posts }))
                 .catch(error => ({ error }));
+        const photographyRequest = isArticlePage
+            ? null
+            : fetch('/data/photography.json')
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    return response.json();
+                })
+                .then(manifest => ({ albums: manifest.albums }))
+                .catch(error => ({ error }));
         const contentResponse = await fetch('/data/content.json');
         if (!contentResponse.ok) throw new Error(`Content HTTP ${contentResponse.status}`);
         contentData = await contentResponse.json();
@@ -32,6 +41,13 @@ async function loadContent() {
                 contentData.blog = [];
             } else {
                 contentData.blog = blogResult.posts;
+            }
+            const photographyResult = await photographyRequest;
+            if (photographyResult.error) {
+                console.error('Failed to load photography manifest:', photographyResult.error);
+                contentData.photography = [];
+            } else {
+                contentData.photography = photographyResult.albums;
             }
             renderAllContent();
         }
@@ -344,19 +360,7 @@ function renderRecommendations() {
  * Render photography section
  */
 function renderPhotography() {
-    const photoSection = document.getElementById('photography');
-    const photoHTML = contentData.photography.map(item => `
-        <div class="photo-card ${item.class}">
-            <i class="fas ${item.icon} fa-2x"></i>
-            <div class="card-title">${item.title}</div>
-            <div class="card-count">${item.description}</div>
-        </div>
-    `).join('');
-
-    photoSection.innerHTML = `
-        <h2><i class="fas fa-camera"></i> Photography</h2>
-        <div class="photo-grid">${photoHTML}</div>
-    `;
+    window.photoGallery?.render(contentData.photography || []);
 }
 
 /**

@@ -1,0 +1,18 @@
+{
+  "albums": [
+    {
+      "id": "faraway",
+      "title": "Faraway",
+      "description": "Landscapes and fragments from farther away.",
+      "cover": null,
+      "photos": []
+    },
+    {
+      "id": "local",
+      "title": "Local",
+      "description": "Small scenes, familiar streets, and nearby days.",
+      "cover": null,
+      "photos": []
+    }
+  ]
+}

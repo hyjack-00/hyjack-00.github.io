@@ -18,8 +18,8 @@ Wiki definition:
 
 多路复用的概念出现在网络与通信领域，大致就是利用一条通信线路复用给多条线路，有大概几种实现方法：
 
-- 时分复用的特点是：高速信道根据时间划分成多个[时隙](https://zh.wikipedia.org/w/index.php?title=%E6%97%B6%E9%9A%99&action=edit&redlink=1) 供多个低速信道轮流使用，在一个时隙内，只能有一个低速信道占有高速信道的资源。
-- 频分复用的特点是：多路复用器将各个低速信道的信号通过[调制](https://zh.wikipedia.org/wiki/%E8%B0%83%E5%88%B6) 分布到高速信道的各个[频段](https://zh.wikipedia.org/wiki/%E9%A2%91%E6%AE%B5) ，然后进行叠加，形成高速信道上传输的信号，在接收端，分路器一般通过[带通滤波器](https://zh.wikipedia.org/wiki/%E5%B8%A6%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8) 分离各个频段，然后转发给对应的低速信道。
+- 时分复用的特点是：高速信道根据时间划分成多个[时隙](https://zh.wikipedia.org/w/index.php?title=%E6%97%B6%E9%9A%99&action=edit&redlink=1)供多个低速信道轮流使用，在一个时隙内，只能有一个低速信道占有高速信道的资源。
+- 频分复用的特点是：多路复用器将各个低速信道的信号通过[调制](https://zh.wikipedia.org/wiki/%E8%B0%83%E5%88%B6)分布到高速信道的各个[频段](https://zh.wikipedia.org/wiki/%E9%A2%91%E6%AE%B5)，然后进行叠加，形成高速信道上传输的信号，在接收端，分路器一般通过[带通滤波器](https://zh.wikipedia.org/wiki/%E5%B8%A6%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8)分离各个频段，然后转发给对应的低速信道。
 
 在本文中通信多路复用不是重点，想探讨的是这个概念的本质，推广到其他领域。
 

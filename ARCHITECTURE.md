@@ -16,18 +16,18 @@
 - ✅ **新闻动态** (`news`): 日期、图标、文字
 - ✅ **出版物** (`publications`): 标题、作者、会议、链接、年份
 - ✅ **旅行地图** (`travel.cities`): 城市名、经纬度、是否故乡
-- ✅ **摄影分类** (`photography`): 图标、标题、描述
+- ✅ **摄影影集** (`data/photography.json`): Faraway / Local 影集与 OSS 图片清单
 - ✅ **站点推荐** (`recommendations`): 名称、类型、描述、网站
 - ✅ **页脚信息** (`footer`): 版权、更新时间
 
 ### 主页渲染方式
 
-主页加载时自动从 `content.json` 和构建生成的 `data/blogs.json` 读取内容。
+主页加载时自动从 `content.json`、构建生成的 `data/blogs.json` 和 `data/photography.json` 读取内容。
 
 工作原理：
 1. `index.html` 只包含最小化的占位符
 2. `js/content-renderer.js` 在页面加载时自动运行
-3. 从 `content.json` 读取主页信息，从 `data/blogs.json` 读取 Blog 摘要
+3. 从 `content.json` 读取主页信息，从 `data/blogs.json` 读取 Blog 摘要，从 `data/photography.json` 读取影集
 4. 动态生成所有HTML内容并插入页面
 
 ### 如何修改内容（超简单！）
@@ -85,6 +85,40 @@
 ```
 
 **保存推送！** 新闻列表自动显示。
+
+#### 管理摄影影集
+
+摄影数据单独维护在 `data/photography.json`。目前固定保留两个影集：`faraway` 与 `local`。每张照片使用 OSS 上的两个地址：
+
+```json
+{
+  "id": "tokyo-night-01",
+  "title": "Night walk",
+  "location": "Tokyo",
+  "date": "2026-04",
+  "alt": "A quiet street in Tokyo at night",
+  "thumbnail": "https://your-bucket.oss-cn-hongkong.aliyuncs.com/photography/faraway/tokyo-night-01-thumb.webp",
+  "src": "https://your-bucket.oss-cn-hongkong.aliyuncs.com/photography/faraway/tokyo-night-01.webp",
+  "width": 2400,
+  "height": 1600
+}
+```
+
+`thumbnail` 只用于影集网格，建议压缩到约 50–150 KB；`src` 用于点击后的大图，建议使用 WebP/AVIF 并保留足够的展示尺寸。页面只在打开照片时请求 `src`，不会一开始下载整组原图。影集封面默认取第一张照片的缩略图，也可以在 album 上单独填写 `cover`。新增照片后无需改 HTML 或 JavaScript。
+
+推荐的 OSS 对象布局：
+
+```text
+photography/
+├── faraway/
+│   ├── tokyo-night-01-thumb.webp
+│   └── tokyo-night-01.webp
+└── local/
+    ├── sysu-rain-01-thumb.webp
+    └── sysu-rain-01.webp
+```
+
+缩略图和大图都建议控制在 500 KB 以内；如果 OSS 使用图片处理参数，应该在上传或 CDN URL 层直接输出 WebP/AVIF，而不是让浏览器下载原始相机文件。
 
 #### 示例：更新个人信息
 
@@ -226,6 +260,7 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 │
 ├── js/
 │   ├── content-renderer.js       # ✅ 数据驱动渲染器（已启用）
+│   ├── photography.js            # 影集网格、OSS 图片预览与键盘导航
 │   ├── travel-map.js             # 单一、无聚类的旅行点地图
 │   ├── background-manager.js     # 背景清单、Artist 与展开交互
 │   └── vendor/leaflet.js         # 本地地图运行库
@@ -233,6 +268,7 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 ├── data/
 │   ├── backgrounds.json          # 背景排序清单（脚本生成）
 │   ├── blogs.json                # Blog 首页清单（脚本生成）
+│   ├── photography.json          # Faraway / Local 影集与 OSS 图片 URL
 │   └── content.json              # ✅ 主页内容数据源
 │
 ├── images/

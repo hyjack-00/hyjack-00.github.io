@@ -13,6 +13,7 @@ readonly REQUIRED_FILES=(
   "css/vendor/leaflet.css"
   "js/background-manager.js"
   "js/content-renderer.js"
+  "js/photography.js"
   "js/travel-map.js"
   "js/vendor/leaflet.js"
   "scripts/generate-background-manifest.mjs"
@@ -21,6 +22,7 @@ readonly REQUIRED_FILES=(
   "templates/post.md"
   "data/backgrounds.json"
   "data/blogs.json"
+  "data/photography.json"
   "data/content.json"
   "assets/avatar.jpg"
   "assets/favicon.svg"
@@ -46,12 +48,14 @@ fi
 echo "Checking JavaScript and JSON syntax..."
 node --check js/background-manager.js
 node --check js/content-renderer.js
+node --check js/photography.js
 node --check js/travel-map.js
 node --check scripts/generate-background-manifest.mjs
 node --check scripts/generate-article-pages.mjs
 node -e "JSON.parse(require('fs').readFileSync('data/content.json', 'utf8'))"
 node -e "JSON.parse(require('fs').readFileSync('data/backgrounds.json', 'utf8'))"
 node -e "JSON.parse(require('fs').readFileSync('data/blogs.json', 'utf8'))"
+node -e "JSON.parse(require('fs').readFileSync('data/photography.json', 'utf8'))"
 
 echo "Checking generated Markdown article output..."
 node scripts/generate-article-pages.mjs --check
@@ -63,6 +67,7 @@ const path = require('path');
 const content = require('./data/content.json');
 const backgrounds = require('./data/backgrounds.json');
 const blogs = require('./data/blogs.json');
+const photography = require('./data/photography.json');
 const homepage = fs.readFileSync('index.html', 'utf8');
 const notFound = fs.readFileSync('404.html', 'utf8');
 const template = fs.readFileSync('templates/article.html', 'utf8');
@@ -72,6 +77,7 @@ const mapSource = fs.readFileSync('js/travel-map.js', 'utf8');
 const generator = fs.readFileSync('scripts/generate-article-pages.mjs', 'utf8');
 const css = fs.readFileSync('css/main.css', 'utf8');
 const articleCss = fs.readFileSync('css/article.css', 'utf8');
+const photographyScript = fs.readFileSync('js/photography.js', 'utf8');
 
 if (content.publications.length !== 7) throw new Error('Expected 7 publications');
 if ('blog' in content) throw new Error('Blog metadata must come from co-located Markdown, not content.json');
@@ -81,6 +87,38 @@ if (content.experience.length !== 2) throw new Error('Expected 2 experience entr
 if (content.travel.cities.length !== 26) throw new Error('Expected 26 travel points');
 if (content.stats.papers !== content.publications.length) throw new Error('Paper counter is stale');
 if (content.stats.cities !== content.travel.cities.length) throw new Error('City counter is stale');
+if ('photography' in content) throw new Error('Photography metadata must come from data/photography.json');
+if (!Array.isArray(photography.albums) || photography.albums.length !== 2) {
+  throw new Error('Photography must contain exactly two albums');
+}
+const albumIds = new Set();
+for (const album of photography.albums) {
+  if (!/^[a-z0-9-]+$/.test(album.id) || albumIds.has(album.id)) {
+    throw new Error(`Invalid or duplicate photography album ID: ${album.id}`);
+  }
+  albumIds.add(album.id);
+  if (!album.title || !album.description || !Array.isArray(album.photos)) {
+    throw new Error(`Incomplete photography album: ${album.id}`);
+  }
+  if (album.cover !== null && album.cover !== undefined &&
+      (typeof album.cover !== 'string' || !/^(?:https?:\/\/|\/)/i.test(album.cover))) {
+    throw new Error(`Photography ${album.id} has an invalid cover URL`);
+  }
+  const photoIds = new Set();
+  for (const photo of album.photos) {
+    if (!photo.id || photoIds.has(photo.id)) throw new Error(`Photography ${album.id} has duplicate photo IDs`);
+    photoIds.add(photo.id);
+    for (const key of ['thumbnail', 'src']) {
+      if (typeof photo[key] !== 'string' || !/^(?:https?:\/\/|\/)/i.test(photo[key])) {
+        throw new Error(`Photography ${album.id} has an invalid ${key} URL`);
+      }
+    }
+    if (!photo.alt || (photo.width !== undefined && (!Number.isInteger(photo.width) || photo.width <= 0)) ||
+        (photo.height !== undefined && (!Number.isInteger(photo.height) || photo.height <= 0))) {
+      throw new Error(`Photography ${album.id} has incomplete photo metadata`);
+    }
+  }
+}
 
 const education = content.education.map(item => item.period).join(' ');
 if (!education.includes('2021-2025') || !education.includes('2025-Present')) {
@@ -187,6 +225,11 @@ if ((homepage.match(/content-card--dense/g) || []).length !== 2) {
 if (!renderer.includes("fetch('/data/blogs.json')") || !renderer.includes('renderRecommendations()') ||
     !renderer.includes('class="blog-meta"') || !renderer.includes('class="blog-read-more"')) {
   throw new Error('Generated blog metadata or homepage sections are not rendered');
+}
+if (!homepage.includes('id="photoGallery"') || !homepage.includes('id="photoLightbox"') ||
+    !homepage.includes('/js/photography.js') || !renderer.includes("fetch('/data/photography.json')") ||
+    !photographyScript.includes('photo-album-card') || !photographyScript.includes('photo-thumb')) {
+  throw new Error('Photography album and lightbox wiring is incomplete');
 }
 if (!template.includes('{{ARTICLE_BODY}}') || !template.includes('{{ARTICLE_NAVIGATION}}') ||
     !template.includes('content-card--dense') || !template.includes('class="sidebar"')) {

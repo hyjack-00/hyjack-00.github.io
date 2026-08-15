@@ -202,14 +202,6 @@
       { "name": "Doha", "lat": 25.2854, "lng": 51.5310, "country": "Qatar", "city": "Doha" }
     ]
   },
-  "photography": [
-    { "icon": "fa-mountain", "title": "Landscape", "description": "Natural scenery", "class": "landscape" },
-    { "icon": "fa-city", "title": "Urban", "description": "City life", "class": "urban" },
-    { "icon": "fa-user", "title": "Portrait", "description": "People & moments", "class": "portrait" },
-    { "icon": "fa-plane", "title": "Travel", "description": "Adventures", "class": "travel-photo" },
-    { "icon": "fa-utensils", "title": "Food", "description": "Culinary", "class": "food" },
-    { "icon": "fa-moon", "title": "Night", "description": "After dark", "class": "night" }
-  ],
   "recommendations": [
     { "name": "Camarts", "type": "art", "description": "A photo gallery featuring a curated library of over 3,000 images created by photographer Dandy Tianxin Weng on his worldwide journeys", "website": "https://camarts.app/" },
     { "name": "Colossal", "type": "art", "description": "An independent online art magazine celebrating visual culture since 2010", "website": "https://www.thisiscolossal.com/category/photography/" }
