@@ -47,6 +47,32 @@ async function readImageEntries(directory, { excludeThumbnails = false } = {}) {
     }
 }
 
+async function readUploadEntries(directory) {
+    const entries = [];
+
+    async function visit(currentDirectory, folderName = path.basename(directory)) {
+        let children;
+        try {
+            children = await fs.readdir(currentDirectory, { withFileTypes: true });
+        } catch (error) {
+            if (error.code === 'ENOENT') return;
+            throw error;
+        }
+
+        for (const child of children) {
+            const childPath = path.join(currentDirectory, child.name);
+            if (child.isDirectory()) {
+                await visit(childPath, child.name);
+            } else if (child.isFile() && imageExtensions.test(child.name) && !isThumbnail(child.name)) {
+                entries.push({ name: child.name, path: childPath, folderName });
+            }
+        }
+    }
+
+    await visit(directory);
+    return entries;
+}
+
 function assertUniquePhotoIds(entries, directory) {
     const ids = new Set();
     for (const entry of entries) {
@@ -87,10 +113,10 @@ async function writeBufferAtomically(outputPath, buffer) {
     }
 }
 
-async function compressSource(uploadDirectory, entry) {
-    const inputPath = path.join(uploadDirectory, entry.name);
+async function compressSource(entry) {
+    const inputPath = entry.path;
     const outputName = `${basePhotoId(entry.name)}.webp`;
-    const outputPath = path.join(uploadDirectory, outputName);
+    const outputPath = path.join(path.dirname(inputPath), outputName);
     const buffer = await encodeUnderLimit(inputPath, originalLimit, [3200, 2800, 2400, 2000, 1600, 1200, 1000, 800, 640]);
     await writeBufferAtomically(outputPath, buffer);
     if (inputPath !== outputPath) await fs.rm(inputPath, { force: true });
@@ -104,21 +130,21 @@ async function generateThumbnail(sourcePath, thumbnailPath) {
 }
 
 async function prepareUpload(albumDirectory, uploadDirectory) {
-    let uploadEntries = await readImageEntries(uploadDirectory, { excludeThumbnails: true });
+    let uploadEntries = await readUploadEntries(uploadDirectory);
     assertUniquePhotoIds(uploadEntries, uploadDirectory);
 
     for (const entry of uploadEntries) {
-        const sourcePath = path.join(uploadDirectory, entry.name);
+        const sourcePath = entry.path;
         const sourceStat = await fs.stat(sourcePath);
         if (sourceStat.size > originalLimit) {
             if (checkOnly) {
                 throw new Error(`Source photo exceeds 500 KB: ${path.relative(root, sourcePath)}; run npm run build:photography`);
             }
-            await compressSource(uploadDirectory, entry);
+            await compressSource(entry);
         }
     }
 
-    uploadEntries = await readImageEntries(uploadDirectory, { excludeThumbnails: true });
+    uploadEntries = await readUploadEntries(uploadDirectory);
     assertUniquePhotoIds(uploadEntries, uploadDirectory);
     await fs.mkdir(albumDirectory, { recursive: true });
     const albumImages = await readImageEntries(albumDirectory);
@@ -128,7 +154,7 @@ async function prepareUpload(albumDirectory, uploadDirectory) {
         const id = basePhotoId(entry.name);
         if (thumbnails.has(id)) continue;
 
-        const sourcePath = path.join(uploadDirectory, entry.name);
+        const sourcePath = entry.path;
         const thumbnailPath = path.join(albumDirectory, `${id}-thumb.webp`);
         if (checkOnly) {
             throw new Error(`Missing thumbnail for ${path.relative(root, sourcePath)}; run npm run build:photography`);
@@ -145,7 +171,7 @@ async function scanAlbum(album) {
     const imageEntries = await readImageEntries(albumDirectory);
     const thumbnails = new Map(imageEntries.filter(entry => isThumbnail(entry.name))
         .map(entry => [basePhotoId(entry.name), entry.name]));
-    const uploadEntries = await readImageEntries(uploadDirectory, { excludeThumbnails: true });
+    const uploadEntries = await readUploadEntries(uploadDirectory);
     const photos = [];
 
     for (const [id, thumbnailName] of thumbnails) {
@@ -157,7 +183,7 @@ async function scanAlbum(album) {
 
         const original = uploadEntries.find(entry => basePhotoId(entry.name) === id);
         if (original) {
-            const originalPath = path.join(uploadDirectory, original.name);
+            const originalPath = original.path;
             const originalStat = await fs.stat(originalPath);
             if (originalStat.size > originalLimit) {
                 throw new Error(`Original photo exceeds 500 KB: ${path.relative(root, originalPath)} (${originalStat.size} bytes)`);
@@ -168,13 +194,15 @@ async function scanAlbum(album) {
             id,
             thumbnailName,
             src: null,
-            thumbnail: publicPath('images', 'photography', album.id, thumbnailName)
+            thumbnail: publicPath('images', 'photography', album.id, thumbnailName),
+            title: id,
+            alt: original?.folderName || album.title
         });
     }
 
     for (const original of uploadEntries) {
         const id = basePhotoId(original.name);
-        const originalPath = path.join(uploadDirectory, original.name);
+        const originalPath = original.path;
         const originalStat = await fs.stat(originalPath);
         if (originalStat.size > originalLimit) {
             throw new Error(`Original photo exceeds 500 KB: ${path.relative(root, originalPath)} (${originalStat.size} bytes)`);
@@ -193,8 +221,8 @@ function mergePhoto(existing, scanned, fallbackTitle) {
         ...existing,
         ...localPaths,
         id: scanned.id,
-        title: existing.title || fallbackTitle,
-        alt: existing.alt || existing.title || fallbackTitle
+        title: existing.title || scanned.title || fallbackTitle,
+        alt: existing.alt || scanned.alt || existing.title || fallbackTitle
     };
     if (!Object.prototype.hasOwnProperty.call(existing, 'src')) merged.src = src;
     return merged;

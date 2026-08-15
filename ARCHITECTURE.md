@@ -92,12 +92,13 @@
 
 ```text
 images/photography/upload/faraway/   # 本地上传与压缩原图，已 gitignore
+  └── OptionalFolder/                # 子文件夹名会作为照片 alt
 images/photography/upload/local/     # 本地上传与压缩原图，已 gitignore
 images/photography/faraway/          # 只提交 *-thumb.* 缩略图
 images/photography/local/            # 只提交 *-thumb.* 缩略图
 ```
 
-只需要把原图放进 `images/photography/upload/{faraway,local}/`，然后运行 `npm run build:photography`。脚本会自动发现新照片：如果源图超过 500 KB，就转换成不超过 500 KB 的 WebP 并替换上传目录中的源文件；随后从压缩后的源图生成不超过 100 KB 的 `photo-id-thumb.webp`，放到对应的影集目录，并更新 `data/photography.json`。原图上传目录永远不会进入 GitHub。
+只需要把原图放进 `images/photography/upload/{faraway,local}/` 或其子文件夹，然后运行 `npm run build:photography`。脚本会递归发现新照片：如果源图超过 500 KB，就转换成不超过 500 KB 的 WebP 并替换上传目录中的源文件；随后从压缩后的源图生成不超过 100 KB 的 `photo-id-thumb.webp`，放到对应的影集目录，并更新 `data/photography.json`。源图所在的最后一级文件夹名会作为新照片的 `alt`，原图上传目录永远不会进入 GitHub。
 
 源图文件名不要带 `-thumb` 后缀，例如 `IMG_9000.jpg`；脚本会自动生成 `IMG_9000-thumb.webp`。`npm run check` 只做检查，不会压缩或生成文件；发现新源图但未处理时，会提示重新运行 `npm run build:photography`。
 

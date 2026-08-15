@@ -7,6 +7,167 @@
       "cover": "/images/photography/faraway/IMG_8140-thumb.webp",
       "photos": [
         {
+          "id": "DSC00140-2",
+          "thumbnail": "/images/photography/faraway/DSC00140-2-thumb.webp",
+          "title": "Borrowed Spotlight",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00160",
+          "thumbnail": "/images/photography/faraway/DSC00160-thumb.webp",
+          "title": "Electric Anthem",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00195",
+          "thumbnail": "/images/photography/faraway/DSC00195-thumb.webp",
+          "title": "A Flag in the Crowd",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00197",
+          "thumbnail": "/images/photography/faraway/DSC00197-thumb.webp",
+          "title": "Midnight Chords",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00200",
+          "thumbnail": "/images/photography/faraway/DSC00200-thumb.webp",
+          "title": "City Exhale",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00211",
+          "thumbnail": "/images/photography/faraway/DSC00211-thumb.webp",
+          "title": "Public Gesture",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00219",
+          "thumbnail": "/images/photography/faraway/DSC00219-thumb.webp",
+          "title": "Neon Drift",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00234",
+          "thumbnail": "/images/photography/faraway/DSC00234-thumb.webp",
+          "title": "Pink Afterglow",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00239",
+          "thumbnail": "/images/photography/faraway/DSC00239-thumb.webp",
+          "title": "The City Performs",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00243",
+          "thumbnail": "/images/photography/faraway/DSC00243-thumb.webp",
+          "title": "Waiting in Neon",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00246-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00246-Enhanced-NR-thumb.webp",
+          "title": "A Tender Pause",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00249",
+          "thumbnail": "/images/photography/faraway/DSC00249-thumb.webp",
+          "title": "Crossing Time",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "DSC00399-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00399-Enhanced-NR-thumb.webp",
+          "title": "Velocity Study",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00414-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00414-Enhanced-NR-thumb.webp",
+          "title": "The Long Turn",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00472-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00472-Enhanced-NR-thumb.webp",
+          "title": "Chrome in Motion",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00476",
+          "thumbnail": "/images/photography/faraway/DSC00476-thumb.webp",
+          "title": "A Field of Engines",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00479-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00479-Enhanced-NR-thumb.webp",
+          "title": "Passing Light",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00520",
+          "thumbnail": "/images/photography/faraway/DSC00520-thumb.webp",
+          "title": "Number Sixty-Six",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00538",
+          "thumbnail": "/images/photography/faraway/DSC00538-thumb.webp",
+          "title": "Storm of Color",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00556",
+          "thumbnail": "/images/photography/faraway/DSC00556-thumb.webp",
+          "title": "Museum Racer",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00558-Enhanced-NR",
+          "thumbnail": "/images/photography/faraway/DSC00558-Enhanced-NR-thumb.webp",
+          "title": "Inside the Machine",
+          "alt": "Charlotte-NASCAR",
+          "src": null
+        },
+        {
+          "id": "DSC00592",
+          "thumbnail": "/images/photography/faraway/DSC00592-thumb.webp",
+          "title": "A Plate of Summer",
+          "alt": "Charlotte",
+          "src": null
+        },
+        {
+          "id": "DSC00593",
+          "thumbnail": "/images/photography/faraway/DSC00593-thumb.webp",
+          "title": "Tracks to the Skyline",
+          "alt": "Charlotte",
+          "src": null
+        },
+        {
           "id": "IMG_8140",
           "src": null,
           "thumbnail": "/images/photography/faraway/IMG_8140-thumb.webp",
@@ -61,6 +222,48 @@
           "title": "羊湖的羊",
           "alt": "Tibet - Yamzhog Yumco",
           "time": "2024-05"
+        },
+        {
+          "id": "Picture1",
+          "thumbnail": "/images/photography/faraway/Picture1-thumb.webp",
+          "title": "Three Faces of Night",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "Picture2",
+          "thumbnail": "/images/photography/faraway/Picture2-thumb.webp",
+          "title": "Fragments of the Square",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "Picture3",
+          "thumbnail": "/images/photography/faraway/Picture3-thumb.webp",
+          "title": "Street Echoes",
+          "alt": "TimeSquare",
+          "src": null
+        },
+        {
+          "id": "Weixin Image_20260809162552_303_274",
+          "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162552_303_274-thumb.webp",
+          "title": "Green Corridor",
+          "alt": "Charlotte",
+          "src": null
+        },
+        {
+          "id": "Weixin Image_20260809162555_305_274",
+          "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162555_305_274-thumb.webp",
+          "title": "Sunlit Spiral",
+          "alt": "Charlotte",
+          "src": null
+        },
+        {
+          "id": "Weixin Image_20260809162557_306_274",
+          "thumbnail": "/images/photography/faraway/Weixin%20Image_20260809162557_306_274-thumb.webp",
+          "title": "Crossroads in Bronze",
+          "alt": "Charlotte",
+          "src": null
         }
       ]
     },
