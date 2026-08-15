@@ -3,8 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npm run build:blog && node scripts/generate-background-manifest.mjs",
+    "build": "npm run build:blog && npm run build:photography && node scripts/generate-background-manifest.mjs",
     "build:blog": "node scripts/generate-article-pages.mjs",
+    "build:photography": "node scripts/generate-photography-manifest.mjs",
     "check": "bash validate-homepage.sh"
   },
   "devDependencies": {
@@ -12,4 +13,3 @@
     "markdown-it": "15.0.0"
   }
 }
-

@@ -18,6 +18,7 @@ readonly REQUIRED_FILES=(
   "js/vendor/leaflet.js"
   "scripts/generate-background-manifest.mjs"
   "scripts/generate-article-pages.mjs"
+  "scripts/generate-photography-manifest.mjs"
   "templates/article.html"
   "templates/post.md"
   "data/backgrounds.json"
@@ -52,6 +53,7 @@ node --check js/photography.js
 node --check js/travel-map.js
 node --check scripts/generate-background-manifest.mjs
 node --check scripts/generate-article-pages.mjs
+node --check scripts/generate-photography-manifest.mjs
 node -e "JSON.parse(require('fs').readFileSync('data/content.json', 'utf8'))"
 node -e "JSON.parse(require('fs').readFileSync('data/backgrounds.json', 'utf8'))"
 node -e "JSON.parse(require('fs').readFileSync('data/blogs.json', 'utf8'))"
@@ -59,6 +61,7 @@ node -e "JSON.parse(require('fs').readFileSync('data/photography.json', 'utf8'))
 
 echo "Checking generated Markdown article output..."
 node scripts/generate-article-pages.mjs --check
+node scripts/generate-photography-manifest.mjs --check
 
 echo "Checking site data and architecture..."
 node <<'NODE'
@@ -104,14 +107,33 @@ for (const album of photography.albums) {
       (typeof album.cover !== 'string' || !/^(?:https?:\/\/|\/)/i.test(album.cover))) {
     throw new Error(`Photography ${album.id} has an invalid cover URL`);
   }
+  if (album.oss !== undefined && (typeof album.oss !== 'object' || album.oss === null)) {
+    throw new Error(`Photography ${album.id} has an invalid OSS override`);
+  }
+  if (album.oss?.cover !== undefined &&
+      (typeof album.oss.cover !== 'string' || !/^https:\/\//i.test(album.oss.cover))) {
+    throw new Error(`Photography ${album.id} has an invalid OSS cover URL`);
+  }
   const photoIds = new Set();
   for (const photo of album.photos) {
     if (!photo.id || photoIds.has(photo.id)) throw new Error(`Photography ${album.id} has duplicate photo IDs`);
     photoIds.add(photo.id);
+    const hasLocalThumbnail = typeof photo.thumbnail === 'string' && /^(?:https?:\/\/|\/)/i.test(photo.thumbnail);
+    if (photo.src !== null && photo.src !== undefined &&
+        (typeof photo.src !== 'string' || !/^(?:https?:\/\/|\/)/i.test(photo.src))) {
+      throw new Error(`Photography ${album.id} has an invalid local src URL`);
+    }
+    if (photo.oss !== undefined && (typeof photo.oss !== 'object' || photo.oss === null)) {
+      throw new Error(`Photography ${album.id} has an invalid OSS override`);
+    }
     for (const key of ['thumbnail', 'src']) {
-      if (typeof photo[key] !== 'string' || !/^(?:https?:\/\/|\/)/i.test(photo[key])) {
-        throw new Error(`Photography ${album.id} has an invalid ${key} URL`);
+      if (photo.oss?.[key] !== undefined &&
+          (typeof photo.oss[key] !== 'string' || !/^https:\/\//i.test(photo.oss[key]))) {
+        throw new Error(`Photography ${album.id} has an invalid OSS ${key} URL`);
       }
+    }
+    if (!hasLocalThumbnail && !/^https:\/\//i.test(photo.oss?.thumbnail || '')) {
+      throw new Error(`Photography ${album.id} has no usable thumbnail URL`);
     }
     if (!photo.alt || (photo.width !== undefined && (!Number.isInteger(photo.width) || photo.width <= 0)) ||
         (photo.height !== undefined && (!Number.isInteger(photo.height) || photo.height <= 0))) {
@@ -228,7 +250,8 @@ if (!renderer.includes("fetch('/data/blogs.json')") || !renderer.includes('rende
 }
 if (!homepage.includes('id="photoGallery"') || !homepage.includes('id="photoLightbox"') ||
     !homepage.includes('/js/photography.js') || !renderer.includes("fetch('/data/photography.json')") ||
-    !photographyScript.includes('photo-album-card') || !photographyScript.includes('photo-thumb')) {
+    !photographyScript.includes('photo-album-card') || !photographyScript.includes('photo-thumb') ||
+    !photographyScript.includes("item?.oss?.[key]")) {
   throw new Error('Photography album and lightbox wiring is incomplete');
 }
 if (!template.includes('{{ARTICLE_BODY}}') || !template.includes('{{ARTICLE_NAVIGATION}}') ||

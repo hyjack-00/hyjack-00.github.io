@@ -4,15 +4,122 @@
       "id": "faraway",
       "title": "Faraway",
       "description": "Landscapes and fragments from farther away.",
-      "cover": null,
-      "photos": []
+      "cover": "/images/photography/faraway/IMG_8140-thumb.webp",
+      "photos": [
+        {
+          "id": "IMG_8140",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8140-thumb.webp",
+          "title": "IMG_8140",
+          "alt": "IMG_8140"
+        },
+        {
+          "id": "IMG_8270",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8270-thumb.webp",
+          "title": "IMG_8270",
+          "alt": "IMG_8270"
+        },
+        {
+          "id": "IMG_8297",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8297-thumb.webp",
+          "title": "IMG_8297",
+          "alt": "IMG_8297"
+        },
+        {
+          "id": "IMG_8302",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8302-thumb.webp",
+          "title": "IMG_8302",
+          "alt": "IMG_8302"
+        },
+        {
+          "id": "IMG_8305",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8305-thumb.webp",
+          "title": "IMG_8305",
+          "alt": "IMG_8305"
+        },
+        {
+          "id": "IMG_8475",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8475-thumb.webp",
+          "title": "IMG_8475",
+          "alt": "IMG_8475"
+        },
+        {
+          "id": "IMG_8706",
+          "src": null,
+          "thumbnail": "/images/photography/faraway/IMG_8706-thumb.webp",
+          "title": "IMG_8706",
+          "alt": "IMG_8706"
+        }
+      ]
     },
     {
       "id": "local",
       "title": "Local",
       "description": "Small scenes, familiar streets, and nearby days.",
-      "cover": null,
-      "photos": []
+      "cover": "/images/photography/local/IMG_7233-thumb.webp",
+      "photos": [
+        {
+          "id": "IMG_7233",
+          "src": null,
+          "thumbnail": "/images/photography/local/IMG_7233-thumb.webp",
+          "title": "IMG_7233",
+          "alt": "IMG_7233"
+        },
+        {
+          "id": "对比色-红蓝冷暖",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E5%AF%B9%E6%AF%94%E8%89%B2-%E7%BA%A2%E8%93%9D%E5%86%B7%E6%9A%96-thumb.webp",
+          "title": "对比色-红蓝冷暖",
+          "alt": "对比色-红蓝冷暖"
+        },
+        {
+          "id": "特殊色-灰红",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E7%81%B0%E7%BA%A2-thumb.webp",
+          "title": "特殊色-灰红",
+          "alt": "特殊色-灰红"
+        },
+        {
+          "id": "特殊色-黑白",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E7%89%B9%E6%AE%8A%E8%89%B2-%E9%BB%91%E7%99%BD-thumb.webp",
+          "title": "特殊色-黑白",
+          "alt": "特殊色-黑白"
+        },
+        {
+          "id": "蓝-橙",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E8%93%9D-%E6%A9%99-thumb.webp",
+          "title": "蓝-橙",
+          "alt": "蓝-橙"
+        },
+        {
+          "id": "近邻色-红",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2-thumb.webp",
+          "title": "近邻色-红",
+          "alt": "近邻色-红"
+        },
+        {
+          "id": "近邻色-红橙",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E7%BA%A2%E6%A9%99-thumb.webp",
+          "title": "近邻色-红橙",
+          "alt": "近邻色-红橙"
+        },
+        {
+          "id": "近邻色-蓝绿",
+          "src": null,
+          "thumbnail": "/images/photography/local/%E8%BF%91%E9%82%BB%E8%89%B2-%E8%93%9D%E7%BB%BF-thumb.webp",
+          "title": "近邻色-蓝绿",
+          "alt": "近邻色-蓝绿"
+        }
+      ]
     }
   ]
 }

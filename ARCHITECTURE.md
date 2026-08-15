@@ -88,7 +88,18 @@
 
 #### 管理摄影影集
 
-摄影数据单独维护在 `data/photography.json`。目前固定保留两个影集：`faraway` 与 `local`。每张照片使用 OSS 上的两个地址：
+摄影数据单独维护在 `data/photography.json`。目前固定保留两个影集：`faraway` 与 `local`。图片目录分为“上传源文件”和“提交到 Git 的缩略图”两层：
+
+```text
+images/photography/upload/faraway/   # 本地上传与压缩原图，已 gitignore
+images/photography/upload/local/     # 本地上传与压缩原图，已 gitignore
+images/photography/faraway/          # 只提交 *-thumb.* 缩略图
+images/photography/local/            # 只提交 *-thumb.* 缩略图
+```
+
+把原图放进 `images/photography/upload/{faraway,local}/`，把对应的 `photo-id-thumb.webp` 放进影集目录。运行 `npm run build:photography` 后，脚本会扫描缩略图、检查原图不超过 500 KB、检查缩略图不超过 100 KB，并更新 `data/photography.json`。原图上传目录永远不会进入 GitHub。
+
+每张照片可以填写 OSS 覆盖地址；如果存在 `oss.thumbnail` 或 `oss.src`，前端优先使用它，否则使用仓库中的缩略图。当前没有 OSS 原图时，点击大图会回退显示缩略图，这是为了保持页面可用而不把原图提交到 GitHub。
 
 ```json
 {
@@ -97,14 +108,18 @@
   "location": "Tokyo",
   "date": "2026-04",
   "alt": "A quiet street in Tokyo at night",
-  "thumbnail": "https://your-bucket.oss-cn-hongkong.aliyuncs.com/photography/faraway/tokyo-night-01-thumb.webp",
-  "src": "https://your-bucket.oss-cn-hongkong.aliyuncs.com/photography/faraway/tokyo-night-01.webp",
+  "thumbnail": "/images/photography/faraway/tokyo-night-01-thumb.webp",
+  "src": null,
+  "oss": {
+    "thumbnail": "https://your-bucket.oss-cn-hongkong.aliyuncs.com/photography/faraway/tokyo-night-01-thumb.webp",
+    "src": "https://your-bucket.oss-cn-hongkong.aliyuncs.com/photography/faraway/tokyo-night-01.webp"
+  },
   "width": 2400,
   "height": 1600
 }
 ```
 
-`thumbnail` 只用于影集网格，建议压缩到约 50–150 KB；`src` 用于点击后的大图，建议使用 WebP/AVIF 并保留足够的展示尺寸。页面只在打开照片时请求 `src`，不会一开始下载整组原图。影集封面默认取第一张照片的缩略图，也可以在 album 上单独填写 `cover`。新增照片后无需改 HTML 或 JavaScript。
+`thumbnail` 只用于影集网格，建议压缩到约 50–100 KB；`oss.src` 用于点击后的大图，建议使用 WebP/AVIF。页面只在打开照片时请求 `oss.src`，不会一开始下载整组原图。影集封面默认取第一张照片的缩略图，也可以在 album 上单独填写 `cover` 或 `oss.cover`。新增照片后无需改 HTML 或 JavaScript。
 
 推荐的 OSS 对象布局：
 
@@ -118,7 +133,7 @@ photography/
     └── sysu-rain-01.webp
 ```
 
-缩略图和大图都建议控制在 500 KB 以内；如果 OSS 使用图片处理参数，应该在上传或 CDN URL 层直接输出 WebP/AVIF，而不是让浏览器下载原始相机文件。
+缩略图建议控制在 100 KB 以内，大图建议控制在 500 KB 以内；如果 OSS 使用图片处理参数，应该在上传或 CDN URL 层直接输出 WebP/AVIF，而不是让浏览器下载原始相机文件。
 
 #### 示例：更新个人信息
 
@@ -228,6 +243,7 @@ excerpt: "显示在主页 Blog 列表中的摘要。"
 
 ```bash
 npm run build:blog
+npm run build:photography
 npm run check
 ```
 
@@ -272,13 +288,18 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 │   └── content.json              # ✅ 主页内容数据源
 │
 ├── images/
-│   └── backgrounds/
-│       ├── 0__NFZ__...jpg         # 当前背景（最小数字）
-│       ├── 1__APPLE__...jpg       # 备选背景 (<500KB)
-│       └── 1__井小姐...jpg        # 备选背景 (<500KB)
+│   ├── backgrounds/
+│   │   ├── 0__NFZ__...jpg         # 当前背景（最小数字）
+│   │   ├── 1__APPLE__...jpg       # 备选背景 (<500KB)
+│   │   └── 1__井小姐...jpg        # 备选背景 (<500KB)
+│   └── photography/
+│       ├── upload/                 # 原图上传目录（gitignore）
+│       ├── faraway/                # Faraway 缩略图
+│       └── local/                  # Local 缩略图
 │
 ├── scripts/
 │   ├── generate-article-pages.mjs
+│   ├── generate-photography-manifest.mjs
 │   └── generate-background-manifest.mjs
 │
 └── assets/

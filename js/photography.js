@@ -32,6 +32,10 @@
         return /^(?:https?:\/\/|\/)/i.test(trimmed) ? trimmed : '';
     }
 
+    function resolveImageUrl(item, key) {
+        return safeImageUrl(item?.oss?.[key]) || safeImageUrl(item?.[key]);
+    }
+
     function imageAttributes(photo) {
         const dimensions = Number.isInteger(photo.width) && Number.isInteger(photo.height) &&
             photo.width > 0 && photo.height > 0
@@ -41,7 +45,7 @@
     }
 
     function albumCover(album) {
-        return safeImageUrl(album.cover) || safeImageUrl(album.photos?.[0]?.thumbnail || album.photos?.[0]?.src);
+        return resolveImageUrl(album, 'cover') || resolveImageUrl(album.photos?.[0], 'thumbnail');
     }
 
     function renderAlbumCards() {
@@ -78,7 +82,7 @@
         }
 
         albumGrid.innerHTML = photos.map((photo, index) => {
-            const thumbnail = safeImageUrl(photo.thumbnail) || safeImageUrl(photo.src);
+            const thumbnail = resolveImageUrl(photo, 'thumbnail') || resolveImageUrl(photo, 'src');
             if (!thumbnail) return '';
             const label = photo.alt || photo.title || `Photograph ${index + 1}`;
             const dimensions = imageAttributes(photo);
@@ -125,7 +129,7 @@
 
     function openLightbox(index) {
         const photo = activeAlbum?.photos?.[index];
-        const source = safeImageUrl(photo?.src);
+        const source = resolveImageUrl(photo, 'src') || resolveImageUrl(photo, 'thumbnail');
         if (!photo || !source) return;
 
         activePhotoIndex = index;
