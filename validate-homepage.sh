@@ -76,6 +76,7 @@ const notFound = fs.readFileSync('404.html', 'utf8');
 const template = fs.readFileSync('templates/article.html', 'utf8');
 const renderer = fs.readFileSync('js/content-renderer.js', 'utf8');
 const backgroundManager = fs.readFileSync('js/background-manager.js', 'utf8');
+const backgroundGenerator = fs.readFileSync('scripts/generate-background-manifest.mjs', 'utf8');
 const mapSource = fs.readFileSync('js/travel-map.js', 'utf8');
 const generator = fs.readFileSync('scripts/generate-article-pages.mjs', 'utf8');
 const css = fs.readFileSync('css/main.css', 'utf8');
@@ -209,22 +210,24 @@ for (const removedPath of removedPaths) {
 
 const diskBackgrounds = fs.readdirSync('images/backgrounds')
   .filter(file => /\.(?:avif|gif|jpe?g|png|webp)$/i.test(file))
-  .sort((left, right) => {
-    const order = Number(left.split('__')[0]) - Number(right.split('__')[0]);
-    return order || left.localeCompare(right, 'en', { numeric: true });
-  });
+  .sort((left, right) => left.localeCompare(right, 'en', { numeric: true }));
+const manifestBackgrounds = [backgrounds.use, ...(backgrounds.others || [])];
+if (typeof backgrounds.use !== 'string' || !backgrounds.use || !Array.isArray(backgrounds.others)) {
+  throw new Error('Background manifest must define use and others');
+}
+if (new Set(manifestBackgrounds).size !== manifestBackgrounds.length || backgrounds.others.includes(backgrounds.use)) {
+  throw new Error('Background manifest contains duplicate or repeated active files');
+}
 for (const file of diskBackgrounds) {
   const extension = path.extname(file);
   const parts = file.slice(0, -extension.length).split('__');
-  if (parts.length !== 4 || !/^\d+$/.test(parts[0]) || parts.slice(1).some(part => !part)) {
-    throw new Error(`Invalid background filename: ${file}`);
+  if (parts.length !== 3 || /^\d+__/.test(file) || parts.some(part => !part)) {
+    throw new Error(`Invalid background filename: ${file}; expected title__artist__domain-path.ext`);
   }
 }
-if (JSON.stringify(backgrounds.backgrounds.map(item => item.file)) !== JSON.stringify(diskBackgrounds)) {
-  throw new Error('Background manifest is not synchronized or sorted');
-}
-if (!backgrounds.backgrounds[0] || backgrounds.backgrounds[0].order !== 0) {
-  throw new Error('The active background must begin with order 0');
+if (manifestBackgrounds.length !== diskBackgrounds.length ||
+    diskBackgrounds.some(file => !manifestBackgrounds.includes(file))) {
+  throw new Error('Background manifest is not synchronized with images/backgrounds');
 }
 
 if ((mapSource.match(/L\.map\(/g) || []).length !== 1 || !mapSource.includes('L.circleMarker')) {
@@ -234,6 +237,10 @@ if (/cluster|maplibre|geo\.datav/i.test(mapSource + homepage + css)) {
   throw new Error('Legacy map implementation remains');
 }
 if (!backgroundManager.includes("'/data/backgrounds.json'") ||
+    !backgroundManager.includes('manifest.use') ||
+    backgroundManager.includes('manifest.backgrounds') ||
+    !backgroundGenerator.includes('manifest.use') ||
+    !backgroundGenerator.includes('manifest.others') ||
     /background-image:\s*url\(['"]?\/images\/backgrounds/i.test(css)) {
   throw new Error('Background selection is not manifest-driven');
 }

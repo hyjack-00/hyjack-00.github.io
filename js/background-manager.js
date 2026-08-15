@@ -10,15 +10,14 @@ let backgroundControlTimer;
 function parseBackgroundFilename(filename) {
     const basename = filename.replace(/\.[^.]+$/, '');
     const parts = basename.split('__');
-    if (parts.length !== 4 || !/^\d+$/.test(parts[0])) return null;
+    if (parts.length !== 3 || parts.some(part => !part)) return null;
 
-    const [order, title, artist, encodedLink] = parts;
+    const [title, artist, encodedLink] = parts;
     const href = `https://${encodedLink.replace(/-/g, '/')}`;
 
     try {
         const url = new URL(href);
         return {
-            order: Number(order),
             title,
             artist,
             href: url.href,
@@ -34,7 +33,7 @@ function renderBackgroundCredit(background) {
     const credit = document.querySelector('.background-credit');
     if (!credit) return;
 
-    const details = parseBackgroundFilename(background.file);
+    const details = parseBackgroundFilename(background);
     if (!details) {
         credit.textContent = 'Artwork information unavailable.';
         return;
@@ -57,10 +56,10 @@ async function loadActiveBackground() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const manifest = await response.json();
-        const [background] = manifest.backgrounds || [];
-        if (!background) throw new Error('Background manifest is empty');
+        const background = manifest.use;
+        if (typeof background !== 'string' || !background) throw new Error('Background manifest has no active image');
 
-        const imageUrl = `/images/backgrounds/${encodeURIComponent(background.file)}`;
+        const imageUrl = `/images/backgrounds/${encodeURIComponent(background)}`;
         document.documentElement.style.setProperty('--active-background-image', `url("${imageUrl}")`);
         renderBackgroundCredit(background);
     } catch (error) {

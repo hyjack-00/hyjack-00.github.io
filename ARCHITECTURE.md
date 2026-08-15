@@ -177,24 +177,30 @@ photography/
 
 ### 命名规范：
 ```
-0__作品名__艺术家名__域名-路径.jpg    ← 当前使用的背景
-1__作品名__艺术家名__域名-路径.jpg    ← 备选背景
-2__作品名__艺术家名__域名-路径.jpg    ← 更多备选
+作品名__艺术家名__域名-路径.jpg    ← 背景文件名，同时提供 Artist Information
 ```
 
-**排序逻辑**：
-- 按双下划线前的数字升序，同一数字按文件名排序
-- 页面读取 `data/backgrounds.json` 的第一项作为背景
-- Artist、作品名和链接均由文件名解析，不写死在 HTML/CSS
+**选择清单**：
+- `data/backgrounds.json` 是唯一的背景选择来源，使用 `use` 指定当前背景，`others` 按顺序列出备选背景
+- `use` 必须是 `images/backgrounds/` 中的一个文件，所有背景文件都必须列在 `use` 或 `others` 中
+- 不再使用文件名前的 `0__`、`1__` 等排序前缀；Artist、作品名和链接仍由文件名解析，不写死在 HTML/CSS
 
 **当前使用**：
-- `0__NFZ__劇団__x.com-_Gekidan.jpg` (current background, <500KB)
+```json
+{
+  "use": "NFZ__劇団__x.com-_Gekidan.jpg",
+  "others": [
+    "APPLE__劇団__x.com-_Gekidan.jpg",
+    "井小姐和猫和插排__Rotarran__pixiv.net-users-51648995.jpg"
+  ]
+}
+```
 
 **切换背景图片**：
-1. 将想用的图片前导数字改为 `0`
-2. 将旧背景改为更大的数字
-3. 运行 `node scripts/generate-background-manifest.mjs`
-4. 运行 `bash validate-homepage.sh`，确保清单同步且每张图片不超过 500KB
+1. 将图片放入 `images/backgrounds/`，命名为 `作品名__艺术家名__域名-路径.ext`
+2. 编辑 `data/backgrounds.json`：把当前文件写入 `use`，其余文件按展示顺序写入 `others`
+3. 运行 `node scripts/generate-background-manifest.mjs`，校验清单与图片是否同步
+4. 运行 `bash validate-homepage.sh`，确保每张图片不超过 500KB
 
 ### 页面引用：
 ```css
@@ -296,16 +302,16 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 │   └── vendor/leaflet.js         # 本地地图运行库
 │
 ├── data/
-│   ├── backgrounds.json          # 背景排序清单（脚本生成）
+│   ├── backgrounds.json          # 背景选择清单（use + others）
 │   ├── blogs.json                # Blog 首页清单（脚本生成）
 │   ├── photography.json          # Faraway / Local 影集与 OSS 图片 URL
 │   └── content.json              # ✅ 主页内容数据源
 │
 ├── images/
 │   ├── backgrounds/
-│   │   ├── 0__NFZ__...jpg         # 当前背景（最小数字）
-│   │   ├── 1__APPLE__...jpg       # 备选背景 (<500KB)
-│   │   └── 1__井小姐...jpg        # 备选背景 (<500KB)
+│   │   ├── NFZ__...jpg             # 当前背景（由 data/backgrounds.json 的 use 指定）
+│   │   ├── APPLE__...jpg           # 备选背景 (<500KB)
+│   │   └── 井小姐...jpg            # 备选背景 (<500KB)
 │   └── photography/
 │       ├── upload/                 # 原图上传目录（gitignore）
 │       ├── faraway/                # Faraway 缩略图
