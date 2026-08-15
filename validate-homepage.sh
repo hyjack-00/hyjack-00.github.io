@@ -135,7 +135,8 @@ for (const album of photography.albums) {
     if (!hasLocalThumbnail && !/^https:\/\//i.test(photo.oss?.thumbnail || '')) {
       throw new Error(`Photography ${album.id} has no usable thumbnail URL`);
     }
-    if (!photo.alt || (photo.width !== undefined && (!Number.isInteger(photo.width) || photo.width <= 0)) ||
+    if (!photo.title || photo.title === photo.id || !photo.alt ||
+        (photo.width !== undefined && (!Number.isInteger(photo.width) || photo.width <= 0)) ||
         (photo.height !== undefined && (!Number.isInteger(photo.height) || photo.height <= 0))) {
       throw new Error(`Photography ${album.id} has incomplete photo metadata`);
     }

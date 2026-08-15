@@ -101,14 +101,14 @@ async function readUploadEntries(directory) {
     }
 }
 
-function mergePhoto(existing, scanned) {
+function mergePhoto(existing, scanned, fallbackTitle) {
     const { thumbnailName, ...localPaths } = scanned;
     return {
         ...existing,
         ...localPaths,
         id: scanned.id,
-        title: existing.title || scanned.id,
-        alt: existing.alt || existing.title || scanned.id
+        title: existing.title || fallbackTitle,
+        alt: existing.alt || existing.title || fallbackTitle
     };
 }
 
@@ -121,7 +121,11 @@ for (const defaults of albumDefaults) {
     const scannedPhotos = await scanAlbum(defaults);
     const existingPhotos = new Map((existing.photos || []).map(photo => [photo.id, photo]));
     const localIds = new Set(scannedPhotos.map(photo => photo.id));
-    const localPhotos = scannedPhotos.map(photo => mergePhoto(existingPhotos.get(photo.id) || {}, photo));
+    const localPhotos = scannedPhotos.map((photo, index) => mergePhoto(
+        existingPhotos.get(photo.id) || {},
+        photo,
+        `${defaults.title} ${String(index + 1).padStart(2, '0')}`
+    ));
     const remoteOnlyPhotos = (existing.photos || []).filter(photo => !localIds.has(photo.id));
     const photos = [...localPhotos, ...remoteOnlyPhotos];
 

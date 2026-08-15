@@ -121,6 +121,20 @@ images/photography/local/            # 只提交 *-thumb.* 缩略图
 
 `thumbnail` 只用于影集网格，建议压缩到约 50–100 KB；`oss.src` 用于点击后的大图，建议使用 WebP/AVIF。页面只在打开照片时请求 `oss.src`，不会一开始下载整组原图。影集封面默认取第一张照片的缩略图，也可以在 album 上单独填写 `cover` 或 `oss.cover`。新增照片后无需改 HTML 或 JavaScript。
 
+标题直接改 `data/photography.json` 中对应照片的 `title` 字段；`id` 只用于匹配文件名，不要改。比如把：
+
+```json
+"title": "Faraway 01"
+```
+
+改成：
+
+```json
+"title": "A monastery beneath the mountain"
+```
+
+下次运行构建时，脚本只会更新 `thumbnail`、路径和新文件，不会覆盖手工填写的标题、地点、日期和 `oss` 配置。
+
 推荐的 OSS 对象布局：
 
 ```text
