@@ -16,7 +16,8 @@ function preloadBackground(imageUrl) {
         image.onerror = finish;
         image.src = imageUrl;
         if (image.complete) {
-            image.decode?.().catch(() => {}).finally(finish);
+            const decoded = typeof image.decode === 'function' ? image.decode() : Promise.resolve();
+            decoded.catch(() => {}).finally(finish);
         }
     });
 }
