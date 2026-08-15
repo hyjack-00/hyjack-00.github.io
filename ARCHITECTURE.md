@@ -97,7 +97,9 @@ images/photography/faraway/          # 只提交 *-thumb.* 缩略图
 images/photography/local/            # 只提交 *-thumb.* 缩略图
 ```
 
-把原图放进 `images/photography/upload/{faraway,local}/`，把对应的 `photo-id-thumb.webp` 放进影集目录。运行 `npm run build:photography` 后，脚本会扫描缩略图、检查原图不超过 500 KB、检查缩略图不超过 100 KB，并更新 `data/photography.json`。原图上传目录永远不会进入 GitHub。
+只需要把原图放进 `images/photography/upload/{faraway,local}/`，然后运行 `npm run build:photography`。脚本会自动发现新照片：如果源图超过 500 KB，就转换成不超过 500 KB 的 WebP 并替换上传目录中的源文件；随后从压缩后的源图生成不超过 100 KB 的 `photo-id-thumb.webp`，放到对应的影集目录，并更新 `data/photography.json`。原图上传目录永远不会进入 GitHub。
+
+源图文件名不要带 `-thumb` 后缀，例如 `IMG_9000.jpg`；脚本会自动生成 `IMG_9000-thumb.webp`。`npm run check` 只做检查，不会压缩或生成文件；发现新源图但未处理时，会提示重新运行 `npm run build:photography`。
 
 每张照片可以填写 OSS 覆盖地址；如果存在 `oss.thumbnail` 或 `oss.src`，前端优先使用它，否则使用仓库中的缩略图。当前没有 OSS 原图时，点击大图会回退显示缩略图，这是为了保持页面可用而不把原图提交到 GitHub。
 
