@@ -275,7 +275,7 @@ npm run check
 
 ## 更换头像
 
-直接用新的正方形 JPG 覆盖 `assets/avatar.jpg` 即可，建议使用至少 280×280 的图片并保持在 500 KB 以内。当前近景头像使用 `--avatar-scale: 1` 和居中焦点；可通过 `css/main.css` 顶部的 `--avatar-scale`、`--avatar-focus-x`、`--avatar-focus-y` 调整圆形裁切。浏览器页签使用独立的 `assets/favicon.svg`，更换头像不会影响 favicon。
+直接用新的正方形 JPG 覆盖 `assets/avatar.jpg` 即可，建议使用至少 280×280 的图片并保持在 500 KB 以内。当前近景头像使用 `--avatar-scale: 1` 和居中焦点；可通过 `css/main.css` 顶部的 `--avatar-scale`、`--avatar-focus-x`、`--avatar-focus-y` 调整圆形裁切。浏览器页签同样使用 `assets/avatar.jpg`。
 
 Experience 图标来自中山大学官方页面并保存在 `assets/experience/`，页面不依赖远程图片：
 
@@ -327,8 +327,7 @@ Experience 图标来自中山大学官方页面并保存在 `assets/experience/`
 │   └── generate-background-manifest.mjs
 │
 └── assets/
-    ├── avatar.jpg                # 头像照片
-    ├── favicon.svg               # 独立的浏览器页签图标
+    ├── avatar.jpg                # 头像及浏览器页签图标
     └── experience/               # 本地化的团队经历图标
 ```
 

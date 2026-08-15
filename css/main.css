@@ -117,7 +117,7 @@ body.is-background-view { overflow: hidden; }
     overflow: hidden;
     flex: 0 0 auto;
     align-self: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     border: 2px solid #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -1207,7 +1207,7 @@ body.is-background-view .floating-background-control {
 
     .profile-image-frame {
         justify-self: center;
-        margin-bottom: 0.45rem;
+        margin-bottom: 0.9rem;
     }
 
     .profile-name {
@@ -1264,7 +1264,7 @@ body.is-background-view .floating-background-control {
     }
 
     .profile-image-frame {
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
     }
 
     .sidebar-content {

@@ -27,7 +27,6 @@ readonly REQUIRED_FILES=(
   "data/content.json"
   "assets/avatar.jpg"
   "assets/dense-feather.png"
-  "assets/favicon.svg"
 )
 
 failed=0
@@ -219,7 +218,7 @@ for (const post of blogs.posts) {
   const article = fs.readFileSync(htmlPath, 'utf8');
   if (!article.includes('Generated from the co-located index.md file') ||
       !article.includes('background-open-button--floating') ||
-      !article.includes('/assets/favicon.svg') ||
+      !article.includes('/assets/avatar.jpg') ||
       article.includes('article-renderer.js') ||
       /\{\{ARTICLE_[A-Z_]+\}\}/.test(article)) {
     throw new Error(`Generated article is incomplete: ${htmlPath}`);
@@ -311,8 +310,8 @@ if (!template.includes('background-open-button--floating') || !template.includes
   throw new Error('A secondary page is missing the full-background control');
 }
 for (const page of [homepage, notFound, template]) {
-  if (!page.includes('/assets/favicon.svg') || /rel="icon"[^>]+avatar\.jpg/.test(page)) {
-    throw new Error('A page still uses the profile avatar as its favicon');
+  if (!page.includes('<link rel="icon" href="/assets/avatar.jpg" type="image/jpeg">')) {
+    throw new Error('A page does not use the profile avatar as its favicon');
   }
 }
 if (!backgroundManager.includes("document.querySelector('.main-content, .error-main')") ||
