@@ -26,6 +26,7 @@ readonly REQUIRED_FILES=(
   "data/photography.json"
   "data/content.json"
   "assets/avatar.jpg"
+  "assets/dense-feather.png"
   "assets/favicon.svg"
 )
 
@@ -294,10 +295,12 @@ if (!homepage.includes('id="photoGallery"') || !homepage.includes('id="photoLigh
     !photographyGenerator.includes('previousFingerprint !== sourceFingerprint')) {
   throw new Error('Photography album and lightbox wiring is incomplete');
 }
-if (!backgroundManager.includes('preloadBackground') ||
-    !backgroundManager.includes("classList.add('background-ready')") ||
-    !css.includes('html:not(.background-ready) .content-card--dense::before')) {
-  throw new Error('Background readiness is not synchronized with the dense feather layer');
+if (!css.includes("border-image-source: url('/assets/dense-feather.png')") ||
+    !css.includes('border-image-slice: 48 fill') ||
+    !css.includes('border-image-width: 48px') ||
+    !css.includes('border-image-repeat: stretch') ||
+    css.includes('.content-card--dense::before')) {
+  throw new Error('Dense cards must use the static single-layer feather asset');
 }
 if (!template.includes('{{ARTICLE_BODY}}') || !template.includes('{{ARTICLE_NAVIGATION}}') ||
     !template.includes('content-card--dense') || !template.includes('class="sidebar"')) {
@@ -326,9 +329,41 @@ if (!generator.includes('html: false') || !generator.includes('stable_heading_id
   throw new Error('Markdown safety, stable anchors, or legacy code-block visuals are missing');
 }
 if (!css.includes('--avatar-scale: 1') || !css.includes('--avatar-focus-y: 50%') ||
-    !css.includes('--dense-layer-alpha: 0.50') || !css.includes('--pub-copy-line-height: 1.2') ||
+    !css.includes('--sidebar-width: 280px') || !css.includes('--profile-size: 140px') ||
+    !css.includes('calc((var(--sidebar-width) - var(--profile-size)) / 2)') ||
+    !css.includes('margin-left: var(--sidebar-width)') ||
+    !css.includes('clamp(1.5rem, calc(25vh - 8.5rem)') ||
+    !css.includes('--pub-copy-line-height: 1.2') ||
     !css.includes('--pub-action-line-height: 1.2') || !css.includes('--pub-action-gap-top: 0.24rem')) {
   throw new Error('Avatar, feather, or publication density variables are incorrect');
+}
+NODE
+
+echo "Checking the dense feather asset..."
+node --input-type=module <<'NODE'
+import sharp from 'sharp';
+
+const { data, info } = await sharp('assets/dense-feather.png')
+  .ensureAlpha()
+  .raw()
+  .toBuffer({ resolveWithObject: true });
+
+if (info.width !== 128 || info.height !== 128 || info.channels !== 4) {
+  throw new Error('Dense feather asset must be a 128x128 RGBA image');
+}
+
+let maxAlpha = 0;
+for (let offset = 0; offset < data.length; offset += 4) {
+  const alpha = data[offset + 3];
+  maxAlpha = Math.max(maxAlpha, alpha);
+  if (alpha > 0 && (data[offset] !== 255 || data[offset + 1] !== 255 || data[offset + 2] !== 255)) {
+    throw new Error('Dense feather visible pixels must remain pure white');
+  }
+}
+
+const alphaAt = (x, y) => data[(y * info.width + x) * 4 + 3];
+if (maxAlpha !== 128 || alphaAt(64, 64) !== 128 || alphaAt(0, 0) !== 0) {
+  throw new Error('Dense feather alpha profile must run from transparent corners to a 50% center');
 }
 NODE
 

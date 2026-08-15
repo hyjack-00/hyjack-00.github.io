@@ -13,8 +13,8 @@
     --glass-panel-strong: rgba(255, 255, 255, 0.72);
     --glass-border: rgba(255, 255, 255, 0.68);
     --glass-blur: blur(18px) saturate(128%);
-    --dense-layer-alpha: 0.50;
-    --dense-feather: 18px;
+    --sidebar-width: 280px;
+    --profile-size: 140px;
     --pub-copy-line-height: 1.2;
     --pub-action-line-height: 1.2;
     --pub-action-padding-block: 0.08rem;
@@ -83,7 +83,7 @@ body.is-background-view { overflow: hidden; }
 
 /* Sidebar */
 .sidebar {
-    width: 280px;
+    width: var(--sidebar-width);
     background: var(--glass-panel-strong);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -106,13 +106,13 @@ body.is-background-view { overflow: hidden; }
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    padding: 2rem 1.5rem;
+    padding: calc((var(--sidebar-width) - var(--profile-size)) / 2) 1.5rem 2rem;
     text-align: center;
 }
 
 .profile-image-frame {
-    width: 140px;
-    height: 140px;
+    width: var(--profile-size);
+    height: var(--profile-size);
     border-radius: 50%;
     overflow: hidden;
     flex: 0 0 auto;
@@ -266,7 +266,7 @@ body.is-background-view { overflow: hidden; }
 
 /* Main Content */
 .main-content {
-    margin-left: 280px;
+    margin-left: var(--sidebar-width);
     flex: 1;
     padding: 1.5rem 2rem 5rem;
     position: relative;
@@ -294,27 +294,11 @@ body.is-background-view { overflow: hidden; }
     isolation: isolate;
 }
 
-.content-card--dense::before {
-    content: '';
-    position: absolute;
-    inset: 1.35rem;
-    z-index: 0;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, var(--dense-layer-alpha));
-    filter: blur(var(--dense-feather));
-    opacity: 1;
-    transition: opacity 0.24s ease;
-    pointer-events: none;
-}
-
-/* Wait for the asynchronous background image before compositing the feather layer. */
-html:not(.background-ready) .content-card--dense::before {
-    opacity: 0;
-}
-
-.content-card--dense > * {
-    position: relative;
-    z-index: 1;
+.content-card--dense {
+    border-image-source: url('/assets/dense-feather.png');
+    border-image-slice: 48 fill;
+    border-image-width: 48px;
+    border-image-repeat: stretch;
 }
 
 .content-card h2 {
@@ -1205,6 +1189,7 @@ body.is-background-view .floating-background-control {
 /* Responsive */
 @media (min-width: 769px) and (max-height: 1024px) {
     .sidebar {
+        --profile-size: 104px;
         overflow: hidden;
     }
 
@@ -1213,7 +1198,7 @@ body.is-background-view .floating-background-control {
         grid-template-columns: minmax(0, 1fr);
         grid-template-rows: repeat(8, auto) 1fr;
         align-content: start;
-        padding: 1.5rem 1.5rem 0.75rem;
+        padding: clamp(1.5rem, calc(25vh - 8.5rem), calc((var(--sidebar-width) - var(--profile-size)) / 2)) 1.5rem 0.75rem;
     }
 
     .sidebar-content > :not(.sidebar-section) {
@@ -1221,8 +1206,6 @@ body.is-background-view .floating-background-control {
     }
 
     .profile-image-frame {
-        width: 104px;
-        height: 104px;
         justify-self: center;
         margin-bottom: 0.45rem;
     }
@@ -1276,9 +1259,11 @@ body.is-background-view .floating-background-control {
 }
 
 @media (min-width: 769px) and (max-height: 640px) {
+    .sidebar {
+        --profile-size: 60px;
+    }
+
     .profile-image-frame {
-        width: 60px;
-        height: 60px;
         margin-bottom: 0.25rem;
     }
 
@@ -1344,10 +1329,14 @@ body.is-background-view .floating-background-control {
     }
 
     .sidebar {
+        --profile-size: 140px;
         position: relative;
         width: 100%;
         height: auto;
         overflow: visible;
+    }
+    .sidebar-content {
+        padding: 2rem 1.25rem 1.5rem;
     }
     .main-content {
         margin-left: 0;

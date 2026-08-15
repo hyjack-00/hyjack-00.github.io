@@ -216,12 +216,13 @@ background-image: var(--active-background-image);
 
 - `--avatar-scale`: 左侧头像缩放比例；换成裁切好的近景头像时可设为 `1`
 - `--avatar-focus-x` / `--avatar-focus-y`: 圆形头像的水平、垂直焦点
-- `--dense-layer-alpha`: Publication 与 Blog 中心羽化层透明度；当前 `0.50`，与 70% 卡片底色合成后正好为 85% 白度
-- `--dense-feather`: 圆角矩形羽化半径
+- `--sidebar-width` / `--profile-size`: 桌面侧栏与头像尺寸；标准布局的头像顶部留白会自动等于左侧留白，中等高度窗口会从紧凑留白平滑增长到等距
 - `--pub-copy-line-height`: Publication 作者和会议信息行高
 - `--pub-action-line-height`: Publication 链接按钮文字行高
 - `--pub-action-padding-*`: Publication 链接按钮内边距
 - `--pub-action-gap-top`: 会议全名与链接按钮行之间的间距
+
+Publication、Blog 和文章正文的中心羽化不再使用 `filter: blur()` 伪元素。`assets/dense-feather.png` 已预先栅格化为 50% 白色的圆角方形羽化图，通过 CSS 九宫格画入卡片自身的 border/background painting phase。它与 70% 卡片底色合成后中心约为 85% 白度，但不会创建能在滚动时越界或遮住文字的独立滤镜纹理。
 
 ## Blog 文章页
 
