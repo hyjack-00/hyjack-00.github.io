@@ -222,7 +222,9 @@ background-image: var(--active-background-image);
 - `--pub-action-padding-*`: Publication 链接按钮内边距
 - `--pub-action-gap-top`: 会议全名与链接按钮行之间的间距
 
-Publication、Blog 和文章正文的中心羽化不再使用 `filter: blur()` 伪元素。`assets/dense-feather.png` 已预先栅格化为 50% 白色的圆角方形羽化图，通过 CSS 九宫格画入卡片自身的 border/background painting phase。它与 70% 卡片底色合成后中心约为 85% 白度，但不会创建能在滚动时越界或遮住文字的独立滤镜纹理。
+所有带文字的面板统一使用 `:root` 中的同一组玻璃参数：`--glass-panel`（60% 白）、`--glass-panel-strong`（66% 白，侧栏/图库页等）、`--glass-border`（42% 白描边）、`--glass-blur`（blur(10px)，不带 saturate）。覆盖范围包括内容卡片、侧栏与统计块、Publication 会议徽标与链接按钮、相册卡片、图库页外壳与头部、地图容器与 Leaflet 弹窗、文章返回/导航按钮与引用块。
+
+早期版本曾用 `assets/dense-feather.png` 九宫格羽化为 Publication/Blog 卡片做中心提亮，但卡片上下边缘 48px 的半透明羽化带连同卡片间隙会让背景画作透出，在滚动到特定位置时呈现为"白灰色横条盖住卡片、随卡片移动"的类屏幕坏线假象。该 border-image 图层与素材已移除，`validate-homepage.sh` 转而断言所有文字面板共用 glass token 且不再出现 `border-image`。`will-change: transform` 也改为仅在 `body.is-background-view`（全屏背景切换）期间挂载，日常滚动不再把整个内容列钉在合成层上。
 
 ## Blog 文章页
 

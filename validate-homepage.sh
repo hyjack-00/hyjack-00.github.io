@@ -26,7 +26,6 @@ readonly REQUIRED_FILES=(
   "data/photography.json"
   "data/content.json"
   "assets/avatar.jpg"
-  "assets/dense-feather.png"
 )
 
 failed=0
@@ -88,7 +87,7 @@ if (content.publications.length !== 7) throw new Error('Expected 7 publications'
 if ('blog' in content) throw new Error('Blog metadata must come from co-located Markdown, not content.json');
 if (blogs.posts.length !== 6) throw new Error('Expected 6 generated blog posts');
 if (content.recommendations.length !== 2) throw new Error('Expected 2 recommendations');
-if (content.experience.length !== 2) throw new Error('Expected 2 experience entries');
+if (content.experience.length !== 3) throw new Error('Expected 3 experience entries');
 if (content.travel.cities.length !== 26) throw new Error('Expected 26 travel points');
 if (content.stats.papers !== content.publications.length) throw new Error('Paper counter is stale');
 if (content.stats.cities !== content.travel.cities.length) throw new Error('City counter is stale');
@@ -178,15 +177,23 @@ if (!education.includes('2021-2025') || !education.includes('2025-Present')) {
 const experienceLabels = content.experience.map(item =>
   `${item.organization}${item.role ? ` ${item.role}` : ''}`);
 if (JSON.stringify(experienceLabels) !== JSON.stringify([
-  'SYSU SuperComputing Team',
+  'Research Intern @ SYSU Edge & Heterogeneous Computing (Prof. Zhi Zhou)',
+  'SYSU SuperComputing Team Selective, 5 students/year',
   'SYSU AeroSwift Team Member'
 ])) {
   throw new Error('Experience labels are incorrect');
 }
+const experiencePeriods = content.experience.map(item => item.period);
+if (JSON.stringify(experiencePeriods) !== JSON.stringify(['2023-2025', '2022-2025', '2022-2025'])) {
+  throw new Error('Experience dates are incorrect');
+}
 for (const item of content.experience) {
-  if (item.period !== '2022-2025') throw new Error('Experience dates are incorrect');
-  if (!item.icon.startsWith('/assets/experience/') || !fs.existsSync(item.icon.slice(1))) {
-    throw new Error(`Missing local experience icon: ${item.icon}`);
+  if (item.icon) {
+    if (!item.icon.startsWith('/assets/experience/') || !fs.existsSync(item.icon.slice(1))) {
+      throw new Error(`Missing local experience icon: ${item.icon}`);
+    }
+  } else if (!/^fa[bsr] fa-[\w-]+$/.test(item.iconClass || '')) {
+    throw new Error('Icon-less experience entries must define a Font Awesome iconClass');
   }
 }
 
@@ -275,8 +282,8 @@ if (!homepage.includes('id="publications"') || !homepage.includes('id="blog"') |
     !homepage.includes('id="service"') || !homepage.includes('id="recommendations"')) {
   throw new Error('A homepage section is missing its stable ID');
 }
-if ((homepage.match(/content-card--dense/g) || []).length !== 2) {
-  throw new Error('Publication and Blog must both use the dense feather layer');
+if (homepage.includes('content-card--dense')) {
+  throw new Error('All content cards must share the unified glass panel style');
 }
 if (!renderer.includes("fetch('/data/blogs.json')") || !renderer.includes('renderRecommendations()') ||
     !renderer.includes('class="blog-meta"') || !renderer.includes('class="blog-read-more"')) {
@@ -294,15 +301,26 @@ if (!homepage.includes('id="photoGallery"') || !homepage.includes('id="photoLigh
     !photographyGenerator.includes('previousFingerprint !== sourceFingerprint')) {
   throw new Error('Photography album and lightbox wiring is incomplete');
 }
-if (!css.includes("border-image-source: url('/assets/dense-feather.png')") ||
-    !css.includes('border-image-slice: 48 fill') ||
-    !css.includes('border-image-width: 48px') ||
-    !css.includes('border-image-repeat: stretch') ||
-    css.includes('.content-card--dense::before')) {
-  throw new Error('Dense cards must use the static single-layer feather asset');
+if (!css.includes('--glass-panel: rgba(255, 255, 255, 0.60)') ||
+    !css.includes('--glass-panel-strong: rgba(255, 255, 255, 0.66)') ||
+    !css.includes('--glass-border: rgba(255, 255, 255, 0.42)') ||
+    !css.includes('--glass-blur: blur(10px)') ||
+    css.includes('border-image') ||
+    css.includes('basemaps.cartocdn.com') ||
+    mapSource.includes('basemaps.cartocdn.com')) {
+  throw new Error('Glass panels must stay unified, keyless, and free of layered border imagery');
+}
+if (!/\.content-card \{[^}]*background: var\(--glass-panel\)/.test(css) ||
+    !/\.pub-conference \{[^}]*background: var\(--glass-panel\)/.test(css) ||
+    !/\.pub-btn \{[^}]*background: var\(--glass-panel\)/.test(css) ||
+    !/\.sidebar-stats \{[^}]*background: var\(--glass-panel\)/.test(css) ||
+    !/\.photo-album-card \{[^}]*background: var\(--glass-panel\)/.test(css) ||
+    !/\.photo-gallery-shell \{[^}]*background: var\(--glass-panel-strong\)/.test(css) ||
+    !mapSource.includes('https://tile.openstreetmap.org/{z}/{x}/{y}.png')) {
+  throw new Error('Every text-bearing surface must use the shared glass tokens');
 }
 if (!template.includes('{{ARTICLE_BODY}}') || !template.includes('{{ARTICLE_NAVIGATION}}') ||
-    !template.includes('content-card--dense') || !template.includes('class="sidebar"')) {
+    !template.includes('article-card') || !template.includes('class="sidebar"')) {
   throw new Error('The static Markdown article template is incomplete');
 }
 if (!template.includes('background-open-button--floating') || !template.includes('id="backgroundOverlay"') ||
@@ -334,35 +352,7 @@ if (!css.includes('--avatar-scale: 1') || !css.includes('--avatar-focus-y: 50%')
     !css.includes('clamp(1.5rem, calc(25vh - 8.5rem)') ||
     !css.includes('--pub-copy-line-height: 1.2') ||
     !css.includes('--pub-action-line-height: 1.2') || !css.includes('--pub-action-gap-top: 0.24rem')) {
-  throw new Error('Avatar, feather, or publication density variables are incorrect');
-}
-NODE
-
-echo "Checking the dense feather asset..."
-node --input-type=module <<'NODE'
-import sharp from 'sharp';
-
-const { data, info } = await sharp('assets/dense-feather.png')
-  .ensureAlpha()
-  .raw()
-  .toBuffer({ resolveWithObject: true });
-
-if (info.width !== 128 || info.height !== 128 || info.channels !== 4) {
-  throw new Error('Dense feather asset must be a 128x128 RGBA image');
-}
-
-let maxAlpha = 0;
-for (let offset = 0; offset < data.length; offset += 4) {
-  const alpha = data[offset + 3];
-  maxAlpha = Math.max(maxAlpha, alpha);
-  if (alpha > 0 && (data[offset] !== 255 || data[offset + 1] !== 255 || data[offset + 2] !== 255)) {
-    throw new Error('Dense feather visible pixels must remain pure white');
-  }
-}
-
-const alphaAt = (x, y) => data[(y * info.width + x) * 4 + 3];
-if (maxAlpha !== 128 || alphaAt(64, 64) !== 128 || alphaAt(0, 0) !== 0) {
-  throw new Error('Dense feather alpha profile must run from transparent corners to a 50% center');
+  throw new Error('Avatar or publication density variables are incorrect');
 }
 NODE
 

@@ -60,10 +60,11 @@ function initTravelMap(cities) {
             bounds.extend([city.lat, city.lng]);
         });
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            subdomains: 'abcd',
+        // Keyless OpenStreetMap raster tiles. CARTO basemaps now require an API
+        // key and render "API KEY REQUIRED" placeholders when the key is missing.
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
         }).addTo(travelMap);
 
         travelMap.fitBounds(bounds, { padding: [44, 44], maxZoom: 5, animate: false });

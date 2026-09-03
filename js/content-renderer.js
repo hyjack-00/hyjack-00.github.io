@@ -85,6 +85,8 @@ function renderAllContent() {
     renderNews();
     renderPublications();
     renderService();
+    renderProjects();
+    renderSkills();
     renderBlog();
     renderRecommendations();
     renderPhotography();
@@ -159,15 +161,20 @@ function renderEducation() {
  */
 function renderExperience() {
     const experienceSection = document.getElementById('experience');
-    const experienceHTML = contentData.experience.map(item => `
+    const experienceHTML = contentData.experience.map(item => {
+        const icon = item.icon
+            ? `<img class="experience-icon" src="${item.icon}" alt="" width="32" height="32">`
+            : `<span class="experience-icon experience-icon--text" aria-hidden="true"><i class="${item.iconClass || 'fas fa-microchip'}"></i></span>`;
+        return `
         <div class="sidebar-experience">
-            <img class="experience-icon" src="${item.icon}" alt="" width="32" height="32">
+            ${icon}
             <div class="experience-copy">
                 <strong>${item.organization}${item.role ? ` ${item.role}` : ''}</strong>
                 <span>${item.period}</span>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 
     experienceSection.innerHTML = `
         <h3><i class="fas fa-briefcase"></i> Experience</h3>
@@ -180,7 +187,10 @@ function renderExperience() {
  */
 function renderHonors() {
     const honorSection = document.getElementById('honors');
-    const honorsHTML = contentData.honors.map(honor => `
+    // Newest honors first: rank each entry by the latest year its range mentions.
+    const latestYear = honor => Math.max(...String(honor.year).match(/\d{4}/g).map(Number));
+    const sortedHonors = [...contentData.honors].sort((a, b) => latestYear(b) - latestYear(a));
+    const honorsHTML = sortedHonors.map(honor => `
         <div class="honor-item">
             <strong class="honor-year">${honor.year}</strong>
             <span>${honor.title}</span>
@@ -307,6 +317,50 @@ function renderService() {
     serviceSection.innerHTML = `
         <h2><i class="fas fa-users"></i> Academic Service</h2>
         <p><strong>${service.title}:</strong> ${service.detail}</p>
+    `;
+}
+
+/**
+ * Render projects section
+ */
+function renderProjects() {
+    const projectsSection = document.getElementById('projects');
+    if (!projectsSection) return;
+    const projects = contentData.projects || [];
+    const projectsHTML = projects.map(project => {
+        const points = (project.points || []).map(point =>
+            `<li>${point}</li>`).join('');
+        return `
+            <div class="project-item">
+                <div class="project-heading">
+                    <strong class="project-name">${project.name}</strong>
+                    <span class="project-period">${project.period}</span>
+                </div>
+                ${project.detail ? `<p class="project-detail">${project.detail}</p>` : ''}
+                ${points ? `<ul class="project-points">${points}</ul>` : ''}
+            </div>
+        `;
+    }).join('');
+
+    projectsSection.innerHTML = `
+        <h2><i class="fas fa-briefcase"></i> Projects</h2>
+        <div class="projects-list">${projectsHTML}</div>
+    `;
+}
+
+/**
+ * Render skills section
+ */
+function renderSkills() {
+    const skillsSection = document.getElementById('skills');
+    if (!skillsSection) return;
+    const skills = contentData.skills || [];
+    const skillsHTML = skills.map(skill =>
+        `<li class="skill-item">${skill}</li>`).join('');
+
+    skillsSection.innerHTML = `
+        <h2><i class="fas fa-cogs"></i> Skills</h2>
+        <ul class="skills-list">${skillsHTML}</ul>
     `;
 }
 

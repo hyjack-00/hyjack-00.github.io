@@ -12,23 +12,30 @@
     "avatar": "/assets/avatar.jpg"
   },
   "about": {
-    "text": "I am a Ph.D. student at The Chinese University of Hong Kong, supervised by <a href='https://www.cse.cuhk.edu.hk/lyu/' target='_blank' rel='noopener noreferrer'>Prof. Michael R. Lyu</a>. My research focuses on <strong>high-performance computing</strong>, <strong>parallel computing</strong>, and <strong>AI systems</strong>, particularly LLM inference optimization and system reliability."
+    "text": "I am a Ph.D. student at The Chinese University of Hong Kong, supervised by <a href='https://www.cse.cuhk.edu.hk/lyu/' target='_blank' rel='noopener noreferrer'>Prof. Michael R. Lyu</a>. My research focuses on <strong>AI 4 Infra & Infra 4 AI</strong>: building high-performance infrastructure for AI workloads (LLM inference and serving systems, GPU/accelerator systems, multi-GPU scheduling), and applying AI to make cloud and LLM-as-a-Service platforms fast, reliable, and operable."
   },
   "education": [
     {
       "institution": "CUHK",
-      "degree": "Ph.D.",
+      "degree": "Ph.D. in CSE",
       "period": "2025-Present"
     },
     {
       "institution": "SYSU",
-      "degree": "B.Eng.",
+      "degree": "B.Eng. in CS&T (System Architecture) · GPA 3.9258/5.0",
       "period": "2021-2025"
     }
   ],
   "experience": [
     {
+      "organization": "Research Intern @ SYSU",
+      "role": "Edge & Heterogeneous Computing (Prof. Zhi Zhou)",
+      "period": "2023-2025",
+      "iconClass": "fas fa-microchip"
+    },
+    {
       "organization": "SYSU SuperComputing Team",
+      "role": "Selective, 5 students/year",
       "period": "2022-2025",
       "icon": "/assets/experience/sysu-supercomputing.png"
     },
@@ -45,8 +52,16 @@
       "title": "ASC Student Supercomputer Challenge Finalist - Sunway next-generation processor optimization"
     },
     {
+      "year": "2024",
+      "title": "ASC Student Supercomputer Challenge Silver Prize (2/300+) - LLM inference acceleration"
+    },
+    {
       "year": "2023",
       "title": "Student Cluster Competition Participant - LLaMA-13B and WRF-Hydro optimization"
+    },
+    {
+      "year": "2023",
+      "title": "CAS-PRA Parallel Application Competition 1st Prize (Central-South Division)"
     },
     {
       "year": "2023",
@@ -54,11 +69,31 @@
     },
     {
       "year": "2023",
+      "title": "Excellence Award, China Parallel Application Challenge on Domestic CPUs (CPC)"
+    },
+    {
+      "year": "2025",
       "title": "Outstanding Graduate, Sun Yat-sen University"
     },
     {
       "year": "2021-2023",
       "title": "First-Class Scholarship - Undergraduate Academic Excellence Award"
+    },
+    {
+      "year": "2022-2023",
+      "title": "Second Prize Scholarship (15%), Sun Yat-sen University"
+    },
+    {
+      "year": "2024",
+      "title": "Corporate Sponsored Scholarship from \"37IE\" (2%), Sun Yat-sen University"
+    },
+    {
+      "year": "2022",
+      "title": "Second Prize (<10%), SYSU Novice Computer Programming Competition (NCPC)"
+    },
+    {
+      "year": "2023",
+      "title": "Honorable Mention, Mathematical Contest in Modeling (MCM)"
     }
   ],
   "stats": {
@@ -74,7 +109,7 @@
     {
       "date": "2025.10",
       "icon": "📄",
-      "text": "Paper accepted to ICSE 2026!"
+      "text": "Paper accepted to ICSE 2026 — ACM SIGSOFT Distinguished Paper Award!"
     },
     {
       "date": "2025.09",
@@ -91,6 +126,71 @@
     "title": "Conference Sub-Reviewer",
     "detail": "ICSE'27, ASE'26, ISSTA'26"
   },
+  "projects": [
+    {
+      "name": "ASC Student Supercomputer Competition",
+      "period": "2023.12 -- 2024.04",
+      "detail": "Silver Prize (2/300+) — led the LLM inference acceleration challenge",
+      "points": [
+        "Built a high-throughput LLM inference framework: fine-grained request scheduling and memory management for multi-GPU asynchronous pipeline parallelism, plus a heterogeneous load-balancing scheme for multi-GPU data parallelism",
+        "Optimized HPC applications: OpenCAEPoro (flow simulation) dynamic-to-static storage conversion with profiling; WannierTools (topological materials) matrix reuse and BLAS overhead reduction for matrix inversion"
+      ]
+    },
+    {
+      "name": "CAS-PRA Parallel Application Competition",
+      "period": "2023.11 -- 2023.12",
+      "detail": "1st Prize, Central-South Division — 1st place in both challenges (1/80+ and 1/60+)",
+      "points": [
+        "Optimized neural-network systems on DCU (AMD GPU architecture), focusing on data flows and compute kernels: the Conv-2D kernel in CNN, and GEMM, SpMM, and Softmax kernels in GCN",
+        "Innovated a new SpMM algorithm inspired by the CSR-5 SpMV algorithm to accelerate GCN inference"
+      ]
+    },
+    {
+      "name": "Matrix Multiplication Library for Phytium ARMv8 Processor",
+      "period": "2022.09 -- 2023.12",
+      "detail": "SYSU Undergraduate Training Program for Innovation and Entrepreneurship (Outstanding, 1/17)",
+      "points": [
+        "Optimized GEMM at assembly level for FT2000-series ARMv8 (Aarch64) multi-core processors, outperforming existing BLAS libraries",
+        "Optimized SpGEMM for ARMv8, porting and optimizing the CSeg algorithm to ARM"
+      ]
+    },
+    {
+      "name": "YatSen OS",
+      "period": "2022.03 -- 2023.04",
+      "detail": "SYSU Operating Systems lab",
+      "points": [
+        "Implemented an operating system in C++",
+        "Focused on virtual memory systems as an extra component: page replacement (LRU), page-fault handling, and disk swap-space management",
+        "Contributed to the design of the next-gen Rust OS lab, YatSenOS-v2"
+      ]
+    },
+    {
+      "name": "YatCPU",
+      "period": "2022.03 -- 2023.04",
+      "detail": "SYSU Computer Organization lab",
+      "points": [
+        "Implemented a RISC-V processor in Chisel",
+        "Five-stage pipelined, single-issue, in-order processor supporting a subset of the RV32I integer instruction set"
+      ]
+    },
+    {
+      "name": "CSAPP Course and Labs",
+      "period": "2022.04 -- 2023.08",
+      "detail": "CMU 15-213 online course and labs",
+      "points": [
+        "Perfect scores across all labs, focusing on the most challenging Malloc Lab",
+        "Visualized heap memory usage and compared allocation strategies",
+        "Implemented a Segregated Free List with mini-blocks, similar to Linux's buddy system"
+      ]
+    }
+  ],
+  "skills": [
+    "Programming Languages: C / C++ / Python (proficient); Fortran, Scala, Haskell, Rust (familiar)",
+    "High-Performance & Parallel Computing: MPI, OpenMP, Pthreads, CUDA, HIP; kernel- and assembly-level optimization",
+    "AI Systems: LLM inference & serving, multi-GPU scheduling and memory management",
+    "Linux: supercomputer platforms (Tianhe, Sunway, Sugon), university clusters, edge devices; personal services on private cloud servers",
+    "English: CET-6 615"
+  ],
   "publications": [
     {
       "year": 2026,
@@ -174,40 +274,207 @@
   ],
   "travel": {
     "cities": [
-      { "name": "Guangzhou", "lat": 23.1291, "lng": 113.2644, "home": true, "province": "Guangdong", "city": "Guangzhou" },
-      { "name": "Hong Kong", "lat": 22.3193, "lng": 114.1694, "province": "Hong Kong", "city": "Hong Kong" },
-      { "name": "Macau", "lat": 22.1987, "lng": 113.5439, "province": "Macau", "city": "Macau" },
-      { "name": "Beijing", "lat": 39.9042, "lng": 116.4074, "province": "Beijing", "city": "Beijing" },
-      { "name": "Shanghai", "lat": 31.2304, "lng": 121.4737, "province": "Shanghai", "city": "Shanghai" },
-      { "name": "Shenzhen", "lat": 22.5431, "lng": 114.0579, "province": "Guangdong", "city": "Shenzhen" },
-      { "name": "Wuhan", "lat": 30.5928, "lng": 114.3055, "province": "Hubei", "city": "Wuhan" },
-      { "name": "Nanchang", "lat": 28.6829, "lng": 115.8579, "province": "Jiangxi", "city": "Nanchang" },
-      { "name": "Jiujiang", "lat": 29.7050, "lng": 116.0014, "province": "Jiangxi", "city": "Jiujiang" },
-      { "name": "Nanning", "lat": 22.8170, "lng": 108.3665, "province": "Guangxi", "city": "Nanning" },
-      { "name": "Longyan", "lat": 25.0778, "lng": 117.0172, "province": "Fujian", "city": "Longyan" },
-      { "name": "Xiamen", "lat": 24.4798, "lng": 118.0894, "province": "Fujian", "city": "Xiamen" },
-      { "name": "Changsha", "lat": 28.2282, "lng": 112.9388, "province": "Hunan", "city": "Changsha" },
-      { "name": "Huangshan", "lat": 29.7144, "lng": 118.3376, "province": "Anhui", "city": "Huangshan" },
-      { "name": "Qingdao", "lat": 36.0671, "lng": 120.3826, "province": "Shandong", "city": "Qingdao" },
-      { "name": "Lhasa", "lat": 29.6500, "lng": 91.1000, "province": "Tibet", "city": "Lhasa" },
-      { "name": "Everest North Base Camp", "lat": 28.14139, "lng": 86.85139, "province": "Tibet", "city": "Tingri" },
-      { "name": "Xining", "lat": 36.6171, "lng": 101.7782, "province": "Qinghai", "city": "Xining" },
-      { "name": "Chengdu", "lat": 30.5728, "lng": 104.0668, "province": "Sichuan", "city": "Chengdu" },
-      { "name": "Lanzhou", "lat": 36.0611, "lng": 103.8343, "province": "Gansu", "city": "Lanzhou" },
-      { "name": "Hangzhou", "lat": 30.2741, "lng": 120.1551, "province": "Zhejiang", "city": "Hangzhou" },
-      { "name": "New York", "lat": 40.7128, "lng": -74.0060, "country": "USA", "city": "New York" },
-      { "name": "Charlotte", "lat": 35.2271, "lng": -80.8431, "country": "USA", "city": "Charlotte" },
-      { "name": "Chicago", "lat": 41.8781, "lng": -87.6298, "country": "USA", "city": "Chicago" },
-      { "name": "Atlanta", "lat": 33.7490, "lng": -84.3880, "country": "USA", "city": "Atlanta" },
-      { "name": "Doha", "lat": 25.2854, "lng": 51.5310, "country": "Qatar", "city": "Doha" }
+      {
+        "name": "Guangzhou",
+        "lat": 23.1291,
+        "lng": 113.2644,
+        "home": true,
+        "province": "Guangdong",
+        "city": "Guangzhou"
+      },
+      {
+        "name": "Hong Kong",
+        "lat": 22.3193,
+        "lng": 114.1694,
+        "province": "Hong Kong",
+        "city": "Hong Kong"
+      },
+      {
+        "name": "Macau",
+        "lat": 22.1987,
+        "lng": 113.5439,
+        "province": "Macau",
+        "city": "Macau"
+      },
+      {
+        "name": "Beijing",
+        "lat": 39.9042,
+        "lng": 116.4074,
+        "province": "Beijing",
+        "city": "Beijing"
+      },
+      {
+        "name": "Shanghai",
+        "lat": 31.2304,
+        "lng": 121.4737,
+        "province": "Shanghai",
+        "city": "Shanghai"
+      },
+      {
+        "name": "Shenzhen",
+        "lat": 22.5431,
+        "lng": 114.0579,
+        "province": "Guangdong",
+        "city": "Shenzhen"
+      },
+      {
+        "name": "Wuhan",
+        "lat": 30.5928,
+        "lng": 114.3055,
+        "province": "Hubei",
+        "city": "Wuhan"
+      },
+      {
+        "name": "Nanchang",
+        "lat": 28.6829,
+        "lng": 115.8579,
+        "province": "Jiangxi",
+        "city": "Nanchang"
+      },
+      {
+        "name": "Jiujiang",
+        "lat": 29.705,
+        "lng": 116.0014,
+        "province": "Jiangxi",
+        "city": "Jiujiang"
+      },
+      {
+        "name": "Nanning",
+        "lat": 22.817,
+        "lng": 108.3665,
+        "province": "Guangxi",
+        "city": "Nanning"
+      },
+      {
+        "name": "Longyan",
+        "lat": 25.0778,
+        "lng": 117.0172,
+        "province": "Fujian",
+        "city": "Longyan"
+      },
+      {
+        "name": "Xiamen",
+        "lat": 24.4798,
+        "lng": 118.0894,
+        "province": "Fujian",
+        "city": "Xiamen"
+      },
+      {
+        "name": "Changsha",
+        "lat": 28.2282,
+        "lng": 112.9388,
+        "province": "Hunan",
+        "city": "Changsha"
+      },
+      {
+        "name": "Huangshan",
+        "lat": 29.7144,
+        "lng": 118.3376,
+        "province": "Anhui",
+        "city": "Huangshan"
+      },
+      {
+        "name": "Qingdao",
+        "lat": 36.0671,
+        "lng": 120.3826,
+        "province": "Shandong",
+        "city": "Qingdao"
+      },
+      {
+        "name": "Lhasa",
+        "lat": 29.65,
+        "lng": 91.1,
+        "province": "Tibet",
+        "city": "Lhasa"
+      },
+      {
+        "name": "Everest North Base Camp",
+        "lat": 28.14139,
+        "lng": 86.85139,
+        "province": "Tibet",
+        "city": "Tingri"
+      },
+      {
+        "name": "Xining",
+        "lat": 36.6171,
+        "lng": 101.7782,
+        "province": "Qinghai",
+        "city": "Xining"
+      },
+      {
+        "name": "Chengdu",
+        "lat": 30.5728,
+        "lng": 104.0668,
+        "province": "Sichuan",
+        "city": "Chengdu"
+      },
+      {
+        "name": "Lanzhou",
+        "lat": 36.0611,
+        "lng": 103.8343,
+        "province": "Gansu",
+        "city": "Lanzhou"
+      },
+      {
+        "name": "Hangzhou",
+        "lat": 30.2741,
+        "lng": 120.1551,
+        "province": "Zhejiang",
+        "city": "Hangzhou"
+      },
+      {
+        "name": "New York",
+        "lat": 40.7128,
+        "lng": -74.006,
+        "country": "USA",
+        "city": "New York"
+      },
+      {
+        "name": "Charlotte",
+        "lat": 35.2271,
+        "lng": -80.8431,
+        "country": "USA",
+        "city": "Charlotte"
+      },
+      {
+        "name": "Chicago",
+        "lat": 41.8781,
+        "lng": -87.6298,
+        "country": "USA",
+        "city": "Chicago"
+      },
+      {
+        "name": "Atlanta",
+        "lat": 33.749,
+        "lng": -84.388,
+        "country": "USA",
+        "city": "Atlanta"
+      },
+      {
+        "name": "Doha",
+        "lat": 25.2854,
+        "lng": 51.531,
+        "country": "Qatar",
+        "city": "Doha"
+      }
     ]
   },
   "recommendations": [
-    { "name": "Camarts", "type": "art", "description": "A photo gallery featuring a curated library of over 3,000 images created by photographer Dandy Tianxin Weng on his worldwide journeys", "website": "https://camarts.app/" },
-    { "name": "Colossal", "type": "art", "description": "An independent online art magazine celebrating visual culture since 2010", "website": "https://www.thisiscolossal.com/category/photography/" }
+    {
+      "name": "Camarts",
+      "type": "art",
+      "description": "A photo gallery featuring a curated library of over 3,000 images created by photographer Dandy Tianxin Weng on his worldwide journeys",
+      "website": "https://camarts.app/"
+    },
+    {
+      "name": "Colossal",
+      "type": "art",
+      "description": "An independent online art magazine celebrating visual culture since 2010",
+      "website": "https://www.thisiscolossal.com/category/photography/"
+    }
   ],
   "footer": {
     "copyright": "© 2026 Yujie Huang",
-    "lastUpdated": "Aug 2026"
+    "lastUpdated": "Sep 2026"
   }
 }
