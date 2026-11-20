@@ -213,9 +213,9 @@ function renderHonors() {
  */
 function renderStats() {
     const statsContainer = document.querySelector('.sidebar-stats');
-    const scholar = contentData.scholar;
-    const citations = Number.isSafeInteger(scholar?.citations) && scholar.citations >= 0
-        ? `<div class="stat-item" title="Google Scholar · ${scholar.updatedAt}"><span class="stat-number">${scholar.citations}</span><span class="stat-label">Citations</span></div>`
+    const stats = contentData.citationStats;
+    const citations = stats?.provider === 'OpenAlex' && Number.isSafeInteger(stats.count) && stats.count >= 0
+        ? `<div class="stat-item stat-citations" title="Across ${stats.papers.length} listed papers · Updated ${stats.updatedAt.slice(0, 10)} UTC"><span class="stat-number">${stats.count}</span><span class="stat-label">Citations</span><a class="stat-source" href="https://openalex.org" target="_blank" rel="noopener noreferrer">OpenAlex</a></div>`
         : '';
     statsContainer.innerHTML = `
         <div class="stat-item">

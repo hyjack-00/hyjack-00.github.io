@@ -224,23 +224,20 @@ background-image: var(--active-background-image);
 
 早期版本曾用 `assets/dense-feather.png` 九宫格羽化为 Publication/Blog 卡片做中心提亮，但卡片上下边缘 48px 的半透明羽化带连同卡片间隙会让背景画作透出，在滚动到特定位置时呈现为"白灰色横条盖住卡片、随卡片移动"的类屏幕坏线假象。该 border-image 图层与素材已移除，右侧白底进一步移除了卡片的模糊合成；`validate-homepage.sh` 保留 surface 样式与禁止 `border-image` 的检查。`will-change: transform` 也改为仅在 `body.is-background-view`（全屏背景切换）期间挂载，日常滚动不再把整个内容列钉在合成层上。
 
-## Google Scholar 引用量更新
+## 引用量更新
 
-Multica autopilot `3db6cbd6-14b7-48e0-8a47-f013b3cf013b` 每周五 09:00（Asia/Shanghai，cron `0 9 * * 5`）更新本地博客引用量，首次计划为 2026-11-27。每次产生独立任务报告；不自动提交、推送或发布。
+侧栏简洁显示 Citations 和 OpenAlex 来源，悬停提示统计范围及 UTC 核实日期。统计仅覆盖主页列出的论文，按每篇论文各版本的引用文献 OpenAlex ID 去重后求和，不使用可能混入同名作者的个人总量。Google Scholar 个人主页 `2V3CaVMAAAAJ` 继续作为独立链接保留，不参与计数。
 
-确认正确的个人主页后，更新 `profile.scholar` 和以下数据。`citations` 是该主页的 All citations，`updatedAt` 必须是实际核实日期；数字和来源未核实时不写 0，页面不显示未知引用量。
+- `publications[].citationWorkIds`：已核实的正式版和预印本 OpenAlex ID；标题变更时可配置 `citationTitleAliases`。
+- `citationStats`：来源、总计、UTC 核实时间、方法和逐篇数量及查询出处。
+- `npm run update:citations`：通过 Python 3 标准库读取 OpenAlex，核对标题和 Yujie Huang 作者，分页获取引用记录并去重。全部论文成功后才原子写入；访问失败、记录错误、分页缺失或文件被并发修改时保留旧数据及旧日期。
+- `python3 -m unittest discover -s tests -p test_citations.py`：验证版本/分页去重、身份错误、真实零引用、缺页和失败保留旧值。
 
-```json
-"scholar": {
-  "citations": 123,
-  "updatedAt": "YYYY-MM-DD",
-  "source": "https://scholar.google.com/citations?user=PROFILE_ID"
-}
-```
+[OpenAlex API 过滤语法](https://help.openalex.org/api/filtering/) 中 `referenced_works:W1|W2` 可查询引用论文任一版本的文献。
 
-上面仅为结构示例，不是当前引用量。个人主页已由用户确认，ID 为 `2V3CaVMAAAAJ`，链接保存在 `profile.scholar` 和 `scholar.source`。当前网络访问 Scholar 返回 403；尚未录入引用量或成功核实日期。自动任务须以姓名、CUHK CSE 和已知论文交叉核对身份；受限时保留旧值及旧核实日期并报告，不能使用同名作者或其他来源的计数替代。
+Multica autopilot `3db6cbd6-14b7-48e0-8a47-f013b3cf013b` 每周五 09:00（Asia/Shanghai，cron `0 9 * * 5`）执行脚本并验证，通过 SSH 正常提交、推送引用量更新；首次计划为 2026-11-27。保留用户修改，失败时报告并保留旧计数；每次单独创建任务记录结果。
 
-论文链接按数据中的 `links.paper` 与 `links.arxiv` 独立渲染；不要求两者同时存在。投稿去向通过 `publicationStatus: "Submitted"` 与 venue 表示，不能标成已接收。Cloud-OpsBench 的 TOS'26 依据用户最新指示，Why Does the LLM Stop Computing 的 TOSEM'26 依据本地简历。
+论文链接按 `links.paper` 与 `links.arxiv` 独立渲染，不要求两者同时存在。投稿去向通过 `publicationStatus: "Submitted"` 与 venue 表示，不代表已接收。
 
 ## Blog 文章页
 

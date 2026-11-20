@@ -212,6 +212,10 @@ body.is-background-view { overflow: hidden; }
     text-align: center;
 }
 
+.stat-citations { text-decoration: none; }
+.stat-citations:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.stat-source { display: block; font-size: 0.6rem; line-height: 1.2; color: var(--text-muted); }
+
 .stat-number {
     font-size: 1.2rem;
     font-weight: 700;

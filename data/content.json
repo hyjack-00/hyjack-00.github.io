@@ -208,7 +208,10 @@
       "date": "Oct 2026",
       "dateISO": "2026-10",
       "location": "Munich, Germany",
-      "conferenceSource": "https://conf.researchr.org/home/ase-2026"
+      "conferenceSource": "https://conf.researchr.org/home/ase-2026",
+      "citationWorkIds": [
+        "W7220897122"
+      ]
     },
     {
       "year": 2026,
@@ -225,7 +228,10 @@
       "date": "Jun 2026",
       "dateISO": "2026-06",
       "location": "Charlotte, USA",
-      "conferenceSource": "https://dsn2026.github.io/"
+      "conferenceSource": "https://dsn2026.github.io/",
+      "citationWorkIds": [
+        "W7167731768"
+      ]
     },
     {
       "year": 2026,
@@ -242,7 +248,10 @@
       "date": "Aug 2026",
       "dateISO": "2026-08",
       "location": "Jeju, South Korea",
-      "conferenceSource": "https://kdd2026.kdd.org/"
+      "conferenceSource": "https://kdd2026.kdd.org/",
+      "citationWorkIds": [
+        "W7196988854"
+      ]
     },
     {
       "year": 2026,
@@ -262,7 +271,14 @@
       "date": "Apr 2026",
       "dateISO": "2026-04",
       "location": "Rio de Janeiro, Brazil",
-      "conferenceSource": "https://conf.researchr.org/home/icse-2026/"
+      "conferenceSource": "https://conf.researchr.org/home/icse-2026/",
+      "citationWorkIds": [
+        "W7212295140",
+        "W4416123789"
+      ],
+      "citationTitleAliases": [
+        "Hierarchical Prediction-based Management for LMaaS Systems"
+      ]
     },
     {
       "year": 2025,
@@ -280,7 +296,11 @@
       "date": "Jun 2025",
       "dateISO": "2025-06",
       "location": "Naples, Italy",
-      "conferenceSource": "https://dsn2025.github.io/"
+      "conferenceSource": "https://dsn2025.github.io/",
+      "citationWorkIds": [
+        "W4412130287",
+        "W6910894075"
+      ]
     },
     {
       "year": 2026,
@@ -296,7 +316,10 @@
       "publicationStatus": "Submitted",
       "date": "2026",
       "dateISO": "2026",
-      "venueFull": "ACM Transactions on Software Engineering and Methodology"
+      "venueFull": "ACM Transactions on Software Engineering and Methodology",
+      "citationWorkIds": [
+        "W7125259620"
+      ]
     },
     {
       "year": 2026,
@@ -311,7 +334,10 @@
       "abstractSource": "https://arxiv.org/abs/2603.00468",
       "publicationStatus": "Submitted",
       "date": "2026",
-      "dateISO": "2026"
+      "dateISO": "2026",
+      "citationWorkIds": [
+        "W7133348938"
+      ]
     }
   ],
   "travel": {
@@ -542,5 +568,72 @@
   },
   "scholar": {
     "source": "https://scholar.google.com/citations?view_op=list_works&hl=en&user=2V3CaVMAAAAJ"
+  },
+  "citationStats": {
+    "provider": "OpenAlex",
+    "count": 47,
+    "updatedAt": "2026-11-20T16:43:12+00:00",
+    "scope": "listed-publications",
+    "method": "sum-per-paper-deduplicated-versions",
+    "papers": [
+      {
+        "title": "SimServing: Native-Execution Simulation for Evolution-Resilient LLM Serving Configuration Tuning",
+        "count": 0,
+        "workIds": [
+          "W7220897122"
+        ],
+        "source": "https://api.openalex.org/works?filter=referenced_works%3AW7220897122&select=id&per-page=200"
+      },
+      {
+        "title": "LLMGuard: Multi-Agent Fault Diagnosis for Reliable Language-Model-as-a-Service",
+        "count": 2,
+        "workIds": [
+          "W7167731768"
+        ],
+        "source": "https://api.openalex.org/works?filter=referenced_works%3AW7167731768&select=id&per-page=200"
+      },
+      {
+        "title": "StaR: Stateful Dynamic-Graph Root Cause Analysis through Memory-Enhanced Causality Discovery",
+        "count": 0,
+        "workIds": [
+          "W7196988854"
+        ],
+        "source": "https://api.openalex.org/works?filter=referenced_works%3AW7196988854&select=id&per-page=200"
+      },
+      {
+        "title": "PreServe: Intelligent Management for LMaaS Systems via Hierarchical Prediction",
+        "count": 8,
+        "workIds": [
+          "W4416123789",
+          "W7212295140"
+        ],
+        "source": "https://api.openalex.org/works?filter=referenced_works%3AW4416123789%7CW7212295140&select=id&per-page=200"
+      },
+      {
+        "title": "LLMPrism: Black-box Performance Diagnosis for Production LLM Training Platforms",
+        "count": 5,
+        "workIds": [
+          "W4412130287",
+          "W6910894075"
+        ],
+        "source": "https://api.openalex.org/works?filter=referenced_works%3AW4412130287%7CW6910894075&select=id&per-page=200"
+      },
+      {
+        "title": "Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs",
+        "count": 7,
+        "workIds": [
+          "W7125259620"
+        ],
+        "source": "https://api.openalex.org/works?filter=referenced_works%3AW7125259620&select=id&per-page=200"
+      },
+      {
+        "title": "Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems",
+        "count": 25,
+        "workIds": [
+          "W7133348938"
+        ],
+        "source": "https://api.openalex.org/works?filter=referenced_works%3AW7133348938&select=id&per-page=200"
+      }
+    ]
   }
 }
