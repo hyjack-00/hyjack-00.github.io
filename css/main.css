@@ -160,6 +160,14 @@ body.is-background-view { overflow: hidden; }
     transition: color 0.2s;
 }
 
+.profile-links .profile-scholar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.profile-scholar span { font-size: 0.75rem; }
+
 .profile-links a:hover {
     color: var(--accent);
 }
