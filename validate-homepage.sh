@@ -88,7 +88,7 @@ if ('blog' in content) throw new Error('Blog metadata must come from co-located 
 if (blogs.posts.length !== 6) throw new Error('Expected 6 generated blog posts');
 if (content.recommendations.length !== 2) throw new Error('Expected 2 recommendations');
 if (content.experience.length !== 3) throw new Error('Expected 3 experience entries');
-if (content.travel.cities.length !== 26) throw new Error('Expected 26 travel points');
+if (content.travel.cities.length !== 29) throw new Error('Expected 29 travel points');
 if (content.stats.papers !== content.publications.length) throw new Error('Paper counter is stale');
 if (content.stats.cities !== content.travel.cities.length) throw new Error('City counter is stale');
 if ('photography' in content) throw new Error('Photography metadata must come from data/photography.json');
@@ -177,7 +177,7 @@ if (!education.includes('2021-2025') || !education.includes('2025-Present')) {
 const experienceLabels = content.experience.map(item =>
   `${item.organization}${item.role ? ` ${item.role}` : ''}`);
 if (JSON.stringify(experienceLabels) !== JSON.stringify([
-  'Research Intern @ SYSU Edge & Heterogeneous Computing (Prof. Zhi Zhou)',
+  'Research Intern @ SYSU Heterogeneous Computing (Prof. Zhi Zhou)',
   'SYSU SuperComputing Team Selective, 5 students/year',
   'SYSU AeroSwift Team Member'
 ])) {
@@ -283,7 +283,7 @@ if (!homepage.includes('id="publications"') || !homepage.includes('id="blog"') |
   throw new Error('A homepage section is missing its stable ID');
 }
 if (homepage.includes('content-card--dense')) {
-  throw new Error('All content cards must share the unified glass panel style');
+  throw new Error('Content cards must use the shared surface style');
 }
 if (!renderer.includes("fetch('/data/blogs.json')") || !renderer.includes('renderRecommendations()') ||
     !renderer.includes('class="blog-meta"') || !renderer.includes('class="blog-read-more"')) {
@@ -311,13 +311,12 @@ if (!css.includes('--glass-panel: rgba(255, 255, 255, 0.60)') ||
   throw new Error('Glass panels must stay unified, keyless, and free of layered border imagery');
 }
 if (!/\.content-card \{[^}]*background: var\(--glass-panel\)/.test(css) ||
-    !/\.pub-conference \{[^}]*background: var\(--glass-panel\)/.test(css) ||
     !/\.pub-btn \{[^}]*background: var\(--glass-panel\)/.test(css) ||
     !/\.sidebar-stats \{[^}]*background: var\(--glass-panel\)/.test(css) ||
     !/\.photo-album-card \{[^}]*background: var\(--glass-panel\)/.test(css) ||
     !/\.photo-gallery-shell \{[^}]*background: var\(--glass-panel-strong\)/.test(css) ||
     !mapSource.includes('https://tile.openstreetmap.org/{z}/{x}/{y}.png')) {
-  throw new Error('Every text-bearing surface must use the shared glass tokens');
+  throw new Error('Shared surface styles or the keyless travel map are missing');
 }
 if (!template.includes('{{ARTICLE_BODY}}') || !template.includes('{{ARTICLE_NAVIGATION}}') ||
     !template.includes('article-card') || !template.includes('class="sidebar"')) {
@@ -350,7 +349,7 @@ if (!css.includes('--avatar-scale: 1') || !css.includes('--avatar-focus-y: 50%')
     !css.includes('calc((var(--sidebar-width) - var(--profile-size)) / 2)') ||
     !css.includes('margin-left: var(--sidebar-width)') ||
     !css.includes('clamp(1.5rem, calc(25vh - 8.5rem)') ||
-    !css.includes('--pub-copy-line-height: 1.2') ||
+    !css.includes('--pub-copy-line-height: 1.5') ||
     !css.includes('--pub-action-line-height: 1.2') || !css.includes('--pub-action-gap-top: 0.24rem')) {
   throw new Error('Avatar or publication density variables are incorrect');
 }

@@ -22,14 +22,15 @@
     },
     {
       "institution": "SYSU",
-      "degree": "B.Eng. in CS&T (System Architecture) · GPA 3.9258/5.0",
-      "period": "2021-2025"
+      "degree": "B.Eng. in CS (System Architecture)",
+      "period": "2021-2025",
+      "gpa": "4.0"
     }
   ],
   "experience": [
     {
       "organization": "Research Intern @ SYSU",
-      "role": "Edge & Heterogeneous Computing (Prof. Zhi Zhou)",
+      "role": "Heterogeneous Computing (Prof. Zhi Zhou)",
       "period": "2023-2025",
       "iconClass": "fas fa-microchip"
     },
@@ -98,7 +99,7 @@
   ],
   "stats": {
     "papers": 7,
-    "cities": 26
+    "cities": 29
   },
   "news": [
     {
@@ -199,7 +200,15 @@
       "venue": "ASE'26",
       "venueKey": "ase",
       "venueFull": "The IEEE/ACM International Conference on Automated Software Engineering",
-      "links": {}
+      "links": {
+        "paper": "https://www.zhihan-jiang.com/files/ASE26/SimServing.pdf"
+      },
+      "abstract": "SimServing executes the original serving framework while substituting GPU computation with latency estimates, avoiding the maintenance drift of separately implemented simulators. Combined with particle swarm optimization, it supports efficient configuration search. Evaluation reduces throughput prediction error from 13.8% to 4.9%, accelerates simulation by up to 21.18 times, and finds configurations with up to 10.2% higher throughput.",
+      "abstractSource": "https://zhihan-jiang.com/",
+      "date": "Oct 2026",
+      "dateISO": "2026-10",
+      "location": "Munich, Germany",
+      "conferenceSource": "https://conf.researchr.org/home/ase-2026"
     },
     {
       "year": 2026,
@@ -209,8 +218,14 @@
       "venueKey": "dsn",
       "venueFull": "The IEEE/IFIP International Conference on Dependable Systems and Networks",
       "links": {
-        "paper": "https://dsn2026.github.io/cpaccepted.html"
-      }
+        "paper": "https://www.cse.cuhk.edu.hk/lyu/_media/conference/yzhong_dsn2026_llmguard.pdf"
+      },
+      "abstract": "LLMGuard diagnoses failures in large LMaaS deployments through a deterministic multi-agent workflow. It compiles troubleshooting procedures into a checking tree, verifies candidate causes, prunes unsupported branches, and records an evidence chain. Experiments on production infrastructure with more than 10,000 accelerators demonstrate improved diagnosis accuracy and identification times measured in seconds.",
+      "abstractSource": "https://www.cse.cuhk.edu.hk/lyu/_media/conference/yzhong_dsn2026_llmguard.pdf",
+      "date": "Jun 2026",
+      "dateISO": "2026-06",
+      "location": "Charlotte, USA",
+      "conferenceSource": "https://dsn2026.github.io/"
     },
     {
       "year": 2026,
@@ -221,7 +236,13 @@
       "venueFull": "The 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
       "links": {
         "code": "https://zenodo.org/records/20473197"
-      }
+      },
+      "abstract": "StaR investigates root causes in multivariate time-series systems whose dependencies change over time. It combines temporal memory, message passing, and neural Granger causality to track evolving states and discover causal relationships. Its implementation supports dynamic graphs and evaluates both root cause localization and causal discovery on synthetic and real-world datasets.",
+      "abstractSource": "https://github.com/huanghy95/StaR",
+      "date": "Aug 2026",
+      "dateISO": "2026-08",
+      "location": "Jeju, South Korea",
+      "conferenceSource": "https://kdd2026.kdd.org/"
     },
     {
       "year": 2026,
@@ -232,10 +253,16 @@
       "venueFull": "The IEEE/ACM International Conference on Software Engineering",
       "award": "ACM SIGSOFT Distinguished Paper Award",
       "links": {
-        "paper": "https://arxiv.org/abs/2504.03702",
+        "paper": "https://www.zhihan-jiang.com/files/ICSE26/PreServe.pdf",
         "arxiv": "https://arxiv.org/abs/2504.03702",
         "code": "https://github.com/OpsPAI/PreServe"
-      }
+      },
+      "abstract": "PreServe manages LMaaS resources by combining forecasts of service-wide workload with estimates of individual request demand. Per-instance predictions guide proactive scaling and request routing, balancing present and expected load. Production-data experiments report 41.3% lower tail latency and 49.38% lower resource consumption, with an additional overhead of 0.23%.",
+      "abstractSource": "https://arxiv.org/abs/2504.03702",
+      "date": "Apr 2026",
+      "dateISO": "2026-04",
+      "location": "Rio de Janeiro, Brazil",
+      "conferenceSource": "https://conf.researchr.org/home/icse-2026/"
     },
     {
       "year": 2025,
@@ -245,31 +272,46 @@
       "venueKey": "dsn",
       "venueFull": "The IEEE/IFIP International Conference on Dependable Systems and Networks, Industry Track",
       "links": {
-        "paper": "https://arxiv.org/abs/2505.00342",
+        "paper": "https://www.zhihan-jiang.com/files/DSN25/LLMPrism.pdf",
         "arxiv": "https://arxiv.org/abs/2505.00342"
-      }
+      },
+      "abstract": "LLMPrism monitors training performance from network traffic without modifying training jobs. It identifies jobs and parallelism strategies, reconstructs execution timelines, and uses those timelines to diagnose performance problems. Production deployment demonstrates continuous, lightweight monitoring and timeline reconstruction error within 0.3%, addressing the limited visibility available to multi-tenant platform operators.",
+      "abstractSource": "https://arxiv.org/abs/2505.00342",
+      "date": "Jun 2025",
+      "dateISO": "2025-06",
+      "location": "Naples, Italy",
+      "conferenceSource": "https://dsn2025.github.io/"
     },
     {
       "year": 2026,
       "title": "Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs",
       "authors": "Guangba Yu, Zirui Wang, **Yujie Huang**, Renyi Zhong, Yuedong Zhong, Yilun Wang, Michael R. Lyu",
-      "venue": "arXiv",
-      "venueKey": "arxiv",
+      "venue": "TOSEM'26",
+      "venueKey": "tosem",
       "links": {
-        "paper": "https://arxiv.org/abs/2601.13655",
         "arxiv": "https://arxiv.org/abs/2601.13655"
-      }
+      },
+      "abstract": "This study examines 705 reported failures across DeepSeek, Llama, and Qwen deployments. It identifies shared reliability problems in the surrounding software and infrastructure, distinguishes crash-related infrastructure friction from tokenizer-related functional defects, and traces how barriers shift between fine-tuning and inference. The released dataset supports further work on dependable self-managed LLM deployment.",
+      "abstractSource": "https://arxiv.org/abs/2601.13655",
+      "publicationStatus": "Submitted",
+      "date": "2026",
+      "dateISO": "2026",
+      "venueFull": "ACM Transactions on Software Engineering and Methodology"
     },
     {
       "year": 2026,
       "title": "Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems",
       "authors": "Yilun Wang, Guangba Yu, Haiyu Huang, Zirui Wang, **Yujie Huang**, Pengfei Chen, Michael R. Lyu",
-      "venue": "arXiv",
-      "venueKey": "arxiv",
+      "venue": "TOS'26",
+      "venueKey": "tos",
       "links": {
-        "paper": "https://arxiv.org/abs/2603.00468",
         "arxiv": "https://arxiv.org/abs/2603.00468"
-      }
+      },
+      "abstract": "Cloud-OpsBench evaluates cloud root cause analysis through reproducible incident snapshots and interactive diagnostic interfaces. It contains 754 verified cases spanning 57 fault types, with evidence graphs for examining investigation quality. Evaluation of eleven language models shows that correct final diagnoses can still lack sufficient supporting evidence, motivating assessment of both outcomes and diagnostic process.",
+      "abstractSource": "https://arxiv.org/abs/2603.00468",
+      "publicationStatus": "Submitted",
+      "date": "2026",
+      "dateISO": "2026"
     }
   ],
   "travel": {
@@ -456,6 +498,27 @@
         "lng": 51.531,
         "country": "Qatar",
         "city": "Doha"
+      },
+      {
+        "name": "Munich",
+        "city": "Munich",
+        "country": "Germany",
+        "lat": 48.1372,
+        "lng": 11.5756
+      },
+      {
+        "name": "Salzburg",
+        "city": "Salzburg",
+        "country": "Austria",
+        "lat": 47.8095,
+        "lng": 13.055
+      },
+      {
+        "name": "Istanbul",
+        "city": "Istanbul",
+        "country": "Turkey",
+        "lat": 41.0082,
+        "lng": 28.9784
       }
     ]
   },

@@ -146,7 +146,9 @@ function renderEducation() {
     const eduHTML = contentData.education.map(edu => `
         <div class="sidebar-edu">
             <strong>${edu.institution}</strong><br>
-            <span>${edu.degree}, ${edu.period}</span>
+            <span class="education-degree">${edu.degree}</span>
+            ${edu.gpa ? `<span class="education-gpa">GPA: ${edu.gpa}</span>` : ''}
+            <span class="education-period">${edu.period}</span>
         </div>
     `).join('');
 
@@ -169,8 +171,11 @@ function renderExperience() {
         <div class="sidebar-experience">
             ${icon}
             <div class="experience-copy">
-                <strong>${item.organization}${item.role ? ` ${item.role}` : ''}</strong>
-                <span>${item.period}</span>
+                <div class="experience-heading">
+                    <strong>${item.organization}</strong>
+                    <span class="experience-period">${item.period}</span>
+                </div>
+                ${item.role ? `<span class="experience-role">${item.role}</span>` : ''}
             </div>
         </div>
     `;
@@ -208,6 +213,10 @@ function renderHonors() {
  */
 function renderStats() {
     const statsContainer = document.querySelector('.sidebar-stats');
+    const scholar = contentData.scholar;
+    const citations = Number.isSafeInteger(scholar?.citations) && scholar.citations >= 0
+        ? `<div class="stat-item" title="Google Scholar · ${scholar.updatedAt}"><span class="stat-number">${scholar.citations}</span><span class="stat-label">Citations</span></div>`
+        : '';
     statsContainer.innerHTML = `
         <div class="stat-item">
             <span class="stat-number">${contentData.publications.length}</span>
@@ -217,6 +226,7 @@ function renderStats() {
             <span class="stat-number">${contentData.travel.cities.length}</span>
             <span class="stat-label">Cities</span>
         </div>
+        ${citations}
     `;
 }
 
@@ -258,44 +268,54 @@ function renderPublications() {
     // Generate HTML
     const pubHTML = years.map(year => {
         const yearPubs = pubsByYear[year].map(pub => {
-            // Generate links
+            // Match the reference's compact row, with a dedicated side toggle.
             const links = Object.entries(pub.links).map(([key, url]) => {
-                const icons = {
-                    paper: 'fas fa-file-pdf',
-                    arxiv: 'fas fa-link',
-                    code: 'fab fa-github',
-                    slides: 'fas fa-presentation',
-                    video: 'fas fa-video'
-                };
-                const icon = icons[key] || 'fas fa-link';
+                const images = { paper: 'Paper.png', arxiv: 'Arxiv.png', code: 'Project.png' };
+                const icon = images[key]
+                    ? `<img src="/assets/badges/${images[key]}" alt="" width="14" height="14">`
+                    : '<i class="fas fa-link" aria-hidden="true"></i>';
                 const label = key.charAt(0).toUpperCase() + key.slice(1);
-                return `<a href="${url}" class="pub-btn" target="_blank" rel="noopener noreferrer"><i class="${icon}"></i> ${label}</a>`;
+                return `<a href="${url}" class="pub-btn" target="_blank" rel="noopener noreferrer">${icon}${label}</a>`;
             }).join('');
-
-            // Venue full name
-            const venueFullName = pub.venueFull || '';
-            const venueFullHTML = venueFullName ? `<p class="pub-venue">${venueFullName}</p>` : '';
-
-            // Location (optional)
-            const location = pub.location ?
-                `<span class="pub-location"><i class="fas fa-map-marker-alt"></i> ${pub.location}<br>${pub.date}</span>` :
-                '';
-            const award = pub.award ? `<span class="pub-award"><i class="fas fa-trophy"></i> ${pub.award}</span>` : '';
+            const venue = `<span class="pub-conference" data-venue="${pub.venueKey || 'arxiv'}" title="${pub.venueFull || pub.venue}"><span class="pub-conference-label">${pub.venue}</span></span>`;
+            const date = pub.date
+                ? `<time class="pub-meta-date" datetime="${pub.dateISO}">${pub.date}</time>`
+                : '';
+            const status = pub.publicationStatus ? `<span class="pub-status">${pub.publicationStatus}</span>` : '';
+            const location = pub.location
+                ? `<span class="pub-location">${pub.location}</span>`
+                : '';
+            const award = pub.award
+                ? `<span class="pub-award"><i class="fas fa-trophy" aria-hidden="true"></i> ${pub.award}</span>`
+                : '';
+            const awardIcon = pub.award
+                ? `<img class="pub-award-icon" src="/assets/badges/acm_sigsoft_award.jpeg" alt="${pub.award}" width="50" height="80">`
+                : '';
+            const abstractId = `pub-abstract-${year}-${pubsByYear[year].indexOf(pub)}`;
+            const abstract = pub.abstract
+                ? `<div class="pub-abstract" id="${abstractId}" hidden><p>${pub.abstract}</p></div>`
+                : '';
+            const toggle = pub.abstract ? `
+                <button class="pub-sidebar" type="button" aria-expanded="false" aria-controls="${abstractId}" aria-label="Toggle abstract: ${pub.title}">
+                    <span class="pub-sidebar-bar" aria-hidden="true"></span>
+                    <i class="fas fa-chevron-down pub-sidebar-icon" aria-hidden="true"></i>
+                </button>` : '';
 
             return `
-                <div class="pub-item">
+                <article class="pub-item">
                     <div class="pub-main">
-                        <h3 class="pub-title">${pub.title}</h3>
-                        <p class="pub-authors">${pub.authors.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
-                        ${venueFullHTML}
-                        <div class="pub-links">${links}</div>
+                        <div class="pub-copy">
+                            <h3 class="pub-title">${pub.title}</h3>
+                            <p class="pub-authors">${pub.authors.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+                            <div class="pub-venue-line${pub.award ? ' pub-venue-line--award' : ''}"><span class="pub-venue-mobile">${venue}${date}${location}${status}</span>${award}</div>
+                            ${abstract}
+                            ${links ? `<div class="pub-links">${links}</div>` : ''}
+                        </div>
+                        ${awardIcon}
                     </div>
-                    <div class="pub-side">
-                        <div class="pub-conference" data-venue="${pub.venueKey || 'arxiv'}"><i class="fas fa-calendar"></i> ${pub.venue}</div>
-                        ${award}
-                        ${location}
-                    </div>
-                </div>
+                    <div class="pub-meta-right">${venue}${date}${location}${status}</div>
+                    ${toggle}
+                </article>
             `;
         }).join('');
 
@@ -306,6 +326,17 @@ function renderPublications() {
         <h2><i class="fas fa-book"></i> Publications</h2>
         ${pubHTML}
     `;
+
+    pubSection.onclick = event => {
+        const button = event.target.closest('.pub-sidebar');
+        if (!button || !pubSection.contains(button)) return;
+        const abstract = document.getElementById(button.getAttribute('aria-controls'));
+        if (!abstract) return;
+        const expanded = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', String(expanded));
+        abstract.hidden = !expanded;
+    };
+
 }
 
 /**

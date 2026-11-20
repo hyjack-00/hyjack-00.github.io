@@ -217,14 +217,30 @@ background-image: var(--active-background-image);
 - `--avatar-scale`: 左侧头像缩放比例；换成裁切好的近景头像时可设为 `1`
 - `--avatar-focus-x` / `--avatar-focus-y`: 圆形头像的水平、垂直焦点
 - `--sidebar-width` / `--profile-size`: 桌面侧栏与头像尺寸；标准布局的头像顶部留白会自动等于左侧留白，中等高度窗口会从紧凑留白平滑增长到等距
-- `--pub-copy-line-height`: Publication 作者和会议信息行高
-- `--pub-action-line-height`: Publication 链接按钮文字行高
-- `--pub-action-padding-*`: Publication 链接按钮内边距
-- `--pub-action-gap-top`: 会议全名与链接按钮行之间的间距
+- `--pub-copy-line-height`: Publication 作者行高
 
-所有带文字的面板统一使用 `:root` 中的同一组玻璃参数：`--glass-panel`（60% 白）、`--glass-panel-strong`（66% 白，侧栏/图库页等）、`--glass-border`（42% 白描边）、`--glass-blur`（blur(10px)，不带 saturate）。覆盖范围包括内容卡片、侧栏与统计块、Publication 会议徽标与链接按钮、相册卡片、图库页外壳与头部、地图容器与 Leaflet 弹窗、文章返回/导航按钮与引用块。
 
-早期版本曾用 `assets/dense-feather.png` 九宫格羽化为 Publication/Blog 卡片做中心提亮，但卡片上下边缘 48px 的半透明羽化带连同卡片间隙会让背景画作透出，在滚动到特定位置时呈现为"白灰色横条盖住卡片、随卡片移动"的类屏幕坏线假象。该 border-image 图层与素材已移除，`validate-homepage.sh` 转而断言所有文字面板共用 glass token 且不再出现 `border-image`。`will-change: transform` 也改为仅在 `body.is-background-view`（全屏背景切换）期间挂载，日常滚动不再把整个内容列钉在合成层上。
+主页右侧 `.main-content` 透明，卡片之间露出原有背景图；卡片自身使用不透明白色，不使用 backdrop-filter、阴影或独立合成隔离。Publication 左侧显示标题、作者、奖项文字和链接，右侧显示会议简称与奖章图标；会议全名仅在简称提示中保留，不占用正文。`abstract` 为根据公开论文整理的简短摘要，`abstractSource` 保存出处；论文行结构、资源按钮与右侧折叠轨道参照 zhihan-jiang.com 实际元素及样式实现：主栏中放摘要，hidden 时不占空间，右侧按钮同步 aria-expanded/aria-controls；窄屏将会议简称移入主栏，折叠轨道仍在右侧。图标资源来自参考页 assets/images/badges，保存在 assets/badges 下以避免远程依赖。头像直接采用 /workspace/resume/resume/avatar.jpg。会议右栏宽度为 124px，按简称（11px）、年月（12px）、地点（11px）纵向排列；数据中的 date/dateISO/location/conferenceSource 保存经官网核实的信息。奖项文字 11px，无奖项时作者与资源按钮间距为 3px；奖项行与作者、按钮之间各留 5px，桌面端无奖项时不渲染额外会议文本行。侧栏经历的日期与名称首行对齐，角色说明独立换行。
+
+早期版本曾用 `assets/dense-feather.png` 九宫格羽化为 Publication/Blog 卡片做中心提亮，但卡片上下边缘 48px 的半透明羽化带连同卡片间隙会让背景画作透出，在滚动到特定位置时呈现为"白灰色横条盖住卡片、随卡片移动"的类屏幕坏线假象。该 border-image 图层与素材已移除，右侧白底进一步移除了卡片的模糊合成；`validate-homepage.sh` 保留 surface 样式与禁止 `border-image` 的检查。`will-change: transform` 也改为仅在 `body.is-background-view`（全屏背景切换）期间挂载，日常滚动不再把整个内容列钉在合成层上。
+
+## Google Scholar 引用量更新
+
+Multica autopilot `3db6cbd6-14b7-48e0-8a47-f013b3cf013b` 每周五 09:00（Asia/Shanghai，cron `0 9 * * 5`）更新本地博客引用量，首次计划为 2026-11-27。每次产生独立任务报告；不自动提交、推送或发布。
+
+确认正确的个人主页后，更新 `profile.scholar` 和以下数据。`citations` 是该主页的 All citations，`updatedAt` 必须是实际核实日期；数字和来源未核实时不写 0，页面不显示未知引用量。
+
+```json
+"scholar": {
+  "citations": 123,
+  "updatedAt": "YYYY-MM-DD",
+  "source": "https://scholar.google.com/citations?user=PROFILE_ID"
+}
+```
+
+上面仅为结构示例，不是当前引用量。目前尚缺个人主页链接，且当前网络访问 Scholar 返回 403；尚未录入引用量。自动任务须以姓名、CUHK CSE 和已知论文交叉核对身份；受限时保留旧值及旧核实日期并报告，不能使用同名作者或其他来源的计数替代。
+
+论文链接按数据中的 `links.paper` 与 `links.arxiv` 独立渲染；不要求两者同时存在。投稿去向通过 `publicationStatus: "Submitted"` 与 venue 表示，不能标成已接收。Cloud-OpsBench 的 TOS'26 依据用户最新指示，Why Does the LLM Stop Computing 的 TOSEM'26 依据本地简历。
 
 ## Blog 文章页
 

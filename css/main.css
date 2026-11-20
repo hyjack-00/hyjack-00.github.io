@@ -15,7 +15,7 @@
     --glass-blur: blur(10px);
     --sidebar-width: 280px;
     --profile-size: 140px;
-    --pub-copy-line-height: 1.2;
+    --pub-copy-line-height: 1.5;
     --pub-action-line-height: 1.2;
     --pub-action-padding-block: 0.08rem;
     --pub-action-padding-inline: 0.44rem;
@@ -227,7 +227,7 @@ body.is-background-view { overflow: hidden; }
 .sidebar-experience {
     display: grid;
     grid-template-columns: 2rem minmax(0, 1fr);
-    align-items: center;
+    align-items: start;
     gap: 0.55rem;
     margin-bottom: 0.65rem;
     color: var(--text-secondary);
@@ -258,23 +258,49 @@ body.is-background-view { overflow: hidden; }
     min-width: 0;
 }
 
-.experience-copy strong,
-.experience-copy span {
-    display: block;
+.experience-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.4rem;
 }
 
-.experience-copy strong {
+.experience-heading strong {
+    min-width: 0;
     color: var(--text-primary);
     font-weight: 650;
 }
 
-.experience-copy span {
-    margin-top: 0.08rem;
+.experience-period,
+.education-period {
     color: var(--text-muted);
+    font-size: 0.85em;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.experience-role {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.93em;
+    color: var(--text-secondary);
+}
+
+.education-period,
+.education-gpa {
+    display: block;
 }
 
 /* Main Content */
 .main-content {
+    /* Opaque surfaces avoid backdrop compositing during ordinary scrolling. */
+    --glass-panel: #ffffff;
+    --glass-panel-strong: #ffffff;
+    --glass-border: #e2e8f0;
+    --glass-blur: none;
+    min-width: 0;
+    background: transparent;
+    overflow-wrap: anywhere;
     margin-left: var(--sidebar-width);
     flex: 1;
     padding: 1.5rem 2rem 5rem;
@@ -298,15 +324,12 @@ body.is-background-view .error-main {
 
 .content-card {
     background: var(--glass-panel);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 0;
     padding: 1rem 1.25rem;
     margin-bottom: 1rem;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
     position: relative;
-    isolation: isolate;
 }
 
 .content-card h2 {
@@ -443,26 +466,112 @@ body.is-background-view .error-main {
     border-bottom: 1px solid var(--border-subtle);
 }
 
+/* Row structure and disclosure rail adapted from zhihan-jiang.com.
+   The abstract stays inside the copy column and takes no space when collapsed. */
 .pub-item {
     display: flex;
-    padding: 0.4rem 0.6rem;
+    align-items: stretch;
+    padding: 0;
     border-bottom: 1px solid var(--border-subtle);
-    gap: 0.8rem;
 }
 
-.pub-item:last-child {
-    border-bottom: none;
-}
+.pub-item:last-child { border-bottom: none; }
 
 .pub-main {
+    display: flex;
+    align-items: center;
     flex: 1;
     min-width: 0;
+    padding: 8px 4px 8px 0;
 }
 
-.pub-side {
-    flex-shrink: 0;
+.pub-copy { flex: 1; min-width: 0; }
+
+.pub-meta-right {
+    display: flex;
+    flex: 0 0 124px;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 8px 12px 8px 0;
     text-align: right;
-    min-width: 120px;
+}
+
+.pub-conference {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 18px;
+    padding: 0 7px;
+    border-radius: 4px;
+    background: #475569;
+    color: #fff;
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.pub-conference-label { display: block; transform: translateY(1px); }
+.pub-status { font-size: 10px; line-height: 1.4; color: var(--text-muted); }
+.pub-conference[data-venue="tos"],
+.pub-conference[data-venue="tosem"] { background: #475569; }
+
+.pub-conference[data-venue="icse"] { background: #1d4ed8; }
+.pub-conference[data-venue="ase"] { background: #7e22ce; }
+.pub-conference[data-venue="dsn"] { background: #0f766e; }
+.pub-conference[data-venue="kdd"] { background: #9a3412; }
+
+.pub-award-icon {
+    flex: 0 0 50px;
+    width: 50px;
+    height: auto;
+    margin-left: 13px;
+}
+
+.pub-sidebar {
+    display: flex;
+    flex: 0 0 24px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.pub-sidebar:hover { background: rgba(37, 99, 235, 0.06); }
+.pub-sidebar:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.pub-sidebar-bar {
+    width: 3px;
+    height: 36px;
+    background: linear-gradient(var(--accent), var(--accent-secondary));
+    border-radius: 2px;
+    opacity: 0.3;
+    transition: opacity 0.2s;
+}
+
+.pub-sidebar-icon {
+    font-size: 0.55rem;
+    color: var(--accent);
+    margin-top: 5px;
+    opacity: 0.45;
+}
+
+.pub-sidebar:hover .pub-sidebar-bar,
+.pub-sidebar[aria-expanded="true"] .pub-sidebar-bar { opacity: 0.8; }
+.pub-sidebar[aria-expanded="true"] .pub-sidebar-icon { opacity: 1; transform: rotate(180deg); }
+
+.pub-abstract[hidden] { display: none; }
+.pub-abstract p {
+    margin: 4px 0 0;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    color: var(--text-muted);
 }
 
 .pub-title {
@@ -477,93 +586,52 @@ body.is-background-view .error-main {
     font-size: 0.8rem;
     color: var(--text-secondary);
     line-height: var(--pub-copy-line-height);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0;
 }
 
-.pub-authors strong {
-    font-weight: 700;
-    color: var(--text-primary);
-}
+.pub-authors strong { font-weight: 700; color: var(--text-primary); }
+.pub-venue-mobile { display: none; }
+.pub-venue-line { display: none; margin-top: 2px; font-size: 11px; line-height: 1.4; }
+.pub-venue-line--award { display: block; margin-top: 5px; margin-bottom: 2px; }
+.pub-meta-right > .pub-conference { margin-bottom: 5px; }
+.pub-meta-date { font-size: 12px; font-weight: 650; line-height: 1.5; white-space: nowrap; }
+.pub-location { font-size: 11px; line-height: 1.4; color: var(--text-muted); margin-top: 2px; }
 
-.pub-venue {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    font-style: italic;
-    line-height: var(--pub-copy-line-height);
-}
-
-.pub-conference {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.16rem 0.48rem;
-    background: var(--glass-panel);
-    color: var(--text-secondary);
-    border: 1px solid var(--glass-border);
-    border-radius: 6px;
-    margin-bottom: 0.32rem;
-}
-
-.pub-conference i {
-    font-size: 0.7rem;
-}
-
-.pub-location {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    display: block;
-    margin-top: 0.2rem;
-}
-
-.pub-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    margin-top: var(--pub-action-gap-top);
-}
+.pub-links { display: flex; flex-wrap: wrap; gap: 5px; }
 
 .pub-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.2rem;
-    font-size: 0.75rem;
-    line-height: var(--pub-action-line-height);
-    padding: var(--pub-action-padding-block) var(--pub-action-padding-inline);
+    gap: 5px;
+    margin-top: 3px;
+    padding: 3px 10px;
+    font-size: 12px;
+    line-height: 1.3;
+    font-weight: 500;
+    border-radius: 7px;
     background: var(--glass-panel);
     border: 1px solid var(--glass-border);
-    border-radius: 6px;
     color: var(--text-secondary);
     text-decoration: none;
-    transition: all 0.15s;
 }
 
-.pub-btn:hover, .pub-btn:focus {
-    background: var(--glass-panel-strong);
-    border-color: rgba(37, 99, 235, 0.4);
-    color: var(--accent);
-    text-decoration: none;
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-.pub-btn i {
-    font-size: 0.7rem;
-}
-
-.pub-conference[data-venue="icse"] { color: #1d4ed8; border-color: rgba(29, 78, 216, 0.38); }
-.pub-conference[data-venue="ase"] { color: #7e22ce; border-color: rgba(126, 34, 206, 0.38); }
-.pub-conference[data-venue="dsn"] { color: #334155; border-color: rgba(51, 65, 85, 0.38); }
-.pub-conference[data-venue="kdd"] { color: #9a3412; border-color: rgba(154, 52, 18, 0.38); }
-.pub-conference[data-venue="arxiv"] { color: #334155; border-color: rgba(51, 65, 85, 0.38); }
+.pub-btn img { width: 0.95em; height: 0.95em; opacity: 0.7; }
+.pub-btn i { font-size: 0.7rem; }
+.pub-btn:hover { background: #eff6ff; border-color: #93c5fd; color: var(--accent); text-decoration: none; }
+.pub-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .pub-award {
-    display: block;
-    margin-top: 0.25rem;
-    color: #854d0e;
-    font-size: 0.72rem;
-    font-weight: 700;
+    display: inline-block;
+    font-size: 11px;
+    line-height: 1.4;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #b45309;
+    font-weight: 600;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
 /* Blog */
@@ -1462,12 +1530,6 @@ body.is-background-view .floating-background-control {
         margin-left: 0;
         padding: 1rem;
     }
-    .pub-item {
-        flex-direction: column;
-    }
-    .pub-side {
-        text-align: left;
-    }
     .information-grid {
         grid-template-columns: 1fr;
     }
@@ -1557,4 +1619,20 @@ body.is-background-view .floating-background-control {
     .floating-background-control {
         transition-duration: 0.01ms !important;
     }
+}
+
+@media (max-width: 767.98px) {
+    .pub-meta-right { display: none; }
+    .pub-venue-line { display: block; }
+    .pub-venue-mobile { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 6px; }
+    .pub-venue-mobile .pub-meta-date { font-size: 11px; }
+    .pub-venue-mobile .pub-location { margin: 0; }
+    .pub-venue-mobile:has(+ .pub-award) { margin-bottom: 2px; }
+    .pub-sidebar { flex-basis: 20px; }
+    .pub-btn { font-size: 11.5px; padding: 2px 8px; }
+    .pub-award-icon { flex-basis: 40px; width: 40px; }
+}
+
+@media (max-width: 575.98px) {
+    .pub-award-icon { display: none; }
 }
