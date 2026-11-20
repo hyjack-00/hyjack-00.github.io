@@ -8,7 +8,7 @@
     "affiliation": "CUHK, CSE",
     "email": "yjhuang@cse.cuhk.edu.hk",
     "github": "hyjack-00",
-    "scholar": "https://scholar.google.com",
+    "scholar": "https://scholar.google.com/citations?view_op=list_works&hl=en&user=2V3CaVMAAAAJ",
     "avatar": "/assets/avatar.jpg"
   },
   "about": {
@@ -539,5 +539,8 @@
   "footer": {
     "copyright": "© 2026 Yujie Huang",
     "lastUpdated": "Sep 2026"
+  },
+  "scholar": {
+    "source": "https://scholar.google.com/citations?view_op=list_works&hl=en&user=2V3CaVMAAAAJ"
   }
 }

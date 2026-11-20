@@ -238,7 +238,7 @@ Multica autopilot `3db6cbd6-14b7-48e0-8a47-f013b3cf013b` 每周五 09:00（Asia/
 }
 ```
 
-上面仅为结构示例，不是当前引用量。目前尚缺个人主页链接，且当前网络访问 Scholar 返回 403；尚未录入引用量。自动任务须以姓名、CUHK CSE 和已知论文交叉核对身份；受限时保留旧值及旧核实日期并报告，不能使用同名作者或其他来源的计数替代。
+上面仅为结构示例，不是当前引用量。个人主页已由用户确认，ID 为 `2V3CaVMAAAAJ`，链接保存在 `profile.scholar` 和 `scholar.source`。当前网络访问 Scholar 返回 403；尚未录入引用量或成功核实日期。自动任务须以姓名、CUHK CSE 和已知论文交叉核对身份；受限时保留旧值及旧核实日期并报告，不能使用同名作者或其他来源的计数替代。
 
 论文链接按数据中的 `links.paper` 与 `links.arxiv` 独立渲染；不要求两者同时存在。投稿去向通过 `publicationStatus: "Submitted"` 与 venue 表示，不能标成已接收。Cloud-OpsBench 的 TOS'26 依据用户最新指示，Why Does the LLM Stop Computing 的 TOSEM'26 依据本地简历。
 
