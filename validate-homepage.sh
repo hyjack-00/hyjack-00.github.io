@@ -344,7 +344,7 @@ if (!generator.includes('html: false') || !generator.includes('stable_heading_id
     !articleCss.includes('.article-body .highlight-container')) {
   throw new Error('Markdown safety, stable anchors, or legacy code-block visuals are missing');
 }
-if (!css.includes('--avatar-scale: 1') || !css.includes('--avatar-focus-y: 50%') ||
+if (!css.includes('--avatar-scale: 1') || !css.includes('--avatar-focus-y: 20%') ||
     !css.includes('--sidebar-width: 280px') || !css.includes('--profile-size: 140px') ||
     !css.includes('calc((var(--sidebar-width) - var(--profile-size)) / 2)') ||
     !css.includes('margin-left: var(--sidebar-width)') ||

@@ -154,35 +154,6 @@
         "Optimized GEMM at assembly level for FT2000-series ARMv8 (Aarch64) multi-core processors, outperforming existing BLAS libraries",
         "Optimized SpGEMM for ARMv8, porting and optimizing the CSeg algorithm to ARM"
       ]
-    },
-    {
-      "name": "YatSen OS",
-      "period": "2022.03 -- 2023.04",
-      "detail": "SYSU Operating Systems lab",
-      "points": [
-        "Implemented an operating system in C++",
-        "Focused on virtual memory systems as an extra component: page replacement (LRU), page-fault handling, and disk swap-space management",
-        "Contributed to the design of the next-gen Rust OS lab, YatSenOS-v2"
-      ]
-    },
-    {
-      "name": "YatCPU",
-      "period": "2022.03 -- 2023.04",
-      "detail": "SYSU Computer Organization lab",
-      "points": [
-        "Implemented a RISC-V processor in Chisel",
-        "Five-stage pipelined, single-issue, in-order processor supporting a subset of the RV32I integer instruction set"
-      ]
-    },
-    {
-      "name": "CSAPP Course and Labs",
-      "period": "2022.04 -- 2023.08",
-      "detail": "CMU 15-213 online course and labs",
-      "points": [
-        "Perfect scores across all labs, focusing on the most challenging Malloc Lab",
-        "Visualized heap memory usage and compared allocation strategies",
-        "Implemented a Segregated Free List with mini-blocks, similar to Linux's buddy system"
-      ]
     }
   ],
   "skills": [

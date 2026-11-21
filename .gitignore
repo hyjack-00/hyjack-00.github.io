@@ -5,3 +5,6 @@ images/photography/upload/
 
 # Python citation updater
 __pycache__/
+
+# Local verification artifacts
+.artifacts/

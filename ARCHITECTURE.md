@@ -215,7 +215,7 @@ background-image: var(--active-background-image);
 `css/main.css` 的 `:root` 集中定义了常用视觉参数：
 
 - `--avatar-scale`: 左侧头像缩放比例；换成裁切好的近景头像时可设为 `1`
-- `--avatar-focus-x` / `--avatar-focus-y`: 圆形头像的水平、垂直焦点
+- `--avatar-focus-x` / `--avatar-focus-y`: 圆形头像的水平、垂直取景位置，同时用于 object-position；当前垂直 20%，保留更多上部天空与人脸
 - `--sidebar-width` / `--profile-size`: 桌面侧栏与头像尺寸；标准布局的头像顶部留白会自动等于左侧留白，中等高度窗口会从紧凑留白平滑增长到等距
 - `--pub-copy-line-height`: Publication 作者行高
 
