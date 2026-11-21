@@ -49,30 +49,6 @@
   ],
   "honors": [
     {
-      "year": "2023",
-      "title": "ASC Student Supercomputer Challenge Finalist - Sunway next-generation processor optimization"
-    },
-    {
-      "year": "2024",
-      "title": "ASC Student Supercomputer Challenge Silver Prize (2/300+) - LLM inference acceleration"
-    },
-    {
-      "year": "2023",
-      "title": "Student Cluster Competition Participant - LLaMA-13B and WRF-Hydro optimization"
-    },
-    {
-      "year": "2023",
-      "title": "CAS-PRA Parallel Application Competition 1st Prize (Central-South Division)"
-    },
-    {
-      "year": "2023",
-      "title": "CPC Competition - Sunway LDM/SPM and DMA pipeline optimization"
-    },
-    {
-      "year": "2023",
-      "title": "Excellence Award, China Parallel Application Challenge on Domestic CPUs (CPC)"
-    },
-    {
       "year": "2025",
       "title": "Outstanding Graduate, Sun Yat-sen University"
     },
@@ -87,14 +63,6 @@
     {
       "year": "2024",
       "title": "Corporate Sponsored Scholarship from \"37IE\" (2%), Sun Yat-sen University"
-    },
-    {
-      "year": "2022",
-      "title": "Second Prize (<10%), SYSU Novice Computer Programming Competition (NCPC)"
-    },
-    {
-      "year": "2023",
-      "title": "Honorable Mention, Mathematical Contest in Modeling (MCM)"
     }
   ],
   "stats": {
@@ -125,7 +93,7 @@
   ],
   "service": {
     "title": "Conference Sub-Reviewer",
-    "detail": "ICSE'27, ASE'26, ISSTA'26"
+    "detail": "EuroSys'27, ICSE'27, ASE'26, ISSTA'26"
   },
   "projects": [
     {
