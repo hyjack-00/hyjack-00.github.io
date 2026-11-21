@@ -7,7 +7,7 @@
 **主页结构化信息统一在这个 JSON 文件中管理**，修改后会自动更新主页与文章页共用的侧栏。Blog 正文与 Blog 清单由各文章目录中的 `index.md` 管理，见下方“Blog 文章页”。
 
 包括：
-- ✅ **个人信息** (`profile`): 姓名、职位、邮箱、GitHub、Google Scholar
+- ✅ **个人信息** (`profile`): 姓名、职位、邮箱、GitHub
 - ✅ **关于** (`about`): 个人简介（支持HTML）
 - ✅ **教育经历** (`education`): 学校、学位、时间段
 - ✅ **团队经历** (`experience`): 团队、角色、时间段、本地图标
@@ -165,7 +165,6 @@ photography/
   "affiliation": "CUHK, CSE",
   "email": "yjhuang@cse.cuhk.edu.hk",
   "github": "hyjack-00",
-  "scholar": "https://scholar.google.com/citations?user=YOUR_ID",
   "avatar": "/assets/avatar.jpg"
 }
 ```
@@ -226,7 +225,7 @@ background-image: var(--active-background-image);
 
 ## 引用量更新
 
-侧栏简洁显示 Citations 和 OpenAlex 来源，悬停提示统计范围及 UTC 核实日期。统计仅覆盖主页列出的论文，按每篇论文各版本的引用文献 OpenAlex ID 去重后求和，不使用可能混入同名作者的个人总量。Google Scholar 个人主页 `2V3CaVMAAAAJ` 继续作为独立链接保留，不参与计数。
+侧栏简洁显示 Citations 和 OpenAlex 来源，悬停提示统计范围及 UTC 核实日期。统计仅覆盖主页列出的论文，按每篇论文各版本的引用文献 OpenAlex ID 去重后求和，不使用可能混入同名作者的个人总量。仅使用 OpenAlex，已移除旧 Google Scholar 入口和数据字段。
 
 - `publications[].citationWorkIds`：已核实的正式版和预印本 OpenAlex ID；标题变更时可配置 `citationTitleAliases`。
 - `citationStats`：来源、总计、UTC 核实时间、方法和逐篇数量及查询出处。

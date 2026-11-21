@@ -126,7 +126,6 @@ function renderProfile() {
     linksContainer.innerHTML = `
         <a href="mailto:${profile.email}" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://github.com/${profile.github}" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-        <a class="profile-scholar" href="${profile.scholar}" target="_blank" rel="noopener noreferrer" title="Google Scholar"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span>Google Scholar</span></a>
     `;
 }
 
