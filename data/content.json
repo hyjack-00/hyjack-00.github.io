@@ -506,8 +506,8 @@
   },
   "citationStats": {
     "provider": "OpenAlex",
-    "count": 47,
-    "updatedAt": "2026-11-20T16:43:12+00:00",
+    "count": 51,
+    "updatedAt": "2026-11-27T01:02:39+00:00",
     "scope": "listed-publications",
     "method": "sum-per-paper-deduplicated-versions",
     "papers": [
@@ -529,7 +529,7 @@
       },
       {
         "title": "StaR: Stateful Dynamic-Graph Root Cause Analysis through Memory-Enhanced Causality Discovery",
-        "count": 0,
+        "count": 1,
         "workIds": [
           "W7196988854"
         ],
@@ -537,7 +537,7 @@
       },
       {
         "title": "PreServe: Intelligent Management for LMaaS Systems via Hierarchical Prediction",
-        "count": 8,
+        "count": 9,
         "workIds": [
           "W4416123789",
           "W7212295140"
@@ -555,7 +555,7 @@
       },
       {
         "title": "Why Does the LLM Stop Computing: An Empirical Study of User-Reported Failures in Open-Source LLMs",
-        "count": 7,
+        "count": 8,
         "workIds": [
           "W7125259620"
         ],
@@ -563,7 +563,7 @@
       },
       {
         "title": "Cloud-OpsBench: A Reproducible Benchmark for Agentic Root Cause Analysis in Cloud Systems",
-        "count": 25,
+        "count": 26,
         "workIds": [
           "W7133348938"
         ],
